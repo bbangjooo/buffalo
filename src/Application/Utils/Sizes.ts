@@ -1,4 +1,4 @@
-import EventEmitter from "./Eventemitter";
+import { EventEmitter } from "./Eventemitter";
 
 export default class Sizes extends EventEmitter {
   width: number = window.innerWidth;

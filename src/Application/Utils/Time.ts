@@ -1,4 +1,4 @@
-import EventEmitter from "./Eventemitter";
+import { EventEmitter } from "./Eventemitter";
 
 export default class Time extends EventEmitter {
   start: number = Date.now();

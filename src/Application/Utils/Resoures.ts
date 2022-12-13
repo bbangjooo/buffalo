@@ -3,7 +3,7 @@ import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Loaders, Source, SourceType, LoadedFile } from "../../types";
 import sources from "../sources";
-import EventEmitter from "./Eventemitter";
+import { EventEmitter } from "./Eventemitter";
 
 export default class Resources extends EventEmitter {
   loaders!: Loaders;
