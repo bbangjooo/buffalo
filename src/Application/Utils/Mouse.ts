@@ -1,4 +1,4 @@
-import { EventEmitter } from "./EventEmitter";
+import EventEmitter from "./EventEmitter";
 import Application from "../Application";
 export default class Mouse extends EventEmitter {
   x: number;

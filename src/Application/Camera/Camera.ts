@@ -1,5 +1,5 @@
 import Application from "../Application";
-import { EventEmitter } from "../Utils/Eventemitter";
+import EventEmitter from "../Utils/Eventemitter";
 import Sizes from "../Utils/Sizes";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
