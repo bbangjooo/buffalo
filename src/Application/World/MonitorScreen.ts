@@ -26,7 +26,7 @@ export default class MonitorScreen extends EventEmitter {
   mesh: Mesh;
   screenSize = new THREE.Vector2(SCREEN_SIZE.w, SCREEN_SIZE.h);
 
-  position = new THREE.Vector3(15, SCALE * 3.52, -SCALE * 0.9);
+  position = new THREE.Vector3(15, SCALE * 3.52, -SCALE * 0.95);
   prevInComputer: boolean;
   shouldLeaveMonitor: boolean;
   inComputer: boolean;
@@ -198,7 +198,7 @@ export default class MonitorScreen extends EventEmitter {
 
     // Create GL plane
     const material = new THREE.MeshLambertMaterial();
-    // material.side = THREE.DoubleSide;
+    material.side = THREE.DoubleSide;
     material.opacity = 0;
     material.transparent = false;
     // NoBlending allows the GL plane to occlude the CSS plane

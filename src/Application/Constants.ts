@@ -1,4 +1,4 @@
-export const INNER_SITE_URL = "https://bbangjo.kr";
+export const INNER_SITE_URL = "https://blog.bbangjo.kr";
 export const SCALE = 870;
 export const ASPECT = 1.683;
 
