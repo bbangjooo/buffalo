@@ -1,15 +1,9 @@
+Hello! This is my own room made by Threejs + Typescript + Blender. I made it to introduce blog website in a cool way. You can check it out by visit [https://bbangjo.kr](http://bbangjo.kr). Or, if you want to see only blog contents, please visit [https://blog.bbangjo.kr](http://blog.bbangjo.kr). Thank you for enjoying!
 
-# VS Code Readme Editor 📝  
-Import your existing Readme using the import button on the top right corner of the navbar, 
-or create a new Readme from scratch by typing in the editor.  
 
-## Get Started 🚀  
-To get started, hit the 'clear' button at the top of the editor!  
+Motivated by [https://henryheffernan.com](https://henryheffernan.com) and [Bruno Simon](https://github.com/brunosimon)
 
-## Prebuilt Components/Templates 🔥  
-You can checkout prebuilt components and templates by clicking on the menu icon
-on the top left corner of the navbar.
     
-## Save Readme ✨  
-Once you're done, click on the save button to directly save your Readme to your
-project's root directory!
+## TODO ✨  
+- [ ] Optimize and apply texture
+- [ ] Add decoration
