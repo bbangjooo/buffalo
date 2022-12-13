@@ -20,7 +20,7 @@ export class CameraActions {
 
 const keys: { [key in CameraKey]: CameraKeyFrame } = {
   idle: {
-    position: new THREE.Vector3(-SCALE * 8, SCALE * 8, SCALE * 6),
+    position: new THREE.Vector3(-SCALE * 8, SCALE * 8, SCALE * 8),
     focalPoint: new THREE.Vector3(0, SCALE * 3, 0),
   },
   monitor: {

@@ -2,7 +2,6 @@ import { Scene } from "three";
 import Application from "../Application";
 import Resources from "../Utils/Resoures";
 import { DirectiveText } from "./DirectiveText";
-
 import Environment from "./Environment";
 import MonitorScreen from "./MonitorScreen";
 import Room from "./Room";
@@ -15,6 +14,7 @@ export default class World {
   monitorScreen: MonitorScreen;
   environment: Environment;
   text: DirectiveText;
+
   constructor() {
     this.application = new Application();
     this.scene = this.application.scene;
@@ -34,7 +34,5 @@ export default class World {
     this.text.add();
     this.room.add();
   }
-  update() {
-    // update models
-  }
+  update() {}
 }

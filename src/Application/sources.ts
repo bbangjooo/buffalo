@@ -2,9 +2,24 @@ import { Source, SourceType } from "../types";
 
 const sources: Source[] = [
   {
-    name: "roomModel",
-    path: "/Room/room.glb",
+    name: "deskModel",
+    path: "/Room/Desk.glb",
     type: SourceType.GLTF_MODEL,
+  },
+  {
+    name: "deskTexture",
+    path: "/Room/Desk.jpg",
+    type: SourceType.TEXTURE,
+  },
+  {
+    name: "othersModel",
+    path: "/Room/Others.glb",
+    type: SourceType.GLTF_MODEL,
+  },
+  {
+    name: "othersTexture",
+    path: "/Room/Others.jpg",
+    type: SourceType.TEXTURE,
   },
   {
     name: "textTexture",

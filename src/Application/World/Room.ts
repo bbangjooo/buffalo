@@ -13,21 +13,46 @@ enum Lights {
 }
 
 export default class Room extends BaseObject {
-  model: LoadedModel;
+  deskModel: LoadedModel;
+  deskTexture: LoadedTexture;
+  othersModel: LoadedModel;
+  othersTexture: LoadedTexture;
   material: THREE.MeshBasicMaterial;
-  texture: LoadedTexture;
 
   constructor() {
     super();
-    this.model = this.resources.items.roomModel as LoadedModel;
+    this.deskModel = this.resources.items.deskModel as LoadedModel;
+    this.deskTexture = this.resources.items.deskTexture as LoadedTexture;
+    this.othersModel = this.resources.items.othersModel as LoadedModel;
+    this.othersTexture = this.resources.items.othersTexture as LoadedTexture;
+    this.deskTexture.flipY = false;
+
+    this.initTexture([this.deskTexture, this.othersTexture]);
 
     const speakLightMaterial = new THREE.MeshBasicMaterial({ color: 0xff575a });
     const mouseLightMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 
-    this.model.scene.traverse((child) => {
+    const deskMaterial = new THREE.MeshBasicMaterial({
+      map: this.deskTexture,
+    });
+
+    const othersMaterial = new THREE.MeshBasicMaterial({
+      map: this.othersTexture,
+    });
+
+    const keyboards = [
+      "keyboard",
+      "keyboard_1",
+      "keyboard_2",
+      "keyboard_3",
+      "keyboard_4",
+    ];
+    this.deskModel.scene.traverse((child) => {
       child.castShadow = true;
       child.receiveShadow = true;
-      if (child instanceof THREE.Mesh) {
+
+      if (child instanceof THREE.Mesh && !keyboards.includes(child.name)) {
+        child.material.polygonOffset = true;
         switch (child.name) {
           case Lights.SPEAKER_LIGHT1:
             child.material = speakLightMaterial;
@@ -39,32 +64,34 @@ export default class Room extends BaseObject {
             child.material = mouseLightMaterial;
             break;
           default:
-            child.material.polygonOffset = true;
-            // child.material = material;
+            child.material = deskMaterial;
             break;
         }
       }
     });
-    let scale = SCALE * 0.62; // 900 * 0.6
 
-    this.model.scene.scale.set(scale, scale, scale);
+    this.othersModel.scene.traverse((child) => {
+      child.castShadow = true;
+      child.receiveShadow = true;
+      if (child instanceof THREE.Mesh && !keyboards.includes(child.name)) {
+        child.material = othersMaterial;
+      }
+    });
 
-    // this.setFloor();
-  }
-  setFloor() {
-    const plane = new THREE.Mesh(
-      new THREE.PlaneGeometry(100, 100),
-      new THREE.MeshStandardMaterial({
-        color: 0xffe6a2,
-        side: THREE.BackSide,
-      })
-    );
-    this.model.scene.add(plane);
-    plane.rotation.x = Math.PI / 2;
-    plane.position.y = -0.3;
-    plane.receiveShadow = true;
+    let scale = SCALE * 0.62;
+
+    this.deskModel.scene.scale.set(scale, scale, scale);
+    this.othersModel.scene.scale.set(scale, scale, scale);
   }
   add() {
-    this.scene.add(this.model.scene);
+    this.scene.add(this.deskModel.scene);
+    this.scene.add(this.othersModel.scene);
+  }
+
+  initTexture(textures: LoadedTexture[]) {
+    textures.forEach((t) => {
+      t.flipY = false;
+      t.encoding = THREE.sRGBEncoding;
+    });
   }
 }
