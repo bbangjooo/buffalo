@@ -20,7 +20,6 @@ export default class World {
     this.scene = this.application.scene;
     this.resources = this.application.resources;
     this.resources.on("ready", () => {
-      this.environment = new Environment();
       this.text = new DirectiveText();
       this.room = new Room();
       this.monitorScreen = new MonitorScreen();

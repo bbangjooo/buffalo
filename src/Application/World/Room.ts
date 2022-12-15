@@ -3,6 +3,7 @@ import { LoadedModel, LoadedTexture } from "../../types";
 
 import { SCALE } from "../Constants";
 import { BaseObject } from "./BaseObject";
+import Environment from "./Environment";
 
 enum Lights {
   ROOM_LIGHT1 = "roomLight1",
@@ -18,6 +19,7 @@ export default class Room extends BaseObject {
   othersModel: LoadedModel;
   othersTexture: LoadedTexture;
   material: THREE.MeshBasicMaterial;
+  environment: Environment = new Environment();
 
   constructor() {
     super();
@@ -51,6 +53,12 @@ export default class Room extends BaseObject {
       child.castShadow = true;
       child.receiveShadow = true;
 
+      if (child instanceof THREE.Mesh && keyboards.includes(child.name)) {
+        this.environment.setSunlight(
+          new THREE.Vector3(15, SCALE * 10, 0),
+          child
+        );
+      }
       if (child instanceof THREE.Mesh && !keyboards.includes(child.name)) {
         child.material.polygonOffset = true;
         switch (child.name) {
