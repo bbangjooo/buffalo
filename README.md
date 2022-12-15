@@ -5,7 +5,7 @@ Motivated by [https://henryheffernan.com](https://henryheffernan.com) and [Bruno
 
 ## Demo
 
-![video](https://user-images.githubusercontent.com/51329156/207922212-520d1ef9-0e82-4465-8e45-b1851ab6b384.gif)
+![video](https://user-images.githubusercontent.com/51329156/207922867-cd8baee4-d8e2-488d-82b5-0302eb3a87fd.gif)
 
 
 ## TODO ✨  
