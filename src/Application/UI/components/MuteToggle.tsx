@@ -40,7 +40,7 @@ function MuteToggle() {
         id="prevent-click"
         src={muted ? volumeOff : volumeOn}
         style={{ opacity: active ? 0.2 : hovering ? 0.8 : 1 }}
-        width={window.innerWidth < 768 ? 10 : 12}
+        width={window.innerWidth < 768 ? 8 : 10}
         animate={active ? "active" : hovering ? "hovering" : "default"}
         variants={iconVars}
       />

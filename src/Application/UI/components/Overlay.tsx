@@ -1,16 +1,21 @@
 import React from "react";
 import MuteToggle from "./MuteToggle";
 function Overlay() {
-  const musicCopyRight =
-    "Soundtrack composed by AIVA (Artificial Intelligence Virtual Artist): https://www.aiva.ai";
+  const githubLink = "https://github.com/bbangjooo/buffalo";
 
   return (
     <div style={styles.wrapper}>
-      <div style={styles.container}>
-        <p>{musicCopyRight}</p>
-      </div>
-      <div style={styles.ToggleRow}>
-        <div style={styles.ToggleRowChild}>
+      <div style={styles.underRow}>
+        <div style={Object.assign({}, styles.container, styles.underRowChild)}>
+          <a
+            href={githubLink}
+            target="_blank"
+            style={{ textDecoration: "none" }}
+          >
+            <p>{"Source Code"}</p>
+          </a>
+        </div>
+        <div style={styles.underRowChild}>
           <MuteToggle />
         </div>
       </div>
@@ -30,7 +35,8 @@ const styles: { [key: string]: React.CSSProperties } = {
   container: {
     background: "black",
     color: "white",
-    padding: 0,
+    padding: 4,
+    fontSize: 14,
     paddingLeft: 16,
     paddingRight: 16,
     textAlign: "center",
@@ -38,12 +44,15 @@ const styles: { [key: string]: React.CSSProperties } = {
     marginBottom: 4,
     boxSizing: "border-box",
   },
-  ToggleRow: {
+  underRow: {
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  ToggleRowChild: {
+  underRowChild: {
     marginRight: 4,
+    marginBottom: 0,
   },
 };
 
