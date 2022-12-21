@@ -7,6 +7,8 @@ import World from "./World/World";
 import Resources from "./Utils/Resoures";
 import sources from "./sources";
 import Mouse from "./Utils/Mouse";
+import UI from "./UI";
+import { AudioPlayer } from "./AudioPlayer";
 
 let instance: Application | null = null;
 
@@ -20,6 +22,8 @@ export default class Application {
   renderer: Renderer;
   resources: Resources;
   world: World;
+  ui: UI;
+  audioPlayer: AudioPlayer;
   constructor() {
     if (instance) {
       return instance;
@@ -35,6 +39,8 @@ export default class Application {
     this.renderer = new Renderer();
     this.resources = new Resources(sources);
     this.world = new World();
+    this.ui = new UI();
+    this.audioPlayer = new AudioPlayer();
     // this.camera.setOrbitControls();
     this.sizes.on("resize", () => {
       this.resize();

@@ -4,12 +4,11 @@ import { BaseObject } from "./BaseObject.js";
 export default class Environment extends BaseObject {
   sunLight: THREE.DirectionalLight;
   ambientLight: THREE.AmbientLight;
-
   constructor() {
     super();
   }
 
-  setSunlight(position: THREE.Vector3, target: THREE.Mesh) {
+  setSunlight(position: THREE.Vector3, target: THREE.Object3D<THREE.Event>) {
     this.sunLight = new THREE.DirectionalLight("#ffffff", 1);
     this.sunLight.castShadow = true;
     this.sunLight.shadow.camera.far = 20;
@@ -20,6 +19,8 @@ export default class Environment extends BaseObject {
     this.sunLight.target = target;
     this.scene.add(this.sunLight);
   }
+
+  add() {}
 
   resize() {}
 

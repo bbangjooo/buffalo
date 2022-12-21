@@ -13,6 +13,7 @@ import {
   MonitorCameraAction,
 } from "./CamerActions";
 import { Easing, Tween } from "@tweenjs/tween.js";
+import { EventBus } from "../UI/EventBus";
 export default class Camera extends EventEmitter {
   application: Application;
   private readonly sizes: Sizes;
@@ -86,11 +87,13 @@ export default class Camera extends EventEmitter {
   private addMonitorListener() {
     this.on("enterMonitor", () => {
       this.transition(CameraKey.MONITOR, 2000, BezierEasing(0.13, 0.99, 0, 1));
+      EventBus.dispatch("enterMonitor", {});
       //  move( ToMonitor )
     });
 
     this.on("leaveMonitor", () => {
       this.transition(CameraKey.DESK);
+      EventBus.dispatch("leaveMonitor", {});
     });
   }
 

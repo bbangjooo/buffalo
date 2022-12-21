@@ -5,6 +5,7 @@
     "module": "CommonJS",
     "moduleResolution": "Node",
     "strict": true,
+    "jsx": "react",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
