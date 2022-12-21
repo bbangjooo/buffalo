@@ -23,6 +23,7 @@ export default class World {
       this.text = new DirectiveText();
       this.room = new Room();
       this.monitorScreen = new MonitorScreen();
+      this.environment = new Environment();
 
       this.add();
     });
@@ -32,6 +33,7 @@ export default class World {
     this.monitorScreen.add();
     this.text.add();
     this.room.add();
+    this.environment.add();
   }
   update() {}
 }

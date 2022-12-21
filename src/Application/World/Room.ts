@@ -19,6 +19,7 @@ export default class Room extends BaseObject {
   othersModel: LoadedModel;
   othersTexture: LoadedTexture;
   material: THREE.MeshBasicMaterial;
+
   environment: Environment = new Environment();
 
   constructor() {
@@ -86,14 +87,15 @@ export default class Room extends BaseObject {
       }
     });
 
-    let scale = SCALE * 0.62;
-
-    this.deskModel.scene.scale.set(scale, scale, scale);
-    this.othersModel.scene.scale.set(scale, scale, scale);
+    this.setScale([this.deskModel.scene, this.othersModel.scene], SCALE * 0.62);
   }
   add() {
     this.scene.add(this.deskModel.scene);
     this.scene.add(this.othersModel.scene);
+  }
+
+  setScale(scenes: THREE.Group[], scale: number) {
+    scenes.forEach((scene) => scene.scale.set(scale, scale, scale));
   }
 
   initTexture(textures: LoadedTexture[]) {

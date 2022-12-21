@@ -26,6 +26,16 @@ const sources: Source[] = [
     path: "/matcaps/8.png",
     type: SourceType.TEXTURE,
   },
+  {
+    name: "bambooModel",
+    path: "/Environment/bamboo.glb",
+    type: SourceType.GLTF_MODEL,
+  },
+  {
+    name: "pandaModel",
+    path: "/Environment/panda.glb",
+    type: SourceType.GLTF_MODEL,
+  },
 ];
 
 export default sources;
