@@ -2,11 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { EventBus } from "../EventBus";
 import Overlay from "./Overlay";
+import Intro from "./Intro/Intro";
 
 interface InterfaceUIProps {}
 
 const InterfaceUI: React.FC<InterfaceUIProps> = ({}) => {
   const [visible, setVisible] = useState(true);
+  const [isIntro, setIsIntro] = useState(true);
   const interfaceRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -15,6 +17,13 @@ const InterfaceUI: React.FC<InterfaceUIProps> = ({}) => {
       // @ts-ignore
       interfaceRef.current = element;
     }
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsIntro(false);
+    }, 4000);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -41,7 +50,10 @@ const InterfaceUI: React.FC<InterfaceUIProps> = ({}) => {
       className="interface-wrapper"
       id="prevent-click"
     >
-      <Overlay />
+      <>
+        <Intro visible={isIntro} />
+        <Overlay />
+      </>
     </motion.div>
   );
 };
@@ -73,8 +85,9 @@ interface StyleSheetCSS {
 const styles: StyleSheetCSS = {
   wrapper: {
     width: "100%",
+    height: "100%",
     display: "flex",
-    position: "absolute",
+    // position: "absolute",
     boxSizing: "border-box",
   },
 };

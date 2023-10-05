@@ -30,6 +30,7 @@ export default class Application {
     }
 
     instance = this;
+    this.ui = new UI();
     this.sizes = new Sizes();
     this.time = new Time();
     this.scene = new THREE.Scene();
@@ -39,7 +40,7 @@ export default class Application {
     this.renderer = new Renderer();
     this.resources = new Resources(sources);
     this.world = new World();
-    this.ui = new UI();
+
     this.audioPlayer = new AudioPlayer();
     // this.camera.setOrbitControls();
     this.sizes.on("resize", () => {

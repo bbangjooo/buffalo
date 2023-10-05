@@ -39,6 +39,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: 14,
     paddingLeft: 16,
     paddingRight: 16,
+    marginTop: 10,
+    marginLeft: 10,
     textAlign: "center",
     display: "flex",
     marginBottom: 4,
@@ -53,6 +55,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   underRowChild: {
     marginRight: 4,
     marginBottom: 0,
+    marginTop: 10,
   },
 };
 
