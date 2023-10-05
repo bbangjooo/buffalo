@@ -1,0 +1,1 @@
+cd dist && vercel --prod

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Intro.css";
-import { gsap } from "gsap";
 
 interface Props {
   visible: boolean;
