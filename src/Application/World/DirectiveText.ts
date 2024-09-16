@@ -15,14 +15,14 @@ export class DirectiveText extends BaseObject {
 
   constructor() {
     super();
-    this.position = new THREE.Vector3(-SCALE * 2, SCALE * 4.5, -SCALE);
+    this.position = new THREE.Vector3(-SCALE * 1.15, SCALE * 4.5, -SCALE);
     this.texture = this.resources.items.textTexture as LoadedTexture;
   }
   add() {
     this.fontLoader.load("/fonts/Rubik Vinyl_Regular.json", (font) => {
-      this.geometry = new TextGeometry("bbangjo's room", {
+      this.geometry = new TextGeometry("blog.bbangjo.kr", {
         font,
-        size: SCALE * 0.4,
+        size: SCALE * 0.2,
         height: 2,
         curveSegments: 12,
         bevelEnabled: true,
