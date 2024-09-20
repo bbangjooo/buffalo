@@ -224,6 +224,4 @@ export default class MonitorScreen extends EventEmitter {
   add() {
     this.scene.add(this.mesh);
   }
-
-  update() {}
 }
