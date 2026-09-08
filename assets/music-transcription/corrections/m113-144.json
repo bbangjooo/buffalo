@@ -1,0 +1,3171 @@
+{
+  "source": "user-provided score",
+  "sourcePath": "user-provided En Avril, a Paris.pdf",
+  "pages": [
+    8,
+    9
+  ],
+  "printedMeasureRange": [
+    113,
+    144
+  ],
+  "status": "source-reviewed complete replacements; m143 timing uses an explicit accepted editorial interpretation",
+  "method": "Full-page/cropped PDF visual inspection, aided by vector-notehead/accidental/clef coordinates; OMR draft used only as an unverified comparison. All MIDI values include sounding octave shifts.",
+  "specialNotes": [
+    "m113 opening F#5 is not tied to m112 F5natural, confirmed with the reviewer of page7.",
+    "m136 shared unison G5 is represented once with the longer dotted-quarter duration.",
+    "m142 internal dashed divider is not an extra measure.",
+    "m14325:8 timing is an editorial interpretation, not an explicitly printed ratio."
+  ],
+  "measures": [
+    {
+      "measure": 113,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "pedal",
+          "downBeat": 0,
+          "releaseBeat": 3,
+          "source": "printed Ped./asterisk"
+        }
+      ]
+    },
+    {
+      "measure": 114,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "G#5"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 40,
+          "staff": 2,
+          "pitch": "E2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "arpeggio",
+          "beat": 1,
+          "scope": "cross-staff chord",
+          "spreadSeconds": null
+        },
+        {
+          "type": "pedal",
+          "downBeat": 0,
+          "releaseBeat": 3,
+          "source": "printed Ped./asterisk"
+        }
+      ]
+    },
+    {
+      "measure": 115,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5",
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "arpeggio",
+          "beat": 1,
+          "scope": "cross-staff chord",
+          "spreadSeconds": null
+        },
+        {
+          "type": "pedal",
+          "downBeat": 0,
+          "releaseBeat": 3,
+          "source": "printed Ped./asterisk"
+        }
+      ]
+    },
+    {
+      "measure": 116,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 42,
+          "staff": 2,
+          "pitch": "F#2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 57,
+          "staff": 1,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "C#3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 64,
+          "staff": 1,
+          "pitch": "E4"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "arpeggio",
+          "beat": 1,
+          "scope": "cross-staff chord",
+          "spreadSeconds": null
+        },
+        {
+          "type": "pedal",
+          "downBeat": 0,
+          "releaseBeat": 3,
+          "source": "printed Ped./asterisk"
+        }
+      ]
+    },
+    {
+      "measure": 117,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 62,
+          "staff": 1,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 50,
+          "staff": 2,
+          "pitch": "D3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5",
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 69,
+          "staff": 1,
+          "pitch": "A4"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "pedal",
+          "downBeat": 0,
+          "releaseBeat": 3,
+          "source": "printed Ped./asterisk"
+        }
+      ]
+    },
+    {
+      "measure": 118,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 40,
+          "staff": 2,
+          "pitch": "E2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 50,
+          "staff": 2,
+          "pitch": "D3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4",
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 60,
+          "staff": 2,
+          "pitch": "B#3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "pedal-simile",
+          "details": "Continue preceding notated pedal pattern; subsequent inferred repetition belongs to performance policy."
+        }
+      ]
+    },
+    {
+      "measure": 119,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "C#3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 64,
+          "staff": 1,
+          "pitch": "E4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5",
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5"
+        }
+      ],
+      "rests": [],
+      "uncertainties": []
+    },
+    {
+      "measure": 120,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 42,
+          "staff": 2,
+          "pitch": "F#2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 62,
+          "staff": 1,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 67,
+          "staff": 1,
+          "pitch": "G4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 58,
+          "staff": 2,
+          "pitch": "A#3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4",
+          "tieStop": true
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 70,
+          "staff": 1,
+          "pitch": "A#4"
+        }
+      ],
+      "rests": [],
+      "uncertainties": []
+    },
+    {
+      "measure": 121,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        }
+      ],
+      "rests": [],
+      "uncertainties": []
+    },
+    {
+      "measure": 122,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "G#5"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 40,
+          "staff": 2,
+          "pitch": "E2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "arpeggio",
+          "beat": 1,
+          "scope": "cross-staff chord",
+          "spreadSeconds": null
+        }
+      ]
+    },
+    {
+      "measure": 123,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5",
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "arpeggio",
+          "beat": 1,
+          "scope": "cross-staff chord",
+          "spreadSeconds": null
+        }
+      ]
+    },
+    {
+      "measure": 124,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 42,
+          "staff": 2,
+          "pitch": "F#2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 57,
+          "staff": 1,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "C#3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 64,
+          "staff": 1,
+          "pitch": "E4"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "arpeggio",
+          "beat": 1,
+          "scope": "cross-staff chord",
+          "spreadSeconds": null
+        }
+      ]
+    },
+    {
+      "measure": 125,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "G#2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 58,
+          "staff": 1,
+          "pitch": "A#3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 63,
+          "staff": 1,
+          "pitch": "D#4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 53,
+          "staff": 2,
+          "pitch": "E#3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 69,
+          "staff": 1,
+          "pitch": "A4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "C#3"
+        }
+      ],
+      "rests": [],
+      "uncertainties": []
+    },
+    {
+      "measure": 126,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "G#2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 60,
+          "staff": 1,
+          "pitch": "C4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 62,
+          "staff": 1,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "tieStart": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.3333333333333333,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "beatFraction": "2",
+          "durationFraction": "1/3",
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 50,
+          "staff": 2,
+          "pitch": "D3"
+        },
+        {
+          "beat": 2.3333333333333335,
+          "duration": 0.3333333333333333,
+          "midi": 65,
+          "staff": 1,
+          "pitch": "E#4",
+          "beatFraction": "7/3",
+          "durationFraction": "1/3"
+        },
+        {
+          "beat": 2.6666666666666665,
+          "duration": 0.3333333333333333,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "beatFraction": "8/3",
+          "durationFraction": "1/3"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "tuplet",
+          "beat": 2,
+          "duration": 1,
+          "actual": 3,
+          "normal": 2,
+          "writtenUnit": "eighth"
+        }
+      ]
+    },
+    {
+      "measure": 127,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "midi": 37,
+          "staff": 2,
+          "pitch": "C#2"
+        },
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "G#2"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 51,
+          "staff": 2,
+          "pitch": "D#3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 53,
+          "staff": 2,
+          "pitch": "E#3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 56,
+          "staff": 1,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 60,
+          "staff": 1,
+          "pitch": "B#3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 58,
+          "staff": 1,
+          "pitch": "A#3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 65,
+          "staff": 2,
+          "pitch": "E#4"
+        }
+      ],
+      "rests": [
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "staff": 2,
+          "voice": "run"
+        }
+      ],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "clef",
+          "staff": 2,
+          "beat": 2.5,
+          "sign": "G",
+          "line": 2
+        }
+      ]
+    },
+    {
+      "measure": 128,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 68,
+          "staff": 2,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "B#4"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "D#5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "E#5"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 80,
+          "staff": 2,
+          "pitch": "G#5"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 2,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 89,
+          "staff": 1,
+          "pitch": "E#6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "clef",
+          "staff": 2,
+          "beat": 3,
+          "sign": "F",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "measure": 129,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 69,
+          "staff": 2,
+          "pitch": "A4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 74,
+          "staff": 2,
+          "pitch": "D5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 97,
+          "staff": 1,
+          "pitch": "C#7"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "clef",
+          "staff": 2,
+          "beat": 2,
+          "sign": "G",
+          "line": 2
+        },
+        {
+          "type": "pedal",
+          "downBeat": 0,
+          "releaseBeat": 3,
+          "source": "printed Ped./asterisk"
+        }
+      ]
+    },
+    {
+      "measure": 130,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 95,
+          "staff": 1,
+          "pitch": "B6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 68,
+          "staff": 2,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.0,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6",
+          "grace": true,
+          "graceOrder": 0,
+          "writtenType": "eighth",
+          "principalBeat": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.0,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6",
+          "grace": true,
+          "graceOrder": 1,
+          "writtenType": "eighth",
+          "principalBeat": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 74,
+          "staff": 2,
+          "pitch": "D5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "clef",
+          "staff": 2,
+          "beat": 0,
+          "sign": "F",
+          "line": 4
+        },
+        {
+          "type": "clef",
+          "staff": 2,
+          "beat": 2,
+          "sign": "G",
+          "line": 2
+        },
+        {
+          "type": "pedal",
+          "downBeat": 0,
+          "releaseBeat": 3,
+          "source": "printed Ped./asterisk"
+        }
+      ]
+    },
+    {
+      "measure": 131,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 68,
+          "staff": 2,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 95,
+          "staff": 1,
+          "pitch": "B6"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "clef",
+          "staff": 2,
+          "beat": 0,
+          "sign": "F",
+          "line": 4
+        },
+        {
+          "type": "pedal",
+          "downBeat": 0,
+          "releaseBeat": 3,
+          "source": "printed Ped./asterisk"
+        }
+      ]
+    },
+    {
+      "measure": 132,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 42,
+          "staff": 2,
+          "pitch": "F#2"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.0,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6",
+          "grace": true,
+          "graceOrder": 0,
+          "writtenType": "eighth",
+          "principalBeat": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.0,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6",
+          "grace": true,
+          "graceOrder": 1,
+          "writtenType": "eighth",
+          "principalBeat": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 68,
+          "staff": 2,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "pedal",
+          "downBeat": 0,
+          "releaseBeat": 3,
+          "source": "printed Ped./asterisk"
+        }
+      ]
+    },
+    {
+      "measure": 133,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "G#5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "pedal",
+          "downBeat": 0,
+          "releaseBeat": 3,
+          "source": "printed Ped./asterisk"
+        }
+      ]
+    },
+    {
+      "measure": 134,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 40,
+          "staff": 2,
+          "pitch": "E2"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 50,
+          "staff": 2,
+          "pitch": "D3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "pedal",
+          "downBeat": 0,
+          "releaseBeat": 3,
+          "source": "printed Ped./asterisk"
+        }
+      ]
+    },
+    {
+      "measure": 135,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 79,
+          "staff": 1,
+          "pitch": "G5"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "C#3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.15384615384615385,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3",
+          "beatFraction": "1",
+          "durationFraction": "2/13"
+        },
+        {
+          "beat": 1.1538461538461537,
+          "duration": 0.15384615384615385,
+          "midi": 63,
+          "staff": 2,
+          "pitch": "D#4",
+          "beatFraction": "15/13",
+          "durationFraction": "2/13"
+        },
+        {
+          "beat": 1.3076923076923077,
+          "duration": 0.15384615384615385,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4",
+          "beatFraction": "17/13",
+          "durationFraction": "2/13"
+        },
+        {
+          "beat": 1.4615384615384615,
+          "duration": 0.15384615384615385,
+          "midi": 67,
+          "staff": 1,
+          "pitch": "G4",
+          "beatFraction": "19/13",
+          "durationFraction": "2/13"
+        },
+        {
+          "beat": 1.6153846153846154,
+          "duration": 0.15384615384615385,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4",
+          "beatFraction": "21/13",
+          "durationFraction": "2/13"
+        },
+        {
+          "beat": 1.7692307692307692,
+          "duration": 0.15384615384615385,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5",
+          "beatFraction": "23/13",
+          "durationFraction": "2/13"
+        },
+        {
+          "beat": 1.9230769230769231,
+          "duration": 0.15384615384615385,
+          "midi": 79,
+          "staff": 2,
+          "pitch": "G5",
+          "beatFraction": "25/13",
+          "durationFraction": "2/13"
+        },
+        {
+          "beat": 2.076923076923077,
+          "duration": 0.15384615384615385,
+          "midi": 83,
+          "staff": 2,
+          "pitch": "B5",
+          "beatFraction": "27/13",
+          "durationFraction": "2/13"
+        },
+        {
+          "beat": 2.230769230769231,
+          "duration": 0.15384615384615385,
+          "midi": 87,
+          "staff": 2,
+          "pitch": "D#6",
+          "beatFraction": "29/13",
+          "durationFraction": "2/13"
+        },
+        {
+          "beat": 2.3846153846153846,
+          "duration": 0.15384615384615385,
+          "midi": 88,
+          "staff": 2,
+          "pitch": "E6",
+          "beatFraction": "31/13",
+          "durationFraction": "2/13"
+        },
+        {
+          "beat": 2.5384615384615383,
+          "duration": 0.15384615384615385,
+          "midi": 91,
+          "staff": 1,
+          "pitch": "G6",
+          "beatFraction": "33/13",
+          "durationFraction": "2/13"
+        },
+        {
+          "beat": 2.6923076923076925,
+          "duration": 0.15384615384615385,
+          "midi": 95,
+          "staff": 1,
+          "pitch": "B6",
+          "beatFraction": "35/13",
+          "durationFraction": "2/13"
+        },
+        {
+          "beat": 2.8461538461538463,
+          "duration": 0.15384615384615385,
+          "midi": 100,
+          "staff": 1,
+          "pitch": "E7",
+          "beatFraction": "37/13",
+          "durationFraction": "2/13"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "tuplet",
+          "beat": 1,
+          "duration": 2,
+          "actual": 13,
+          "normal": 8,
+          "writtenUnit": "16th",
+          "normalCountPrinted": false,
+          "derivation": "13 beamed sixteenths occupy the remaining two quarter beats after the opening quarter chord."
+        },
+        {
+          "type": "octave-shift",
+          "details": "Opening RH chord uses carried +12; then stop. Run notes7–10 LH and11–13 RH have separate +12 spans; MIDI already includes them."
+        }
+      ]
+    },
+    {
+      "measure": 136,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 94,
+          "staff": 1,
+          "pitch": "Bb6"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 42,
+          "staff": 2,
+          "pitch": "F#2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.5,
+          "midi": 79,
+          "staff": 1,
+          "pitch": "G5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 58,
+          "staff": 2,
+          "pitch": "Bb3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 67,
+          "staff": 2,
+          "pitch": "G4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "shared-unison",
+          "beat": 1,
+          "pitch": "G5",
+          "details": "Two superimposed source glyphs/voice stems share one G5 attack. Melody holds1.5 beats; accompaniment voice holds1 beat. No duplicate key attack."
+        },
+        {
+          "type": "octave-shift-stop",
+          "beat": 0.5,
+          "staff": 1
+        }
+      ]
+    },
+    {
+      "measure": 137,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 62,
+          "staff": 1,
+          "pitch": "D4"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        }
+      ],
+      "rests": [],
+      "uncertainties": []
+    },
+    {
+      "measure": 138,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "midi": 64,
+          "staff": 1,
+          "pitch": "E4"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 40,
+          "staff": 2,
+          "pitch": "E2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 62,
+          "staff": 1,
+          "pitch": "D4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 50,
+          "staff": 2,
+          "pitch": "D3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 59,
+          "staff": 1,
+          "pitch": "B3"
+        }
+      ],
+      "rests": [],
+      "uncertainties": []
+    },
+    {
+      "measure": 139,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "C#3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 64,
+          "staff": 1,
+          "pitch": "E4"
+        }
+      ],
+      "rests": [],
+      "uncertainties": []
+    },
+    {
+      "measure": 140,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "midi": 62,
+          "staff": 1,
+          "pitch": "D4"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 42,
+          "staff": 2,
+          "pitch": "F#2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 67,
+          "staff": 1,
+          "pitch": "G4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 79,
+          "staff": 1,
+          "pitch": "G5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 58,
+          "staff": 2,
+          "pitch": "A#3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 59,
+          "staff": 1,
+          "pitch": "B3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 58,
+          "staff": 1,
+          "pitch": "A#3"
+        }
+      ],
+      "rests": [],
+      "uncertainties": []
+    },
+    {
+      "measure": 141,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 59,
+          "staff": 1,
+          "pitch": "B3"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 69,
+          "staff": 1,
+          "pitch": "A4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "G#5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 62,
+          "staff": 1,
+          "pitch": "D4"
+        }
+      ],
+      "rests": [],
+      "uncertainties": []
+    },
+    {
+      "measure": 142,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 40,
+          "staff": 2,
+          "pitch": "E2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 65,
+          "staff": 2,
+          "pitch": "F4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "midi": 69,
+          "staff": 2,
+          "pitch": "A4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.0,
+          "midi": 59,
+          "staff": 1,
+          "pitch": "B3",
+          "grace": true,
+          "graceOrder": 0,
+          "writtenType": "16th",
+          "principalBeat": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.0,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4",
+          "grace": true,
+          "graceOrder": 1,
+          "writtenType": "16th",
+          "principalBeat": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 59,
+          "staff": 1,
+          "pitch": "B3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "midi": 57,
+          "staff": 1,
+          "pitch": "A3"
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "fermata",
+          "beat": 1,
+          "scope": "concurrent cross-staff chord",
+          "seconds": null
+        },
+        {
+          "type": "internal-dashed-divider",
+          "beat": 2,
+          "details": "Not an extra bar; held RH half-note overlaps the beat1 accompaniment chord."
+        },
+        {
+          "type": "articulation",
+          "beat": 2,
+          "label": "staccato",
+          "scope": "post-fermata figure"
+        }
+      ]
+    },
+    {
+      "measure": 143,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 57,
+          "staff": 1,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.04,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2",
+          "beatFraction": "1",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.04,
+          "duration": 0.04,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "beatFraction": "26/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.08,
+          "duration": 0.04,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3",
+          "beatFraction": "27/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.12,
+          "duration": 0.04,
+          "midi": 57,
+          "staff": 1,
+          "pitch": "A3",
+          "beatFraction": "28/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.16,
+          "duration": 0.04,
+          "midi": 59,
+          "staff": 1,
+          "pitch": "B3",
+          "beatFraction": "29/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.2,
+          "duration": 0.04,
+          "midi": 60,
+          "staff": 1,
+          "pitch": "C4",
+          "beatFraction": "6/5",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.24,
+          "duration": 0.04,
+          "midi": 64,
+          "staff": 1,
+          "pitch": "E4",
+          "beatFraction": "31/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.28,
+          "duration": 0.04,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "F#4",
+          "beatFraction": "32/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.32,
+          "duration": 0.04,
+          "midi": 68,
+          "staff": 2,
+          "pitch": "G#4",
+          "beatFraction": "33/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.36,
+          "duration": 0.04,
+          "midi": 69,
+          "staff": 1,
+          "pitch": "A4",
+          "beatFraction": "34/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.4,
+          "duration": 0.04,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4",
+          "beatFraction": "7/5",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.44,
+          "duration": 0.04,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5",
+          "beatFraction": "36/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.48,
+          "duration": 0.04,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5",
+          "beatFraction": "37/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.52,
+          "duration": 0.04,
+          "midi": 78,
+          "staff": 2,
+          "pitch": "F#5",
+          "beatFraction": "38/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.56,
+          "duration": 0.04,
+          "midi": 80,
+          "staff": 2,
+          "pitch": "G#5",
+          "beatFraction": "39/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.6,
+          "duration": 0.04,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5",
+          "beatFraction": "8/5",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.64,
+          "duration": 0.04,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5",
+          "beatFraction": "41/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.68,
+          "duration": 0.04,
+          "midi": 84,
+          "staff": 1,
+          "pitch": "C6",
+          "beatFraction": "42/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.72,
+          "duration": 0.04,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6",
+          "beatFraction": "43/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.76,
+          "duration": 0.04,
+          "midi": 90,
+          "staff": 2,
+          "pitch": "F#6",
+          "beatFraction": "44/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.8,
+          "duration": 0.04,
+          "midi": 92,
+          "staff": 2,
+          "pitch": "G#6",
+          "beatFraction": "9/5",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.84,
+          "duration": 0.04,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6",
+          "beatFraction": "46/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.88,
+          "duration": 0.04,
+          "midi": 95,
+          "staff": 1,
+          "pitch": "B6",
+          "beatFraction": "47/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.92,
+          "duration": 0.04,
+          "midi": 96,
+          "staff": 1,
+          "pitch": "C7",
+          "beatFraction": "48/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 1.96,
+          "duration": 0.04,
+          "midi": 100,
+          "staff": 1,
+          "pitch": "E7",
+          "beatFraction": "49/25",
+          "durationFraction": "1/25"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 103,
+          "staff": 2,
+          "pitch": "G7"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "pitchesVerified": true,
+      "timingInterpretation": {
+        "kind": "accepted editorial interpretation",
+        "normalCountPrinted": false,
+        "actualNoteCount": 25,
+        "impliedNormalCount": 8,
+        "writtenUnit": "32nd",
+        "groupStartBeat": 1,
+        "groupEndBeat": 2,
+        "durationFractionPerNote": "1/25",
+        "rationale": "Initial quarter at beat0, then the25-note beamed ascent, then the separate terminal LH quarter at beat2, constrained to the printed3/4. The25:8 ratio is inferred, not explicitly engraved.",
+        "approval": "Root reviewer selected this interpretation after independent examination of the source crop.",
+        "verificationScope": "All noteheads, pitches, staff/clef/ottava transitions are source-checked. Metric allocation of the25-note run is the declared editorial interpretation, not a claim of an explicitly printed normal-count ratio."
+      },
+      "annotations": [
+        {
+          "type": "octave-shift",
+          "details": "LH run notes20–21 and terminalG7; RH run notes22–25 are +12. Earlier groups have no ottava. MIDI already includes shifts."
+        }
+      ]
+    },
+    {
+      "measure": 144,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "G#5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 71,
+          "staff": 2,
+          "pitch": "B4"
+        }
+      ],
+      "rests": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "staff": 1
+        }
+      ],
+      "uncertainties": [],
+      "annotations": [
+        {
+          "type": "fermata",
+          "beat": 1,
+          "scope": "both staves simultaneously",
+          "seconds": null
+        },
+        {
+          "type": "tempo-text",
+          "beat": 0,
+          "text": "lentement",
+          "qpm": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3643 @@
+{
+  "source": "user-provided En Avril, a Paris.pdf; printed measure numbers; sounding MIDI with octave shifts already applied",
+  "measures": [
+    {
+      "measure": 53,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 48,
+          "staff": 2,
+          "pitch": "C3"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 60,
+          "staff": 2,
+          "pitch": "C4"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 60,
+          "staff": 2,
+          "pitch": "C4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 67,
+          "staff": 2,
+          "pitch": "G4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.25,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 2,
+          "duration": 0.25,
+          "midi": 84,
+          "staff": 1,
+          "pitch": "C6"
+        },
+        {
+          "beat": 2.25,
+          "duration": 0.25,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "midi": 84,
+          "staff": 1,
+          "pitch": "C6"
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "midi": 79,
+          "staff": 1,
+          "pitch": "G5"
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        }
+      ],
+      "uncertainties": [],
+      "sourceGlyphAudit": "Incoming page-edge arc is a phrase slur: m52 ends E5, not the B5/D6 starting chord. Checked with preceding reviewer."
+    },
+    {
+      "measure": 54,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 43,
+          "staff": 2,
+          "pitch": "G2"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.25,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 79,
+          "staff": 1,
+          "pitch": "G5"
+        },
+        {
+          "beat": 2.25,
+          "duration": 0.25,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5"
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "D#5"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 55,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 82,
+          "staff": 1,
+          "pitch": "Bb5"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 48,
+          "staff": 2,
+          "pitch": "C3"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 60,
+          "staff": 2,
+          "pitch": "C4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 67,
+          "staff": 1,
+          "pitch": "G4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 70,
+          "staff": 1,
+          "pitch": "Bb4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "Eb5"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 56,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 79,
+          "staff": 1,
+          "pitch": "G5"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 41,
+          "staff": 2,
+          "pitch": "F2"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 48,
+          "staff": 2,
+          "pitch": "C3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 53,
+          "staff": 2,
+          "pitch": "F3"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 63,
+          "staff": 2,
+          "pitch": "Eb4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 67,
+          "staff": 2,
+          "pitch": "G4"
+        },
+        {
+          "beat": 2,
+          "duration": 0,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "Db5",
+          "grace": true,
+          "writtenType": "eighth",
+          "graceOrder": 0,
+          "principalBeat": 2,
+          "tieStart": true
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "Db5",
+          "tieStop": true,
+          "sharedVoices": [
+            {
+              "duration": 0.5,
+              "writtenType": "eighth"
+            },
+            {
+              "duration": 0.25,
+              "writtenType": "16th"
+            }
+          ]
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 2.25,
+          "duration": 0.25,
+          "midi": 72,
+          "staff": 2,
+          "pitch": "C5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "midi": 71,
+          "staff": 2,
+          "pitch": "Cb5"
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "midi": 70,
+          "staff": 2,
+          "pitch": "Bb4"
+        }
+      ],
+      "uncertainties": [],
+      "sourceGlyphAudit": "Two vector heads c0062/c0070 overlap at (500.04,91.318). Db5 is shared between the RH eighth chord and the cross-staff 16th group; one attack retains the longer eighth duration."
+    },
+    {
+      "measure": 57,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 84,
+          "staff": 1,
+          "pitch": "C6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 69,
+          "staff": 2,
+          "pitch": "A4"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 58,
+          "staff": 2,
+          "pitch": "Bb3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 84,
+          "staff": 1,
+          "pitch": "C6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 50,
+          "staff": 2,
+          "pitch": "D3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 46,
+          "staff": 2,
+          "pitch": "Bb2"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 58,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 50,
+          "staff": 2,
+          "pitch": "D3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 58,
+          "staff": 2,
+          "pitch": "Bb3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 69,
+          "staff": 1,
+          "pitch": "A4"
+        },
+        {
+          "beat": 2,
+          "duration": 0,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4",
+          "grace": true,
+          "writtenType": "16th",
+          "graceOrder": 0,
+          "principalBeat": 2,
+          "gracePlacement": "after"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 2,
+          "duration": 0,
+          "midi": 70,
+          "staff": 1,
+          "pitch": "Bb4",
+          "grace": true,
+          "writtenType": "16th",
+          "graceOrder": 1,
+          "principalBeat": 2,
+          "gracePlacement": "after"
+        },
+        {
+          "beat": 2,
+          "duration": 0,
+          "midi": 69,
+          "staff": 1,
+          "pitch": "A4",
+          "grace": true,
+          "writtenType": "16th",
+          "graceOrder": 2,
+          "principalBeat": 2,
+          "gracePlacement": "after"
+        }
+      ],
+      "uncertainties": [],
+      "sourceGlyphAudit": "Normal eighth and small ornament first-head share one position: c0115/c0129 near (315,239.999). Normal principal .5 quarter units plus three non-metric after-graces; no duplicate attack for the overlapping first ornament head."
+    },
+    {
+      "measure": 59,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 0,
+          "midi": 82,
+          "staff": 1,
+          "pitch": "Bb5",
+          "grace": true,
+          "writtenType": "eighth",
+          "graceOrder": 0,
+          "principalBeat": 0
+        },
+        {
+          "beat": 0,
+          "duration": 0,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5",
+          "grace": true,
+          "writtenType": "eighth",
+          "graceOrder": 1,
+          "principalBeat": 0
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "Db5"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 84,
+          "staff": 1,
+          "pitch": "C6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 68,
+          "staff": 2,
+          "pitch": "Ab4"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 65,
+          "staff": 2,
+          "pitch": "F4"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "Ab5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "Db4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "Ab3"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "Db5"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 84,
+          "staff": 1,
+          "pitch": "C6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 53,
+          "staff": 2,
+          "pitch": "F3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "Db3"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 60,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 79,
+          "staff": 1,
+          "pitch": "G5"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 39,
+          "staff": 2,
+          "pitch": "Eb2"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "Db3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "Db5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "Db4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 67,
+          "staff": 1,
+          "pitch": "G4"
+        },
+        {
+          "beat": 2,
+          "duration": 0,
+          "midi": 70,
+          "staff": 1,
+          "pitch": "Bb4",
+          "grace": true,
+          "writtenType": "16th",
+          "graceOrder": 0,
+          "principalBeat": 2,
+          "gracePlacement": "after"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5"
+        },
+        {
+          "beat": 2,
+          "duration": 0,
+          "midi": 69,
+          "staff": 1,
+          "pitch": "A4",
+          "grace": true,
+          "writtenType": "16th",
+          "graceOrder": 1,
+          "principalBeat": 2,
+          "gracePlacement": "after"
+        },
+        {
+          "beat": 2,
+          "duration": 0,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "Ab4",
+          "grace": true,
+          "writtenType": "16th",
+          "graceOrder": 2,
+          "principalBeat": 2,
+          "gracePlacement": "after"
+        }
+      ],
+      "uncertainties": [],
+      "sourceGlyphAudit": "Normal eighth and small ornament first-head share one position: c0165/c0176 near (168,384.539). Normal principal .5 quarter units plus three non-metric after-graces; no duplicate attack for the overlapping first ornament head."
+    },
+    {
+      "measure": 61,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 0,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "Ab5",
+          "grace": true,
+          "writtenType": "eighth",
+          "graceOrder": 0,
+          "principalBeat": 0
+        },
+        {
+          "beat": 0,
+          "duration": 0,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5",
+          "grace": true,
+          "writtenType": "eighth",
+          "graceOrder": 1,
+          "principalBeat": 0
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 82,
+          "staff": 1,
+          "pitch": "Bb5"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 67,
+          "staff": 2,
+          "pitch": "G4"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 60,
+          "staff": 2,
+          "pitch": "C4"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "Eb5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 84,
+          "staff": 1,
+          "pitch": "C6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "Ab3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 82,
+          "staff": 1,
+          "pitch": "Bb5"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 48,
+          "staff": 2,
+          "pitch": "C3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "Ab2"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 62,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "Eb5"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "Ab5"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 41,
+          "staff": 2,
+          "pitch": "F2"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 48,
+          "staff": 2,
+          "pitch": "C3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 79,
+          "staff": 1,
+          "pitch": "G5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "Ab3"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "Eb5"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "Ab5"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 60,
+          "staff": 2,
+          "pitch": "C4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 67,
+          "staff": 2,
+          "pitch": "G4"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 63,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 82,
+          "staff": 1,
+          "pitch": "Bb5"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 68,
+          "staff": 2,
+          "pitch": "Ab4"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 65,
+          "staff": 2,
+          "pitch": "F4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 60,
+          "staff": 2,
+          "pitch": "C4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "Ab3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 53,
+          "staff": 2,
+          "pitch": "F3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 48,
+          "staff": 2,
+          "pitch": "C3"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 64,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 43,
+          "staff": 2,
+          "pitch": "G2"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.1,
+          "midi": 54,
+          "staff": 1,
+          "pitch": "F#3",
+          "durationFraction": "1/10",
+          "beatFraction": "10/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 1.1,
+          "duration": 0.1,
+          "midi": 55,
+          "staff": 1,
+          "pitch": "G3",
+          "durationFraction": "1/10",
+          "beatFraction": "11/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 1.2,
+          "duration": 0.1,
+          "midi": 58,
+          "staff": 1,
+          "pitch": "A#3",
+          "durationFraction": "1/10",
+          "beatFraction": "12/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 1.3,
+          "duration": 0.1,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3",
+          "durationFraction": "1/10",
+          "beatFraction": "13/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 1.4,
+          "duration": 0.1,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4",
+          "durationFraction": "1/10",
+          "beatFraction": "14/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.1,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4",
+          "durationFraction": "1/10",
+          "beatFraction": "15/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 1.6,
+          "duration": 0.1,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "durationFraction": "1/10",
+          "beatFraction": "16/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 1.7,
+          "duration": 0.1,
+          "midi": 67,
+          "staff": 1,
+          "pitch": "G4",
+          "durationFraction": "1/10",
+          "beatFraction": "17/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 1.8,
+          "duration": 0.1,
+          "midi": 70,
+          "staff": 1,
+          "pitch": "A#4",
+          "durationFraction": "1/10",
+          "beatFraction": "18/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 1.9,
+          "duration": 0.1,
+          "midi": 71,
+          "staff": 2,
+          "pitch": "B4",
+          "durationFraction": "1/10",
+          "beatFraction": "19/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.1,
+          "midi": 73,
+          "staff": 2,
+          "pitch": "C#5",
+          "durationFraction": "1/10",
+          "beatFraction": "20/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 2.1,
+          "duration": 0.1,
+          "midi": 74,
+          "staff": 2,
+          "pitch": "D5",
+          "durationFraction": "1/10",
+          "beatFraction": "21/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 2.2,
+          "duration": 0.1,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5",
+          "durationFraction": "1/10",
+          "beatFraction": "22/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 2.3,
+          "duration": 0.1,
+          "midi": 79,
+          "staff": 1,
+          "pitch": "G5",
+          "durationFraction": "1/10",
+          "beatFraction": "23/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 2.4,
+          "duration": 0.1,
+          "midi": 82,
+          "staff": 1,
+          "pitch": "A#5",
+          "durationFraction": "1/10",
+          "beatFraction": "24/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.1,
+          "midi": 83,
+          "staff": 2,
+          "pitch": "B5",
+          "durationFraction": "1/10",
+          "beatFraction": "25/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 2.6,
+          "duration": 0.1,
+          "midi": 85,
+          "staff": 2,
+          "pitch": "C#6",
+          "durationFraction": "1/10",
+          "beatFraction": "26/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 2.7,
+          "duration": 0.1,
+          "midi": 86,
+          "staff": 2,
+          "pitch": "D6",
+          "durationFraction": "1/10",
+          "beatFraction": "27/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 2.8,
+          "duration": 0.1,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6",
+          "durationFraction": "1/10",
+          "beatFraction": "28/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        },
+        {
+          "beat": 2.9,
+          "duration": 0.1,
+          "midi": 91,
+          "staff": 1,
+          "pitch": "G6",
+          "durationFraction": "1/10",
+          "beatFraction": "29/10",
+          "tuplet": {
+            "actual": 20,
+            "normal": 16,
+            "type": "32nd"
+          }
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 65,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 82,
+          "staff": 1,
+          "pitch": "Bb5"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 94,
+          "staff": 1,
+          "pitch": "Bb6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 75,
+          "staff": 2,
+          "pitch": "Eb5"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 71,
+          "staff": 2,
+          "pitch": "Cb5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 87,
+          "staff": 1,
+          "pitch": "Eb6"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "Gb6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "Gb4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 63,
+          "staff": 2,
+          "pitch": "Eb4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "Ab5"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "Ab6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "Cb4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "Gb5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "Gb6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "Gb3"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 66,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 89,
+          "staff": 1,
+          "pitch": "F6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "Ab2"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "Gb3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "Cb4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 63,
+          "staff": 2,
+          "pitch": "Eb4"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "Eb5"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 87,
+          "staff": 1,
+          "pitch": "Eb6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "Gb4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 71,
+          "staff": 2,
+          "pitch": "Cb5"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 67,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 82,
+          "staff": 1,
+          "pitch": "Bb5"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 94,
+          "staff": 1,
+          "pitch": "Bb6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 75,
+          "staff": 2,
+          "pitch": "Eb5"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 71,
+          "staff": 2,
+          "pitch": "Cb5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 87,
+          "staff": 1,
+          "pitch": "Eb6"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "Gb6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "Gb4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 63,
+          "staff": 2,
+          "pitch": "Eb4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.3333333333333333,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "Cb5",
+          "durationFraction": "1/3"
+        },
+        {
+          "beat": 2,
+          "duration": 0.3333333333333333,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "Eb5",
+          "durationFraction": "1/3"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "Gb3"
+        },
+        {
+          "beat": 2.3333333333333335,
+          "duration": 0.3333333333333333,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5",
+          "beatFraction": "7/3",
+          "durationFraction": "1/3"
+        },
+        {
+          "beat": 2.6666666666666665,
+          "duration": 0.3333333333333333,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "Eb5",
+          "beatFraction": "8/3",
+          "durationFraction": "1/3"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 68,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "Gb4"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "Db3"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "Cb4"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 65,
+          "staff": 1,
+          "pitch": "F4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 71,
+          "staff": 2,
+          "pitch": "B4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 74,
+          "staff": 2,
+          "pitch": "D5"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 69,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "Ab5"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "Ab6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 73,
+          "staff": 2,
+          "pitch": "Db5"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "Gb4"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 82,
+          "staff": 1,
+          "pitch": "Bb5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "Db6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 63,
+          "staff": 2,
+          "pitch": "Eb4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "Db4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "Gb5"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "Gb6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "Gb3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 89,
+          "staff": 1,
+          "pitch": "F6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 51,
+          "staff": 2,
+          "pitch": "Eb3"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 70,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "Eb5"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 87,
+          "staff": 1,
+          "pitch": "Eb6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 42,
+          "staff": 2,
+          "pitch": "Gb2"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 51,
+          "staff": 2,
+          "pitch": "Eb3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 84,
+          "staff": 1,
+          "pitch": "C6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "Gb3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "Db4"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "Db5"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "Db6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 63,
+          "staff": 2,
+          "pitch": "Eb4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "Gb4"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 71,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "G#5"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 73,
+          "staff": 2,
+          "pitch": "C#5"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 69,
+          "staff": 2,
+          "pitch": "A4"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.3333333333333333,
+          "midi": 69,
+          "staff": 1,
+          "pitch": "A4",
+          "durationFraction": "1/3"
+        },
+        {
+          "beat": 2,
+          "duration": 0.3333333333333333,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5",
+          "durationFraction": "1/3"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3"
+        },
+        {
+          "beat": 2.3333333333333335,
+          "duration": 0.3333333333333333,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "D#5",
+          "durationFraction": "1/3",
+          "beatFraction": "7/3"
+        },
+        {
+          "beat": 2.6666666666666665,
+          "duration": 0.3333333333333333,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5",
+          "durationFraction": "1/3",
+          "beatFraction": "8/3"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 72,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "B#4"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 63,
+          "staff": 2,
+          "pitch": "D#4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 67,
+          "staff": 1,
+          "pitch": "G4"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "B#4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "D#5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 73,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 40,
+          "staff": 2,
+          "pitch": "E2"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "G#5"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3"
+        },
+        {
+          "beat": 1,
+          "duration": 1.5,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "D#5"
+        },
+        {
+          "beat": 1,
+          "duration": 1.5,
+          "midi": 87,
+          "staff": 1,
+          "pitch": "D#6"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 74,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "D#5"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "G#5"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 87,
+          "staff": 1,
+          "pitch": "D#6"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "G#2"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 51,
+          "staff": 2,
+          "pitch": "D#3"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 63,
+          "staff": 1,
+          "pitch": "D#4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 75,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 62,
+          "staff": 1,
+          "pitch": "D4"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 67,
+          "staff": 1,
+          "pitch": "G4"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 40,
+          "staff": 2,
+          "pitch": "E2"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 3,
+          "duration": 0,
+          "midi": 79,
+          "staff": 1,
+          "pitch": "G5",
+          "grace": true,
+          "writtenType": "32nd",
+          "graceOrder": 0,
+          "principalMeasure": 76,
+          "principalBeat": 0,
+          "gracePlacement": "before"
+        },
+        {
+          "beat": 3,
+          "duration": 0,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5",
+          "grace": true,
+          "writtenType": "32nd",
+          "graceOrder": 1,
+          "principalMeasure": 76,
+          "principalBeat": 0,
+          "gracePlacement": "before"
+        },
+        {
+          "beat": 3,
+          "duration": 0,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5",
+          "grace": true,
+          "writtenType": "32nd",
+          "graceOrder": 2,
+          "principalMeasure": 76,
+          "principalBeat": 0,
+          "gracePlacement": "before"
+        },
+        {
+          "beat": 3,
+          "duration": 0,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5",
+          "grace": true,
+          "writtenType": "32nd",
+          "graceOrder": 3,
+          "principalMeasure": 76,
+          "principalBeat": 0,
+          "gracePlacement": "before"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 76,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 67,
+          "staff": 2,
+          "pitch": "G4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 60,
+          "staff": 1,
+          "pitch": "C4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 69,
+          "staff": 1,
+          "pitch": "A4"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 77,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 64,
+          "staff": 1,
+          "pitch": "E4",
+          "laissezVibrer": true
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 38,
+          "staff": 2,
+          "pitch": "D2",
+          "laissezVibrer": true
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2",
+          "laissezVibrer": true
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 50,
+          "staff": 2,
+          "pitch": "D3",
+          "laissezVibrer": true
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "laissezVibrer": true
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3",
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 53,
+          "staff": 2,
+          "pitch": "E#3"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 78,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 62,
+          "staff": 1,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 79,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 97,
+          "staff": 1,
+          "pitch": "C#7"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "G#2"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        }
+      ],
+      "uncertainties": [],
+      "sourceAnnotations": [
+        "An isolated 8va is printed over the sustained upper-voice chord; the cross-staff accompaniment is kept at its written register."
+      ]
+    },
+    {
+      "measure": 80,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 37,
+          "staff": 2,
+          "pitch": "C#2"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "G#2"
+        },
+        {
+          "beat": 0,
+          "duration": 0.5,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "C#3"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 53,
+          "staff": 2,
+          "pitch": "E#3"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 65,
+          "staff": 2,
+          "pitch": "E#4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 97,
+          "staff": 1,
+          "pitch": "C#7"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 62,
+          "staff": 1,
+          "pitch": "D4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 98,
+          "staff": 1,
+          "pitch": "D7"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 81,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 63,
+          "staff": 1,
+          "pitch": "Eb4"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "Gb4"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "Cb5"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "Eb5"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 87,
+          "staff": 1,
+          "pitch": "Eb6"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "Gb6"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 95,
+          "staff": 1,
+          "pitch": "Cb7"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 99,
+          "staff": 1,
+          "pitch": "Eb7"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 37,
+          "staff": 2,
+          "pitch": "Db2"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "Ab2"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 51,
+          "staff": 2,
+          "pitch": "Eb3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "Gb3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "Cb4"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "Gb4"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "Gb5"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "Gb6"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 102,
+          "staff": 1,
+          "pitch": "Gb7"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 82,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 65,
+          "staff": 1,
+          "pitch": "F4"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "Cb5"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "Eb5"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 89,
+          "staff": 1,
+          "pitch": "F6"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 95,
+          "staff": 1,
+          "pitch": "Cb7"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 99,
+          "staff": 1,
+          "pitch": "Eb7"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 101,
+          "staff": 1,
+          "pitch": "F7"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 37,
+          "staff": 2,
+          "pitch": "Db2"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "Ab2"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 51,
+          "staff": 2,
+          "pitch": "Eb3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 53,
+          "staff": 2,
+          "pitch": "F3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "Cb4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 63,
+          "staff": 1,
+          "pitch": "Eb4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "Eb5"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 87,
+          "staff": 1,
+          "pitch": "Eb6"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 99,
+          "staff": 1,
+          "pitch": "Eb7"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "Db4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "Db5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "Db6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "midi": 97,
+          "staff": 1,
+          "pitch": "Db7"
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "midi": 59,
+          "staff": 1,
+          "pitch": "Cb4"
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "Cb5"
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "Cb6"
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "midi": 95,
+          "staff": 1,
+          "pitch": "Cb7"
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 83,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "Gb4"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 70,
+          "staff": 1,
+          "pitch": "Bb4"
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 82,
+          "staff": 1,
+          "pitch": "Bb5",
+          "tieStart": true
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "Gb6",
+          "tieStart": true
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 94,
+          "staff": 1,
+          "pitch": "Bb6",
+          "tieStart": true
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 58,
+          "staff": 2,
+          "pitch": "Bb3"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 42,
+          "staff": 2,
+          "pitch": "Gb2",
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "Db3",
+          "laissezVibrer": true
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 82,
+          "staff": 1,
+          "pitch": "Bb5",
+          "tieStop": true
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "Gb6",
+          "tieStop": true
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 94,
+          "staff": 1,
+          "pitch": "Bb6",
+          "tieStop": true
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 89,
+          "staff": 1,
+          "pitch": "F6"
+        }
+      ],
+      "uncertainties": [],
+      "sourceAnnotations": [
+        "The printed editorial question '[non 8va?]' sits beneath the LH half-notes. Literal bass-clef pitches are preserved; no octave shift is written for staff 2."
+      ]
+    },
+    {
+      "measure": 84,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 82,
+          "staff": 1,
+          "pitch": "Bb5",
+          "tieStart": true
+        },
+        {
+          "beat": 0,
+          "duration": 2,
+          "midi": 87,
+          "staff": 1,
+          "pitch": "Eb6",
+          "tieStart": true
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 39,
+          "staff": 2,
+          "pitch": "Eb2"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 46,
+          "staff": 2,
+          "pitch": "Bb2"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 51,
+          "staff": 2,
+          "pitch": "Eb3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "Db4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 82,
+          "staff": 1,
+          "pitch": "Bb5",
+          "tieStop": true
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 87,
+          "staff": 1,
+          "pitch": "Eb6",
+          "tieStop": true
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 58,
+          "staff": 2,
+          "pitch": "Bb3"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "Gb4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "Db5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "Db6"
+        }
+      ],
+      "uncertainties": [],
+      "sourceGlyphAudit": "Page-edge arc after the last Db5/Db6 eighth chord is a phrase slur, not a tie to m85 Gb5/Cb6. Confirmed with the next-page reviewer."
+    }
+  ]
+}

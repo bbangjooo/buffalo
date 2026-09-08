@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>조병근 · 색상과 소재</title>
+    <link rel="stylesheet" href="../tokens.css" />
+    <style>
+      /* Hallmark · route: custom (bespoke) · structure: material reference board
+       * idea: "One house, four material compositions" · pre-emit critique: P5 H4 E4 S5 R5 V4
+       * Colors and fonts import tokens.css; no duplicated color definitions.
+       * Checked: 18 source swatches match; all reference text >= 4.89:1; no overflow at 320/375/414/768/1280, day/night.
+       * Scope: reference page only; no assertion about the product's 3D rendering.
+       */
+      * { box-sizing: border-box; }
+      html, body { margin: var(--space-0); overflow-x: clip; }
+      body {
+        background: var(--color-bg);
+        color: var(--color-text);
+        font-family: var(--font-body);
+        font-size: var(--text-sm);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--line-height-body);
+      }
+      main { max-width: 1080px; margin: var(--space-0) auto; padding: var(--space-12) var(--space-6) var(--space-16); }
+      header { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-6); margin-bottom: var(--space-12); }
+      h1, h2, h3 { margin: var(--space-0); min-width: 0; overflow-wrap: anywhere; font-family: var(--font-display); font-style: normal; line-height: var(--line-height-tight); }
+      h1 { font-size: var(--text-display); font-weight: var(--font-weight-semibold); letter-spacing: -.04em; }
+      h2 { font-size: var(--text-brand); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2); }
+      h3 { font-size: var(--text-base); font-weight: var(--font-weight-semibold); }
+      p { margin: var(--space-2) var(--space-0) var(--space-0); max-width: 64ch; }
+      .muted { color: var(--color-text-muted); }
+      .lead { margin-top: var(--space-4); }
+      .theme-toggle {
+        flex-shrink: 0; min-height: var(--space-11); padding: var(--space-2) var(--space-4);
+        border: var(--rule-width) solid var(--color-border); border-radius: var(--radius-control);
+        background: var(--color-surface); color: var(--color-text);
+        font-family: var(--font-body); font-size: var(--text-sm); font-weight: var(--font-weight-medium);
+        white-space: nowrap; cursor: pointer;
+      }
+      .theme-toggle:hover { background: var(--color-surface-hover); }
+      .theme-toggle:active { transform: translateY(1px); }
+      .theme-toggle:focus-visible { outline: var(--rule-focus) solid var(--color-focus); outline-offset: var(--space-1); }
+      section + section { margin-top: var(--space-12); }
+      .swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--space-4); list-style: none; margin: var(--space-6) var(--space-0) var(--space-0); padding: var(--space-0); }
+      .swatches li { min-width: 0; }
+      .paint { height: 88px; margin-bottom: var(--space-2); border: var(--rule-width) solid var(--color-border-subtle); border-radius: var(--radius-small); }
+      .paint-name { font-weight: var(--font-weight-semibold); }
+      .paint-code { display: block; color: var(--color-text-muted); font-family: var(--font-mono); font-size: var(--text-xs); }
+      .paint-role { display: block; color: var(--color-text-muted); font-size: var(--text-xs); }
+      .room-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8); margin-top: var(--space-6); }
+      .room { min-width: 0; }
+      .composition { display: grid; grid-template-columns: minmax(0, 5.5fr) minmax(0, 2.5fr) minmax(0, 1.5fr) minmax(0, .5fr); height: 128px; margin-bottom: var(--space-4); overflow: clip; border: var(--rule-width) solid var(--color-border-subtle); border-radius: var(--radius-small); }
+      .composition span { min-width: 0; }
+      .material-wall { background: var(--room-wall); }
+      .material-wood { background: var(--color-wood); }
+      .material-ink { background: var(--color-ink); }
+      .material-accent { background: var(--room-accent); }
+      .room-developer { --room-wall: var(--color-developer-wall); --room-accent: var(--color-room-developer); }
+      .room-piano { --room-wall: var(--color-piano-wall); --room-accent: var(--color-room-piano); }
+      .room-blog { --room-wall: var(--color-blog-wall); --room-accent: var(--color-room-blog); }
+      .room-ai { --room-wall: var(--color-ai-wall); --room-accent: var(--color-room-ai); }
+      .room .muted { margin-top: var(--space-1); }
+      .ui-sample { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-6); }
+      .sample { padding: var(--space-5); border: var(--rule-width) solid var(--color-border); border-radius: var(--radius-control); background: var(--color-surface); color: var(--color-text); flex: 1 1 240px; }
+      .sample strong { display: block; font-size: var(--text-sm); font-weight: var(--font-weight-semibold); }
+      .sample small { display: block; margin-top: var(--space-1); color: var(--color-text-muted); font-size: var(--text-xs); }
+      .sample.selected { background: var(--color-text); color: var(--color-bg); }
+      .sample.selected small { color: var(--color-bg); }
+      .sample.accent { background: var(--color-accent); color: var(--color-on-accent); border-color: var(--color-accent); }
+      .sample.accent small { color: var(--color-on-accent); }
+      .contrast-list { margin: var(--space-6) var(--space-0) var(--space-0); padding: var(--space-0); }
+      .contrast-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-4); padding: var(--space-3) var(--space-0); border-bottom: var(--rule-width) solid var(--color-border-subtle); }
+      .contrast-row dt, .contrast-row dd { margin: var(--space-0); }
+      .contrast-row dd { font-variant-numeric: tabular-nums; font-weight: var(--font-weight-medium); }
+      .note { padding-top: var(--space-4); color: var(--color-text-muted); }
+      footer { margin-top: var(--space-12); padding-top: var(--space-4); border-top: var(--rule-width) solid var(--color-border-subtle); color: var(--color-text-muted); font-size: var(--text-xs); }
+      @media (max-width: 800px) { .swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+      @media (max-width: 520px) {
+        main { padding: var(--space-8) var(--space-4) var(--space-12); }
+        header { flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-8); }
+        .swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+        .room-list { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
+        section + section { margin-top: var(--space-8); }
+      }
+      @media (prefers-reduced-motion: reduce) { .theme-toggle:active { transform: none; } }
+    </style>
+  </head>
+  <body data-night="false">
+    <main>
+      <header>
+        <div>
+          <h1>조병근의 색상과 소재</h1>
+          <p class="lead">차분한 페트롤 골조와 아이보리 바탕. 같은 목재와 금속이 개발·피아노·블로그·AI 네 방을 연결합니다.</p>
+          <p class="muted">Structured Curiosity · 2026.09.08</p>
+        </div>
+        <button class="theme-toggle" type="button" aria-pressed="false">야간 미리보기</button>
+      </header>
+
+      <section aria-labelledby="palette-title">
+        <h2 id="palette-title">원본 팔레트</h2>
+        <p class="muted">색상 이름과 HEX는 원본 JSON 값입니다. 실제 견본은 웹에서 사용하는 OKLCH 토큰을 불러옵니다.</p>
+        <ul class="swatches">
+          <li><div class="paint" style="background:var(--color-ink)"></div><span class="paint-name">Ink</span><span class="paint-code">#183C43</span><span class="paint-role">글자 · 골조</span></li>
+          <li><div class="paint" style="background:var(--color-paper)"></div><span class="paint-name">Paper</span><span class="paint-code">#F1EDE3</span><span class="paint-role">바탕 · 건반</span></li>
+          <li><div class="paint" style="background:var(--color-teal)"></div><span class="paint-name">Teal</span><span class="paint-code">#3C7D7B</span><span class="paint-role">시스템 · 연결</span></li>
+          <li><div class="paint" style="background:var(--color-brass)"></div><span class="paint-name">Brass</span><span class="paint-code">#C69A5B</span><span class="paint-role">금속 · 장식</span></li>
+          <li><div class="paint" style="background:var(--color-signal)"></div><span class="paint-name">Signal</span><span class="paint-code">#D9E59B</span><span class="paint-role">활성 AI 노드</span></li>
+          <li><div class="paint" style="background:var(--color-sage)"></div><span class="paint-name">Sage</span><span class="paint-code">#B6C796</span><span class="paint-role">AI 공간 · 식물</span></li>
+          <li><div class="paint" style="background:var(--color-slate)"></div><span class="paint-name">Slate</span><span class="paint-code">#819A9F</span><span class="paint-role">블로그 · 재료</span></li>
+          <li><div class="paint" style="background:var(--color-walnut)"></div><span class="paint-name">Walnut</span><span class="paint-code">#785641</span><span class="paint-role">짙은 목재</span></li>
+          <li><div class="paint" style="background:var(--color-wood)"></div><span class="paint-name">Oak</span><span class="paint-code">#C7AA80</span><span class="paint-role">공통 밝은 목재</span></li>
+          <li><div class="paint" style="background:var(--color-chalk)"></div><span class="paint-name">Chalk</span><span class="paint-code">#E1D8C5</span><span class="paint-role">몰딩 · 밝은 마감</span></li>
+          <li><div class="paint" style="background:var(--color-muted)"></div><span class="paint-name">Muted</span><span class="paint-code">#52676B</span><span class="paint-role">보조 글자</span></li>
+          <li><div class="paint" style="background:var(--color-line)"></div><span class="paint-name">Line</span><span class="paint-code">#B9C5BE</span><span class="paint-role">장식 구분선</span></li>
+          <li><div class="paint" style="background:var(--color-developer-wall)"></div><span class="paint-name">Developer wall</span><span class="paint-code">#A2BBB5</span><span class="paint-role">개발 방 벽</span></li>
+          <li><div class="paint" style="background:var(--color-piano-wall)"></div><span class="paint-name">Piano wall</span><span class="paint-code">#E1D8C5</span><span class="paint-role">피아노 방 벽</span></li>
+          <li><div class="paint" style="background:var(--color-blog-wall)"></div><span class="paint-name">Blog wall</span><span class="paint-code">#A9BDC1</span><span class="paint-role">블로그 방 벽</span></li>
+          <li><div class="paint" style="background:var(--color-ai-wall)"></div><span class="paint-name">AI wall</span><span class="paint-code">#BCCBAA</span><span class="paint-role">AI 방 벽</span></li>
+          <li><div class="paint" style="background:var(--color-shadow)"></div><span class="paint-name">Shadow</span><span class="paint-code">#314B50</span><span class="paint-role">그림자 · 야간 면</span></li>
+          <li><div class="paint" style="background:var(--color-glow)"></div><span class="paint-name">Glow</span><span class="paint-code">#F5DCA0</span><span class="paint-role">따뜻한 실내 빛</span></li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="room-title">
+        <h2 id="room-title">네 방의 소재 조합</h2>
+        <p class="muted">견본은 벽·목재·골조·강조색 순서입니다. 면적은 소재 간 위계를 설명하며 실제 3D 장면의 측정 비율은 아닙니다.</p>
+        <div class="room-list">
+          <article class="room room-developer"><div class="composition" aria-hidden="true"><span class="material-wall"></span><span class="material-wood"></span><span class="material-ink"></span><span class="material-accent"></span></div><h3>개발</h3><p class="muted">미네랄 그린 벽, 목재 작업대, 페트롤 기기. 청록으로 연결과 작동을 드러냅니다.</p></article>
+          <article class="room room-piano"><div class="composition" aria-hidden="true"><span class="material-wall"></span><span class="material-wood"></span><span class="material-ink"></span><span class="material-accent"></span></div><h3>피아노</h3><p class="muted">따뜻한 벽과 목재, 짙은 악기 외장. 아이보리 건반과 작은 황동 장식이 중심입니다.</p></article>
+          <article class="room room-blog"><div class="composition" aria-hidden="true"><span class="material-wall"></span><span class="material-wood"></span><span class="material-ink"></span><span class="material-accent"></span></div><h3>블로그</h3><p class="muted">슬레이트 계열 벽과 종이, 같은 목재. 모니터 한 대에 시선이 머물게 합니다.</p></article>
+          <article class="room room-ai"><div class="composition" aria-hidden="true"><span class="material-wall"></span><span class="material-wood"></span><span class="material-ink"></span><span class="material-accent"></span></div><h3>AI</h3><p class="muted">세이지 외장과 페트롤 도구. 밝은 Signal은 활성 노드의 작은 반응에 사용합니다.</p></article>
+        </div>
+      </section>
+
+      <section aria-labelledby="ui-title">
+        <h2 id="ui-title">읽기와 조작</h2>
+        <p class="muted">작은 UI 글자는 색상 원본과 분리한 의미 토큰으로 대비를 확보합니다. 제목은 Clash Display·Wanted Sans, 조작과 보조 글자는 Pretendard를 사용하며 한국어 시스템 서체를 대체 글꼴로 둡니다.</p>
+        <div class="ui-sample">
+          <div class="sample"><strong>기본 · 14px</strong><small>보조 설명 · 12px</small></div>
+          <div class="sample selected"><strong>선택한 방</strong><small>밝고 짙은 글자와 바탕을 함께 전환</small></div>
+          <div class="sample accent"><strong>강조 상태</strong><small>낮은 청록 혼합, 밤은 따뜻한 빛</small></div>
+        </div>
+        <dl class="contrast-list">
+          <div class="contrast-row"><dt>Ink / Paper · 본문</dt><dd>10.17 : 1</dd></div>
+          <div class="contrast-row"><dt>Muted / Paper · 보조 글자</dt><dd>5.12 : 1</dd></div>
+          <div class="contrast-row"><dt>청록 80% + Ink 20% / Paper · 낮 강조</dt><dd>4.89 : 1</dd></div>
+          <div class="contrast-row"><dt>Paper / Shadow · 야간 본문</dt><dd>7.97 : 1</dd></div>
+          <div class="contrast-row"><dt>Line / Shadow · 야간 보조 글자</dt><dd>5.23 : 1</dd></div>
+          <div class="contrast-row"><dt>Glow / Shadow · 야간 강조</dt><dd>6.94 : 1</dd></div>
+          <div class="contrast-row"><dt>Ink / Brass · 황동 위 글자</dt><dd>4.63 : 1</dd></div>
+          <div class="contrast-row"><dt>Ink / Signal · 신호 위 글자</dt><dd>8.85 : 1</dd></div>
+        </dl>
+        <p class="note">WCAG 상대 휘도 계산값입니다. 일반 크기 글자는 4.5 : 1, 포커스 테두리는 3 : 1 이상을 기준으로 했습니다. 원본 Teal / Paper는 4.07 : 1, Ink / Slate는 4.00 : 1이므로 작은 글자 조합으로 사용하지 않습니다. 실제 3D 빛과 그림자는 별도 화면 검증 대상입니다.</p>
+      </section>
+      <footer>디자인 검토용 페이지 · 원본 src/design/jo-colors.json · 웹 토큰 tokens.css · 원본 색상은 야간 전환 시에도 유지됩니다.</footer>
+    </main>
+    <script>
+      const themeToggle = document.querySelector('.theme-toggle');
+      themeToggle.addEventListener('click', () => {
+        const isNight = document.body.dataset.night !== 'true';
+        document.body.dataset.night = String(isNight);
+        themeToggle.setAttribute('aria-pressed', String(isNight));
+      });
+    </script>
+  </body>
+</html>

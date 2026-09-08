@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="description" content="문제의 본질과 목표에 집중하는 개발자 조병근의 Summary. 개발 방향과 학력, 경력을 소개합니다." />
+    <title>Summary | 조병근</title>
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <style>
+      :root {
+        color: #183c43;
+        background: #f1ede3;
+        font-family: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+        font-synthesis: none;
+        -webkit-font-smoothing: antialiased;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-size: 20px; line-height: 1.65; word-break: keep-all; overflow-wrap: anywhere; }
+      main { max-width: 800px; margin: 0 auto; padding: 48px 48px 42px; }
+      header { margin-bottom: 35px; }
+      .summary-heading-row { display: grid; grid-template-columns: minmax(0, 1fr) 200px; align-items: start; gap: 24px; }
+      .summary-heading-text { min-width: 0; }
+      .profile-photo { display: block; width: 200px; max-width: 100%; color: inherit; }
+      .profile-photo:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+      .profile-photo img { display: block; width: 100%; height: auto; object-fit: contain; }
+      h1, h2 { font-family: "Clash Display", "Wanted Sans Variable", "Pretendard Variable", sans-serif; }
+      h1 { font-size: 42px; line-height: 1.2; letter-spacing: -0.04em; font-weight: 600; margin: 0 0 10px; }
+      .principles { display: flex; flex-wrap: wrap; gap: 4px 20px; color: #52676b; font-size: 16px; }
+      .principles > span { white-space: nowrap; }
+      .principles strong { color: #183c43; }
+      .summary-intro { margin-top: 20px; }
+      .summary-intro strong { font-weight: 600; }
+      ol { margin: 0; padding: 0; list-style: none; }
+      li { position: relative; display: grid; grid-template-columns: 185px minmax(0, 1fr); gap: 12px 24px; padding: 23px 0; border-top: 1px solid #b9c5be; }
+      .period { padding-top: 3px; color: #52676b; font-size: 18px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+      h2 { margin: 0 0 3px; font-size: 25px; font-weight: 600; line-height: 1.35; letter-spacing: -0.025em; }
+      p { margin: 0; }
+      @media (max-width: 620px) {
+        main { padding: 22px 24px; }
+        header { margin-bottom: 18px; }
+        h1 { font-size: 36px; }
+        .summary-heading-row { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+        .profile-photo { width: 180px; }
+        li { grid-template-columns: 1fr; gap: 5px; padding: 12px 0; }
+        .period { padding-top: 0; }
+        h2 { font-size: 23px; }
+        .principles { font-size: 15px; gap: 2px 16px; }
+        .summary-intro { margin-top: 16px; font-size: 18px; }
+      }
+      @media print {
+        main { padding: 0; max-width: none; }
+        li { break-inside: avoid; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="summary-heading-row">
+          <div class="summary-heading-text">
+            <h1 lang="en">Summary</h1>
+            <p class="principles" lang="en">
+              <span><strong>GoD</strong> (Goal-oriented Developer)</span>
+              <span><strong>CoD</strong> (Core-oriented Developer)</span>
+            </p>
+          </div>
+          <a class="profile-photo" href="/images/bbangjo-portrait.jpg" target="_blank" rel="noopener noreferrer" aria-label="사진 크게 보기">
+            <img src="/images/bbangjo-portrait.jpg" width="4962" height="3308" alt="조병근 프로필 사진" decoding="async" />
+          </a>
+        </div>
+        <p class="summary-intro"><strong>문제의 본질과 목표</strong>에 집중하며, 목표 달성에 필요한 일이라면 업무의 종류를 가리지 않습니다. 빠르게 배우고 실행하며 성장합니다.</p>
+      </header>
+      <ol aria-label="학력과 경력 연대기">
+        <li>
+          <div class="period"><time datetime="2019-03">2019.03</time> – <time datetime="2024-02">2024.02</time></div>
+          <div><h2>고려대학교</h2><p>사이버국방학과</p></div>
+        </li>
+        <li>
+          <div class="period"><time datetime="2023-01">2023.01</time> – <time datetime="2023-06">2023.06</time></div>
+          <div><h2 lang="en">University at Buffalo</h2><p>CSE 교환학생</p></div>
+        </li>
+        <li>
+          <div class="period"><time datetime="2023-06">2023.06</time> – <time datetime="2026-03">2026.03</time></div>
+          <div><h2>두잇</h2><p lang="en">Backend Engineer</p></div>
+        </li>
+        <li>
+          <div class="period"><time datetime="2026-06">2026.06</time> – 현재</div>
+          <div>
+            <h2>인포시즈</h2>
+            <p lang="en">FDE</p>
+          </div>
+        </li>
+      </ol>
+    </main>
+    <script>
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && window.parent !== window) {
+          event.preventDefault();
+          window.parent.postMessage({ type: "keydown", key: "Escape" }, window.location.origin);
+        }
+      });
+    </script>
+  </body>
+</html>

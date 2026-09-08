@@ -1,21 +1,26 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM, { Root } from "react-dom/client";
 import InterfaceUI from "./components/InterfaceUI";
 
-const createVolumeUI = () => {
-  let container: any = null;
+let root: Root | undefined;
+let waitingForDocument = false;
 
-  document.addEventListener("DOMContentLoaded", function () {
-    if (!container) {
-      container = document.getElementById("ui-interactive") as HTMLElement;
-      const root = ReactDOM.createRoot(container);
-      root.render(
-        <React.StrictMode>
-          <InterfaceUI />
-        </React.StrictMode>
-      );
-    }
-  });
+const createVolumeUI = () => {
+  if (root || waitingForDocument) return;
+  const mount = () => {
+    waitingForDocument = false;
+    if (root) return;
+    const container = document.getElementById("ui-interactive");
+    if (!container) return;
+    root = ReactDOM.createRoot(container);
+    root.render(<React.StrictMode><InterfaceUI /></React.StrictMode>);
+  };
+  if (document.readyState === "loading") {
+    waitingForDocument = true;
+    document.addEventListener("DOMContentLoaded", mount, { once: true });
+  } else {
+    mount();
+  }
 };
 
 export { createVolumeUI };

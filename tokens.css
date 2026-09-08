@@ -1,0 +1,139 @@
+/* Hallmark · route: custom (bespoke) · structure: four-room spatial portfolio
+ * idea: "Shared materials, four expressions of structured curiosity"
+ * source: src/design/jo-colors.json · exact sRGB-to-OKLCH conversion, no chroma clamp
+ * paper: var(--color-paper) · accent: var(--color-accent)
+ * display: Clash Display + Wanted Sans · prose: General Sans + Noto Serif KR · UI: Pretendard · axes: light / system-native / petrol
+ * pre-emit critique: P5 H4 E4 S5 R5 V4
+ * checks: 18/18 exact 8-bit round trips; reference text >= 4.89:1; reference widths 320/375/414/768/1280
+ * scope: portable tokens only; full product visual gates are checked by the UI owner.
+ */
+
+:root {
+  /* Immutable brand primitives. Keep in sync with src/design/jo-colors.json. */
+  --color-ink: oklch(33.303381097% 0.0427957688 212.129955936); /* #183C43 */
+  --color-paper: oklch(94.646734904% 0.0139832922 88.685205761); /* #F1EDE3 */
+  --color-teal: oklch(54.665994016% 0.0665488268 192.712723990); /* #3C7D7B */
+  --color-brass: oklch(71.387110807% 0.0963786402 75.106732644); /* #C69A5B */
+  --color-signal: oklch(89.554122541% 0.0961533630 115.878679703); /* #D9E59B */
+  --color-sage: oklch(80.413465454% 0.0689014272 123.478258517); /* #B6C796 */
+  --color-slate: oklch(66.859887635% 0.0290773108 211.109162761); /* #819A9F */
+  --color-walnut: oklch(48.379442647% 0.0554948711 52.700113056); /* #785641 */
+  --color-wood: oklch(75.329017744% 0.0658461527 76.672344336); /* #C7AA80 */
+  --color-chalk: oklch(88.430934900% 0.0273748742 85.667250249); /* #E1D8C5 */
+  --color-muted: oklch(49.812318669% 0.0259442758 210.481603965); /* #52676B */
+  --color-line: oklch(81.212450263% 0.0163415254 160.532132080); /* #B9C5BE */
+  --color-developer-wall: oklch(77.142390263% 0.0286069666 179.432620544); /* #A2BBB5 */
+  --color-piano-wall: oklch(88.430934900% 0.0273748742 85.667250249); /* #E1D8C5 */
+  --color-blog-wall: oklch(78.436043292% 0.0226947854 211.058133395); /* #A9BDC1 */
+  --color-ai-wall: oklch(82.177439667% 0.0478911665 127.373308575); /* #BCCBAA */
+  --color-shadow: oklch(39.391555500% 0.0326456485 210.891428544); /* #314B50 */
+  --color-glow: oklch(90.113059203% 0.0815172619 87.961598169); /* #F5DCA0 */
+  --color-transparent: color-mix(in oklch, var(--color-paper) 0%, transparent);
+
+  /* Opaque reading surfaces. Alpha modifiers are for overlays and shadows only. */
+  --color-bg: var(--color-paper);
+  --color-surface: var(--color-paper);
+  --color-surface-hover: color-mix(in oklch, var(--color-paper) 75%, var(--color-chalk));
+  --color-surface-translucent: color-mix(in oklch, var(--color-surface) 96%, transparent);
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-muted);
+  --color-border: color-mix(in oklch, var(--color-muted) 80%, var(--color-paper));
+  --color-border-subtle: var(--color-line);
+  --color-border-strong: var(--color-muted);
+
+  /* Raw teal/paper is 4.07:1. This semantic mix supports normal-sized text. */
+  --color-accent: color-mix(in oklch, var(--color-teal) 80%, var(--color-ink));
+  --color-on-accent: var(--color-paper);
+  --color-accent-ink: var(--color-on-accent);
+  --color-focus: var(--color-teal);
+  --color-shadow-soft: color-mix(in oklch, var(--color-ink) 12%, transparent);
+  --color-shadow-deep: color-mix(in oklch, var(--color-ink) 28%, transparent);
+  --color-scrim: color-mix(in oklch, var(--color-ink) 48%, transparent);
+  --color-hotspot: var(--color-paper);
+  --color-hotspot-ink: var(--color-ink);
+  --color-on-brass: var(--color-ink);
+  --color-on-signal: var(--color-ink);
+  --color-on-sage: var(--color-ink);
+
+  /* Material/decoration accents. Never use these as small text on paper. */
+  --color-room-developer: var(--color-teal);
+  --color-room-piano: var(--color-brass);
+  --color-room-blog: var(--color-slate);
+  --color-room-ai: var(--color-sage);
+  --color-game-pad-0: var(--color-teal);
+  --color-game-pad-1: var(--color-brass);
+  --color-game-pad-2: var(--color-slate);
+  --color-game-pad-3: var(--color-sage);
+
+  --font-body: 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-display: 'Clash Display', 'Wanted Sans Variable', 'Apple SD Gothic Neo', sans-serif;
+  --font-prose: 'General Sans', 'Noto Serif KR', 'AppleMyungjo', serif;
+  --font-mono: 'SFMono-Regular', Menlo, Monaco, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', monospace;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-brand: 18px;
+  --text-heading: 28px;
+  --text-bio-name: 28px;
+  --text-bio-name-desktop: 32px;
+  --line-height-prose: 1.85;
+  --scene-left: 0px;
+  --bio-width: 232px;
+  --guide-width: 256px;
+  --text-display: clamp(28px, 4vw, 40px);
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-body: 1.6;
+  --line-height-tight: 1.2;
+
+  --space-0: 0;
+  --space-half: 2px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-9: 36px;
+  --space-10: 40px;
+  --space-11: 44px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --radius-small: 8px;
+  --radius-control: 12px;
+  --radius-panel: 20px;
+  --radius-round: 999px;
+  --dur-fast: 120ms;
+  --dur-normal: 150ms;
+  --dur-loading: 1200ms;
+  --dur-tooltip-delay: 800ms;
+  --ease-standard: cubic-bezier(.4, 0, .2, 1);
+  --rule-width: 1px;
+  --rule-focus: 2px;
+  --z-base: 1;
+  --z-overlay: 10;
+  --z-popover: 20;
+}
+
+body[data-night='true'] {
+  --color-bg: var(--color-ink);
+  --color-surface: var(--color-shadow);
+  --color-surface-hover: color-mix(in oklch, var(--color-shadow) 84%, var(--color-muted));
+  --color-surface-translucent: color-mix(in oklch, var(--color-surface) 96%, transparent);
+  --color-text: var(--color-paper);
+  --color-text-muted: var(--color-line);
+  --color-border: var(--color-slate);
+  --color-border-subtle: color-mix(in oklch, var(--color-slate) 42%, transparent);
+  --color-border-strong: var(--color-line);
+  --color-accent: var(--color-glow);
+  --color-on-accent: var(--color-ink);
+  --color-accent-ink: var(--color-on-accent);
+  --color-focus: var(--color-brass);
+  --color-shadow-soft: color-mix(in oklch, var(--color-ink) 42%, transparent);
+  --color-shadow-deep: color-mix(in oklch, var(--color-ink) 72%, transparent);
+  --color-scrim: color-mix(in oklch, var(--color-ink) 72%, transparent);
+}

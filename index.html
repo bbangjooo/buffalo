@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/bbang.png" />
+    <link rel="icon" type="image/png" href="/bbang.png" />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
     <link rel="stylesheet" href="/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>bbangjo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#F1EDE3" />
+    <meta name="description" content="bbangjo의 작은 공간. Summary와 블로그를 읽고, 피아노를 연주하고, 순서 기억 게임을 즐겨보세요." />
+    <title>조병근 · bbangjo</title>
   </head>
-  <body>
+  <body data-view="developer" data-room="developer" data-night="false">
     <div id="css"></div>
-    <div id="webgl"></div>
+    <div id="webgl" aria-label="bbangjo의 Summary, 피아노, 블로그, 게임 공간"></div>
     <div id="ui-interactive"></div>
 
-    <audio id="bgm" loop autoplay>
-      <source src="/audio/bgm.mp3" type="audio/mp3" />
-    </audio>
-
+    <noscript><div class="noscript-notice">이 공간을 둘러보려면 JavaScript가 필요해요. <a href="https://blog.bbangjo.kr">블로그에서 바로 글 읽기</a></div></noscript>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

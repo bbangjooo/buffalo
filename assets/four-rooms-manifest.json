@@ -1,0 +1,1353 @@
+{
+  "palette": "src/design/jo-colors.json",
+  "coordinates": "Three.js y-up; canonical room x/z in [0,5.6]",
+  "derivedShades": "Vertex AO factors [0.48,1]. Oak lightness factors 0.94/1.00/1.045. Macro-facet matte materials use coherent shadow/base/light factors 0.70/1.00/1.18 (paper and signal 0.76/1.00/1.05), on physically different planes. No new hues.",
+  "rooms": {
+    "RoomDeveloper": {
+      "anchors": {
+        "ResumeScreenAnchor": [
+          3.0,
+          2.0,
+          0.22
+        ],
+        "ResumeAnchor": [
+          4.48,
+          2.82,
+          0.28
+        ],
+        "PortraitScreenAnchor": [
+          0.29,
+          2.16,
+          2.65
+        ]
+      },
+      "rotationY": 0.0,
+      "canonicalBounds": {
+        "min": [
+          0,
+          -0.42,
+          0
+        ],
+        "max": [
+          5.6,
+          3.5,
+          5.6
+        ]
+      },
+      "exactCanonicalBounds": {
+        "min": [
+          0.0,
+          -0.41999998688697815,
+          -0.0
+        ],
+        "max": [
+          5.600000381469727,
+          3.5,
+          5.600000381469727
+        ]
+      }
+    },
+    "RoomPiano": {
+      "anchors": {
+        "PianoSeatAnchor": [
+          2.8,
+          0.95,
+          2.86
+        ],
+        "PianoEyeAnchor": [
+          2.8,
+          1.78,
+          2.98
+        ],
+        "PianoLookAnchor": [
+          2.8,
+          1.22,
+          1.72
+        ]
+      },
+      "rotationY": 1.5707963267948966,
+      "canonicalBounds": {
+        "min": [
+          0,
+          -0.42,
+          0
+        ],
+        "max": [
+          5.6,
+          3.5,
+          5.6
+        ]
+      },
+      "exactCanonicalBounds": {
+        "min": [
+          0.0,
+          -0.41999998688697815,
+          -0.0
+        ],
+        "max": [
+          5.600000381469727,
+          3.5,
+          5.600000381469727
+        ]
+      }
+    },
+    "RoomBlog": {
+      "anchors": {
+        "MonitorScreenAnchor": [
+          2.8,
+          2.05,
+          0.82
+        ],
+        "MonitorAnchor": [
+          2.8,
+          2.73,
+          0.84
+        ],
+        "BlogLampAnchor": [
+          4.2,
+          1.9,
+          1.12
+        ]
+      },
+      "rotationY": 3.141592653589793,
+      "canonicalBounds": {
+        "min": [
+          0,
+          -0.42,
+          0
+        ],
+        "max": [
+          5.6,
+          3.5,
+          5.6
+        ]
+      },
+      "exactCanonicalBounds": {
+        "min": [
+          0.0,
+          -0.41999998688697815,
+          -0.0
+        ],
+        "max": [
+          5.600000381469727,
+          3.5,
+          5.600000381469727
+        ]
+      }
+    },
+    "RoomAI": {
+      "anchors": {
+        "GameAnchor": [
+          2.8,
+          1.85,
+          2.2
+        ]
+      },
+      "rotationY": 4.71238898038469,
+      "canonicalBounds": {
+        "min": [
+          0,
+          -0.42,
+          0
+        ],
+        "max": [
+          5.6,
+          3.5,
+          5.6
+        ]
+      },
+      "exactCanonicalBounds": {
+        "min": [
+          0.0,
+          -0.41999998688697815,
+          -0.0
+        ],
+        "max": [
+          5.600000381469727,
+          3.5,
+          5.600000381469727
+        ]
+      }
+    }
+  },
+  "dynamicObjects": [
+    "AICurtainLeft",
+    "AICurtainRight",
+    "BlogCurtainLeft",
+    "BlogCurtainRight",
+    "GamePad0",
+    "GamePad1",
+    "GamePad2",
+    "GamePad3",
+    "PianoCurtainLeft",
+    "PianoCurtainRight",
+    "PianoKey60",
+    "PianoKey61",
+    "PianoKey62",
+    "PianoKey63",
+    "PianoKey64",
+    "PianoKey65",
+    "PianoKey66",
+    "PianoKey67",
+    "PianoKey68",
+    "PianoKey69",
+    "PianoKey70",
+    "PianoKey71",
+    "PianoKey72",
+    "PianoKey73",
+    "PianoKey74",
+    "PianoKey75",
+    "PianoKey76",
+    "PianoKey77",
+    "PianoKey78",
+    "PianoKey79",
+    "PianoKey80",
+    "PianoKey81",
+    "PianoKey82",
+    "PianoKey83",
+    "PianoKeybed",
+    "PianoKeyboardShadow",
+    "RobotArm",
+    "RobotHead"
+  ],
+  "resumeScreen": {
+    "room": "RoomDeveloper",
+    "anchor": "ResumeScreenAnchor",
+    "width": 2.3,
+    "height": 2.78,
+    "position": [
+      3.0,
+      2.0,
+      0.22
+    ],
+    "normalCanonical": [
+      0,
+      0,
+      1
+    ]
+  },
+  "portrait": {
+    "room": "RoomDeveloper",
+    "root": "PortraitFrame",
+    "anchor": "PortraitScreenAnchor",
+    "positionCanonical": [
+      0.29,
+      2.16,
+      2.65
+    ],
+    "rotationThree": [
+      0,
+      1.5707963267948966,
+      0
+    ],
+    "normalCanonical": [
+      1,
+      0,
+      0
+    ],
+    "width": 1.8,
+    "height": 1.2,
+    "outerWidth": 2.02,
+    "outerHeight": 1.42,
+    "frameFrontX": 0.305,
+    "imageSource": "/images/bbangjo-portrait.jpg",
+    "sourcePixelSize": [
+      4962,
+      3308
+    ],
+    "sourceImageBytes": 4862854,
+    "sourceImageSha256": "031a2b048b248eedaa285f2e6c72230d150d320b7f75d2c82f38a533e6000ebe",
+    "imageEmbeddedInGLB": false,
+    "authoringImage": "RenderOnlyPortrait",
+    "sourceColorProfile": "Display P3",
+    "uvCorners": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "mapping": "Full 3:2 original, no crop or horizontal/vertical flip; image-right maps to canonical -Z.",
+    "preservation": {
+      "nonPortraitNonCurtainMeshesUnchanged": 955,
+      "method": "SHA256 of world-space vertices, normals, topology and PBR values; only ArchiveFolio is replaced."
+    }
+  },
+  "piano": {
+    "keys": [
+      {
+        "name": "PianoKey60",
+        "midi": 60,
+        "position": [
+          1.435,
+          1.285,
+          1.99
+        ],
+        "black": false
+      },
+      {
+        "name": "PianoKey61",
+        "midi": 61,
+        "position": [
+          1.54,
+          1.386,
+          1.63
+        ],
+        "black": true
+      },
+      {
+        "name": "PianoKey62",
+        "midi": 62,
+        "position": [
+          1.645,
+          1.285,
+          1.99
+        ],
+        "black": false
+      },
+      {
+        "name": "PianoKey63",
+        "midi": 63,
+        "position": [
+          1.75,
+          1.386,
+          1.63
+        ],
+        "black": true
+      },
+      {
+        "name": "PianoKey64",
+        "midi": 64,
+        "position": [
+          1.855,
+          1.285,
+          1.99
+        ],
+        "black": false
+      },
+      {
+        "name": "PianoKey65",
+        "midi": 65,
+        "position": [
+          2.065,
+          1.285,
+          1.99
+        ],
+        "black": false
+      },
+      {
+        "name": "PianoKey66",
+        "midi": 66,
+        "position": [
+          2.17,
+          1.386,
+          1.63
+        ],
+        "black": true
+      },
+      {
+        "name": "PianoKey67",
+        "midi": 67,
+        "position": [
+          2.275,
+          1.285,
+          1.99
+        ],
+        "black": false
+      },
+      {
+        "name": "PianoKey68",
+        "midi": 68,
+        "position": [
+          2.38,
+          1.386,
+          1.63
+        ],
+        "black": true
+      },
+      {
+        "name": "PianoKey69",
+        "midi": 69,
+        "position": [
+          2.4850000000000003,
+          1.285,
+          1.99
+        ],
+        "black": false
+      },
+      {
+        "name": "PianoKey70",
+        "midi": 70,
+        "position": [
+          2.59,
+          1.386,
+          1.63
+        ],
+        "black": true
+      },
+      {
+        "name": "PianoKey71",
+        "midi": 71,
+        "position": [
+          2.6950000000000003,
+          1.285,
+          1.99
+        ],
+        "black": false
+      },
+      {
+        "name": "PianoKey72",
+        "midi": 72,
+        "position": [
+          2.9050000000000002,
+          1.285,
+          1.99
+        ],
+        "black": false
+      },
+      {
+        "name": "PianoKey73",
+        "midi": 73,
+        "position": [
+          3.01,
+          1.386,
+          1.63
+        ],
+        "black": true
+      },
+      {
+        "name": "PianoKey74",
+        "midi": 74,
+        "position": [
+          3.115,
+          1.285,
+          1.99
+        ],
+        "black": false
+      },
+      {
+        "name": "PianoKey75",
+        "midi": 75,
+        "position": [
+          3.2199999999999998,
+          1.386,
+          1.63
+        ],
+        "black": true
+      },
+      {
+        "name": "PianoKey76",
+        "midi": 76,
+        "position": [
+          3.325,
+          1.285,
+          1.99
+        ],
+        "black": false
+      },
+      {
+        "name": "PianoKey77",
+        "midi": 77,
+        "position": [
+          3.535,
+          1.285,
+          1.99
+        ],
+        "black": false
+      },
+      {
+        "name": "PianoKey78",
+        "midi": 78,
+        "position": [
+          3.64,
+          1.386,
+          1.63
+        ],
+        "black": true
+      },
+      {
+        "name": "PianoKey79",
+        "midi": 79,
+        "position": [
+          3.745,
+          1.285,
+          1.99
+        ],
+        "black": false
+      },
+      {
+        "name": "PianoKey80",
+        "midi": 80,
+        "position": [
+          3.85,
+          1.386,
+          1.63
+        ],
+        "black": true
+      },
+      {
+        "name": "PianoKey81",
+        "midi": 81,
+        "position": [
+          3.955,
+          1.285,
+          1.99
+        ],
+        "black": false
+      },
+      {
+        "name": "PianoKey82",
+        "midi": 82,
+        "position": [
+          4.0600000000000005,
+          1.386,
+          1.63
+        ],
+        "black": true
+      },
+      {
+        "name": "PianoKey83",
+        "midi": 83,
+        "position": [
+          4.165,
+          1.285,
+          1.99
+        ],
+        "black": false
+      }
+    ],
+    "anchors": {
+      "PianoAnchor": [
+        2.8,
+        2.72,
+        1.72
+      ]
+    },
+    "instrument": "Piano",
+    "seat": {
+      "root": "PianoBench",
+      "anchors": {
+        "PianoSeatAnchor": [
+          2.8,
+          0.95,
+          2.86
+        ],
+        "PianoEyeAnchor": [
+          2.8,
+          1.78,
+          2.98
+        ],
+        "PianoLookAnchor": [
+          2.8,
+          1.22,
+          1.72
+        ]
+      }
+    }
+  },
+  "monitorScreen": {
+    "room": "RoomBlog",
+    "anchor": "MonitorScreenAnchor",
+    "width": 1.4,
+    "height": 0.84,
+    "normalCanonical": [
+      0,
+      0,
+      1
+    ]
+  },
+  "memoryGame": {
+    "room": "RoomAI",
+    "root": "GameConsole",
+    "start": "GameStart",
+    "anchor": "GameAnchor",
+    "pressAxis": "y",
+    "pressTravel": -0.055,
+    "pads": [
+      {
+        "name": "GamePad0",
+        "index": 0,
+        "position": [
+          2.2,
+          1.1,
+          1.65
+        ],
+        "color": "teal",
+        "shape": "circle"
+      },
+      {
+        "name": "GamePad1",
+        "index": 1,
+        "position": [
+          3.4,
+          1.1,
+          1.65
+        ],
+        "color": "brass",
+        "shape": "diamond"
+      },
+      {
+        "name": "GamePad2",
+        "index": 2,
+        "position": [
+          2.2,
+          1.1,
+          2.65
+        ],
+        "color": "slate",
+        "shape": "triangle"
+      },
+      {
+        "name": "GamePad3",
+        "index": 3,
+        "position": [
+          3.4,
+          1.1,
+          2.65
+        ],
+        "color": "sage",
+        "shape": "square"
+      }
+    ]
+  },
+  "robot": {
+    "root": "Robot",
+    "initialRoom": "RoomAI",
+    "origin": [
+      4.65,
+      0,
+      4.35
+    ],
+    "anchor": "RobotGuideAnchor",
+    "anchorLocal": [
+      0,
+      1.27,
+      0
+    ],
+    "head": "RobotHead",
+    "arm": "RobotArm",
+    "nominalBounds": {
+      "width": 0.87,
+      "height": 1.15,
+      "depth": 0.49
+    },
+    "forwardCanonical": [
+      0,
+      0,
+      1
+    ],
+    "boundsLocal": {
+      "min": [
+        -0.43000030517578125,
+        0.0,
+        -0.2049999237060547
+      ],
+      "max": [
+        0.43000030517578125,
+        1.149999976158142,
+        0.24700021743774414
+      ],
+      "size": [
+        0.8600006103515625,
+        1.149999976158142,
+        0.45200014114379883
+      ]
+    }
+  },
+  "curtains": {
+    "defaultPose": "open",
+    "openWidth": 0.48,
+    "closedWidth": 1.283,
+    "closedScaleThree": [
+      0.72,
+      1,
+      2.6729166666666666
+    ],
+    "nodes": {
+      "PianoCurtainLeft": {
+        "room": "RoomPiano",
+        "side": "left",
+        "pivotCanonical": [
+          0.28999999165534973,
+          3.1600000858306885,
+          1.2400000095367432
+        ],
+        "openBounds": {
+          "canonical": {
+            "min": [
+              0.22699999809265137,
+              1.274999976158142,
+              1.2400000095367432
+            ],
+            "max": [
+              0.3449999988079071,
+              3.1600000858306885,
+              1.7200000286102295
+            ]
+          },
+          "meshLocal": {
+            "min": [
+              -0.06299999356269836,
+              -1.8850001096725464,
+              -0.0
+            ],
+            "max": [
+              0.05500000715255737,
+              0.0,
+              0.48000001907348633
+            ]
+          }
+        },
+        "closedBounds": {
+          "canonical": {
+            "min": [
+              0.24463999271392822,
+              1.274999976158142,
+              1.2400000095367432
+            ],
+            "max": [
+              0.3295999765396118,
+              3.1600000858306885,
+              2.5230002403259277
+            ]
+          },
+          "meshLocal": {
+            "min": [
+              -0.06299999356269836,
+              -1.8850001096725464,
+              -2.220446049250313e-16
+            ],
+            "max": [
+              0.05500000715255737,
+              0.0,
+              0.48000001907348633
+            ]
+          }
+        },
+        "jambClearanceOpen": 0.016999998092651375,
+        "jambClearanceClosed": 0.03463999271392823
+      },
+      "PianoCurtainRight": {
+        "room": "RoomPiano",
+        "side": "right",
+        "pivotCanonical": [
+          0.28999999165534973,
+          3.1600000858306885,
+          3.809999942779541
+        ],
+        "openBounds": {
+          "canonical": {
+            "min": [
+              0.22699999809265137,
+              1.274999976158142,
+              3.3299999237060547
+            ],
+            "max": [
+              0.3449999988079071,
+              3.1600000858306885,
+              3.809999942779541
+            ]
+          },
+          "meshLocal": {
+            "min": [
+              -0.06299999356269836,
+              -1.8850001096725464,
+              -0.48000001907348633
+            ],
+            "max": [
+              0.05500000715255737,
+              0.0,
+              -0.0
+            ]
+          }
+        },
+        "closedBounds": {
+          "canonical": {
+            "min": [
+              0.24463999271392822,
+              1.274999976158142,
+              2.5269999504089355
+            ],
+            "max": [
+              0.3296000063419342,
+              3.1600000858306885,
+              3.809999942779541
+            ]
+          },
+          "meshLocal": {
+            "min": [
+              -0.06300002336502075,
+              -1.8850001096725464,
+              -0.4799997806549072
+            ],
+            "max": [
+              0.054999977350234985,
+              0.0,
+              2.384185791015625e-07
+            ]
+          }
+        },
+        "jambClearanceOpen": 0.016999998092651375,
+        "jambClearanceClosed": 0.03463999271392823
+      },
+      "BlogCurtainLeft": {
+        "room": "RoomBlog",
+        "side": "left",
+        "pivotCanonical": [
+          0.28999999165534973,
+          3.1600000858306885,
+          1.2400000095367432
+        ],
+        "openBounds": {
+          "canonical": {
+            "min": [
+              0.22699999809265137,
+              1.274999976158142,
+              1.2400000095367432
+            ],
+            "max": [
+              0.3449999988079071,
+              3.1600000858306885,
+              1.7200000286102295
+            ]
+          },
+          "meshLocal": {
+            "min": [
+              -0.06299999356269836,
+              -1.8850001096725464,
+              -0.0
+            ],
+            "max": [
+              0.05500000715255737,
+              0.0,
+              0.48000001907348633
+            ]
+          }
+        },
+        "closedBounds": {
+          "canonical": {
+            "min": [
+              0.24464000761508942,
+              1.274999976158142,
+              1.2400000095367432
+            ],
+            "max": [
+              0.3296000063419342,
+              3.1600000858306885,
+              2.5230002403259277
+            ]
+          },
+          "meshLocal": {
+            "min": [
+              -0.06299999356269836,
+              -1.8850001096725464,
+              -4.440892098500626e-16
+            ],
+            "max": [
+              0.05500000715255737,
+              0.0,
+              0.48000001907348633
+            ]
+          }
+        },
+        "jambClearanceOpen": 0.016999998092651375,
+        "jambClearanceClosed": 0.034640007615089424
+      },
+      "BlogCurtainRight": {
+        "room": "RoomBlog",
+        "side": "right",
+        "pivotCanonical": [
+          0.28999999165534973,
+          3.1600000858306885,
+          3.809999942779541
+        ],
+        "openBounds": {
+          "canonical": {
+            "min": [
+              0.22699999809265137,
+              1.274999976158142,
+              3.3299999237060547
+            ],
+            "max": [
+              0.3449999988079071,
+              3.1600000858306885,
+              3.809999942779541
+            ]
+          },
+          "meshLocal": {
+            "min": [
+              -0.06299999356269836,
+              -1.8850001096725464,
+              -0.48000001907348633
+            ],
+            "max": [
+              0.05500000715255737,
+              0.0,
+              -0.0
+            ]
+          }
+        },
+        "closedBounds": {
+          "canonical": {
+            "min": [
+              0.24463999271392822,
+              1.274999976158142,
+              2.5269999504089355
+            ],
+            "max": [
+              0.3295999765396118,
+              3.1600000858306885,
+              3.809999942779541
+            ]
+          },
+          "meshLocal": {
+            "min": [
+              -0.06299999356269836,
+              -1.8850001096725464,
+              -0.4799997806549072
+            ],
+            "max": [
+              0.05500000715255737,
+              0.0,
+              2.384185791015625e-07
+            ]
+          }
+        },
+        "jambClearanceOpen": 0.016999998092651375,
+        "jambClearanceClosed": 0.03463999271392823
+      },
+      "AICurtainLeft": {
+        "room": "RoomAI",
+        "side": "left",
+        "pivotCanonical": [
+          0.28999999165534973,
+          3.1600000858306885,
+          1.2400000095367432
+        ],
+        "openBounds": {
+          "canonical": {
+            "min": [
+              0.22699999809265137,
+              1.274999976158142,
+              1.2400000095367432
+            ],
+            "max": [
+              0.3449999988079071,
+              3.1600000858306885,
+              1.7200000286102295
+            ]
+          },
+          "meshLocal": {
+            "min": [
+              -0.06299999356269836,
+              -1.8850001096725464,
+              -0.0
+            ],
+            "max": [
+              0.05500000715255737,
+              0.0,
+              0.48000001907348633
+            ]
+          }
+        },
+        "closedBounds": {
+          "canonical": {
+            "min": [
+              0.24463996291160583,
+              1.274999976158142,
+              1.2400000095367432
+            ],
+            "max": [
+              0.3295999765396118,
+              3.1600000858306885,
+              2.5230002403259277
+            ]
+          },
+          "meshLocal": {
+            "min": [
+              -0.06299999356269836,
+              -1.8850001096725464,
+              -0.0
+            ],
+            "max": [
+              0.05500000715255737,
+              0.0,
+              0.48000001907348633
+            ]
+          }
+        },
+        "jambClearanceOpen": 0.016999998092651375,
+        "jambClearanceClosed": 0.03463996291160584
+      },
+      "AICurtainRight": {
+        "room": "RoomAI",
+        "side": "right",
+        "pivotCanonical": [
+          0.28999999165534973,
+          3.1600000858306885,
+          3.809999942779541
+        ],
+        "openBounds": {
+          "canonical": {
+            "min": [
+              0.22699999809265137,
+              1.274999976158142,
+              3.3299999237060547
+            ],
+            "max": [
+              0.3449999988079071,
+              3.1600000858306885,
+              3.809999942779541
+            ]
+          },
+          "meshLocal": {
+            "min": [
+              -0.06299999356269836,
+              -1.8850001096725464,
+              -0.48000001907348633
+            ],
+            "max": [
+              0.05500000715255737,
+              0.0,
+              -0.0
+            ]
+          }
+        },
+        "closedBounds": {
+          "canonical": {
+            "min": [
+              0.24464000761508942,
+              1.274999976158142,
+              2.5269999504089355
+            ],
+            "max": [
+              0.3296000063419342,
+              3.1600000858306885,
+              3.809999942779541
+            ]
+          },
+          "meshLocal": {
+            "min": [
+              -0.06299999356269836,
+              -1.8850001096725464,
+              -0.4799997806549072
+            ],
+            "max": [
+              0.05500000715255737,
+              0.0,
+              2.384185791015625e-07
+            ]
+          }
+        },
+        "jambClearanceOpen": 0.016999998092651375,
+        "jambClearanceClosed": 0.034640007615089424
+      }
+    },
+    "validation": {
+      "Piano": {
+        "closedCenterSeam": 0.0039997100830078125,
+        "jambCrossing": false
+      },
+      "Blog": {
+        "closedCenterSeam": 0.0039997100830078125,
+        "jambCrossing": false
+      },
+      "AI": {
+        "closedCenterSeam": 0.0039997100830078125,
+        "jambCrossing": false
+      }
+    },
+    "previews": [
+      "assets/four-rooms-curtain-open.png",
+      "assets/four-rooms-curtain-closed.png"
+    ]
+  },
+  "focusGroups": {
+    "Piano": {
+      "sourceMeshes": 81,
+      "triangles": 2806,
+      "polygons": 1516,
+      "planesAtLeast025SquareMetres": 218,
+      "smoothFaces": 0,
+      "roughnessRange": [
+        0.8999999761581421,
+        0.8999999761581421
+      ],
+      "metallicRange": [
+        0.0,
+        0.0
+      ],
+      "boundsLocal": {
+        "min": [
+          0.9900000095367432,
+          0.03200000151991844,
+          0.5800000429153442
+        ],
+        "max": [
+          4.609999656677246,
+          2.4124999046325684,
+          2.134999990463257
+        ],
+        "size": [
+          3.619999647140503,
+          2.38049990311265,
+          1.5549999475479126
+        ]
+      }
+    },
+    "PianoBench": {
+      "sourceMeshes": 6,
+      "triangles": 136,
+      "polygons": 68,
+      "planesAtLeast025SquareMetres": 36,
+      "smoothFaces": 0,
+      "roughnessRange": [
+        0.8999999761581421,
+        0.8999999761581421
+      ],
+      "metallicRange": [
+        0.0,
+        0.0
+      ],
+      "boundsLocal": {
+        "min": [
+          -0.779999852180481,
+          0.029999999329447746,
+          -0.40500012040138245
+        ],
+        "max": [
+          0.7800000905990601,
+          0.8389999866485596,
+          0.40499988198280334
+        ],
+        "size": [
+          1.559999942779541,
+          0.8089999873191118,
+          0.8100000023841858
+        ]
+      }
+    },
+    "Monitor": {
+      "sourceMeshes": 5,
+      "triangles": 66,
+      "polygons": 35,
+      "planesAtLeast025SquareMetres": 29,
+      "smoothFaces": 0,
+      "roughnessRange": [
+        0.9100000262260437,
+        0.9100000262260437
+      ],
+      "metallicRange": [
+        0.0,
+        0.0
+      ],
+      "boundsLocal": {
+        "min": [
+          -0.8700000047683716,
+          -0.7429999113082886,
+          -0.41999998688697815
+        ],
+        "max": [
+          0.8700001239776611,
+          0.5250000953674316,
+          0.2600000500679016
+        ],
+        "size": [
+          1.7400001287460327,
+          1.2680000066757202,
+          0.6800000369548798
+        ]
+      }
+    },
+    "BlogChair": {
+      "sourceMeshes": 9,
+      "triangles": 120,
+      "polygons": 61,
+      "planesAtLeast025SquareMetres": 51,
+      "smoothFaces": 0,
+      "roughnessRange": [
+        0.9100000262260437,
+        0.9100000262260437
+      ],
+      "metallicRange": [
+        0.0,
+        0.0
+      ],
+      "boundsLocal": {
+        "min": [
+          -0.5899999141693115,
+          -0.6577578186988831,
+          -0.48048853874206543
+        ],
+        "max": [
+          0.5899999141693115,
+          0.7900000214576721,
+          0.5999999046325684
+        ],
+        "size": [
+          1.179999828338623,
+          1.4477578401565552,
+          1.0804884433746338
+        ]
+      }
+    },
+    "ArchiveStool": {
+      "sourceMeshes": 4,
+      "triangles": 60,
+      "polygons": 31,
+      "planesAtLeast025SquareMetres": 25,
+      "smoothFaces": 0,
+      "roughnessRange": [
+        0.9100000262260437,
+        0.9100000262260437
+      ],
+      "metallicRange": [
+        0.0,
+        0.0
+      ],
+      "boundsLocal": {
+        "min": [
+          -0.39999985694885254,
+          -0.5276094675064087,
+          -0.37096333503723145
+        ],
+        "max": [
+          0.40000009536743164,
+          0.15000003576278687,
+          0.34999990463256836
+        ],
+        "size": [
+          0.7999999523162842,
+          0.6776095032691956,
+          0.7209632396697998
+        ]
+      }
+    },
+    "GameStool": {
+      "sourceMeshes": 4,
+      "triangles": 60,
+      "polygons": 31,
+      "planesAtLeast025SquareMetres": 25,
+      "smoothFaces": 0,
+      "roughnessRange": [
+        0.9100000262260437,
+        0.9100000262260437
+      ],
+      "metallicRange": [
+        0.0,
+        0.0
+      ],
+      "boundsLocal": {
+        "min": [
+          -0.40000009536743164,
+          -0.5086690187454224,
+          -0.37068915367126465
+        ],
+        "max": [
+          0.40000009536743164,
+          0.12999999523162842,
+          0.34999990463256836
+        ],
+        "size": [
+          0.8000001907348633,
+          0.6386690139770508,
+          0.720689058303833
+        ]
+      }
+    },
+    "Robot": {
+      "sourceMeshes": 21,
+      "triangles": 276,
+      "polygons": 161,
+      "planesAtLeast025SquareMetres": 32,
+      "smoothFaces": 0,
+      "roughnessRange": [
+        0.9100000262260437,
+        0.9100000262260437
+      ],
+      "metallicRange": [
+        0.0,
+        0.0
+      ],
+      "boundsLocal": {
+        "min": [
+          -0.43000030517578125,
+          0.0,
+          -0.2049999237060547
+        ],
+        "max": [
+          0.43000030517578125,
+          1.149999976158142,
+          0.24700021743774414
+        ],
+        "size": [
+          0.8600006103515625,
+          1.149999976158142,
+          0.45200014114379883
+        ]
+      }
+    }
+  },
+  "sharedPartitions": {
+    "halfWallInterval": [
+      0,
+      0.1
+    ],
+    "interiorPlasterOffset": 0.104,
+    "plinthFootprint": [
+      0,
+      5.6,
+      0,
+      5.6
+    ],
+    "windowRecessDepthInterval": [
+      0.008,
+      0.032
+    ],
+    "windowGlassDepthInterval": [
+      0.037,
+      0.055
+    ],
+    "visibility": "All four room roots may remain visible simultaneously; each mesh stays within its own quadrant."
+  },
+  "compression": "KHR_draco_mesh_compression; existing /draco/ decoder",
+  "asset": "/Room/four-rooms.glb",
+  "source": "assets/four-rooms.blend",
+  "fileBytes": 708992,
+  "triangles": 38438,
+  "exportMeshes": 173,
+  "sourceMeshes": 970,
+  "geometryStyle": "Macro-facet piano, monitor, seats and robot use tapered solids, raised ridges and explicitly planar surfaces with dedicated rough matte paints. Unrelated architectural and room furnishings are retained.",
+  "ambientOcclusion": {
+    "method": "16 deterministic hemisphere rays per vertex normal, room geometry BVH, 1.15 m radius, COLOR_0 multiplier",
+    "rooms": {
+      "RoomDeveloper": {
+        "uniqueSamples": 15079,
+        "meshes": 24
+      },
+      "RoomPiano": {
+        "uniqueSamples": 19480,
+        "meshes": 53
+      },
+      "RoomBlog": {
+        "uniqueSamples": 19036,
+        "meshes": 28
+      },
+      "RoomAI": {
+        "uniqueSamples": 15999,
+        "meshes": 68
+      }
+    }
+  }
+}

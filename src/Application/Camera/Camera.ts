@@ -1,144 +1,350 @@
+import * as THREE from "three";
+import gsap from "gsap";
 import Application from "../Application";
 import EventEmitter from "../Utils/Eventemitter";
 import Sizes from "../Utils/Sizes";
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import TWEEN from "@tweenjs/tween.js";
-import { CameraKey } from "../../types";
-import BezierEasing from "bezier-easing";
-import {
-  CameraActions,
-  DeskAction,
-  IdleAction,
-  MonitorCameraAction,
-} from "./CamerActions";
-import { Easing, Tween } from "@tweenjs/tween.js";
-import { EventBus } from "../UI/EventBus";
+import { ROOMS, ROOM_SIZE, RoomId, RoomView } from "../../design/rooms";
+
+export type { RoomId, RoomView } from "../../design/rooms";
+export type ReadingView = "monitor" | "resume";
+export const isReadingView = (view: unknown): view is ReadingView => view === "monitor" || view === "resume";
+export const isSeatedView = (view: unknown): view is "piano-seat" => view === "piano-seat";
+type FocusView = ReadingView | "piano-seat";
+const isFocusView = (view: unknown): view is FocusView => isReadingView(view) || isSeatedView(view);
+
+type ReadingTarget = {
+  anchor?: THREE.Object3D;
+  position: THREE.Vector3;
+  rotation: THREE.Quaternion;
+  width: number;
+  height: number;
+  ownerRoom: RoomId;
+};
+
+type CameraPose = {
+  target: THREE.Vector3;
+  rotation: THREE.Quaternion;
+  distance: number;
+  span: number;
+};
+
+/** Each room shares a central origin; navigation follows the outside of its walls. */
 export default class Camera extends EventEmitter {
   application: Application;
   private readonly sizes: Sizes;
-  instance: THREE.PerspectiveCamera;
-  controls!: OrbitControls;
-  position: THREE.Vector3;
-  keyframes: { [key in CameraKey]: CameraActions };
-  currentKey: CameraKey | undefined;
-  targetKey: CameraKey | undefined;
-  focalPoint: THREE.Vector3;
+  instance: THREE.OrthographicCamera | THREE.PerspectiveCamera;
+  view: RoomView = "developer";
+  transitioning = false;
+
+  private readonly orthographic = new THREE.OrthographicCamera(-8, 8, 5, -5, 0.05, 1000);
+  private readonly perspective = new THREE.PerspectiveCamera(35, 1, 0.02, 1000);
+  private readonly up = new THREE.Vector3(0, 1, 0);
+  private readonly baseRotation = new THREE.Quaternion().setFromRotationMatrix(
+    new THREE.Matrix4().lookAt(new THREE.Vector3(1, 1.4, 1), new THREE.Vector3(), new THREE.Vector3(0, 1, 0))
+  );
+  private readonly reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  private readonly readingTargets: Record<ReadingView, ReadingTarget> = {
+    monitor: {
+      position: new THREE.Vector3(-2.8, 2.05, -0.82),
+      rotation: new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI),
+      width: 1.4, height: 0.84, ownerRoom: "blog",
+    },
+    resume: {
+      position: new THREE.Vector3(3, 2, 0.22), rotation: new THREE.Quaternion(),
+      width: 2.3, height: 2.78, ownerRoom: "developer",
+    },
+  };
+  private activeFocus: FocusView | null = null;
+  private pianoEyeAnchor?: THREE.Object3D;
+  private pianoLookAnchor?: THREE.Object3D;
+  private readonly pianoEye = new THREE.Vector3(2.98, 1.78, -2.8);
+  private readonly pianoLook = new THREE.Vector3(1.72, 1.22, -2.8);
+  private headYaw = 0;
+  private headPitch = 0;
+  private orbitAngle = ROOMS.developer.angle;
+  private pose: CameraPose;
+  private animation?: gsap.core.Timeline;
+
   constructor() {
     super();
     this.application = new Application();
     this.sizes = this.application.sizes;
-    this.position = new THREE.Vector3(0, 0, 0);
-    this.focalPoint = new THREE.Vector3(0, 0, 0);
-    this.keyframes = {
-      monitor: new MonitorCameraAction(),
-      idle: new IdleAction(),
-      desk: new DeskAction(),
-    };
+    this.instance = this.orthographic;
+    this.pose = this.roomPose(this.orbitAngle);
+    this.applyPose();
+  }
 
-    document.addEventListener("mousedown", (event) => {
-      event.preventDefault();
-      // @ts-ignore
-      if (event.target.id === "prevent-click") return;
-      // print target and current keyframe
-      if (
-        this.currentKey === CameraKey.IDLE ||
-        this.targetKey === CameraKey.IDLE
-      ) {
-        this.transition(CameraKey.DESK);
-      } else if (
-        this.currentKey === CameraKey.DESK ||
-        this.targetKey === CameraKey.DESK
-      ) {
-        this.transition(CameraKey.IDLE);
-      }
+  setReadingTarget(view: ReadingView, anchor: THREE.Object3D, width: number, height: number, ownerRoom: RoomId) {
+    const target = this.readingTargets[view];
+    Object.assign(target, { anchor, width, height, ownerRoom });
+    this.readReadingTransform(target);
+    if (this.view === view) this.navigate(view, true);
+  }
+
+  setMonitor(anchor: THREE.Object3D, width = 1.4, height = 0.84) {
+    this.setReadingTarget("monitor", anchor, width, height, "blog");
+  }
+
+  setResume(anchor: THREE.Object3D, width = 2.3, height = 2.78) {
+    this.setReadingTarget("resume", anchor, width, height, "developer");
+  }
+
+  setPianoSeat(eyeAnchor: THREE.Object3D, lookAnchor: THREE.Object3D) {
+    this.pianoEyeAnchor = eyeAnchor;
+    this.pianoLookAnchor = lookAnchor;
+    if (isSeatedView(this.view)) this.navigate(this.view, true);
+  }
+
+  lookSeated(deltaXpx: number, deltaYpx: number) {
+    if (!isSeatedView(this.view) || this.transitioning) return;
+    if (!Number.isFinite(deltaXpx) || !Number.isFinite(deltaYpx)) return;
+    this.headYaw = THREE.MathUtils.clamp(this.headYaw - deltaXpx * 0.003, -0.6, 0.6);
+    this.headPitch = THREE.MathUtils.clamp(this.headPitch - deltaYpx * 0.003, -0.28, 0.28);
+    this.pose = this.seatedPose();
+    this.applyPose();
+  }
+
+  navigate(view: RoomView, instant = false) {
+    if (this.view === view && !instant) return;
+    this.animation?.kill();
+    this.animation = undefined;
+    const sourceFocus = this.activeFocus;
+    const ownerRoom = isFocusView(view) ? this.focusOwner(view) : view;
+    if (view !== this.view) { this.headYaw = 0; this.headPitch = 0; }
+    this.view = view;
+    this.transitioning = !instant && !this.reducedMotion.matches;
+    this.trigger("viewchange", [view]);
+
+    if (!this.transitioning) {
+      this.orbitAngle = ROOMS[ownerRoom].angle;
+      this.activeFocus = isFocusView(view) ? view : null;
+      this.pose = isFocusView(view) ? this.focusPose(view) : this.roomPose(this.orbitAngle);
+      this.instance = isFocusView(view) ? this.perspective : this.orthographic;
+      this.applyPose();
+      // Restore source geometry only after the instant/resize camera has moved.
+      if (isReadingView(sourceFocus) && sourceFocus !== view) this.emitReadingReturnSafe(sourceFocus);
+      this.trigger("settled", [view]);
+      return;
+    }
+
+    const timeline = gsap.timeline({
+      onComplete: () => {
+        this.transitioning = false;
+        this.animation = undefined;
+        this.applyPose();
+        this.trigger("settled", [view]);
+      },
     });
+    this.animation = timeline;
 
-    this.setInstance();
-    this.addMonitorListener();
+    if (isFocusView(view) && sourceFocus === view && this.instance === this.perspective) {
+      // An interrupted return can move back to the same reader or piano seat.
+      this.appendFocusMove(timeline, view, false);
+      return;
+    }
+
+    let fromAngle = this.orbitAngle;
+    if (this.instance === this.perspective && sourceFocus) {
+      fromAngle = this.nearestAngle(this.orbitAngle, this.focusOwner(sourceFocus));
+      this.appendFocusMove(timeline, sourceFocus, true, fromAngle);
+    }
+    this.appendOrbit(timeline, fromAngle, this.nearestAngle(fromAngle, ownerRoom));
+    if (isFocusView(view)) this.appendFocusMove(timeline, view, false);
   }
 
-  private setInstance() {
-    this.instance = new THREE.PerspectiveCamera(
-      45,
-      this.sizes.width / this.sizes.height,
-      20,
-      50000
-    );
-    this.currentKey = CameraKey.IDLE;
-    // this.instance.position.copy(this.position);
-    this.application.scene.add(this.instance);
+  private emitReadingReturnSafe(view: ReadingView) {
+    this.trigger("reading-return-safe", [{ view, ownerRoom: this.readingTargets[view].ownerRoom }]);
   }
 
-  setOrbitControls() {
-    this.controls = new OrbitControls(
-      this.instance,
-      this.application.renderer.instance.domElement
-    );
-    this.controls.enableDamping = true;
-    this.controls.enableZoom = false;
+  private nearestAngle(from: number, room: RoomId): number {
+    const difference = ROOMS[room].angle - from;
+    return from + Math.atan2(Math.sin(difference), Math.cos(difference));
+  }
+
+  private appendOrbit(timeline: gsap.core.Timeline, from: number, to: number) {
+    const distance = Math.abs(to - from);
+    if (distance < 0.00001) {
+      timeline.call(() => {
+        this.orbitAngle = to;
+        this.pose = this.roomPose(to);
+        this.instance = this.orthographic;
+        this.applyPose();
+      });
+      return;
+    }
+    const progress = { value: 0 };
+    timeline.to(progress, {
+      value: 1,
+      duration: 0.8 + distance / Math.PI * 0.5,
+      ease: "power2.inOut",
+      onUpdate: () => {
+        this.orbitAngle = THREE.MathUtils.lerp(from, to, progress.value);
+        // Derive both target and rotation from the same angle: no straight chord
+        // through the central walls, including after interrupted navigation.
+        this.pose = this.roomPose(this.orbitAngle);
+        this.instance = this.orthographic;
+        this.applyPose();
+      },
+    });
+  }
+
+  private appendFocusMove(timeline: gsap.core.Timeline, view: FocusView, returning: boolean, roomAngle = ROOMS[this.focusOwner(view)].angle) {
+    const progress = { value: 0 };
+    let from: CameraPose;
+    let to: CameraPose;
+    let returnSafeSent = false;
+    timeline.to(progress, {
+      value: 1,
+      duration: 1.1,
+      ease: "power3.inOut",
+      onStart: () => {
+        if (!returning) this.activeFocus = view;
+        from = this.clonePose(this.pose);
+        to = returning ? this.roomPose(roomAngle) : this.focusPose(view);
+        // Match the orthographic span from a distant perspective before moving.
+        // Interpolating span separately prevents a zoom-out halfway to the screen.
+        if (this.instance === this.orthographic) from.distance = 500;
+        if (returning) to.distance = 500;
+        this.instance = this.perspective;
+      },
+      onUpdate: () => {
+        const t = progress.value;
+        this.pose.target.lerpVectors(from.target, to.target, t);
+        this.pose.rotation.slerpQuaternions(from.rotation, to.rotation, t);
+        this.pose.span = THREE.MathUtils.lerp(from.span, to.span, t);
+        this.pose.distance = THREE.MathUtils.lerp(from.distance, to.distance, t);
+        this.applyPose();
+        // Only actual reader returns notify the guide/UI that it is safe to return.
+        if (returning && isReadingView(view) && !returnSafeSent && this.pose.distance >= 12) {
+          returnSafeSent = true;
+          this.emitReadingReturnSafe(view);
+        }
+      },
+      onComplete: () => {
+        if (returning) {
+          this.orbitAngle = roomAngle;
+          this.pose = this.roomPose(roomAngle);
+          this.instance = this.orthographic;
+          this.activeFocus = null;
+        } else {
+          this.pose = to;
+        }
+        this.applyPose();
+        if (returning && isReadingView(view) && !returnSafeSent) this.emitReadingReturnSafe(view);
+      },
+    });
+  }
+
+  private roomPose(angle: number): CameraPose {
+    const width = Math.max(this.sizes.width, 1);
+    const height = Math.max(this.sizes.height, 1);
+    const aspect = width / height;
+    const sidebar = width >= 1000;
+    const leftInset = sidebar ? 280 : 12;
+    const rightInset = sidebar ? 24 : 12;
+    const topInset = sidebar ? 88 : 170;
+    const bottomInset = sidebar ? 110 : 140;
+    const safeHeight = Math.max(height - topInset - bottomInset, height * 0.35);
+    const safeWidth = Math.max(width - leftInset - rightInset, width * 0.5);
+    // The entire 11.2m house remains present. Fit its diagonal floor silhouette
+    // and central cross walls, including trim, rather than an isolated quadrant.
+    const buildingWidth = ROOM_SIZE * 2 * Math.SQRT2 + 0.6;
+    const buildingHeight = 11.8;
+    const span = Math.max(13, buildingWidth * height / safeWidth, buildingHeight * height / safeHeight);
+    const yaw = new THREE.Quaternion().setFromAxisAngle(this.up, angle);
+    const rotation = yaw.clone().multiply(this.baseRotation);
+    const target = new THREE.Vector3(0.6, 0.8, 0.6).applyQuaternion(yaw);
+    const screenUp = new THREE.Vector3(0, 1, 0).applyQuaternion(rotation);
+    const screenRight = new THREE.Vector3(1, 0, 0).applyQuaternion(rotation);
+    target.addScaledVector(screenUp, -0.1 + span * (topInset - bottomInset) / (2 * height));
+    target.addScaledVector(screenRight, -span * aspect * (leftInset - rightInset) / (2 * width));
+    return { target, rotation, distance: 24, span };
+  }
+
+  private readReadingTransform(target: ReadingTarget) {
+    if (!target.anchor) return;
+    target.anchor.updateWorldMatrix(true, false);
+    target.anchor.getWorldPosition(target.position);
+    target.anchor.getWorldQuaternion(target.rotation);
+  }
+
+  private readingPose(view: ReadingView): CameraPose {
+    const surface = this.readingTargets[view];
+    this.readReadingTransform(surface);
+    const aspect = this.sizes.width / Math.max(this.sizes.height, 1);
+    const narrow = this.sizes.width < 700;
+    const heightFraction = view === "resume" ? 0.78 : (narrow ? 0.68 : 0.72);
+    const span = Math.max(surface.height / heightFraction, surface.width / (aspect * (narrow ? 0.92 : 0.8)));
+    const target = surface.position.clone();
+    target.add(new THREE.Vector3(0, 1, 0).applyQuaternion(surface.rotation).multiplyScalar(span * 0.015));
+    return {
+      target,
+      rotation: surface.rotation.clone(),
+      distance: span / (2 * Math.tan(THREE.MathUtils.degToRad(35) / 2)),
+      span,
+    };
+  }
+
+  private focusOwner(view: FocusView): RoomId {
+    return isReadingView(view) ? this.readingTargets[view].ownerRoom : "piano";
+  }
+
+  private focusPose(view: FocusView): CameraPose {
+    return isReadingView(view) ? this.readingPose(view) : this.seatedPose();
+  }
+
+  private seatedPose(): CameraPose {
+    this.pianoEyeAnchor?.updateWorldMatrix(true, false);
+    this.pianoLookAnchor?.updateWorldMatrix(true, false);
+    this.pianoEyeAnchor?.getWorldPosition(this.pianoEye);
+    this.pianoLookAnchor?.getWorldPosition(this.pianoLook);
+    const forward = this.pianoLook.clone().sub(this.pianoEye);
+    const distance = Math.max(forward.length(), 0.1);
+    forward.normalize().applyAxisAngle(this.up, this.headYaw);
+    const right = new THREE.Vector3().crossVectors(forward, this.up).normalize();
+    forward.applyAxisAngle(right, this.headPitch);
+    const target = this.pianoEye.clone().addScaledVector(forward, distance);
+    const rotation = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().lookAt(this.pianoEye, target, this.up));
+    const aspect = this.sizes.width / Math.max(this.sizes.height, 1);
+    // The keyboard's 2.94m front edge is ~1m from the authored eye. Wider
+    // desktop lenses fit its end keys without moving the visitor off the bench.
+    const keyboardDepth = Math.max(0.8, distance - 0.35);
+    const fitFov = THREE.MathUtils.radToDeg(2 * Math.atan(1.55 / (keyboardDepth * aspect)));
+    const fov = this.sizes.width >= 1000 ? THREE.MathUtils.clamp(fitFov, 72, 90) : 72;
+    return { target, rotation, distance, span: 2 * distance * Math.tan(THREE.MathUtils.degToRad(fov) / 2) };
+  }
+
+  private clonePose(pose: CameraPose): CameraPose {
+    return { target: pose.target.clone(), rotation: pose.rotation.clone(), distance: pose.distance, span: pose.span };
+  }
+
+  private applyPose() {
+    const aspect = this.sizes.width / Math.max(this.sizes.height, 1);
+    this.instance.quaternion.copy(this.pose.rotation);
+    this.instance.position.set(0, 0, this.pose.distance).applyQuaternion(this.pose.rotation).add(this.pose.target);
+    if (this.instance instanceof THREE.OrthographicCamera) {
+      this.instance.left = -this.pose.span * aspect / 2;
+      this.instance.right = this.pose.span * aspect / 2;
+      this.instance.top = this.pose.span / 2;
+      this.instance.bottom = -this.pose.span / 2;
+    } else {
+      this.instance.aspect = aspect;
+      // The perspective bridge can be 500m away. A fixed .02m near plane loses
+      // depth precision there, making walls and the aperture visibly z-fight.
+      this.instance.near = Math.max(0.02, this.pose.distance - 30);
+      this.instance.far = Math.max(80, this.pose.distance + 40);
+      this.instance.fov = THREE.MathUtils.radToDeg(2 * Math.atan(this.pose.span / (2 * this.pose.distance)));
+    }
+    this.instance.updateProjectionMatrix();
+    this.instance.updateMatrixWorld();
   }
 
   resize() {
-    this.instance.aspect = this.sizes.width / this.sizes.height;
-    this.instance.updateProjectionMatrix();
-  }
-
-  private addMonitorListener() {
-    this.on("enterMonitor", () => {
-      this.transition(CameraKey.MONITOR, 2000, BezierEasing(0.13, 0.99, 0, 1));
-      EventBus.dispatch("enterMonitor", {});
-      //  move( ToMonitor )
-    });
-
-    this.on("leaveMonitor", () => {
-      this.transition(CameraKey.DESK);
-      EventBus.dispatch("leaveMonitor", {});
-    });
-  }
-
-  transition(
-    key: CameraKey,
-    duration: number = 1000,
-    easing?: any,
-    callback?: () => void
-  ) {
-    if (this.currentKey === key) return;
-
-    if (this.targetKey) TWEEN.removeAll();
-    this.currentKey = undefined;
-    this.targetKey = key;
-    const keyframe = this.keyframes[key];
-    const posTween = new Tween(this.position)
-      .to(keyframe.position, duration)
-      .easing(easing || Easing.Quadratic.InOut)
-      .onComplete(() => {
-        this.targetKey = undefined;
-        this.currentKey = key;
-        if (callback) callback();
-      });
-
-    const focalTween = new Tween(this.focalPoint)
-      .to(keyframe.focalPoint)
-      .easing(easing || Easing.Quadratic.InOut);
-    posTween.start();
-    focalTween.start();
+    // A resize settles the requested destination, never an obsolete transition.
+    this.navigate(this.view, true);
   }
 
   update() {
-    TWEEN.update();
-    for (const key in this.keyframes) {
-      this.keyframes[key as CameraKey].update();
-    }
-    if (this.currentKey) {
-      const keyframe = this.keyframes[this.currentKey];
-
-      this.position.copy(keyframe.position);
-      this.focalPoint.copy(keyframe.focalPoint);
-    }
-    this.instance.position.copy(this.position);
-    this.instance.lookAt(this.focalPoint);
-
-    this.instance.updateProjectionMatrix();
+    // GSAP owns motion; the resting camera is fixed.
   }
 }

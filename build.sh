@@ -1,1 +1,4 @@
-cd dist && vercel --prod
+#!/usr/bin/env sh
+set -eu
+cd "$(dirname "$0")"
+vercel --prod

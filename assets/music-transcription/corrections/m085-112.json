@@ -1,0 +1,3919 @@
+{
+  "source": "user-provided score",
+  "sourcePages": [
+    6,
+    7
+  ],
+  "reviewMethod": "Direct source-PDF reading at 280/560 DPI; OMR used only after independent reading as a cross-check. Six-flat key and clef/8va changes applied to sounding MIDI.",
+  "measures": [
+    {
+      "measure": 85,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 78,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 83,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 44,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 56,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 51,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 59,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 78,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 83,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 54,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 63,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 66,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 78,
+          "staff": 1
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 86,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 71,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 75,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 77,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 37,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 49,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 53,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 61,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 71,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 75,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 77,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 59,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 65,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 75,
+          "staff": 1
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 87,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 77,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 82,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 85,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 46,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 56,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 56,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 61,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 77,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 82,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 85,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 58,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 65,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 70,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 82,
+          "staff": 1
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 88,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 77,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 80,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 39,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 49,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 51,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 61,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 77,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 80,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 61,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 66,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 75,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 78,
+          "staff": 1,
+          "tieStart": true
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 89,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 75,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 78,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 83,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 87,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 44,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 56,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 63,
+          "staff": 1,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 66,
+          "staff": 1,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 71,
+          "staff": 1,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 75,
+          "staff": 1,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 78,
+          "staff": 1,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 54,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 59,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 78,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 83,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 87,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 90,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 66,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 71,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 75,
+          "staff": 2
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Upper half-note chord overlaps beat-one lower voice. Open ties on beat-one chords are laissez vibrer, not future-note ties. Lower staff changes to treble at beat two.",
+      "sourceGlyphAudit": {
+        "rawGlyphCount": 21,
+        "distinctSourceHeadCount": 20,
+        "transcribedNoteheadCount": 20,
+        "repeatedGlyphGroups": [
+          {
+            "glyphIds": [
+              "p06-c0116",
+              "p06-c0128"
+            ],
+            "beat": 2,
+            "midi": 78,
+            "staff": 1,
+            "kind": "coincident PDF overprint",
+            "evidence": [
+              {
+                "id": "p06-c0116",
+                "baselineX": 162.96013,
+                "baselineY": 288.718557,
+                "glyph": "œ",
+                "fontName": "KHJKIN+TT1Fo00",
+                "fontSize": 17.880014
+              },
+              {
+                "id": "p06-c0128",
+                "baselineX": 162.96013,
+                "baselineY": 288.718557,
+                "glyph": "œ",
+                "fontName": "KHJKIN+TT1Fo00",
+                "fontSize": 17.880014
+              }
+            ],
+            "reason": "Same notehead glyph is drawn twice at the same position in overlapping voices; rendered score has one shared notehead. Adding another audio event would duplicate the same key strike."
+          }
+        ],
+        "verification": "Direct PDF crop and exact PDF text-glyph baselines compared; vector ledger intentionally retains duplicate draw operations."
+      }
+    },
+    {
+      "measure": 90,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 77,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 83,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 87,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 89,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 65,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 71,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 75,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 37,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 44,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 51,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 53,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 59,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 75,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 87,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 63,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "beatFraction": "5/2",
+          "durationFraction": "1/4",
+          "midi": 73,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "beatFraction": "5/2",
+          "durationFraction": "1/4",
+          "midi": 85,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "beatFraction": "5/2",
+          "durationFraction": "1/4",
+          "midi": 61,
+          "staff": 2
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "beatFraction": "11/4",
+          "durationFraction": "1/4",
+          "midi": 71,
+          "staff": 1
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "beatFraction": "11/4",
+          "durationFraction": "1/4",
+          "midi": 83,
+          "staff": 1
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "beatFraction": "11/4",
+          "durationFraction": "1/4",
+          "midi": 59,
+          "staff": 2
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Lower staff begins in treble, switches to bass at beat one. Half-note harmony overlaps the separate beat-one bass voices; open bass ties are laissez vibrer.",
+      "sourceGlyphAudit": {
+        "rawGlyphCount": 25,
+        "distinctSourceHeadCount": 21,
+        "transcribedNoteheadCount": 21,
+        "repeatedGlyphGroups": [
+          {
+            "glyphIds": [
+              "p06-c0146",
+              "p06-c0156"
+            ],
+            "beat": 0,
+            "midi": 77,
+            "staff": 1,
+            "kind": "coincident PDF overprint",
+            "evidence": [
+              {
+                "id": "p06-c0146",
+                "baselineX": 199.260159,
+                "baselineY": 290.938559,
+                "glyph": "˙",
+                "fontName": "KHJKIN+TT1Fo00",
+                "fontSize": 17.880014
+              },
+              {
+                "id": "p06-c0156",
+                "baselineX": 199.260159,
+                "baselineY": 290.938559,
+                "glyph": "˙",
+                "fontName": "KHJKIN+TT1Fo00",
+                "fontSize": 17.880014
+              }
+            ],
+            "reason": "Same notehead glyph is drawn twice at the same position in overlapping voices; rendered score has one shared notehead. Adding another audio event would duplicate the same key strike."
+          },
+          {
+            "glyphIds": [
+              "p06-c0149",
+              "p06-c0165"
+            ],
+            "beat": 2,
+            "midi": 75,
+            "staff": 1,
+            "kind": "coincident PDF overprint",
+            "evidence": [
+              {
+                "id": "p06-c0149",
+                "baselineX": 250.2002,
+                "baselineY": 293.158561,
+                "glyph": "œ",
+                "fontName": "KHJKIN+TT1Fo00",
+                "fontSize": 17.880014
+              },
+              {
+                "id": "p06-c0165",
+                "baselineX": 250.200163,
+                "baselineY": 293.158561,
+                "glyph": "œ",
+                "fontName": "KHJKIN+TT1Fo00",
+                "fontSize": 17.880014
+              }
+            ],
+            "reason": "Same notehead glyph is drawn twice at the same position in overlapping voices; rendered score has one shared notehead. Adding another audio event would duplicate the same key strike."
+          },
+          {
+            "glyphIds": [
+              "p06-c0151",
+              "p06-c0167"
+            ],
+            "beat": 2.5,
+            "midi": 73,
+            "staff": 1,
+            "kind": "coincident PDF overprint",
+            "evidence": [
+              {
+                "id": "p06-c0151",
+                "baselineX": 266.040213,
+                "baselineY": 295.378563,
+                "glyph": "œ",
+                "fontName": "KHJKIN+TT1Fo00",
+                "fontSize": 17.880014
+              },
+              {
+                "id": "p06-c0167",
+                "baselineX": 266.040213,
+                "baselineY": 295.378563,
+                "glyph": "œ",
+                "fontName": "KHJKIN+TT1Fo00",
+                "fontSize": 17.880014
+              }
+            ],
+            "reason": "Same notehead glyph is drawn twice at the same position in overlapping voices; rendered score has one shared notehead. Adding another audio event would duplicate the same key strike."
+          },
+          {
+            "glyphIds": [
+              "p06-c0153",
+              "p06-c0169"
+            ],
+            "beat": 2.75,
+            "midi": 71,
+            "staff": 1,
+            "kind": "coincident PDF overprint",
+            "evidence": [
+              {
+                "id": "p06-c0153",
+                "baselineX": 277.560222,
+                "baselineY": 297.658565,
+                "glyph": "œ",
+                "fontName": "KHJKIN+TT1Fo00",
+                "fontSize": 17.880014
+              },
+              {
+                "id": "p06-c0169",
+                "baselineX": 277.560222,
+                "baselineY": 297.658565,
+                "glyph": "œ",
+                "fontName": "KHJKIN+TT1Fo00",
+                "fontSize": 17.880014
+              }
+            ],
+            "reason": "Same notehead glyph is drawn twice at the same position in overlapping voices; rendered score has one shared notehead. Adding another audio event would duplicate the same key strike."
+          }
+        ],
+        "verification": "Direct PDF crop and exact PDF text-glyph baselines compared; vector ledger intentionally retains duplicate draw operations."
+      }
+    },
+    {
+      "measure": 91,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 70,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 78,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 82,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 58,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 66,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 42,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 49,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 70,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 78,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 82,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 65,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 77,
+          "staff": 1
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 92,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 70,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 75,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 39,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 46,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 51,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 58,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 70,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 75,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 54,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 61,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 73,
+          "staff": 1
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 93,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 65,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 70,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 74,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 77,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 53,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 41,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 66,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 78,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 54,
+          "staff": 2
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 94,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "midi": 65,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "midi": 68,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "midi": 73,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "midi": 77,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "midi": 56,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 29,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 36,
+          "staff": 2
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "midi": 63,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "midi": 75,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "midi": 54,
+          "staff": 2,
+          "tieStart": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.3333333333333333,
+          "beatFraction": "2",
+          "durationFraction": "1/3",
+          "midi": 63,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.3333333333333333,
+          "beatFraction": "2",
+          "durationFraction": "1/3",
+          "midi": 75,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.3333333333333333,
+          "beatFraction": "2",
+          "durationFraction": "1/3",
+          "midi": 54,
+          "staff": 2,
+          "tieStop": true
+        },
+        {
+          "beat": 2.3333333333333335,
+          "duration": 0.3333333333333333,
+          "beatFraction": "7/3",
+          "durationFraction": "1/3",
+          "midi": 62,
+          "staff": 1
+        },
+        {
+          "beat": 2.3333333333333335,
+          "duration": 0.3333333333333333,
+          "beatFraction": "7/3",
+          "durationFraction": "1/3",
+          "midi": 74,
+          "staff": 1
+        },
+        {
+          "beat": 2.3333333333333335,
+          "duration": 0.3333333333333333,
+          "beatFraction": "7/3",
+          "durationFraction": "1/3",
+          "midi": 53,
+          "staff": 2
+        },
+        {
+          "beat": 2.6666666666666665,
+          "duration": 0.3333333333333333,
+          "beatFraction": "8/3",
+          "durationFraction": "1/3",
+          "midi": 63,
+          "staff": 1
+        },
+        {
+          "beat": 2.6666666666666665,
+          "duration": 0.3333333333333333,
+          "beatFraction": "8/3",
+          "durationFraction": "1/3",
+          "midi": 75,
+          "staff": 1
+        },
+        {
+          "beat": 2.6666666666666665,
+          "duration": 0.3333333333333333,
+          "beatFraction": "8/3",
+          "durationFraction": "1/3",
+          "midi": 54,
+          "staff": 2
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Both hands use a tied eighth into a three-eighth triplet on beat three. Low F1/C-natural2 half-note voice enters on beat two beneath the dotted-quarter melody."
+    },
+    {
+      "measure": 95,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 65,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 70,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 74,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 77,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 46,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 53,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 58,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 29,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 34,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 41,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.07894736842105263,
+          "beatFraction": "3/2",
+          "durationFraction": "3/38",
+          "midi": 50,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 1.5789473684210527,
+          "duration": 0.07894736842105263,
+          "beatFraction": "30/19",
+          "durationFraction": "3/38",
+          "midi": 53,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 1.6578947368421053,
+          "duration": 0.07894736842105263,
+          "beatFraction": "63/38",
+          "durationFraction": "3/38",
+          "midi": 57,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 1.736842105263158,
+          "duration": 0.07894736842105263,
+          "beatFraction": "33/19",
+          "durationFraction": "3/38",
+          "midi": 58,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 1.8157894736842106,
+          "duration": 0.07894736842105263,
+          "beatFraction": "69/38",
+          "durationFraction": "3/38",
+          "midi": 62,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 1.894736842105263,
+          "duration": 0.07894736842105263,
+          "beatFraction": "36/19",
+          "durationFraction": "3/38",
+          "midi": 65,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 1.9736842105263157,
+          "duration": 0.07894736842105263,
+          "beatFraction": "75/38",
+          "durationFraction": "3/38",
+          "midi": 69,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 2.0526315789473686,
+          "duration": 0.07894736842105263,
+          "beatFraction": "39/19",
+          "durationFraction": "3/38",
+          "midi": 70,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 2.1315789473684212,
+          "duration": 0.07894736842105263,
+          "beatFraction": "81/38",
+          "durationFraction": "3/38",
+          "midi": 74,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 2.210526315789474,
+          "duration": 0.07894736842105263,
+          "beatFraction": "42/19",
+          "durationFraction": "3/38",
+          "midi": 77,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 2.289473684210526,
+          "duration": 0.07894736842105263,
+          "beatFraction": "87/38",
+          "durationFraction": "3/38",
+          "midi": 81,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 2.3684210526315788,
+          "duration": 0.07894736842105263,
+          "beatFraction": "45/19",
+          "durationFraction": "3/38",
+          "midi": 82,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 2.4473684210526314,
+          "duration": 0.07894736842105263,
+          "beatFraction": "93/38",
+          "durationFraction": "3/38",
+          "midi": 86,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 2.526315789473684,
+          "duration": 0.07894736842105263,
+          "beatFraction": "48/19",
+          "durationFraction": "3/38",
+          "midi": 89,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 2.6052631578947367,
+          "duration": 0.07894736842105263,
+          "beatFraction": "99/38",
+          "durationFraction": "3/38",
+          "midi": 93,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 2.6842105263157894,
+          "duration": 0.07894736842105263,
+          "beatFraction": "51/19",
+          "durationFraction": "3/38",
+          "midi": 94,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 2.763157894736842,
+          "duration": 0.07894736842105263,
+          "beatFraction": "105/38",
+          "durationFraction": "3/38",
+          "midi": 98,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 2.8421052631578947,
+          "duration": 0.07894736842105263,
+          "beatFraction": "54/19",
+          "durationFraction": "3/38",
+          "midi": 101,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        },
+        {
+          "beat": 2.9210526315789473,
+          "duration": 0.07894736842105263,
+          "beatFraction": "111/38",
+          "durationFraction": "3/38",
+          "midi": 105,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 19,
+            "normalNotes": 12,
+            "writtenType": "32nd"
+          }
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Cross-staff 19-note thirty-second tuplet follows the beat-two eighth rest: beat 1.5 to 3, each 3/38 quarter units. Clefs change bass/treble, with octave-up on the final lower-staff group and final upper-staff group. Low half-note chord has open laissez-vibrer ties."
+    },
+    {
+      "measure": 96,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 106,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 82,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 94,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 35,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 42,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 47,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "beatFraction": "5/2",
+          "durationFraction": "1/4",
+          "midi": 86,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "beatFraction": "5/2",
+          "durationFraction": "1/4",
+          "midi": 98,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "beatFraction": "5/2",
+          "durationFraction": "1/4",
+          "midi": 34,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "beatFraction": "5/2",
+          "durationFraction": "1/4",
+          "midi": 46,
+          "staff": 2
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "beatFraction": "11/4",
+          "durationFraction": "1/4",
+          "midi": 89,
+          "staff": 1
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "beatFraction": "11/4",
+          "durationFraction": "1/4",
+          "midi": 101,
+          "staff": 1
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "beatFraction": "11/4",
+          "durationFraction": "1/4",
+          "midi": 33,
+          "staff": 2
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "beatFraction": "11/4",
+          "durationFraction": "1/4",
+          "midi": 45,
+          "staff": 2
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Upper staff remains under the continued 8va; displayed pitches are converted to sounding MIDI. The opening Bb7 follows A7 as a phrase, not a tie."
+    },
+    {
+      "measure": 97,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 90,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 95,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 102,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 32,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 44,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 78,
+          "staff": 1,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 83,
+          "staff": 1,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 87,
+          "staff": 1,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 90,
+          "staff": 1,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 54,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 59,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 63,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 66,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 94,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 99,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 102,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 106,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 70,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 75,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 78,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 82,
+          "staff": 2
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Upper staff 8va continues. Beat-one upper half-note chord overlaps beat-two laissez-vibrer chord. Lower staff changes to treble at beat three."
+    },
+    {
+      "measure": 98,
+      "sourcePage": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 92,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 99,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 101,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 104,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 68,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 75,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 77,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 80,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 37,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 44,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 51,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 53,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 59,
+          "staff": 2,
+          "laissezVibrer": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 90,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 102,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 66,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 78,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "beatFraction": "5/2",
+          "durationFraction": "1/4",
+          "midi": 89,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "beatFraction": "5/2",
+          "durationFraction": "1/4",
+          "midi": 101,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "beatFraction": "5/2",
+          "durationFraction": "1/4",
+          "midi": 65,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "beatFraction": "5/2",
+          "durationFraction": "1/4",
+          "midi": 77,
+          "staff": 2
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "beatFraction": "11/4",
+          "durationFraction": "1/4",
+          "midi": 87,
+          "staff": 1
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "beatFraction": "11/4",
+          "durationFraction": "1/4",
+          "midi": 99,
+          "staff": 1
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "beatFraction": "11/4",
+          "durationFraction": "1/4",
+          "midi": 63,
+          "staff": 2
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "beatFraction": "11/4",
+          "durationFraction": "1/4",
+          "midi": 75,
+          "staff": 2
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Upper staff 8va continues. Lower staff starts treble, changes to bass at beat two, then returns to treble for beat-three octaves. Open bass ties are laissez vibrer."
+    },
+    {
+      "measure": 99,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 89,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 94,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 97,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 101,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 42,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 54,
+          "staff": 2
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.125,
+          "beatFraction": "1/2",
+          "durationFraction": "1/8",
+          "midi": 54,
+          "staff": 2,
+          "writtenType": "32nd",
+          "grouping": 12
+        },
+        {
+          "beat": 0.625,
+          "duration": 0.125,
+          "beatFraction": "5/8",
+          "durationFraction": "1/8",
+          "midi": 58,
+          "staff": 2,
+          "writtenType": "32nd",
+          "grouping": 12
+        },
+        {
+          "beat": 0.75,
+          "duration": 0.125,
+          "beatFraction": "3/4",
+          "durationFraction": "1/8",
+          "midi": 61,
+          "staff": 2,
+          "writtenType": "32nd",
+          "grouping": 12
+        },
+        {
+          "beat": 0.875,
+          "duration": 0.125,
+          "beatFraction": "7/8",
+          "durationFraction": "1/8",
+          "midi": 65,
+          "staff": 1,
+          "writtenType": "32nd",
+          "grouping": 12
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.125,
+          "beatFraction": "1",
+          "durationFraction": "1/8",
+          "midi": 70,
+          "staff": 1,
+          "writtenType": "32nd",
+          "grouping": 12
+        },
+        {
+          "beat": 1.125,
+          "duration": 0.125,
+          "beatFraction": "9/8",
+          "durationFraction": "1/8",
+          "midi": 73,
+          "staff": 1,
+          "writtenType": "32nd",
+          "grouping": 12
+        },
+        {
+          "beat": 1.25,
+          "duration": 0.125,
+          "beatFraction": "5/4",
+          "durationFraction": "1/8",
+          "midi": 77,
+          "staff": 2,
+          "writtenType": "32nd",
+          "grouping": 12
+        },
+        {
+          "beat": 1.375,
+          "duration": 0.125,
+          "beatFraction": "11/8",
+          "durationFraction": "1/8",
+          "midi": 82,
+          "staff": 2,
+          "writtenType": "32nd",
+          "grouping": 12
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.125,
+          "beatFraction": "3/2",
+          "durationFraction": "1/8",
+          "midi": 85,
+          "staff": 2,
+          "writtenType": "32nd",
+          "grouping": 12
+        },
+        {
+          "beat": 1.625,
+          "duration": 0.125,
+          "beatFraction": "13/8",
+          "durationFraction": "1/8",
+          "midi": 89,
+          "staff": 1,
+          "writtenType": "32nd",
+          "grouping": 12
+        },
+        {
+          "beat": 1.75,
+          "duration": 0.125,
+          "beatFraction": "7/4",
+          "durationFraction": "1/8",
+          "midi": 94,
+          "staff": 1,
+          "writtenType": "32nd",
+          "grouping": 12
+        },
+        {
+          "beat": 1.875,
+          "duration": 0.125,
+          "beatFraction": "15/8",
+          "durationFraction": "1/8",
+          "midi": 97,
+          "staff": 1,
+          "writtenType": "32nd",
+          "grouping": 12
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 101,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 92,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 104,
+          "staff": 1
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Initial upper chord continues prior 8va; it ends before the cross-staff run. Twelve thirty-second notes fill beat0.5 to2. A new upper-staff8va starts at the second upper group and remains through the final two eighths. Lower staff switches bass-to-treble before its second run group.",
+      "sourceGlyphAudit": {
+        "rawGlyphCount": 23,
+        "distinctSourceHeadCount": 21,
+        "transcribedNoteheadCount": 21,
+        "repeatedGlyphGroups": [
+          {
+            "glyphIds": [
+              "p07-c0025",
+              "p07-c0027"
+            ],
+            "beat": 2.5,
+            "midi": 104,
+            "staff": 1,
+            "kind": "coincident PDF overprint",
+            "evidence": [
+              {
+                "id": "p07-c0025",
+                "baselineX": 288.720231,
+                "baselineY": 105.658411,
+                "glyph": "œ",
+                "fontName": "IRNXRK+TT29o00",
+                "fontSize": 14.280011
+              },
+              {
+                "id": "p07-c0027",
+                "baselineX": 288.720231,
+                "baselineY": 105.658411,
+                "glyph": "œ",
+                "fontName": "KHJKIN+TT1Fo00",
+                "fontSize": 17.880014
+              }
+            ],
+            "reason": "The two PDF glyph instances share one engraved notehead position, onset and sounding pitch. They are represented once in playback. Different font sizes overlap at exactly the same baseline."
+          },
+          {
+            "glyphIds": [
+              "p07-c0026",
+              "p07-c0028"
+            ],
+            "beat": 2.5,
+            "midi": 92,
+            "staff": 1,
+            "kind": "coincident PDF overprint",
+            "evidence": [
+              {
+                "id": "p07-c0026",
+                "baselineX": 288.720231,
+                "baselineY": 121.258423,
+                "glyph": "œ",
+                "fontName": "IRNXRK+TT29o00",
+                "fontSize": 14.280011
+              },
+              {
+                "id": "p07-c0028",
+                "baselineX": 288.720231,
+                "baselineY": 121.258423,
+                "glyph": "œ",
+                "fontName": "KHJKIN+TT1Fo00",
+                "fontSize": 17.880014
+              }
+            ],
+            "reason": "The two PDF glyph instances share one engraved notehead position, onset and sounding pitch. They are represented once in playback. Different font sizes overlap at exactly the same baseline."
+          }
+        ],
+        "verification": "Direct PDF crop and exact PDF text-glyph baselines compared; vector ledger intentionally retains duplicate draw operations."
+      }
+    },
+    {
+      "measure": 100,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "midi": 90,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "midi": 97,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "midi": 102,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 39,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 49,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 51,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 61,
+          "staff": 2
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "midi": 89,
+          "staff": 1
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "midi": 101,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 87,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 99,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 58,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 66,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 85,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 97,
+          "staff": 1
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Upper staff8va continues; lower staff bass clef resumes at start."
+    },
+    {
+      "measure": 101,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 87,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 95,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 99,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 44,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 54,
+          "staff": 2
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "beatFraction": "1/2",
+          "durationFraction": "1/2",
+          "midi": 59,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "beatFraction": "1",
+          "durationFraction": "1/2",
+          "midi": 63,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "beatFraction": "1",
+          "durationFraction": "1/2",
+          "midi": 66,
+          "staff": 2
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "midi": 71,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 78,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 87,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 90,
+          "staff": 1
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Upper opening half-note chord is8va; subsequent cross-staff eighths return to written pitch. Lower staff changes to treble for the rising eighth-note group."
+    },
+    {
+      "measure": 102,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "midi": 77,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "midi": 85,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "midi": 89,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 37,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 44,
+          "staff": 2
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 49,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 53,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 61,
+          "staff": 2
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "midi": 75,
+          "staff": 1,
+          "parenthesized": true
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "midi": 87,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 73,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.0,
+          "beatFraction": "2",
+          "durationFraction": "0",
+          "midi": 85,
+          "staff": 1,
+          "grace": true,
+          "writtenType": "16th",
+          "graceOrder": 0,
+          "principalBeat": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 85,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.0,
+          "beatFraction": "2",
+          "durationFraction": "0",
+          "midi": 87,
+          "staff": 1,
+          "grace": true,
+          "writtenType": "16th",
+          "graceOrder": 1,
+          "principalBeat": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 59,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 65,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 71,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 83,
+          "staff": 1
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Two small sixteenth grace notes Db6 thenEb6 precede the beat-three Db-octave. Their metric duration is left zero for a separately disclosed grace interpretation. Parenthesized Eb5 at beat1.5 remains included as a printed optional notehead."
+    },
+    {
+      "measure": 103,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 73,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 85,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 46,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.13333333333333333,
+          "beatFraction": "1",
+          "durationFraction": "2/15",
+          "midi": 56,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 1.1333333333333333,
+          "duration": 0.13333333333333333,
+          "beatFraction": "17/15",
+          "durationFraction": "2/15",
+          "midi": 61,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 1.2666666666666666,
+          "duration": 0.13333333333333333,
+          "beatFraction": "19/15",
+          "durationFraction": "2/15",
+          "midi": 63,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 1.4,
+          "duration": 0.13333333333333333,
+          "beatFraction": "7/5",
+          "durationFraction": "2/15",
+          "midi": 64,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 1.5333333333333334,
+          "duration": 0.13333333333333333,
+          "beatFraction": "23/15",
+          "durationFraction": "2/15",
+          "midi": 68,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 1.6666666666666667,
+          "duration": 0.13333333333333333,
+          "beatFraction": "5/3",
+          "durationFraction": "2/15",
+          "midi": 73,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 1.8,
+          "duration": 0.13333333333333333,
+          "beatFraction": "9/5",
+          "durationFraction": "2/15",
+          "midi": 75,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 1.9333333333333333,
+          "duration": 0.13333333333333333,
+          "beatFraction": "29/15",
+          "durationFraction": "2/15",
+          "midi": 76,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 2.066666666666667,
+          "duration": 0.13333333333333333,
+          "beatFraction": "31/15",
+          "durationFraction": "2/15",
+          "midi": 80,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 2.2,
+          "duration": 0.13333333333333333,
+          "beatFraction": "11/5",
+          "durationFraction": "2/15",
+          "midi": 85,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 2.3333333333333335,
+          "duration": 0.13333333333333333,
+          "beatFraction": "7/3",
+          "durationFraction": "2/15",
+          "midi": 87,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 2.466666666666667,
+          "duration": 0.13333333333333333,
+          "beatFraction": "37/15",
+          "durationFraction": "2/15",
+          "midi": 88,
+          "staff": 2,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 2.6,
+          "duration": 0.13333333333333333,
+          "beatFraction": "13/5",
+          "durationFraction": "2/15",
+          "midi": 92,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 2.7333333333333334,
+          "duration": 0.13333333333333333,
+          "beatFraction": "41/15",
+          "durationFraction": "2/15",
+          "midi": 97,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        },
+        {
+          "beat": 2.8666666666666667,
+          "duration": 0.13333333333333333,
+          "beatFraction": "43/15",
+          "durationFraction": "2/15",
+          "midi": 99,
+          "staff": 1,
+          "tuplet": {
+            "actualNotes": 15,
+            "normalNotes": 8,
+            "writtenType": "16th"
+          }
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Fifteen cross-staff sixteenth notes fill beat1 to3, each2/15 quarter units. Lower staff changes to treble at the third group. Upper8va starts for final three run notes and continues into m104 first quarter."
+    },
+    {
+      "measure": 104,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 100,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 39,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 67,
+          "staff": 1
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 71,
+          "staff": 1
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 76,
+          "staff": 1
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 51,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 70,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 61,
+          "staff": 2
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "First Fb7 quarter retains preceding upper8va, which then ends. Fb5 half-note begins at beat1 above a separate Abb4/Cb5 quarter chord. Abb4 is an explicit double flat, soundingG4."
+    },
+    {
+      "measure": 105,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 71,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 44,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 63,
+          "staff": 1
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 66,
+          "staff": 1
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 59,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 75,
+          "staff": 1
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "RH lower half-note chord and LH half note begin at beat1 under the sustained upper half-note; melodyEb5quarter enters at beat2."
+    },
+    {
+      "measure": 106,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "midi": 73,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 37,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 59,
+          "staff": 1
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 65,
+          "staff": 1
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 50,
+          "staff": 2
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "midi": 71,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 70,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 49,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 68,
+          "staff": 1
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Lower-staff beat1 note is explicit E-double-flat3, soundingD3. Upper dotted-quarter melody overlaps beat1 quarter-note accompaniment."
+    },
+    {
+      "measure": 107,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 70,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 46,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 61,
+          "staff": 1
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 65,
+          "staff": 1
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 56,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 53,
+          "staff": 2
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 108,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "beatFraction": "0",
+          "durationFraction": "1/2",
+          "midi": 70,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 39,
+          "staff": 2
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "beatFraction": "1/2",
+          "durationFraction": "1/2",
+          "midi": 73,
+          "staff": 1,
+          "tieStart": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.3333333333333333,
+          "beatFraction": "1",
+          "durationFraction": "1/3",
+          "midi": 73,
+          "staff": 1,
+          "tieStop": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 61,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "midi": 64,
+          "staff": 2
+        },
+        {
+          "beat": 1.3333333333333333,
+          "duration": 0.3333333333333333,
+          "beatFraction": "4/3",
+          "durationFraction": "1/3",
+          "midi": 71,
+          "staff": 1
+        },
+        {
+          "beat": 1.6666666666666667,
+          "duration": 0.3333333333333333,
+          "beatFraction": "5/3",
+          "durationFraction": "1/3",
+          "midi": 70,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 68,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 55,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 67,
+          "staff": 1
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Initial Bb4 ties from m107. Second eighthDb5 ties into a triplet on beat1. Lower beat1 chord isDb4/Fb4, and beat2G3 is explicitly natural."
+    },
+    {
+      "measure": 109,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "midi": 68,
+          "staff": 1
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "beatFraction": "1/2",
+          "durationFraction": "1/2",
+          "midi": 44,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.3333333333333333,
+          "beatFraction": "1",
+          "durationFraction": "1/3",
+          "midi": 51,
+          "staff": 2
+        },
+        {
+          "beat": 1.3333333333333333,
+          "duration": 0.3333333333333333,
+          "beatFraction": "4/3",
+          "durationFraction": "1/3",
+          "midi": 59,
+          "staff": 2
+        },
+        {
+          "beat": 1.6666666666666667,
+          "duration": 0.3333333333333333,
+          "beatFraction": "5/3",
+          "durationFraction": "1/3",
+          "midi": 54,
+          "staff": 2
+        },
+        {
+          "beat": 1.6666666666666667,
+          "duration": 0.3333333333333333,
+          "beatFraction": "5/3",
+          "durationFraction": "1/3",
+          "midi": 63,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "midi": 71,
+          "staff": 1
+        }
+      ],
+      "uncertainties": []
+    },
+    {
+      "measure": 110,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "midi": 70,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "midi": 37,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 74,
+          "staff": 1
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 79,
+          "staff": 1
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 59,
+          "staff": 2
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "midi": 65,
+          "staff": 2
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "midi": 68,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "midi": 66,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "midi": 65,
+          "staff": 1
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Upper D5/G5 half-note chord enters at beat1 and both notes have explicit naturals. Melody lower voice continues its dotted-quarter and three eighths. Lower Cb4/F4 half chord also enters beat1."
+    },
+    {
+      "measure": 111,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 66,
+          "staff": 1
+        },
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "beatFraction": "0",
+          "durationFraction": "3",
+          "midi": 42,
+          "staff": 2
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.25,
+          "beatFraction": "3/2",
+          "durationFraction": "1/4",
+          "midi": 49,
+          "staff": 2
+        },
+        {
+          "beat": 1.75,
+          "duration": 0.25,
+          "beatFraction": "7/4",
+          "durationFraction": "1/4",
+          "midi": 51,
+          "staff": 2
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.25,
+          "beatFraction": "2",
+          "durationFraction": "1/4",
+          "midi": 53,
+          "staff": 2
+        },
+        {
+          "beat": 2.25,
+          "duration": 0.25,
+          "beatFraction": "9/4",
+          "durationFraction": "1/4",
+          "midi": 54,
+          "staff": 2
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "beatFraction": "5/2",
+          "durationFraction": "1/4",
+          "midi": 56,
+          "staff": 2
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "beatFraction": "11/4",
+          "durationFraction": "1/4",
+          "midi": 58,
+          "staff": 2
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Sixteenth-note run starts after quarter and eighth rests at beat1.5, underneath the dotted-halfGb4/Gb2."
+    },
+    {
+      "measure": 112,
+      "sourcePage": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.25,
+          "beatFraction": "0",
+          "durationFraction": "1/4",
+          "midi": 59,
+          "staff": 1
+        },
+        {
+          "beat": 0.25,
+          "duration": 0.25,
+          "beatFraction": "1/4",
+          "durationFraction": "1/4",
+          "midi": 61,
+          "staff": 1
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.25,
+          "beatFraction": "1/2",
+          "durationFraction": "1/4",
+          "midi": 63,
+          "staff": 1
+        },
+        {
+          "beat": 0.75,
+          "duration": 0.25,
+          "beatFraction": "3/4",
+          "durationFraction": "1/4",
+          "midi": 65,
+          "staff": 1
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.25,
+          "beatFraction": "1",
+          "durationFraction": "1/4",
+          "midi": 66,
+          "staff": 2
+        },
+        {
+          "beat": 1.25,
+          "duration": 0.25,
+          "beatFraction": "5/4",
+          "durationFraction": "1/4",
+          "midi": 68,
+          "staff": 2
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.25,
+          "beatFraction": "3/2",
+          "durationFraction": "1/4",
+          "midi": 70,
+          "staff": 2
+        },
+        {
+          "beat": 1.75,
+          "duration": 0.25,
+          "beatFraction": "7/4",
+          "durationFraction": "1/4",
+          "midi": 71,
+          "staff": 1
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.25,
+          "beatFraction": "2",
+          "durationFraction": "1/4",
+          "midi": 73,
+          "staff": 1
+        },
+        {
+          "beat": 2.25,
+          "duration": 0.25,
+          "beatFraction": "9/4",
+          "durationFraction": "1/4",
+          "midi": 75,
+          "staff": 1
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "beatFraction": "5/2",
+          "durationFraction": "1/4",
+          "midi": 76,
+          "staff": 1
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "beatFraction": "11/4",
+          "durationFraction": "1/4",
+          "midi": 77,
+          "staff": 1
+        }
+      ],
+      "uncertainties": [],
+      "reviewNotes": "Continuous twelve sixteenths across both staves. Lower staff changes to treble for notes7–9 in the extended run. Last three notesEb5,E-natural5,F5; next measureF#5 is a phrase continuation, not a tie. Following double bar cancels six flats and introduces three sharps."
+    }
+  ]
+}

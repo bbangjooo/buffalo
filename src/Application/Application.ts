@@ -42,7 +42,6 @@ export default class Application {
     this.world = new World();
 
     this.audioPlayer = new AudioPlayer();
-    // this.camera.setOrbitControls();
     this.sizes.on("resize", () => {
       this.resize();
     });
@@ -57,6 +56,7 @@ export default class Application {
   }
 
   update() {
+    if (document.hidden) return;
     this.camera.update();
     this.world.update();
     this.renderer.update();
@@ -65,6 +65,15 @@ export default class Application {
   destroy() {
     this.sizes.off("resize");
     this.time.off("tick");
+    this.world.monitorScreen?.dispose();
+    this.world.resumeScreen?.dispose();
+    this.world.guide?.dispose();
+    this.world.game?.dispose();
+    this.world.performance?.dispose();
+    this.world.curtains?.dispose();
+    this.world.portrait?.dispose();
+    this.world.environment?.dispose();
+    this.audioPlayer.dispose();
 
     // Traverse the whole scene
     this.scene.traverse((child) => {

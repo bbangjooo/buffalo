@@ -2,12 +2,12 @@ import { CubeTextureLoader, TextureLoader } from "three";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Loaders, Source, SourceType, LoadedFile } from "../../types";
-import sources from "../sources";
-import EventEmitter from "./EventEmitter";
+import EventEmitter from "./Eventemitter";
 
 export default class Resources extends EventEmitter {
   loaders!: Loaders;
   items: { [name: string]: LoadedFile } = {};
+  error: string | null = null;
   private loaded: number = 0;
   private readonly toLoad: number;
   constructor(private readonly sources: Source[]) {
@@ -29,22 +29,26 @@ export default class Resources extends EventEmitter {
   }
 
   loadSources() {
-    for (const source of sources) {
+    const failed = () => {
+      this.error = "연결을 확인한 뒤 다시 불러오거나 블로그로 바로 이동해 주세요.";
+      this.trigger("error", [this.error]);
+    };
+    for (const source of this.sources) {
       switch (source?.type) {
         case SourceType.GLTF_MODEL:
           this.loaders.gltfLoader.load(source.path, (file) => {
             this.updateSources(source, file);
-          });
+          }, undefined, failed);
           break;
         case SourceType.TEXTURE:
           this.loaders.textureLoader.load(source.path, (file) => {
             this.updateSources(source, file);
-          });
+          }, undefined, failed);
           break;
         case SourceType.CUBE_TEXTURE:
           this.loaders.cubeTextureLoader.load(source.path, (file) => {
             this.updateSources(source, file);
-          });
+          }, undefined, failed);
       }
     }
   }

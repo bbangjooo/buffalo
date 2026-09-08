@@ -1,0 +1,7 @@
+# Authoring files remain in Git; only public assets are needed for the web build.
+/assets/
+/design/
+/scripts/
+/node_modules/
+/dist/
+/public/Room/diorama.glb

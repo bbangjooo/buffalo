@@ -1,0 +1,20 @@
+/* Fontshare's own API serves its proprietary fonts; no FFL binaries are redistributed. */
+@import url("https://api.fontshare.com/v2/css?f%5B%5D=clash-display%40600%2C700&display=swap");
+@import url("https://api.fontshare.com/v2/css?f%5B%5D=general-sans%40400%2C500%2C600%2C700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap");
+
+@font-face {
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-weight: 45 920;
+  font-display: swap;
+  src: url("./PretendardVariable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Wanted Sans Variable";
+  font-style: normal;
+  font-weight: 400 1000;
+  font-display: swap;
+  src: url("./WantedSansVariable.woff2") format("woff2");
+}

@@ -1,0 +1,30 @@
+{
+  "name": "조병근 · Structured Curiosity",
+  "colors": {
+    "ink": "#183C43",
+    "paper": "#F1EDE3",
+    "teal": "#3C7D7B",
+    "brass": "#C69A5B",
+    "signal": "#D9E59B",
+    "sage": "#B6C796",
+    "slate": "#819A9F",
+    "walnut": "#785641",
+    "wood": "#C7AA80",
+    "chalk": "#E1D8C5",
+    "muted": "#52676B",
+    "line": "#B9C5BE",
+    "developerWall": "#A2BBB5",
+    "pianoWall": "#E1D8C5",
+    "blogWall": "#A9BDC1",
+    "aiWall": "#BCCBAA",
+    "shadow": "#314B50",
+    "glow": "#F5DCA0"
+  },
+  "usage": {
+    "shared": "Petrol framing, ivory backdrop, restrained oak/walnut and satin brass across all four rooms.",
+    "developer": "Teal systems, pale mineral-green walls, brass engineering details.",
+    "piano": "Ivory keys, petrol-black body, walnut, brass, soft warm wall.",
+    "blog": "Slate and ivory, a single petrol monitor, quiet paper and wood.",
+    "ai": "Sage enclosure, petrol instruments, signal lime only on active nodes."
+  }
+}

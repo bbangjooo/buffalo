@@ -1,0 +1,2763 @@
+{
+  "source": "user-provided En Avril, a Paris.pdf",
+  "page": 2,
+  "measureRange": [
+    17,
+    32
+  ],
+  "complete": true,
+  "verified": true,
+  "method": "Independent visual transcription, native PDF crops at 330-550 dpi, staff-line/accidental/stem inspection, and exhaustive PDF notehead-glyph count comparison.",
+  "conventions": {
+    "beat": "Zero-based quarter-beat offsets; every measure is 3/4. Exact rational strings are included.",
+    "pitch": "Sounding MIDI, C4=60; all relevant 8va already applied. Do not apply global octave shifts again.",
+    "staff": "Printed staff: 1 upper, 2 lower. Voices cross staves.",
+    "grace": "grace:true with duration:0 denotes notation-only grace events anchored to beat; performance allocation remains unspecified.",
+    "ties": "tieStart/tieStop mark only same-pitch ties. No phrase slurs are encoded as ties.",
+    "duration": "Notated score duration; no invented pedal tails, arpeggio roll delays or rubato."
+  },
+  "measures": [
+    {
+      "measure": 17,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2",
+          "voice": "bass",
+          "beatFraction": "0",
+          "durationFraction": "1"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 69,
+          "staff": 1,
+          "pitch": "A4",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "sourceUniqueNoteheadCount": 7,
+      "transcribedNoteCount": 7
+    },
+    {
+      "measure": 18,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "3/2"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 40,
+          "staff": 2,
+          "pitch": "E2",
+          "voice": "bass",
+          "beatFraction": "0",
+          "durationFraction": "1"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 70,
+          "staff": 1,
+          "pitch": "A#4",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "voice": "melody",
+          "beatFraction": "3/2",
+          "durationFraction": "1/2"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 64,
+          "staff": 1,
+          "pitch": "E4",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1/2"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "voice": "melody",
+          "beatFraction": "5/2",
+          "durationFraction": "1/2"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "sourceUniqueNoteheadCount": 11,
+      "transcribedNoteCount": 11
+    },
+    {
+      "measure": 19,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2",
+          "voice": "bass",
+          "beatFraction": "0",
+          "durationFraction": "1"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "tieStop": true
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3",
+          "voice": "melody",
+          "beatFraction": "5/2",
+          "durationFraction": "1/2"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "sourceUniqueNoteheadCount": 9,
+      "transcribedNoteCount": 9
+    },
+    {
+      "measure": 20,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 46,
+          "staff": 2,
+          "pitch": "A#2",
+          "voice": "bass",
+          "beatFraction": "0",
+          "durationFraction": "1"
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "tieStart": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 67,
+          "staff": 1,
+          "pitch": "G4",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2",
+          "arpeggio": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "tieStop": true
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3",
+          "voice": "melody",
+          "beatFraction": "5/2",
+          "durationFraction": "1/2"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "sourceUniqueNoteheadCount": 10,
+      "transcribedNoteCount": 10
+    },
+    {
+      "measure": 21,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 62,
+          "staff": 1,
+          "pitch": "D4",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2",
+          "voice": "bass",
+          "beatFraction": "0",
+          "durationFraction": "1"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "F#4",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 62,
+          "staff": 1,
+          "pitch": "D4",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "tieStop": true
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 57,
+          "staff": 1,
+          "pitch": "A3",
+          "voice": "melody",
+          "beatFraction": "5/2",
+          "durationFraction": "1/2"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "sourceUniqueNoteheadCount": 8,
+      "transcribedNoteCount": 8
+    },
+    {
+      "measure": 22,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 56,
+          "staff": 1,
+          "pitch": "G#3",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 40,
+          "staff": 2,
+          "pitch": "E2",
+          "voice": "bass",
+          "beatFraction": "0",
+          "durationFraction": "1"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 50,
+          "staff": 2,
+          "pitch": "D3",
+          "voice": "bass",
+          "beatFraction": "0",
+          "durationFraction": "1"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "G#5",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "F#4",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 56,
+          "staff": 1,
+          "pitch": "G#3",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "tieStop": true
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "voice": "melody",
+          "beatFraction": "5/2",
+          "durationFraction": "1/2"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "sourceUniqueNoteheadCount": 9,
+      "transcribedNoteCount": 9
+    },
+    {
+      "measure": 23,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 64,
+          "staff": 1,
+          "pitch": "E4",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2",
+          "voice": "bass",
+          "beatFraction": "0",
+          "durationFraction": "1"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3",
+          "voice": "bass",
+          "beatFraction": "0",
+          "durationFraction": "1"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 64,
+          "staff": 1,
+          "pitch": "E4",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "tieStop": true
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4",
+          "voice": "melody",
+          "beatFraction": "5/2",
+          "durationFraction": "1/2"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "sourceUniqueNoteheadCount": 8,
+      "transcribedNoteCount": 8
+    },
+    {
+      "measure": 24,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 59,
+          "staff": 1,
+          "pitch": "B3",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 42,
+          "staff": 2,
+          "pitch": "F#2",
+          "voice": "bass",
+          "beatFraction": "0",
+          "durationFraction": "1"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "C#3",
+          "voice": "bass",
+          "beatFraction": "0",
+          "durationFraction": "1"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3",
+          "voice": "bass",
+          "beatFraction": "0",
+          "durationFraction": "1"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 69,
+          "staff": 1,
+          "pitch": "A4",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5",
+          "voice": "inner",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 2.0,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4",
+          "voice": "bass_harmony",
+          "beatFraction": "1",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 59,
+          "staff": 1,
+          "pitch": "B3",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "tieStop": true
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 57,
+          "staff": 1,
+          "pitch": "A3",
+          "voice": "melody",
+          "beatFraction": "5/2",
+          "durationFraction": "1/2"
+        }
+      ],
+      "rests": [],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "sourceUniqueNoteheadCount": 11,
+      "transcribedNoteCount": 11
+    },
+    {
+      "measure": 25,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.6666666666666666,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2",
+          "voice": "accompaniment",
+          "beatFraction": "0",
+          "durationFraction": "2/3",
+          "writtenType": "quarter",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 0.6666666666666666,
+          "duration": 0.16666666666666666,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "voice": "accompaniment",
+          "beatFraction": "2/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 0.8333333333333334,
+          "duration": 0.16666666666666666,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4",
+          "voice": "accompaniment",
+          "beatFraction": "5/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.16666666666666666,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6",
+          "voice": "accompaniment",
+          "beatFraction": "1",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.1666666666666667,
+          "duration": 0.16666666666666666,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5",
+          "voice": "accompaniment",
+          "beatFraction": "7/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.3333333333333333,
+          "duration": 0.16666666666666666,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5",
+          "voice": "accompaniment",
+          "beatFraction": "4/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.16666666666666666,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5",
+          "voice": "accompaniment",
+          "beatFraction": "3/2",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.6666666666666667,
+          "duration": 0.16666666666666666,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "F#4",
+          "voice": "accompaniment",
+          "beatFraction": "5/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.8333333333333333,
+          "duration": 0.16666666666666666,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4",
+          "voice": "accompaniment",
+          "beatFraction": "11/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 69,
+          "staff": 1,
+          "pitch": "A4",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1"
+        }
+      ],
+      "rests": [
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "staff": 2,
+          "voice": "accompaniment",
+          "beatFraction": "2",
+          "durationFraction": "1"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "sourceUniqueNoteheadCount": 11,
+      "transcribedNoteCount": 11
+    },
+    {
+      "measure": 26,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.6666666666666666,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3",
+          "voice": "accompaniment",
+          "beatFraction": "0",
+          "durationFraction": "2/3",
+          "writtenType": "quarter",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 0.6666666666666666,
+          "duration": 0.16666666666666666,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4",
+          "voice": "accompaniment",
+          "beatFraction": "2/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 0.8333333333333334,
+          "duration": 0.16666666666666666,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "F#4",
+          "voice": "accompaniment",
+          "beatFraction": "5/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.16666666666666666,
+          "midi": 84,
+          "staff": 1,
+          "pitch": "C6",
+          "voice": "accompaniment",
+          "beatFraction": "1",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.1666666666666667,
+          "duration": 0.16666666666666666,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5",
+          "voice": "accompaniment",
+          "beatFraction": "7/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.3333333333333333,
+          "duration": 0.16666666666666666,
+          "midi": 74,
+          "staff": 1,
+          "pitch": "D5",
+          "voice": "accompaniment",
+          "beatFraction": "4/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.16666666666666666,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "C5",
+          "voice": "accompaniment",
+          "beatFraction": "3/2",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.6666666666666667,
+          "duration": 0.16666666666666666,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "F#4",
+          "voice": "accompaniment",
+          "beatFraction": "5/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.8333333333333333,
+          "duration": 0.16666666666666666,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4",
+          "voice": "accompaniment",
+          "beatFraction": "11/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.25,
+          "midi": 68,
+          "staff": 1,
+          "pitch": "G#4",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1/4",
+          "tieStop": true
+        },
+        {
+          "beat": 2.25,
+          "duration": 0.25,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "voice": "melody",
+          "beatFraction": "9/4",
+          "durationFraction": "1/4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "midi": 64,
+          "staff": 1,
+          "pitch": "E4",
+          "voice": "melody",
+          "beatFraction": "5/2",
+          "durationFraction": "1/4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3",
+          "voice": "accompaniment",
+          "beatFraction": "5/2",
+          "durationFraction": "1/2"
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "voice": "melody",
+          "beatFraction": "11/4",
+          "durationFraction": "1/4"
+        }
+      ],
+      "rests": [
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "staff": 2,
+          "voice": "accompaniment",
+          "beatFraction": "2",
+          "durationFraction": "1/2"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "sourceUniqueNoteheadCount": 15,
+      "transcribedNoteCount": 15
+    },
+    {
+      "measure": 27,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "tieStart": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.6666666666666666,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2",
+          "voice": "accompaniment",
+          "beatFraction": "0",
+          "durationFraction": "2/3",
+          "writtenType": "quarter",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 0.6666666666666666,
+          "duration": 0.16666666666666666,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3",
+          "voice": "accompaniment",
+          "beatFraction": "2/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 0.8333333333333334,
+          "duration": 0.16666666666666666,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3",
+          "voice": "accompaniment",
+          "beatFraction": "5/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.16666666666666666,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5",
+          "voice": "accompaniment",
+          "beatFraction": "1",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.1666666666666667,
+          "duration": 0.16666666666666666,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5",
+          "voice": "accompaniment",
+          "beatFraction": "7/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.3333333333333333,
+          "duration": 0.16666666666666666,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5",
+          "voice": "accompaniment",
+          "beatFraction": "4/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.16666666666666666,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4",
+          "voice": "accompaniment",
+          "beatFraction": "3/2",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.6666666666666667,
+          "duration": 0.16666666666666666,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4",
+          "voice": "accompaniment",
+          "beatFraction": "5/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.8333333333333333,
+          "duration": 0.16666666666666666,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4",
+          "voice": "accompaniment",
+          "beatFraction": "11/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "tieStop": true
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3",
+          "voice": "melody",
+          "beatFraction": "5/2",
+          "durationFraction": "1/2"
+        }
+      ],
+      "rests": [
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "staff": 2,
+          "voice": "accompaniment",
+          "beatFraction": "2",
+          "durationFraction": "1"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "sourceUniqueNoteheadCount": 12,
+      "transcribedNoteCount": 12
+    },
+    {
+      "measure": 28,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.6666666666666666,
+          "midi": 42,
+          "staff": 2,
+          "pitch": "F#2",
+          "voice": "accompaniment",
+          "beatFraction": "0",
+          "durationFraction": "2/3",
+          "writtenType": "quarter",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "tieStart": true
+        },
+        {
+          "beat": 0.6666666666666666,
+          "duration": 0.16666666666666666,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "C#3",
+          "voice": "accompaniment",
+          "beatFraction": "2/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 0.8333333333333334,
+          "duration": 0.16666666666666666,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3",
+          "voice": "accompaniment",
+          "beatFraction": "5/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.16666666666666666,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5",
+          "voice": "accompaniment",
+          "beatFraction": "1",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.1666666666666667,
+          "duration": 0.16666666666666666,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5",
+          "voice": "accompaniment",
+          "beatFraction": "7/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.3333333333333333,
+          "duration": 0.16666666666666666,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5",
+          "voice": "accompaniment",
+          "beatFraction": "4/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.16666666666666666,
+          "midi": 69,
+          "staff": 1,
+          "pitch": "A4",
+          "voice": "accompaniment",
+          "beatFraction": "3/2",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.6666666666666667,
+          "duration": 0.16666666666666666,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4",
+          "voice": "accompaniment",
+          "beatFraction": "5/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.8333333333333333,
+          "duration": 0.16666666666666666,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4",
+          "voice": "accompaniment",
+          "beatFraction": "11/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "tieStop": true
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3",
+          "voice": "melody",
+          "beatFraction": "5/2",
+          "durationFraction": "1/2"
+        }
+      ],
+      "rests": [
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "staff": 2,
+          "voice": "accompaniment",
+          "beatFraction": "2",
+          "durationFraction": "1"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "sourceUniqueNoteheadCount": 12,
+      "transcribedNoteCount": 12
+    },
+    {
+      "measure": 29,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.6666666666666666,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "G#2",
+          "voice": "accompaniment",
+          "beatFraction": "0",
+          "durationFraction": "2/3",
+          "writtenType": "quarter",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "2"
+        },
+        {
+          "beat": 0.6666666666666666,
+          "duration": 0.16666666666666666,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "C#3",
+          "voice": "accompaniment",
+          "beatFraction": "2/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 0.8333333333333334,
+          "duration": 0.16666666666666666,
+          "midi": 53,
+          "staff": 2,
+          "pitch": "E#3",
+          "voice": "accompaniment",
+          "beatFraction": "5/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          }
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.16666666666666666,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "G#5",
+          "voice": "accompaniment",
+          "beatFraction": "1",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.1666666666666667,
+          "duration": 0.16666666666666666,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "D#5",
+          "voice": "accompaniment",
+          "beatFraction": "7/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.3333333333333333,
+          "duration": 0.16666666666666666,
+          "midi": 70,
+          "staff": 1,
+          "pitch": "A#4",
+          "voice": "accompaniment",
+          "beatFraction": "4/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.16666666666666666,
+          "midi": 65,
+          "staff": 2,
+          "pitch": "E#4",
+          "voice": "accompaniment",
+          "beatFraction": "3/2",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.6666666666666667,
+          "duration": 0.16666666666666666,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4",
+          "voice": "accompaniment",
+          "beatFraction": "5/3",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.8333333333333333,
+          "duration": 0.16666666666666666,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3",
+          "voice": "accompaniment",
+          "beatFraction": "11/6",
+          "durationFraction": "1/6",
+          "writtenType": "16th",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "16th"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1"
+        }
+      ],
+      "rests": [
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "staff": 2,
+          "voice": "accompaniment",
+          "beatFraction": "2",
+          "durationFraction": "1"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "observations": [
+        "The final small G#3 belongs to the six-note run at 11/6, not a separate melody eighth at beat 2. The melody continues with A3 natural quarter at beat 2."
+      ],
+      "sourceUniqueNoteheadCount": 11,
+      "transcribedNoteCount": 11
+    },
+    {
+      "measure": 30,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "G#2",
+          "voice": "accompaniment",
+          "beatFraction": "0",
+          "durationFraction": "1/2"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "3/2"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.08333333333333333,
+          "midi": 50,
+          "staff": 2,
+          "pitch": "D3",
+          "voice": "accompaniment",
+          "beatFraction": "1/2",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 0.5833333333333334,
+          "duration": 0.08333333333333333,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "voice": "accompaniment",
+          "beatFraction": "7/12",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 0.6666666666666666,
+          "duration": 0.08333333333333333,
+          "midi": 60,
+          "staff": 2,
+          "pitch": "B#3",
+          "voice": "accompaniment",
+          "beatFraction": "2/3",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 0.75,
+          "duration": 0.08333333333333333,
+          "midi": 62,
+          "staff": 1,
+          "pitch": "D4",
+          "voice": "accompaniment",
+          "beatFraction": "3/4",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 0.8333333333333334,
+          "duration": 0.08333333333333333,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4",
+          "voice": "accompaniment",
+          "beatFraction": "5/6",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 0.9166666666666666,
+          "duration": 0.08333333333333333,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "B#4",
+          "voice": "accompaniment",
+          "beatFraction": "11/12",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          },
+          "cueSized": true,
+          "grace": false
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5",
+          "voice": "accompaniment",
+          "beatFraction": "1",
+          "durationFraction": "1/2"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.0,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "voice": "melody",
+          "beatFraction": "3/2",
+          "durationFraction": "0",
+          "grace": true,
+          "graceOrder": 0,
+          "writtenType": "16th",
+          "graceAnchorBeat": 1.5
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.0,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3",
+          "voice": "melody",
+          "beatFraction": "3/2",
+          "durationFraction": "0",
+          "grace": true,
+          "graceOrder": 1,
+          "writtenType": "16th",
+          "graceAnchorBeat": 1.5
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "voice": "melody",
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "tieStart": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "G#2",
+          "voice": "accompaniment",
+          "beatFraction": "2",
+          "durationFraction": "1"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.3333333333333333,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1/3",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "base": "eighth"
+          },
+          "tieStop": true
+        },
+        {
+          "beat": 2.3333333333333335,
+          "duration": 0.3333333333333333,
+          "midi": 53,
+          "staff": 2,
+          "pitch": "E#3",
+          "voice": "melody",
+          "beatFraction": "7/3",
+          "durationFraction": "1/3",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "base": "eighth"
+          }
+        },
+        {
+          "beat": 2.6666666666666665,
+          "duration": 0.3333333333333333,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "voice": "melody",
+          "beatFraction": "8/3",
+          "durationFraction": "1/3",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "base": "eighth"
+          }
+        }
+      ],
+      "rests": [
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "staff": 2,
+          "voice": "accompaniment",
+          "beatFraction": "3/2",
+          "durationFraction": "1/2"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "observations": [
+        "Two small sixteenth grace notes F#3 G#3 precede the melody eighth at beat 1.5. Their notated duration is zero; no performance steal-time is inferred.",
+        "The measured sextuplet starts at beat 0.5 and ends at beat 1. Each of its six 32nds lasts 1/12 quarter beat."
+      ],
+      "sourceUniqueNoteheadCount": 16,
+      "transcribedNoteCount": 16
+    },
+    {
+      "measure": 31,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "midi": 56,
+          "staff": 1,
+          "pitch": "G#3",
+          "voice": "sustained_upper",
+          "beatFraction": "0",
+          "durationFraction": "3"
+        },
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "midi": 37,
+          "staff": 2,
+          "pitch": "C#2",
+          "voice": "sustained_bass",
+          "beatFraction": "0",
+          "durationFraction": "3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.08333333333333333,
+          "midi": 44,
+          "staff": 2,
+          "pitch": "G#2",
+          "voice": "run",
+          "beatFraction": "1",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 1.0833333333333333,
+          "duration": 0.08333333333333333,
+          "midi": 51,
+          "staff": 2,
+          "pitch": "D#3",
+          "voice": "run",
+          "beatFraction": "13/12",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 1.1666666666666667,
+          "duration": 0.08333333333333333,
+          "midi": 53,
+          "staff": 2,
+          "pitch": "E#3",
+          "voice": "run",
+          "beatFraction": "7/6",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 1.25,
+          "duration": 0.08333333333333333,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3",
+          "voice": "run",
+          "beatFraction": "5/4",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 1.3333333333333333,
+          "duration": 0.08333333333333333,
+          "midi": 59,
+          "staff": 1,
+          "pitch": "B3",
+          "voice": "run",
+          "beatFraction": "4/3",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 1.4166666666666667,
+          "duration": 0.08333333333333333,
+          "midi": 60,
+          "staff": 1,
+          "pitch": "B#3",
+          "voice": "run",
+          "beatFraction": "17/12",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.08333333333333333,
+          "midi": 61,
+          "staff": 1,
+          "pitch": "C#4",
+          "voice": "run",
+          "beatFraction": "3/2",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 1.5833333333333333,
+          "duration": 0.08333333333333333,
+          "midi": 63,
+          "staff": 2,
+          "pitch": "D#4",
+          "voice": "run",
+          "beatFraction": "19/12",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 1.6666666666666667,
+          "duration": 0.08333333333333333,
+          "midi": 65,
+          "staff": 2,
+          "pitch": "E#4",
+          "voice": "run",
+          "beatFraction": "5/3",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 1.75,
+          "duration": 0.08333333333333333,
+          "midi": 68,
+          "staff": 2,
+          "pitch": "G#4",
+          "voice": "run",
+          "beatFraction": "7/4",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 1.8333333333333333,
+          "duration": 0.08333333333333333,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4",
+          "voice": "run",
+          "beatFraction": "11/6",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 1.9166666666666667,
+          "duration": 0.08333333333333333,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "B#4",
+          "voice": "run",
+          "beatFraction": "23/12",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.08333333333333333,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5",
+          "voice": "run",
+          "beatFraction": "2",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 2.0833333333333335,
+          "duration": 0.08333333333333333,
+          "midi": 75,
+          "staff": 2,
+          "pitch": "D#5",
+          "voice": "run",
+          "beatFraction": "25/12",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 2.1666666666666665,
+          "duration": 0.08333333333333333,
+          "midi": 77,
+          "staff": 2,
+          "pitch": "E#5",
+          "voice": "run",
+          "beatFraction": "13/6",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 2.25,
+          "duration": 0.08333333333333333,
+          "midi": 80,
+          "staff": 2,
+          "pitch": "G#5",
+          "voice": "run",
+          "beatFraction": "9/4",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 2.3333333333333335,
+          "duration": 0.08333333333333333,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5",
+          "voice": "run",
+          "beatFraction": "7/3",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 2.4166666666666665,
+          "duration": 0.08333333333333333,
+          "midi": 84,
+          "staff": 1,
+          "pitch": "B#5",
+          "voice": "run",
+          "beatFraction": "29/12",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.08333333333333333,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6",
+          "voice": "run",
+          "beatFraction": "5/2",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          }
+        },
+        {
+          "beat": 2.5833333333333335,
+          "duration": 0.08333333333333333,
+          "midi": 87,
+          "staff": 2,
+          "pitch": "D#6",
+          "voice": "run",
+          "beatFraction": "31/12",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          },
+          "writtenPitch": "D#5",
+          "octaveShiftSemitones": 12
+        },
+        {
+          "beat": 2.6666666666666665,
+          "duration": 0.08333333333333333,
+          "midi": 89,
+          "staff": 2,
+          "pitch": "E#6",
+          "voice": "run",
+          "beatFraction": "8/3",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          },
+          "writtenPitch": "E#5",
+          "octaveShiftSemitones": 12
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.08333333333333333,
+          "midi": 92,
+          "staff": 2,
+          "pitch": "G#6",
+          "voice": "run",
+          "beatFraction": "11/4",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          },
+          "writtenPitch": "G#5",
+          "octaveShiftSemitones": 12
+        },
+        {
+          "beat": 2.8333333333333335,
+          "duration": 0.08333333333333333,
+          "midi": 95,
+          "staff": 1,
+          "pitch": "B6",
+          "voice": "run",
+          "beatFraction": "17/6",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          },
+          "writtenPitch": "B5",
+          "octaveShiftSemitones": 12
+        },
+        {
+          "beat": 2.9166666666666665,
+          "duration": 0.08333333333333333,
+          "midi": 96,
+          "staff": 1,
+          "pitch": "B#6",
+          "voice": "run",
+          "beatFraction": "35/12",
+          "durationFraction": "1/12",
+          "writtenType": "32nd",
+          "tuplet": {
+            "actual": 6,
+            "normal": 4,
+            "base": "32nd"
+          },
+          "writtenPitch": "B#5",
+          "octaveShiftSemitones": 12
+        }
+      ],
+      "rests": [
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "staff": 2,
+          "voice": "run",
+          "beatFraction": "0",
+          "durationFraction": "1"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "clefChanges": [
+        {
+          "beat": 1.5833333333333333,
+          "beatFraction": "19/12",
+          "staff": 2,
+          "clef": "treble"
+        }
+      ],
+      "observations": [
+        "The lower-staff treble clef starts before the second sextuplet lower-staff notes (first D#4 at beat 19/12).",
+        "The last five run notes are covered by separate staff-specific 8va spans. Their supplied MIDI values are already sounding pitches.",
+        "All 24 run notes are measured 32nds in four sextuplets; total run duration is two quarter beats."
+      ],
+      "sourceUniqueNoteheadCount": 26,
+      "transcribedNoteCount": 26
+    },
+    {
+      "measure": 32,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.5,
+          "midi": 97,
+          "staff": 1,
+          "pitch": "C#7",
+          "voice": "melody",
+          "beatFraction": "0",
+          "durationFraction": "3/2",
+          "writtenPitch": "C#6",
+          "octaveShiftSemitones": 12
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5",
+          "voice": "melody",
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "sharedWithVoice": "inner",
+          "sharedUnisonDeduplicated": true
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 72,
+          "staff": 1,
+          "pitch": "B#4",
+          "voice": "inner",
+          "beatFraction": "2",
+          "durationFraction": "1/2"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "E#5",
+          "voice": "melody",
+          "beatFraction": "2",
+          "durationFraction": "1/2"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4",
+          "voice": "inner",
+          "beatFraction": "5/2",
+          "durationFraction": "1/2"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "G#5",
+          "voice": "melody",
+          "beatFraction": "5/2",
+          "durationFraction": "1/2"
+        }
+      ],
+      "rests": [
+        {
+          "beat": 0.0,
+          "duration": 3.0,
+          "staff": 2,
+          "voice": "lower_staff",
+          "beatFraction": "0",
+          "durationFraction": "3"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 2,
+      "manualSource": "User-provided En Avril, a Paris.pdf, independently transcribed from source notation",
+      "clefChanges": [
+        {
+          "beat": 3,
+          "staff": 2,
+          "clef": "bass"
+        }
+      ],
+      "observations": [
+        "The initial dotted-quarter C#6 is under the continuing 8va and sounds C#7; the octave span ends before beat 1.5.",
+        "C#5 at beat 1.5 is a shared unison printed twice for two voices. It is encoded as one piano-key event."
+      ],
+      "sourceUniqueNoteheadCount": 6,
+      "transcribedNoteCount": 6
+    }
+  ],
+  "uncertainties": [],
+  "verification": {
+    "sourceRawNoteheadGlyphs": 183,
+    "sourceUniqueNoteheads": 182,
+    "transcribedNotesIncludingGrace": 182,
+    "trueGraceNotes": 2,
+    "sharedUnisonDuplicatesRemoved": 1,
+    "allEventsWithinThreeQuarterBeats": true,
+    "allPitchesWithinMidiRange": true,
+    "noOmittedUniqueNoteheads": true
+  }
+}

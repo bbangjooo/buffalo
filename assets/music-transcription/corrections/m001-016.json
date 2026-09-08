@@ -1,0 +1,1873 @@
+{
+  "source": "user-provided score",
+  "soundingMidiIncludesOctaves": true,
+  "measures": [
+    {
+      "measure": 1,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2",
+          "letRing": true
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3",
+          "letRing": true
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 69,
+          "staff": 2,
+          "pitch": "A4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 74,
+          "staff": 2,
+          "pitch": "D5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 97,
+          "staff": 1,
+          "pitch": "C#7"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 14,
+      "vectorUniqueHeadCount": 14,
+      "sourceObservations": [
+        "Upper-staff 8va included in sounding MIDI through m6 and the first chord of m7 only. Lower-staff clef switches in m1/m2 are included; lower-staff notes have no ottava."
+      ]
+    },
+    {
+      "measure": 2,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 95,
+          "staff": 1,
+          "pitch": "B6"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3",
+          "letRing": true
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4",
+          "letRing": true
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 68,
+          "staff": 2,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6"
+        },
+        {
+          "beat": 2,
+          "duration": 0,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6",
+          "grace": true,
+          "graceOrder": 0,
+          "principalBeat": 2,
+          "writtenType": "16th"
+        },
+        {
+          "beat": 2,
+          "duration": 0,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6",
+          "grace": true,
+          "graceOrder": 1,
+          "principalBeat": 2,
+          "writtenType": "16th"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 74,
+          "staff": 2,
+          "pitch": "D5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 18,
+      "vectorUniqueHeadCount": 18,
+      "sourceObservations": [
+        "Upper-staff 8va included in sounding MIDI through m6 and the first chord of m7 only. Lower-staff clef switches in m1/m2 are included; lower-staff notes have no ottava."
+      ]
+    },
+    {
+      "measure": 3,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2",
+          "letRing": true
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3",
+          "letRing": true
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 68,
+          "staff": 2,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 95,
+          "staff": 1,
+          "pitch": "B6"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 14,
+      "vectorUniqueHeadCount": 14,
+      "sourceObservations": [
+        "Upper-staff 8va included in sounding MIDI through m6 and the first chord of m7 only. Lower-staff clef switches in m1/m2 are included; lower-staff notes have no ottava."
+      ]
+    },
+    {
+      "measure": 4,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 42,
+          "staff": 2,
+          "pitch": "F#2",
+          "letRing": true
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3",
+          "letRing": true
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6"
+        },
+        {
+          "beat": 2,
+          "duration": 0,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6",
+          "grace": true,
+          "graceOrder": 0,
+          "principalBeat": 2,
+          "writtenType": "16th"
+        },
+        {
+          "beat": 2,
+          "duration": 0,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6",
+          "grace": true,
+          "graceOrder": 1,
+          "principalBeat": 2,
+          "writtenType": "16th"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 68,
+          "staff": 2,
+          "pitch": "G#4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 18,
+      "vectorUniqueHeadCount": 18,
+      "sourceObservations": [
+        "Upper-staff 8va included in sounding MIDI through m6 and the first chord of m7 only. Lower-staff clef switches in m1/m2 are included; lower-staff notes have no ottava."
+      ]
+    },
+    {
+      "measure": 5,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 47,
+          "staff": 2,
+          "pitch": "B2",
+          "letRing": true
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3",
+          "letRing": true
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 80,
+          "staff": 1,
+          "pitch": "G#5"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 57,
+          "staff": 2,
+          "pitch": "A3"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 66,
+          "staff": 2,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 93,
+          "staff": 1,
+          "pitch": "A6"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 14,
+      "vectorUniqueHeadCount": 14,
+      "sourceObservations": [
+        "Upper-staff 8va included in sounding MIDI through m6 and the first chord of m7 only. Lower-staff clef switches in m1/m2 are included; lower-staff notes have no ottava."
+      ]
+    },
+    {
+      "measure": 6,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 0,
+          "duration": 1.5,
+          "midi": 92,
+          "staff": 1,
+          "pitch": "G#6",
+          "voice": "upper-melody"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 40,
+          "staff": 2,
+          "pitch": "E2",
+          "letRing": true
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 54,
+          "staff": 2,
+          "pitch": "F#3",
+          "letRing": true
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 85,
+          "staff": 1,
+          "pitch": "C#6"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 50,
+          "staff": 2,
+          "pitch": "D3"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 90,
+          "staff": 1,
+          "pitch": "F#6",
+          "voice": "upper-melody"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 2,
+          "duration": 0.5,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6",
+          "voice": "upper-melody"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 62,
+          "staff": 2,
+          "pitch": "D4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 78,
+          "staff": 1,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "midi": 86,
+          "staff": 1,
+          "pitch": "D6",
+          "voice": "upper-melody"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 19,
+      "vectorUniqueHeadCount": 19,
+      "sourceObservations": [
+        "Upper-staff 8va included in sounding MIDI through m6 and the first chord of m7 only. Lower-staff clef switches in m1/m2 are included; lower-staff notes have no ottava.",
+        "G#6 melody is a dotted quarter, followed by three ordinary eighths; 3/1 printed by the last note is fingering, not a tuplet."
+      ]
+    },
+    {
+      "measure": 7,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 79,
+          "staff": 1,
+          "pitch": "G5"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 83,
+          "staff": 1,
+          "pitch": "B5"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 88,
+          "staff": 1,
+          "pitch": "E6"
+        },
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 49,
+          "staff": 2,
+          "pitch": "C#3",
+          "letRing": true
+        },
+        {
+          "beat": 1,
+          "duration": 0.5,
+          "midi": 63,
+          "staff": 1,
+          "pitch": "D#4"
+        },
+        {
+          "beat": 1,
+          "duration": 1,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "midi": 64,
+          "staff": 1,
+          "pitch": "E4"
+        },
+        {
+          "beat": 2,
+          "duration": 0.25,
+          "midi": 66,
+          "staff": 1,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 2,
+          "duration": 1,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 2.25,
+          "duration": 0.25,
+          "midi": 67,
+          "staff": 1,
+          "pitch": "G4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "midi": 70,
+          "staff": 1,
+          "pitch": "A#4"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.25,
+          "midi": 75,
+          "staff": 1,
+          "pitch": "D#5"
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "midi": 71,
+          "staff": 1,
+          "pitch": "B4"
+        },
+        {
+          "beat": 2.75,
+          "duration": 0.25,
+          "midi": 76,
+          "staff": 1,
+          "pitch": "E5"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 14,
+      "vectorUniqueHeadCount": 14,
+      "sourceObservations": [
+        "Upper-staff 8va included in sounding MIDI through m6 and the first chord of m7 only. Lower-staff clef switches in m1/m2 are included; lower-staff notes have no ottava."
+      ]
+    },
+    {
+      "measure": 8,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "staff": 1,
+          "voice": "RH_lower",
+          "midi": 64,
+          "pitch": "E4",
+          "arpeggio": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "staff": 1,
+          "voice": "RH_lower",
+          "midi": 70,
+          "pitch": "A#4",
+          "arpeggio": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "staff": 1,
+          "voice": "RH_lower",
+          "midi": 74,
+          "pitch": "D5",
+          "arpeggio": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 2.0,
+          "beatFraction": "0",
+          "durationFraction": "2",
+          "staff": 1,
+          "voice": "RH_upper",
+          "midi": 79,
+          "pitch": "G5",
+          "arpeggio": true
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "staff": 2,
+          "voice": "LH",
+          "midi": 42,
+          "pitch": "F#2"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.3333333333333333,
+          "beatFraction": "1",
+          "durationFraction": "1/3",
+          "staff": 2,
+          "voice": "LH",
+          "midi": 52,
+          "pitch": "E3",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "type": "eighth"
+          }
+        },
+        {
+          "beat": 1.3333333333333333,
+          "duration": 0.3333333333333333,
+          "beatFraction": "4/3",
+          "durationFraction": "1/3",
+          "staff": 2,
+          "voice": "LH",
+          "midi": 58,
+          "pitch": "A#3",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "type": "eighth"
+          }
+        },
+        {
+          "beat": 1.6666666666666667,
+          "duration": 0.3333333333333333,
+          "beatFraction": "5/3",
+          "durationFraction": "1/3",
+          "staff": 2,
+          "voice": "LH",
+          "midi": 64,
+          "pitch": "E4",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "type": "eighth"
+          }
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "staff": 1,
+          "voice": "RH_lower",
+          "midi": 67,
+          "pitch": "G4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "staff": 1,
+          "voice": "RH_lower",
+          "midi": 70,
+          "pitch": "A#4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "staff": 1,
+          "voice": "RH_upper",
+          "midi": 74,
+          "pitch": "D5"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "staff": 1,
+          "voice": "RH_upper",
+          "midi": 78,
+          "pitch": "F#5"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "staff": 1,
+          "voice": "RH_upper",
+          "midi": 73,
+          "pitch": "C#5"
+        }
+      ],
+      "rests": [
+        {
+          "beat": 2.0,
+          "duration": 1.0,
+          "beatFraction": "2",
+          "durationFraction": "1",
+          "staff": 2,
+          "voice": "LH"
+        }
+      ],
+      "notesAboutUncertainty": [],
+      "sourceObservations": [
+        "Replace the entire pilot measure; its extra initial A4/C#5/E5 half chord is spurious. Clipping the 4-quarter overrun alone will not recover the missing music.",
+        "Opening notated arpeggio is E4 A#4 D5 G5, half notes at beat 0. G5 is shared by two notated voices and is encoded once to avoid a doubled MIDI attack. No performed roll delay is inferred.",
+        "At beat 2, D5/F#5 is an up-stem eighth chord, G4/A#4 is a separate down-stem quarter chord. C#5 follows at beat 2.5.",
+        "Lower-staff beat 1 is the printed eighth-triplet E3 A#3 E4."
+      ],
+      "manualSource": "User-provided score, PDF page 1, independent visual transcription",
+      "pitchedNoteCount": 13,
+      "complete": true,
+      "verified": true,
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 14,
+      "vectorUniqueHeadCount": 13
+    },
+    {
+      "measure": 9,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "staff": 1,
+          "voice": "RH",
+          "midi": 59,
+          "pitch": "B3"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "staff": 1,
+          "voice": "RH",
+          "midi": 62,
+          "pitch": "D4"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "staff": 1,
+          "voice": "RH",
+          "midi": 66,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "staff": 2,
+          "voice": "LH_cross_staff",
+          "midi": 47,
+          "pitch": "B2"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "staff": 2,
+          "voice": "LH_cross_staff",
+          "midi": 57,
+          "pitch": "A3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.3333333333333333,
+          "beatFraction": "1",
+          "durationFraction": "1/3",
+          "staff": 1,
+          "voice": "LH_cross_staff",
+          "midi": 80,
+          "pitch": "G#5",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "type": "eighth"
+          }
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "staff": 1,
+          "voice": "RH",
+          "midi": 81,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "staff": 1,
+          "voice": "RH",
+          "midi": 86,
+          "pitch": "D6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "staff": 1,
+          "voice": "RH",
+          "midi": 90,
+          "pitch": "F#6"
+        },
+        {
+          "beat": 1.0,
+          "duration": 1.0,
+          "beatFraction": "1",
+          "durationFraction": "1",
+          "staff": 1,
+          "voice": "RH",
+          "midi": 93,
+          "pitch": "A6"
+        },
+        {
+          "beat": 1.3333333333333333,
+          "duration": 0.3333333333333333,
+          "beatFraction": "4/3",
+          "durationFraction": "1/3",
+          "staff": 1,
+          "voice": "LH_cross_staff",
+          "midi": 78,
+          "pitch": "F#5",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "type": "eighth"
+          }
+        },
+        {
+          "beat": 1.6666666666666667,
+          "duration": 0.3333333333333333,
+          "beatFraction": "5/3",
+          "durationFraction": "1/3",
+          "staff": 1,
+          "voice": "LH_cross_staff",
+          "midi": 76,
+          "pitch": "E5",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "type": "eighth"
+          }
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.3333333333333333,
+          "beatFraction": "2",
+          "durationFraction": "1/3",
+          "staff": 1,
+          "voice": "LH_cross_staff",
+          "midi": 78,
+          "pitch": "F#5",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "type": "eighth"
+          }
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.3333333333333333,
+          "beatFraction": "2",
+          "durationFraction": "1/3",
+          "staff": 1,
+          "voice": "RH",
+          "midi": 80,
+          "pitch": "G#5",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "type": "eighth"
+          }
+        },
+        {
+          "beat": 2.3333333333333335,
+          "duration": 0.3333333333333333,
+          "beatFraction": "7/3",
+          "durationFraction": "1/3",
+          "staff": 1,
+          "voice": "LH_cross_staff",
+          "midi": 71,
+          "pitch": "B4",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "type": "eighth"
+          }
+        },
+        {
+          "beat": 2.3333333333333335,
+          "duration": 0.3333333333333333,
+          "beatFraction": "7/3",
+          "durationFraction": "1/3",
+          "staff": 1,
+          "voice": "RH",
+          "midi": 73,
+          "pitch": "C#5",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "type": "eighth"
+          }
+        },
+        {
+          "beat": 2.6666666666666665,
+          "duration": 0.3333333333333333,
+          "beatFraction": "8/3",
+          "durationFraction": "1/3",
+          "staff": 1,
+          "voice": "LH_cross_staff",
+          "midi": 69,
+          "pitch": "A4",
+          "tuplet": {
+            "actual": 3,
+            "normal": 2,
+            "type": "eighth"
+          }
+        }
+      ],
+      "rests": [
+        {
+          "beat": 2.6666666666666665,
+          "duration": 0.3333333333333333,
+          "beatFraction": "8/3",
+          "durationFraction": "1/3",
+          "staff": 1,
+          "voice": "RH"
+        }
+      ],
+      "notesAboutUncertainty": [],
+      "sourceObservations": [
+        "Pilot pitches and rhythmic events match visual transcription. The lower voice crosses to the upper staff for two eighth-triplet groups."
+      ],
+      "manualSource": "User-provided score, PDF page 1, independent visual transcription",
+      "pitchedNoteCount": 17,
+      "complete": true,
+      "verified": true,
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 17,
+      "vectorUniqueHeadCount": 17
+    },
+    {
+      "measure": 10,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "beatFraction": "0",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "lower_stem",
+          "midi": 64,
+          "pitch": "E4"
+        },
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "beatFraction": "0",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "upper_stem",
+          "midi": 66,
+          "pitch": "F#4"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "beatFraction": "1/2",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "lower_stem",
+          "midi": 62,
+          "pitch": "D4"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "beatFraction": "1",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "lower_stem",
+          "midi": 59,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "beatFraction": "1",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "upper_stem",
+          "midi": 61,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "lower_stem",
+          "midi": 57,
+          "pitch": "A3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "lower_stem",
+          "midi": 54,
+          "pitch": "F#3"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "upper_stem",
+          "midi": 56,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "lower_stem",
+          "midi": 52,
+          "pitch": "E3"
+        }
+      ],
+      "rests": [
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "beatFraction": "1/2",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "upper_stem"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "upper_stem"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "upper_stem"
+        }
+      ],
+      "notesAboutUncertainty": [],
+      "sourceObservations": [
+        "All notes/rests are ordinary eighths. The small 3 over 2 at the first and fifth columns are fingerings, not tuplets.",
+        "Both voices appear on staff 2 in bass clef; staff 1 has no attacks. Pilot omits upper-voice G#3 and distorts several durations."
+      ],
+      "manualSource": "User-provided score, PDF page 1, independent visual transcription",
+      "pitchedNoteCount": 9,
+      "complete": true,
+      "verified": true,
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 9,
+      "vectorUniqueHeadCount": 9
+    },
+    {
+      "measure": 11,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "staff": 1,
+          "voice": "run",
+          "midi": 56,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "staff": 1,
+          "voice": "run",
+          "midi": 60,
+          "pitch": "C4"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "staff": 1,
+          "voice": "run",
+          "midi": 65,
+          "pitch": "F4"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "staff": 2,
+          "voice": "LH_initial",
+          "midi": 40,
+          "pitch": "E2"
+        },
+        {
+          "beat": 0.0,
+          "duration": 1.0,
+          "beatFraction": "0",
+          "durationFraction": "1",
+          "staff": 2,
+          "voice": "LH_initial",
+          "midi": 50,
+          "pitch": "D3"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "beatFraction": "1",
+          "durationFraction": "1/2",
+          "staff": 1,
+          "voice": "run",
+          "midi": 103,
+          "pitch": "G7",
+          "writtenPitch": "G6",
+          "octaveShiftSemitones": 12
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "staff": 1,
+          "voice": "run",
+          "midi": 96,
+          "pitch": "C7",
+          "writtenPitch": "C6",
+          "octaveShiftSemitones": 12
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "staff": 1,
+          "voice": "run",
+          "midi": 91,
+          "pitch": "G6",
+          "writtenPitch": "G5",
+          "octaveShiftSemitones": 12
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "run",
+          "midi": 84,
+          "pitch": "C6"
+        }
+      ],
+      "rests": [],
+      "notesAboutUncertainty": [],
+      "sourceObservations": [
+        "The three upper-staff 8va notes at beats 1, 1.5, 2 are written G6 C6 G5 and sound G7 C7 G6. JSON midi values already include the octave raise; do not shift twice.",
+        "The lower staff changes to treble clef immediately before beat 2.5. Its final note is C6, incorrectly read by pilot as E4. This note has no 8va.",
+        "The source says dim. below the first descending note, not the f generated by pilot."
+      ],
+      "manualSource": "User-provided score, PDF page 1, independent visual transcription",
+      "pitchedNoteCount": 9,
+      "complete": true,
+      "verified": true,
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 9,
+      "vectorUniqueHeadCount": 9
+    },
+    {
+      "measure": 12,
+      "notes": [
+        {
+          "beat": 0.0,
+          "duration": 0.5,
+          "beatFraction": "0",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "run",
+          "midi": 79,
+          "pitch": "G5"
+        },
+        {
+          "beat": 0.5,
+          "duration": 0.5,
+          "beatFraction": "1/2",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "run",
+          "midi": 72,
+          "pitch": "C5"
+        },
+        {
+          "beat": 1.0,
+          "duration": 0.5,
+          "beatFraction": "1",
+          "durationFraction": "1/2",
+          "staff": 1,
+          "voice": "run",
+          "midi": 67,
+          "pitch": "G4"
+        },
+        {
+          "beat": 1.5,
+          "duration": 0.5,
+          "beatFraction": "3/2",
+          "durationFraction": "1/2",
+          "staff": 1,
+          "voice": "run",
+          "midi": 60,
+          "pitch": "C4"
+        },
+        {
+          "beat": 2.0,
+          "duration": 0.5,
+          "beatFraction": "2",
+          "durationFraction": "1/2",
+          "staff": 1,
+          "voice": "run",
+          "midi": 55,
+          "pitch": "G3"
+        },
+        {
+          "beat": 2.5,
+          "duration": 0.5,
+          "beatFraction": "5/2",
+          "durationFraction": "1/2",
+          "staff": 2,
+          "voice": "run",
+          "midi": 53,
+          "pitch": "F3"
+        }
+      ],
+      "rests": [],
+      "notesAboutUncertainty": [],
+      "sourceObservations": [
+        "The lower staff inherits treble clef from measure 11: first two notes are G5 C5, incorrectly read by pilot as B3 E3.",
+        "The lower staff returns to bass clef immediately before beat 2.5; final note is F3 natural."
+      ],
+      "manualSource": "User-provided score, PDF page 1, independent visual transcription",
+      "pitchedNoteCount": 6,
+      "complete": true,
+      "verified": true,
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 6,
+      "vectorUniqueHeadCount": 6
+    },
+    {
+      "measure": 13,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2"
+        },
+        {
+          "beat": 0,
+          "duration": 3,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3",
+          "voice": "upper-melody"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 6,
+      "vectorUniqueHeadCount": 6
+    },
+    {
+      "measure": 14,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 45,
+          "staff": 2,
+          "pitch": "A2"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 52,
+          "staff": 2,
+          "pitch": "E3"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 56,
+          "staff": 2,
+          "pitch": "G#3"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 59,
+          "staff": 2,
+          "pitch": "B3"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 5,
+      "vectorUniqueHeadCount": 5
+    },
+    {
+      "measure": 15,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 46,
+          "staff": 2,
+          "pitch": "A#2"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 60,
+          "staff": 2,
+          "pitch": "B#3"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 64,
+          "staff": 2,
+          "pitch": "E4"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 5,
+      "vectorUniqueHeadCount": 5
+    },
+    {
+      "measure": 16,
+      "complete": true,
+      "verified": true,
+      "notes": [
+        {
+          "beat": 0,
+          "duration": 1,
+          "midi": 46,
+          "staff": 2,
+          "pitch": "A#2"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 64,
+          "staff": 1,
+          "pitch": "E4"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 73,
+          "staff": 1,
+          "pitch": "C#5"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 77,
+          "staff": 1,
+          "pitch": "F5"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 81,
+          "staff": 1,
+          "pitch": "A5"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 55,
+          "staff": 2,
+          "pitch": "G3"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 60,
+          "staff": 2,
+          "pitch": "B#3"
+        },
+        {
+          "beat": 1,
+          "duration": 2,
+          "midi": 61,
+          "staff": 2,
+          "pitch": "C#4"
+        }
+      ],
+      "uncertainties": [],
+      "sourcePage": 1,
+      "vectorRawHeadCount": 8,
+      "vectorUniqueHeadCount": 8
+    }
+  ]
+}
