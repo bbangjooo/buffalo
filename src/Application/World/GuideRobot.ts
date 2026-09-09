@@ -12,7 +12,7 @@ export interface GuideMessage {
 }
 
 const HINTS: Record<RoomId, Omit<GuideMessage, 'visible'>> = {
-  developer: { text: '벽에 개발 방향과 학력·경력을 짧게 담아두었어요.', actionId: 'resume', actionLabel: 'Summary 보기' },
+  developer: { text: '화면을 드래그해 자유롭게 둘러보세요. 벽에는 개발 방향과 학력·경력을 담아두었어요.', actionId: 'resume', actionLabel: 'Summary 보기' },
   piano: { text: '건반을 눌러 연주해 보세요. 백건은 ASDFGHJK, 흑건은 WETYU예요.', actionId: 'pianoSeat', actionLabel: '의자에 앉기' },
   blog: { text: '모니터에 가까이 가면 블로그를 읽을 수 있어요. Esc로 돌아와요.', actionId: 'monitor', actionLabel: '모니터 보기' },
   ai: { text: '네 패드가 빛나는 순서를 기억해 보세요. 같은 순서로 누르면 다음 라운드!', actionId: 'game', actionLabel: '기억 게임 시작' },

@@ -32,7 +32,9 @@ export default class World {
   private readingOverlay: ReadingView | null = null;
   private seatedOverlay = false;
   private dragging = false;
+  private dragPointer: number | null = null;
   private lastDrag = new THREE.Vector2();
+  private readonly canvasListeners: Array<() => void> = [];
   private error: string | undefined;
   private readonly reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   private raycaster = new THREE.Raycaster();
@@ -174,10 +176,10 @@ export default class World {
     if (view === 'piano-seat' && this.activeRoom !== 'piano') return;
     const oldView = this.view;
     this.curtains?.cancelDrag();
+    this.cancelCameraDrag();
     this.setHover(null);
     const pianoContext = (oldView === 'piano' || oldView === 'piano-seat') && (view === 'piano' || view === 'piano-seat');
     if (!pianoContext) this.stopRoomActivity();
-    this.dragging = false;
     this.monitorScreen.setInteractive(false);
     this.resumeScreen.setInteractive(false);
     if (isReadingView(oldView)) this.pendingRestore = oldView;
@@ -289,44 +291,87 @@ export default class World {
 
   private bindCanvas() {
     const canvas = this.application.renderer.instance.domElement;
-    canvas.addEventListener('pointerdown', (event) => {
+    const listen = <E extends Event>(target: EventTarget, type: string, handler: (event: E) => void) => {
+      target.addEventListener(type, handler as EventListener);
+      this.canvasListeners.push(() => target.removeEventListener(type, handler as EventListener));
+    };
+    listen(canvas, 'pointerdown', (event: PointerEvent) => {
+      if (event.button !== 0 || event.isPrimary === false || this.dragPointer !== null || !this.canLookAround()) return;
+      this.dragPointer = event.pointerId;
       this.pointerDown.set(event.clientX, event.clientY);
       this.lastDrag.copy(this.pointerDown);
       this.dragging = false;
-      if (this.view === 'piano-seat') canvas.setPointerCapture(event.pointerId);
+      // Curtain capture listeners claim their gestures before this handler.
+      try { canvas.setPointerCapture(event.pointerId); } catch { /* Window listeners cover outside releases. */ }
     });
-    canvas.addEventListener('pointerup', (event) => {
+    listen(window, 'pointerup', (event: PointerEvent) => {
+      if (event.pointerId !== this.dragPointer) return;
       const dragged = this.dragging;
-      this.dragging = false;
-      if (canvas.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
-      if (event.button !== 0 || dragged || this.pointerDown.distanceTo(new THREE.Vector2(event.clientX, event.clientY)) > 8) return;
+      this.cancelCameraDrag();
+      if (event.button !== 0 || dragged || !this.canLookAround() || this.pointerDown.distanceTo(new THREE.Vector2(event.clientX, event.clientY)) > 8) return;
       const id = this.pick(event);
       if (id) this.interact(id);
     });
-    canvas.addEventListener('pointermove', (event) => {
-      if (this.view === 'piano-seat' && event.buttons && !this.application.camera.transitioning) {
+    listen(window, 'pointermove', (event: PointerEvent) => {
+      if (this.dragPointer !== null) {
+        if (event.pointerId !== this.dragPointer) return;
+        if (!this.canLookAround() || (event.pointerType === 'mouse' && !(event.buttons & 1))) {
+          this.cancelCameraDrag();
+          return;
+        }
         if (this.dragging || this.pointerDown.distanceTo(new THREE.Vector2(event.clientX, event.clientY)) > 8) {
+          if (!this.dragging) EventBus.dispatch('camera-drag-start', {});
           this.dragging = true;
-          this.application.camera.lookSeated(event.clientX - this.lastDrag.x, event.clientY - this.lastDrag.y);
+          const dx = event.clientX - this.lastDrag.x;
+          const dy = event.clientY - this.lastDrag.y;
+          if (this.view === 'piano-seat') this.application.camera.lookSeated(dx, dy);
+          else this.application.camera.lookRoom(dx, dy);
+          this.lastDrag.set(event.clientX, event.clientY);
+          this.setHover(null);
           canvas.style.cursor = 'grabbing';
         }
-        this.lastDrag.set(event.clientX, event.clientY);
         if (this.dragging) return;
       }
-      if (performance.now() - this.lastPick < 50 || event.pointerType === 'touch') return;
+      if (event.target !== canvas || event.isPrimary === false || performance.now() - this.lastPick < 50 || event.pointerType === 'touch') return;
       this.lastPick = performance.now();
       this.setHover(this.pick(event));
     });
-    canvas.addEventListener('pointerleave', () => this.setHover(null));
-    canvas.addEventListener('pointercancel', () => { this.dragging = false; this.setHover(null); });
-    canvas.addEventListener('webglcontextlost', (event) => {
+    listen(canvas, 'pointerleave', () => { if (!this.dragging && !this.curtains?.isDragging) this.setHover(null); });
+    const cancelPointer = (event: PointerEvent) => { if (event.pointerId === this.dragPointer) this.cancelCameraDrag(); };
+    listen(window, 'pointercancel', cancelPointer);
+    listen(canvas, 'lostpointercapture', cancelPointer);
+    listen(window, 'blur', () => this.cancelCameraDrag());
+    listen(window, 'resize', () => this.cancelCameraDrag());
+    listen(window, 'keydown', (event: KeyboardEvent) => { if (event.key === 'Escape') this.cancelCameraDrag(); });
+    listen(canvas, 'webglcontextlost', (event) => {
       event.preventDefault();
       this.error = '3D 화면이 잠시 멈췄어요. 새로고침하거나 블로그로 이동해 주세요.';
       this.curtains?.cancelDrag();
+      this.cancelCameraDrag();
       if (this.ready) this.stopActions();
       this.publish();
     });
-    canvas.addEventListener('webglcontextrestored', () => { this.error = undefined; this.application.renderer.instance.shadowMap.needsUpdate = true; this.publish(); });
+    listen(canvas, 'webglcontextrestored', () => { this.error = undefined; this.application.renderer.instance.shadowMap.needsUpdate = true; this.publish(); });
+  }
+
+  private canLookAround(): boolean {
+    return this.ready && !this.error && !isReadingView(this.view) && !this.application.camera.transitioning;
+  }
+
+  private cancelCameraDrag() {
+    const pointerId = this.dragPointer;
+    this.dragPointer = null;
+    this.dragging = false;
+    const canvas = this.application.renderer.instance.domElement;
+    try {
+      if (pointerId !== null && canvas.hasPointerCapture(pointerId)) canvas.releasePointerCapture(pointerId);
+    } catch { /* Capture may already have been released by the browser. */ }
+    if (!this.curtains?.isDragging) this.setHover(null);
+  }
+
+  disposeInput() {
+    this.cancelCameraDrag();
+    this.canvasListeners.splice(0).forEach((off) => off());
   }
 
   private pick(event: PointerEvent): ObjectId | null {
@@ -352,7 +397,7 @@ export default class World {
 
   private setHover(id: ObjectId | null) {
     const curtain = id === 'curtainLeft' || id === 'curtainRight';
-    this.application.renderer.instance.domElement.style.cursor = curtain || (!id && this.view === 'piano-seat') ? 'grab' : id ? 'pointer' : 'default';
+    this.application.renderer.instance.domElement.style.cursor = curtain || (!id && this.canLookAround()) ? 'grab' : id ? 'pointer' : 'default';
     if (this.hover === id) return;
     if (this.hover) this.markers.get(this.hover)?.classList.remove('is-hovered');
     this.hover = id;

@@ -65,6 +65,7 @@ export default class Application {
   destroy() {
     this.sizes.off("resize");
     this.time.off("tick");
+    this.world.disposeInput();
     this.world.monitorScreen?.dispose();
     this.world.resumeScreen?.dispose();
     this.world.guide?.dispose();

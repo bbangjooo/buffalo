@@ -39,9 +39,7 @@ export default class Camera extends EventEmitter {
   private readonly orthographic = new THREE.OrthographicCamera(-8, 8, 5, -5, 0.05, 1000);
   private readonly perspective = new THREE.PerspectiveCamera(35, 1, 0.02, 1000);
   private readonly up = new THREE.Vector3(0, 1, 0);
-  private readonly baseRotation = new THREE.Quaternion().setFromRotationMatrix(
-    new THREE.Matrix4().lookAt(new THREE.Vector3(1, 1.4, 1), new THREE.Vector3(), new THREE.Vector3(0, 1, 0))
-  );
+  private readonly defaultElevation = Math.atan2(1.4, Math.SQRT2);
   private readonly reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   private readonly readingTargets: Record<ReadingView, ReadingTarget> = {
     monitor: {
@@ -62,6 +60,7 @@ export default class Camera extends EventEmitter {
   private headYaw = 0;
   private headPitch = 0;
   private orbitAngle = ROOMS.developer.angle;
+  private orbitElevation = this.defaultElevation;
   private pose: CameraPose;
   private animation?: gsap.core.Timeline;
 
@@ -104,6 +103,21 @@ export default class Camera extends EventEmitter {
     this.applyPose();
   }
 
+  lookRoom(deltaXpx: number, deltaYpx: number) {
+    if (isFocusView(this.view) || this.transitioning) return;
+    if (!Number.isFinite(deltaXpx) || !Number.isFinite(deltaYpx)) return;
+    const angle = this.orbitAngle - deltaXpx * 0.003;
+    // Wrap the stored angle while allowing repeated turns in either direction.
+    this.orbitAngle = Math.atan2(Math.sin(angle), Math.cos(angle));
+    this.orbitElevation = THREE.MathUtils.clamp(
+      this.orbitElevation + deltaYpx * 0.003,
+      THREE.MathUtils.degToRad(15),
+      THREE.MathUtils.degToRad(80),
+    );
+    this.pose = this.roomPose(this.orbitAngle, this.orbitElevation);
+    this.applyPose();
+  }
+
   navigate(view: RoomView, instant = false) {
     if (this.view === view && !instant) return;
     this.animation?.kill();
@@ -117,6 +131,7 @@ export default class Camera extends EventEmitter {
 
     if (!this.transitioning) {
       this.orbitAngle = ROOMS[ownerRoom].angle;
+      this.orbitElevation = this.defaultElevation;
       this.activeFocus = isFocusView(view) ? view : null;
       this.pose = isFocusView(view) ? this.focusPose(view) : this.roomPose(this.orbitAngle);
       this.instance = isFocusView(view) ? this.perspective : this.orthographic;
@@ -163,9 +178,11 @@ export default class Camera extends EventEmitter {
 
   private appendOrbit(timeline: gsap.core.Timeline, from: number, to: number) {
     const distance = Math.abs(to - from);
-    if (distance < 0.00001) {
+    const elevationDistance = Math.abs(this.defaultElevation - this.orbitElevation);
+    if (distance < 0.00001 && elevationDistance < 0.00001) {
       timeline.call(() => {
         this.orbitAngle = to;
+        this.orbitElevation = this.defaultElevation;
         this.pose = this.roomPose(to);
         this.instance = this.orthographic;
         this.applyPose();
@@ -173,15 +190,18 @@ export default class Camera extends EventEmitter {
       return;
     }
     const progress = { value: 0 };
+    let fromElevation = this.orbitElevation;
     timeline.to(progress, {
       value: 1,
-      duration: 0.8 + distance / Math.PI * 0.5,
+      duration: 0.8 + Math.max(distance, elevationDistance) / Math.PI * 0.5,
       ease: "power2.inOut",
+      onStart: () => { fromElevation = this.orbitElevation; },
       onUpdate: () => {
         this.orbitAngle = THREE.MathUtils.lerp(from, to, progress.value);
+        this.orbitElevation = THREE.MathUtils.lerp(fromElevation, this.defaultElevation, progress.value);
         // Derive both target and rotation from the same angle: no straight chord
         // through the central walls, including after interrupted navigation.
-        this.pose = this.roomPose(this.orbitAngle);
+        this.pose = this.roomPose(this.orbitAngle, this.orbitElevation);
         this.instance = this.orthographic;
         this.applyPose();
       },
@@ -223,6 +243,7 @@ export default class Camera extends EventEmitter {
       onComplete: () => {
         if (returning) {
           this.orbitAngle = roomAngle;
+          this.orbitElevation = this.defaultElevation;
           this.pose = this.roomPose(roomAngle);
           this.instance = this.orthographic;
           this.activeFocus = null;
@@ -235,7 +256,7 @@ export default class Camera extends EventEmitter {
     });
   }
 
-  private roomPose(angle: number): CameraPose {
+  private roomPose(angle: number, elevation = this.defaultElevation): CameraPose {
     const width = Math.max(this.sizes.width, 1);
     const height = Math.max(this.sizes.height, 1);
     const aspect = width / height;
@@ -249,10 +270,16 @@ export default class Camera extends EventEmitter {
     // The entire 11.2m house remains present. Fit its diagonal floor silhouette
     // and central cross walls, including trim, rather than an isolated quadrant.
     const buildingWidth = ROOM_SIZE * 2 * Math.SQRT2 + 0.6;
-    const buildingHeight = 11.8;
+    // A steeper view exposes more of the floor's diagonal; keep its far edge
+    // inside the same UI-safe area without changing the default room framing.
+    const buildingHeight = Math.max(11.8, buildingWidth * Math.sin(elevation) + 0.2);
     const span = Math.max(13, buildingWidth * height / safeWidth, buildingHeight * height / safeHeight);
     const yaw = new THREE.Quaternion().setFromAxisAngle(this.up, angle);
-    const rotation = yaw.clone().multiply(this.baseRotation);
+    const horizontal = Math.cos(elevation) / Math.SQRT2;
+    const rotation = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().lookAt(
+      new THREE.Vector3(horizontal, Math.sin(elevation), horizontal), new THREE.Vector3(), this.up,
+    ));
+    rotation.premultiply(yaw);
     const target = new THREE.Vector3(0.6, 0.8, 0.6).applyQuaternion(yaw);
     const screenUp = new THREE.Vector3(0, 1, 0).applyQuaternion(rotation);
     const screenRight = new THREE.Vector3(1, 0, 0).applyQuaternion(rotation);
@@ -340,11 +367,16 @@ export default class Camera extends EventEmitter {
   }
 
   resize() {
+    if (!this.transitioning && !isFocusView(this.view)) {
+      this.pose = this.roomPose(this.orbitAngle, this.orbitElevation);
+      this.applyPose();
+      return;
+    }
     // A resize settles the requested destination, never an obsolete transition.
     this.navigate(this.view, true);
   }
 
   update() {
-    // GSAP owns motion; the resting camera is fixed.
+    // GSAP owns transitions; pointer input updates the settled camera directly.
   }
 }

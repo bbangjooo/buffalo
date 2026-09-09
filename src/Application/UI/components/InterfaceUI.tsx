@@ -181,12 +181,14 @@ const InterfaceUI: React.FC = () => {
       }
     };
     const offCurtainDrag = EventBus.on("curtain-drag-start", () => setKeyboardOpen(false));
+    const offCameraDrag = EventBus.on("camera-drag-start", () => setKeyboardOpen(false));
     document.addEventListener("pointerdown", dismiss);
     document.addEventListener("keydown", onEscape);
     return () => {
       document.removeEventListener("pointerdown", dismiss);
       document.removeEventListener("keydown", onEscape);
       offCurtainDrag();
+      offCameraDrag();
     };
   }, [keyboardOpen, inSeat]);
 
