@@ -2,7 +2,7 @@
 
 This project is listed on the [portfolio-ideas](https://github.com/Evavic44/portfolio-ideas) repository.
 
-![A look inside the four rooms](docs/media/room-preview.png)
+![Exploring the rooms and meadows](docs/media/demo.gif)
 
 ## Description
 
@@ -13,12 +13,6 @@ Sit at the piano, read a few stories, try the four-key rhythm game, or step outs
 Visit [my rooms](https://bbangjo.kr), or head straight to [my blog](https://blog.bbangjo.kr). Thanks for stopping by!
 
 Inspired by [Henry Heffernan](https://henryheffernan.com) and [Bruno Simon](https://github.com/brunosimon).
-
-## Demo
-
-![Exploring the rooms and meadows](docs/media/demo.gif)
-
-[Blender modeling preview](docs/media/modeling.mp4) — a reconstructed scene presentation, not recorded editing footage.
 
 **Game music:** [Lasso Lady](https://opengameart.org/content/lasso-lady-seamless-loop) by congusbongus (CC0).
 
