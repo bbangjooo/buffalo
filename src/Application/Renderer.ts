@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer";
 import Application from "./Application";
-import Camera from "./Camera/Camera";
+import Camera, { isReadingView } from "./Camera/Camera";
 import Sizes from "./Utils/Sizes";
 
 export default class Renderer {
@@ -32,7 +32,7 @@ export default class Renderer {
     Object.assign(this.instance.domElement.style, {
       position: "absolute", inset: "0", zIndex: "1", pointerEvents: "auto",
     });
-    this.instance.domElement.setAttribute("aria-label", "인터랙티브 3D 방");
+    this.instance.domElement.setAttribute("aria-label", "Interactive 3D rooms");
     document.querySelector("#webgl")?.appendChild(this.instance.domElement);
 
     this.cssInstance = new CSS3DRenderer();
@@ -55,7 +55,7 @@ export default class Renderer {
   }
 
   update() {
-    this.instance.domElement.style.pointerEvents = (this.camera.view === "monitor" || this.camera.view === "resume") && !this.camera.transitioning ? "none" : "auto";
+    this.instance.domElement.style.pointerEvents = (isReadingView(this.camera.view) || this.camera.view === "exhibit") && !this.camera.transitioning ? "none" : "auto";
     this.instance.render(this.application.scene, this.camera.instance);
     this.cssInstance.render(this.application.cssScene, this.cssCamera());
   }

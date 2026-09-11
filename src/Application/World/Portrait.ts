@@ -18,7 +18,7 @@ export default class Portrait {
     this.container.className = 'portrait-surface';
     this.image = document.createElement('img');
     this.image.className = 'portrait-photo';
-    this.image.alt = '조병근 프로필 사진';
+    this.image.alt = 'Portrait of Byeong-geun Jo';
     this.image.width = 900;
     this.image.height = 600;
     this.image.decoding = 'async';

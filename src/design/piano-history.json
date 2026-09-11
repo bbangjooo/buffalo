@@ -1,0 +1,77 @@
+[
+  {
+    "id": "en-avril",
+    "date": "",
+    "title": "En avril, à Paris",
+    "text": "My all-time favorite.",
+    "paragraphs": [
+      "My all-time favorite."
+    ],
+    "composer": "Charles Trenet · Walter Eiger / arranged by Alexis Weissenberg",
+    "performer": "Marc-André Hamelin",
+    "youtubeId": "7k2vQgC_hbc",
+    "youtubeUrl": "https://www.youtube.com/watch?v=7k2vQgC_hbc",
+    "videoTitle": "Hamelin plays Weissenberg - En Avril, à Paris",
+    "objectKind": "piano"
+  },
+  {
+    "id": "pathetique",
+    "date": "",
+    "title": "Pathétique Sonata — II. Adagio cantabile",
+    "text": "The first piece I learned to play, and the one that sparked my love of classical music.",
+    "paragraphs": [
+      "The first piece I learned to play, and the one that sparked my love of classical music."
+    ],
+    "composer": "Ludwig van Beethoven",
+    "performer": "Daniel Barenboim",
+    "youtubeId": "xBZdFMLZlPU",
+    "youtubeUrl": "https://www.youtube.com/watch?v=xBZdFMLZlPU",
+    "videoTitle": "Beethoven: Piano Sonata No. 8 in C Minor, Op. 13 \"Pathétique\": II. Adagio cantabile",
+    "objectKind": "piano"
+  },
+  {
+    "id": "last-rag",
+    "date": "",
+    "title": "Last Rag",
+    "text": "The piece that got me through some of my most stressful days.",
+    "paragraphs": [
+      "The piece that got me through some of my most stressful days."
+    ],
+    "composer": "William Bolcom",
+    "performer": "Akira Eguchi",
+    "youtubeId": "u_ccRDlyO9U",
+    "youtubeUrl": "https://www.youtube.com/watch?v=u_ccRDlyO9U",
+    "videoTitle": "Last Rag",
+    "objectKind": "piano"
+  },
+  {
+    "id": "graceful-ghost",
+    "date": "",
+    "title": "Graceful Ghost Rag",
+    "text": "One of my all-time favorites.",
+    "paragraphs": [
+      "One of my all-time favorites."
+    ],
+    "composer": "William Bolcom",
+    "performer": "Yeol Eum Son",
+    "youtubeId": "hwrImDWsqgQ",
+    "youtubeUrl": "https://www.youtube.com/watch?v=hwrImDWsqgQ",
+    "videoTitle": "[4K] W. Bolcom - Graceful Ghost Rag :: Pf. Yeol Eum Son",
+    "objectKind": "piano"
+  },
+  {
+    "id": "traumerei",
+    "date": "",
+    "title": "Träumerei",
+    "text": "The piece I get most absorbed in.",
+    "paragraphs": [
+      "The piece I get most absorbed in."
+    ],
+    "composer": "Robert Schumann",
+    "performer": "Yeol Eum Son",
+    "youtubeId": "rImVFozA0NI",
+    "youtubeUrl": "https://www.youtube.com/watch?v=rImVFozA0NI",
+    "videoTitle": "Yeol Eum Son — Schumann: Träumerei",
+    "objectKind": "piano"
+  }
+]

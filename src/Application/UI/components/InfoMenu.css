@@ -1,0 +1,7 @@
+.info-menu { position: relative; flex: 0 0 auto; pointer-events: auto; }
+.info-menu-trigger { color: var(--color-text-muted); }
+.info-menu-trigger[aria-expanded="true"] { color: var(--color-text); background: var(--color-surface-hover); }
+.info-menu-panel { position: absolute; top: calc(100% + 6px); right: 0; z-index: var(--z-popover); min-width: 150px; padding: 5px; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-control); color: var(--color-text); background: var(--color-surface); box-shadow: 0 5px 18px var(--color-shadow-soft); }
+.info-menu-panel > a { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 44px; padding: 9px 12px; border-radius: var(--radius-small); font-size: 13px; }
+.info-menu-panel > a:hover, .info-menu-panel > a:focus-visible { background: var(--color-surface-hover); }
+.room-interface--seated .info-menu-trigger { background: var(--color-surface-translucent); border: 1px solid var(--color-border-subtle); }

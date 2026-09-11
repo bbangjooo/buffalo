@@ -1,0 +1,265 @@
+{
+  "groundY": -0.16,
+  "houseHalfSize": 5.6,
+  "reader": {
+    "width": 2.6,
+    "height": 1.7,
+    "y": 2.1
+  },
+  "entrance": [
+    7,
+    7
+  ],
+  "quadrants": [
+    {
+      "room": "developer",
+      "name": "Coffee",
+      "label": "Coffee",
+      "angle": 0,
+      "color": "teal",
+      "spawn": [
+        7,
+        7
+      ],
+      "heading": 0.7853981633974483
+    },
+    {
+      "room": "piano",
+      "name": "Piano pieces",
+      "label": "Piano",
+      "angle": 1.5707963267948966,
+      "color": "brass",
+      "spawn": [
+        7,
+        -7
+      ]
+    },
+    {
+      "room": "blog",
+      "name": "Blog",
+      "label": "Blog",
+      "angle": 3.141592653589793,
+      "color": "slate",
+      "spawn": [
+        -7,
+        -7
+      ]
+    },
+    {
+      "room": "ai",
+      "name": "Guestbook",
+      "label": "Play",
+      "angle": 4.71238898038469,
+      "color": "sage",
+      "spawn": [
+        -7,
+        7
+      ]
+    }
+  ],
+  "stations": [
+    {
+      "id": "coffee--support",
+      "exhibitionId": "coffee",
+      "entryIndex": 0,
+      "room": "developer",
+      "x": 11,
+      "z": 11,
+      "yaw": -2.3562,
+      "color": "teal",
+      "label": "Coffee",
+      "shape": "coffee",
+      "order": 1
+    },
+    {
+      "id": "piano--en-avril",
+      "exhibitionId": "piano",
+      "entryIndex": 0,
+      "room": "piano",
+      "x": 11,
+      "z": -10,
+      "yaw": -0.9273,
+      "color": "brass",
+      "label": "Piano",
+      "shape": "piano",
+      "order": 1
+    },
+    {
+      "id": "piano--pathetique",
+      "exhibitionId": "piano",
+      "entryIndex": 1,
+      "room": "piano",
+      "x": 17.2,
+      "z": -14.8,
+      "yaw": -0.912,
+      "color": "brass",
+      "label": "Piano",
+      "shape": "piano",
+      "order": 2
+    },
+    {
+      "id": "piano--last-rag",
+      "exhibitionId": "piano",
+      "entryIndex": 2,
+      "room": "piano",
+      "x": 23.8,
+      "z": -9.2,
+      "yaw": -2.2744,
+      "color": "brass",
+      "label": "Piano",
+      "shape": "piano",
+      "order": 3
+    },
+    {
+      "id": "piano--graceful-ghost",
+      "exhibitionId": "piano",
+      "entryIndex": 3,
+      "room": "piano",
+      "x": 28.4,
+      "z": -18.2,
+      "yaw": -0.4725,
+      "color": "brass",
+      "label": "Piano",
+      "shape": "piano",
+      "order": 4
+    },
+    {
+      "id": "piano--traumerei",
+      "exhibitionId": "piano",
+      "entryIndex": 4,
+      "room": "piano",
+      "x": 23.9,
+      "z": -25.6,
+      "yaw": 0.5464,
+      "color": "brass",
+      "label": "Piano",
+      "shape": "piano",
+      "order": 5
+    },
+    {
+      "id": "writing--exchange-student-1",
+      "exhibitionId": "writing",
+      "entryIndex": 0,
+      "room": "blog",
+      "x": -9.5,
+      "z": -11,
+      "yaw": 0.5586,
+      "color": "slate",
+      "label": "Blog",
+      "shape": "book",
+      "order": 1,
+      "year": "2023"
+    },
+    {
+      "id": "writing--exchange-student-2",
+      "exhibitionId": "writing",
+      "entryIndex": 1,
+      "room": "blog",
+      "x": -15,
+      "z": -16,
+      "yaw": 0.833,
+      "color": "slate",
+      "label": "Blog",
+      "shape": "book",
+      "order": 2,
+      "year": "2023"
+    },
+    {
+      "id": "writing--exchange-student-3",
+      "exhibitionId": "writing",
+      "entryIndex": 2,
+      "room": "blog",
+      "x": -8.5,
+      "z": -21,
+      "yaw": -0.9151,
+      "color": "slate",
+      "label": "Blog",
+      "shape": "book",
+      "order": 3,
+      "year": "2023"
+    },
+    {
+      "id": "writing--2025-1",
+      "exhibitionId": "writing",
+      "entryIndex": 3,
+      "room": "blog",
+      "x": -23.5,
+      "z": -10.5,
+      "yaw": 2.1815,
+      "color": "slate",
+      "label": "Blog",
+      "shape": "book",
+      "order": 4,
+      "year": "2025"
+    },
+    {
+      "id": "writing--2025-2",
+      "exhibitionId": "writing",
+      "entryIndex": 4,
+      "room": "blog",
+      "x": -29.2,
+      "z": -18,
+      "yaw": 0.6499,
+      "color": "slate",
+      "label": "Blog",
+      "shape": "book",
+      "order": 5,
+      "year": "2025"
+    },
+    {
+      "id": "writing--2025-3",
+      "exhibitionId": "writing",
+      "entryIndex": 5,
+      "room": "blog",
+      "x": -23.5,
+      "z": -25.5,
+      "yaw": -0.6499,
+      "color": "slate",
+      "label": "Blog",
+      "shape": "book",
+      "order": 6,
+      "year": "2025"
+    },
+    {
+      "id": "guestbook--visitors",
+      "exhibitionId": "guestbook",
+      "entryIndex": 0,
+      "room": "ai",
+      "x": -12.5,
+      "z": 10.5,
+      "yaw": 2.1375,
+      "color": "sage",
+      "label": "Guestbook",
+      "shape": "guestbook",
+      "order": 1
+    }
+  ],
+  "yearMarkers": [
+    {
+      "year": "2023",
+      "room": "blog",
+      "x": -7,
+      "z": -10,
+      "yaw": 3.927
+    },
+    {
+      "year": "2025",
+      "room": "blog",
+      "x": -21,
+      "z": -9,
+      "yaw": 3.927
+    }
+  ],
+  "obstacles": [
+    {
+      "x": -7,
+      "z": -10,
+      "radius": 0.6
+    },
+    {
+      "x": -21,
+      "z": -9,
+      "radius": 0.6
+    }
+  ]
+}

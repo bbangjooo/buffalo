@@ -29,6 +29,8 @@ dist-ssr
 /assets/archive/
 /assets/*.png
 /assets/*.webm
+/assets/blender-evolution-*.mp4
+/assets/blender-evolution-*.json
 /assets/low-poly-review.html
 /assets/four-rooms-curtain-validation.json
 /assets/four-rooms-focus-statistics.json
@@ -52,3 +54,6 @@ __pycache__/
 /assets/music-transcription/measure-8-12-corrections.json
 /scripts/music/write_page_one_corrections.py
 .env*
+
+# Locally persisted visitor guestbook (never ship personal entries in the bundle)
+/.local-data/

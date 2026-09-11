@@ -51,7 +51,7 @@ export default class MonitorScreen {
     this.iframe = document.createElement("iframe");
     this.iframe.src = config.src ?? "https://blog.bbangjo.kr";
     this.iframe.id = config.id ?? "monitorScreen";
-    this.iframe.title = config.title ?? (config.id === "resumeScreen" ? "조병근 이력서" : "bbangjo 블로그");
+    this.iframe.title = config.title ?? (config.id === "resumeScreen" ? "Byeong-geun Jo — Summary" : "bbangjo — Blog");
     this.iframe.tabIndex = -1;
     this.iframe.setAttribute("aria-hidden", "true");
     Object.assign(this.iframe.style, {

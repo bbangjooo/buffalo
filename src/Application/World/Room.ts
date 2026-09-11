@@ -10,6 +10,7 @@ const TARGETS: Record<string, { name: string; anchor: string }> = {
   monitor: { name: 'Monitor', anchor: 'MonitorAnchor' },
   blogLamp: { name: 'BlogLamp', anchor: 'BlogLampAnchor' },
   game: { name: 'GameConsole', anchor: 'GameAnchor' },
+  leaderboard: { name: 'LeaderboardBoard', anchor: 'LeaderboardAnchor' },
 };
 type Rest = { position: THREE.Vector3; quaternion: THREE.Quaternion };
 
@@ -94,6 +95,7 @@ export default class Room extends BaseObject {
 
   get monitorAnchor() { return this.requireObject('MonitorScreenAnchor'); }
   get resumeAnchor() { return this.requireObject('ResumeScreenAnchor'); }
+  get leaderboardAnchor() { return this.requireObject('LeaderboardScreenAnchor'); }
   get pianoEyeAnchor() { return this.requireObject('PianoEyeAnchor'); }
   get pianoLookAnchor() { return this.requireObject('PianoLookAnchor'); }
   get robot() { return this.requireObject('Robot'); }

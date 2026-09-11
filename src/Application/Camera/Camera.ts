@@ -6,11 +6,12 @@ import Sizes from "../Utils/Sizes";
 import { ROOMS, ROOM_SIZE, RoomId, RoomView } from "../../design/rooms";
 
 export type { RoomId, RoomView } from "../../design/rooms";
-export type ReadingView = "monitor" | "resume";
-export const isReadingView = (view: unknown): view is ReadingView => view === "monitor" || view === "resume";
+export type ReadingView = "monitor" | "resume" | "leaderboard";
+export const isReadingView = (view: unknown): view is ReadingView => view === "monitor" || view === "resume" || view === "leaderboard";
 export const isSeatedView = (view: unknown): view is "piano-seat" => view === "piano-seat";
-type FocusView = ReadingView | "piano-seat";
-const isFocusView = (view: unknown): view is FocusView => isReadingView(view) || isSeatedView(view);
+type FocusView = ReadingView | "piano-seat" | "rhythm";
+const isFocusView = (view: unknown): view is FocusView => isReadingView(view) || isSeatedView(view) || view === 'rhythm';
+type RhythmViewport = { left: number; top: number; width: number; height: number };
 
 type ReadingTarget = {
   anchor?: THREE.Object3D;
@@ -51,10 +52,17 @@ export default class Camera extends EventEmitter {
       position: new THREE.Vector3(3, 2, 0.22), rotation: new THREE.Quaternion(),
       width: 2.3, height: 2.78, ownerRoom: "developer",
     },
+    leaderboard: {
+      position: new THREE.Vector3(-.22, 2, 3),
+      rotation: new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI * 1.5),
+      width: 2.3, height: 2.78, ownerRoom: "ai",
+    },
   };
   private activeFocus: FocusView | null = null;
   private pianoEyeAnchor?: THREE.Object3D;
   private pianoLookAnchor?: THREE.Object3D;
+  private rhythmAnchor?: THREE.Object3D;
+  private rhythmViewport?: RhythmViewport;
   private readonly pianoEye = new THREE.Vector3(2.98, 1.78, -2.8);
   private readonly pianoLook = new THREE.Vector3(1.72, 1.22, -2.8);
   private headYaw = 0;
@@ -63,6 +71,11 @@ export default class Camera extends EventEmitter {
   private orbitElevation = this.defaultElevation;
   private pose: CameraPose;
   private animation?: gsap.core.Timeline;
+  private projectionBridge = false;
+  private readonly courtyardTarget = new THREE.Vector3(7, 0, 7);
+  private courtyardHeading = Math.PI / 4;
+  private courtyardPitch = 0;
+  private exhibitTarget?: { anchor: THREE.Object3D; width: number; height: number };
 
   constructor() {
     super();
@@ -88,10 +101,32 @@ export default class Camera extends EventEmitter {
     this.setReadingTarget("resume", anchor, width, height, "developer");
   }
 
+  setLeaderboard(anchor: THREE.Object3D, width = 2.3, height = 2.78) {
+    this.setReadingTarget("leaderboard", anchor, width, height, "ai");
+  }
+
   setPianoSeat(eyeAnchor: THREE.Object3D, lookAnchor: THREE.Object3D) {
     this.pianoEyeAnchor = eyeAnchor;
     this.pianoLookAnchor = lookAnchor;
     if (isSeatedView(this.view)) this.navigate(this.view, true);
+  }
+
+  setRhythmTarget(anchor: THREE.Object3D) {
+    this.rhythmAnchor = anchor;
+    if (this.view === 'rhythm') {
+      this.pose = this.rhythmPose();
+      this.applyPose();
+    }
+  }
+
+  setRhythmViewport(viewport: RhythmViewport) {
+    if (!viewport || ![viewport.left, viewport.top, viewport.width, viewport.height].every(Number.isFinite)
+      || viewport.width <= 0 || viewport.height <= 0) return;
+    this.rhythmViewport = { ...viewport };
+    if (this.view === 'rhythm') {
+      this.pose = this.rhythmPose();
+      this.applyPose();
+    }
   }
 
   lookSeated(deltaXpx: number, deltaYpx: number) {
@@ -104,7 +139,7 @@ export default class Camera extends EventEmitter {
   }
 
   lookRoom(deltaXpx: number, deltaYpx: number) {
-    if (isFocusView(this.view) || this.transitioning) return;
+    if (this.view === 'courtyard' || this.view === 'exhibit' || isFocusView(this.view) || this.transitioning) return;
     if (!Number.isFinite(deltaXpx) || !Number.isFinite(deltaYpx)) return;
     const angle = this.orbitAngle - deltaXpx * 0.003;
     // Wrap the stored angle while allowing repeated turns in either direction.
@@ -119,15 +154,61 @@ export default class Camera extends EventEmitter {
   }
 
   navigate(view: RoomView, instant = false) {
-    if (this.view === view && !instant) return;
+    if (this.view === view && !instant && view !== 'exhibit') return;
     this.animation?.kill();
     this.animation = undefined;
+    const sourceProjectionBridge = this.projectionBridge;
+    this.projectionBridge = false;
     const sourceFocus = this.activeFocus;
-    const ownerRoom = isFocusView(view) ? this.focusOwner(view) : view;
+    const sourceView = this.view;
+    const ownerRoom = isFocusView(view) ? this.focusOwner(view) : (view === 'courtyard' || view === 'exhibit') ? 'developer' : view;
     if (view !== this.view) { this.headYaw = 0; this.headPitch = 0; }
     this.view = view;
     this.transitioning = !instant && !this.reducedMotion.matches;
     this.trigger("viewchange", [view]);
+
+    if (view === 'courtyard' || sourceView === 'courtyard' || view === 'exhibit' || sourceView === 'exhibit') {
+      this.activeFocus = isFocusView(view) ? view : null;
+      this.orbitAngle = ROOMS[ownerRoom].angle;
+      this.orbitElevation = this.defaultElevation;
+      const from = this.clonePose(this.pose);
+      const destination = view === 'exhibit' ? this.exhibitPose()
+        : view === 'courtyard' ? this.courtyardPose()
+          : isFocusView(view) ? this.focusPose(view) : this.roomPose(this.orbitAngle);
+      const to = this.clonePose(destination);
+      const destinationPerspective = view === 'courtyard' || view === 'exhibit' || isFocusView(view);
+      const bridge = sourceProjectionBridge || this.instance === this.orthographic || !destinationPerspective;
+      this.projectionBridge = bridge;
+      if (this.instance === this.orthographic) from.distance = 500;
+      if (!destinationPerspective) to.distance = 500;
+      this.instance = this.perspective;
+      const finish = () => {
+        this.pose = destination;
+        this.instance = destinationPerspective ? this.perspective : this.orthographic;
+        this.transitioning = false;
+        this.projectionBridge = false;
+        this.animation = undefined;
+        this.applyPose();
+        if (isReadingView(sourceFocus) && sourceFocus !== view) this.emitReadingReturnSafe(sourceFocus);
+        this.trigger('settled', [view]);
+      };
+      if (!this.transitioning) finish();
+      else {
+        this.pose = this.clonePose(from);
+        this.applyPose();
+        const progress = { value: 0 };
+        this.animation = gsap.timeline({ onComplete: finish }).to(progress, {
+          value: 1, duration: bridge ? 1 : 0.7, ease: 'power2.inOut', onUpdate: () => {
+            this.pose.target.lerpVectors(from.target, to.target, progress.value);
+            this.pose.rotation.slerpQuaternions(from.rotation, to.rotation, progress.value);
+            this.pose.span = THREE.MathUtils.lerp(from.span, to.span, progress.value);
+            this.pose.distance = THREE.MathUtils.lerp(from.distance, to.distance, progress.value);
+            this.applyPose();
+          },
+        });
+      }
+      return;
+    }
 
     if (!this.transitioning) {
       this.orbitAngle = ROOMS[ownerRoom].angle;
@@ -263,9 +344,9 @@ export default class Camera extends EventEmitter {
     const sidebar = width >= 1000;
     const leftInset = sidebar ? 280 : 12;
     const rightInset = sidebar ? 24 : 12;
-    const topInset = sidebar ? 88 : 170;
-    const bottomInset = sidebar ? 110 : 140;
-    const safeHeight = Math.max(height - topInset - bottomInset, height * 0.35);
+    const topInset = sidebar ? 88 : 185;
+    const bottomInset = sidebar ? 110 : this.view === 'piano' ? 230 : this.view === 'ai' ? 210 : 130;
+    const safeHeight = Math.max(height - topInset - bottomInset, sidebar ? height * 0.35 : 90);
     const safeWidth = Math.max(width - leftInset - rightInset, width * 0.5);
     // The entire 11.2m house remains present. Fit its diagonal floor silhouette
     // and central cross walls, including trim, rather than an isolated quadrant.
@@ -288,6 +369,78 @@ export default class Camera extends EventEmitter {
     return { target, rotation, distance: 24, span };
   }
 
+  setExhibit(anchor: THREE.Object3D, width: number, height: number) {
+    this.exhibitTarget = { anchor, width, height };
+  }
+
+  private exhibitPose(): CameraPose {
+    if (!this.exhibitTarget) return this.courtyardPose();
+    const { anchor, width, height } = this.exhibitTarget;
+    anchor.updateWorldMatrix(true, false);
+    const target = anchor.getWorldPosition(new THREE.Vector3());
+    const rotation = anchor.getWorldQuaternion(new THREE.Quaternion());
+    const screenWidth = Math.max(this.sizes.width, 1), screenHeight = Math.max(this.sizes.height, 1);
+    const span = Math.max(height * screenHeight / Math.max((screenHeight - 110) * .88, 90), width / (screenWidth / screenHeight * (screenWidth < 700 ? .92 : .82)));
+    // The reader must stay inside its approach space. Moving farther away to fit
+    // a narrow viewport can put the camera behind the opposite gallery row.
+    // Fit via field of view instead; the planar reading surface remains centered.
+    const distance = Math.min(2.5, span / (2 * Math.tan(THREE.MathUtils.degToRad(35) / 2)));
+    return { target, rotation, span, distance };
+  }
+
+  followCourtyard(x: number, z: number, _instant = false, height = 0) {
+    if (![x, z, height].every(Number.isFinite)) return;
+    this.courtyardTarget.set(x, Math.max(0, height), z);
+    if (this.view !== 'courtyard' || this.transitioning) return;
+    // The camera is the visitor's eye: delayed following would make its
+    // collision position disagree with the walker and add first-person sway.
+    this.pose = this.courtyardPose();
+    this.applyPose();
+  }
+
+  /** World heading: 0 faces +Z, PI/2 faces +X. Preserved while reading a display. */
+  getCourtyardYaw(): number { return this.courtyardHeading; }
+
+  /** The distant perspective lens only matches the room's orthographic framing.
+   * Atmospheric depth must not mistake this virtual offset for 500m of air.
+   */
+  getAtmosphereDistanceOffset(): number {
+    return this.transitioning && this.projectionBridge ? Math.max(0, this.pose.distance - 1) : 0;
+  }
+
+  setCourtyardHeading(heading: number, pitch = 0) {
+    if (!Number.isFinite(heading) || !Number.isFinite(pitch)) return;
+    this.courtyardHeading = Math.atan2(Math.sin(heading), Math.cos(heading));
+    this.courtyardPitch = THREE.MathUtils.clamp(pitch, -Math.PI * 0.36, Math.PI * 0.36);
+    if (this.view === 'courtyard' && !this.transitioning) {
+      this.pose = this.courtyardPose();
+      this.applyPose();
+    }
+  }
+
+  lookCourtyard(deltaXpx: number, deltaYpx: number) {
+    if (this.view !== 'courtyard' || this.transitioning) return;
+    if (!Number.isFinite(deltaXpx) || !Number.isFinite(deltaYpx)) return;
+    this.setCourtyardHeading(this.courtyardHeading - deltaXpx * 0.003,
+      this.courtyardPitch - deltaYpx * 0.0025);
+  }
+
+  private courtyardPose(): CameraPose {
+    const eye = this.courtyardTarget.clone().setY(1.49 + this.courtyardTarget.y);
+    const pitchCos = Math.cos(this.courtyardPitch);
+    const forward = new THREE.Vector3(
+      Math.sin(this.courtyardHeading) * pitchCos,
+      Math.sin(this.courtyardPitch),
+      Math.cos(this.courtyardHeading) * pitchCos,
+    );
+    const target = eye.clone().add(forward);
+    const rotation = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().lookAt(
+      eye, target, this.up,
+    ));
+    const fov = this.sizes.width < 700 ? 75 : 65;
+    return { target, rotation, span: 2 * Math.tan(THREE.MathUtils.degToRad(fov) / 2), distance: 1 };
+  }
+
   private readReadingTransform(target: ReadingTarget) {
     if (!target.anchor) return;
     target.anchor.updateWorldMatrix(true, false);
@@ -303,7 +456,8 @@ export default class Camera extends EventEmitter {
     const heightFraction = view === "resume" ? 0.78 : (narrow ? 0.68 : 0.72);
     const span = Math.max(surface.height / heightFraction, surface.width / (aspect * (narrow ? 0.92 : 0.8)));
     const target = surface.position.clone();
-    target.add(new THREE.Vector3(0, 1, 0).applyQuaternion(surface.rotation).multiplyScalar(span * 0.015));
+    // Center the monitor's reading surface in the viewport; retain the Summary framing.
+    if (view === "resume") target.add(new THREE.Vector3(0, 1, 0).applyQuaternion(surface.rotation).multiplyScalar(span * 0.015));
     return {
       target,
       rotation: surface.rotation.clone(),
@@ -313,11 +467,40 @@ export default class Camera extends EventEmitter {
   }
 
   private focusOwner(view: FocusView): RoomId {
-    return isReadingView(view) ? this.readingTargets[view].ownerRoom : "piano";
+    return isReadingView(view) ? this.readingTargets[view].ownerRoom : view === 'rhythm' ? 'ai' : "piano";
   }
 
   private focusPose(view: FocusView): CameraPose {
-    return isReadingView(view) ? this.readingPose(view) : this.seatedPose();
+    return isReadingView(view) ? this.readingPose(view) : view === 'rhythm' ? this.rhythmPose() : this.seatedPose();
+  }
+
+  private rhythmPose(): CameraPose {
+    const width = Math.max(this.sizes.width, 1);
+    const height = Math.max(this.sizes.height, 1);
+    const aspect = width / height;
+    // The React layout replaces this fallback after its first measured frame.
+    const viewport = this.rhythmViewport || {
+      left: 24, top: 90, width: Math.max(80, width * .38 - 36), height: Math.max(80, height * .45 - 80),
+    };
+    const target = new THREE.Vector3(0, .9, 0);
+    const anchorRotation = new THREE.Quaternion();
+    if (this.rhythmAnchor) {
+      this.rhythmAnchor.updateWorldMatrix(true, false);
+      this.rhythmAnchor.getWorldPosition(target);
+      this.rhythmAnchor.getWorldQuaternion(anchorRotation);
+    }
+    const direction = new THREE.Vector3(2.9, 2.5, 4.2).normalize().applyQuaternion(anchorRotation);
+    const rotation = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().lookAt(
+      direction, new THREE.Vector3(), this.up,
+    ));
+    const span = Math.max(2.3 * height / viewport.height, 3.1 * height / viewport.width) * 1.08;
+    const centerX = viewport.left + viewport.width / 2;
+    const centerY = viewport.top + viewport.height / 2;
+    const screenRight = new THREE.Vector3(1, 0, 0).applyQuaternion(rotation);
+    const screenUp = new THREE.Vector3(0, 1, 0).applyQuaternion(rotation);
+    target.addScaledVector(screenRight, span * aspect * (.5 - centerX / width));
+    target.addScaledVector(screenUp, span * (centerY / height - .5));
+    return { target, rotation, span, distance: span / (2 * Math.tan(THREE.MathUtils.degToRad(35) / 2)) };
   }
 
   private seatedPose(): CameraPose {
@@ -367,6 +550,7 @@ export default class Camera extends EventEmitter {
   }
 
   resize() {
+    if (this.view === 'courtyard' || this.view === 'exhibit') { this.navigate(this.view, true); return; }
     if (!this.transitioning && !isFocusView(this.view)) {
       this.pose = this.roomPose(this.orbitAngle, this.orbitElevation);
       this.applyPose();

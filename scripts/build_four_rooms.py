@@ -475,14 +475,20 @@ def ai(root):
     anchor('GameAnchor',(2.8,1.85,2.20),root)
     META['memoryGame']={'room':'RoomAI','root':'GameConsole','start':'GameStart','anchor':'GameAnchor',
                         'pressAxis':'y','pressTravel':-.055,'pads':pads}
-    # An abstract four-shape print identifies the room without another monitor.
-    box('MemoryArtFrame',(2.83,2.55,.15),(2.62,1.32,.14),P['walnut'],root,.035)
-    box('MemoryArtPaper',(2.83,2.55,.236),(2.45,1.15,.034),P['paper'],root,.012)
-    for i,(x,y,mat) in enumerate([(2.25,2.81,'teal'),(3.41,2.81,'brass'),(2.25,2.27,'slate'),(3.41,2.27,'sage')]):
-        if i==0:cyl('MemoryArtCircle',(x,y,.268),.175,.014,P[mat],root,n=10,axis='z',bevel=0)
-        elif i==1:mesh('MemoryArtDiamond',[(x-.20,y,.277),(x,y-.20,.277),(x+.20,y,.277),(x,y+.20,.277)],[(0,1,2,3)],P[mat],root)
-        elif i==2:mesh('MemoryArtTriangle',[(x-.20,y-.16,.277),(x+.20,y-.16,.277),(x,y+.19,.277)],[(0,1,2)],P[mat],root)
-        else:box('MemoryArtSquare',(x,y,.277),(.32,.32,.012),P[mat],root,.006)
+    # The leaderboard reader uses the Summary board's frame and open aperture.
+    leaderboard=empty('LeaderboardBoard',(3.0,2.0,.22),root)
+    box('LeaderboardBacking',(3.0,2.0,.125),(2.46,2.94,.10),P['paper'],leaderboard,.022)
+    for x in [1.81,4.19]:
+        box('LeaderboardFrameSide',(x,2.0,.215),(.08,2.94,.07),P['walnut'],leaderboard,.014)
+    for y in [.57,3.43]:
+        box('LeaderboardFrameRail',(3.0,y,.215),(2.46,.08,.07),P['walnut'],leaderboard,.014)
+    for x in [1.807,4.193]:
+        box('LeaderboardBrassSide',(x,2.0,.255),(.018,2.79,.011),P['brass'],leaderboard,.003)
+    anchor('LeaderboardScreenAnchor',(3.0,2.0,.22),root)
+    anchor('LeaderboardAnchor',(4.48,2.82,.28),root)
+    META['leaderboardScreen']={'room':'RoomAI','root':'LeaderboardBoard','anchor':'LeaderboardScreenAnchor',
+                               'interactionAnchor':'LeaderboardAnchor','width':2.30,'height':2.78,
+                               'position':[3.0,2.0,.22],'normalCanonical':[0,0,1]}
     macro_stool('GameStool',(2.75,.55,4.02),.68,'slate',root)
     plant('GameWindowPlant',(.54,.01,4.70),.70,P,root)
     build_guide_robot(root)
@@ -651,7 +657,7 @@ def owner(obj):
     current=obj
     while current:
         if current.name in DYNAMIC:return current
-        if current.name in ['Monitor','ResumeBoard','PortraitFrame','GameConsole','GameStart','Robot','BlogLamp','Piano','PianoBench','BlogChair','ArchiveStool','GameStool']:
+        if current.name in ['Monitor','ResumeBoard','LeaderboardBoard','PortraitFrame','GameConsole','GameStart','Robot','BlogLamp','Piano','PianoBench','BlogChair','ArchiveStool','GameStool']:
             return current
         current=current.parent
     return top_room(obj)

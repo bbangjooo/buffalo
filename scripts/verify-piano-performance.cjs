@@ -234,57 +234,34 @@ async function main() {
     const count = h.audio.scheduled.length; h.advance(3); assert.equal(h.audio.scheduled.length, count); h.performance.dispose();
   });
 
-  await check('real AudioPlayer API integration schedules partials on the shared clock and cancels them', async () => {
-    let context;
-    class Param {
-      constructor() { this.events = []; this.value = 0; }
-      add(kind, value, time) {
-        assert(Number.isFinite(value) && Number.isFinite(time));
-        if (kind === 'exp') assert(value > 0);
-        if (this.events.length) assert(time >= this.events.at(-1).time, 'unordered WebAudio envelope');
-        this.events.push({ value, time });
-      }
-      setValueAtTime(value, time) { this.add('set', value, time); }
-      linearRampToValueAtTime(value, time) { this.add('linear', value, time); }
-      exponentialRampToValueAtTime(value, time) { this.add('exp', value, time); }
-    }
-    class Node {
-      constructor() { this.disconnected = false; }
-      connect() { return this; }
-      disconnect() { this.disconnected = true; }
-    }
+  await check('real sampled AudioPlayer shares the score clock, pitch and sounding duration and cancels both layers', async () => {
+    const { createAudioHarness } = require('./verify-audio-channels.cjs');
+    let sampler;
     const h = createHarness({ makeAudio: (clock) => {
-      class Context {
-        constructor() { this.state = 'suspended'; this.destination = new Node(); this.oscillators = []; context = this; }
-        get currentTime() { return clock.currentTime; }
-        createGain() { return Object.assign(new Node(), { gain: new Param() }); }
-        createBiquadFilter() { return Object.assign(new Node(), { frequency: new Param(), Q: { value: 0 } }); }
-        createDynamicsCompressor() { return Object.assign(new Node(), { threshold: {}, knee: {}, ratio: {}, attack: {}, release: {} }); }
-        createOscillator() {
-          const node = Object.assign(new Node(), {
-            frequency: new Param(), stopTimes: [], onended: null,
-            start(time) { this.startTime = time; }, stop(time) { this.stopTimes.push(time); },
-          });
-          this.oscillators.push(node); return node;
-        }
-        resume() { this.state = 'running'; return Promise.resolve(); }
-        close() { this.state = 'closed'; return Promise.resolve(); }
-      }
-      const { AudioPlayer } = evaluate('src/Application/AudioPlayer.ts', {
-        './UI/EventBus': { EventBus: { on: () => () => {}, dispatch() {} } },
-      }, { window: { AudioContext: Context } });
-      return new AudioPlayer();
+      sampler = createAudioHarness({ clock, suspended: true }); return sampler.player;
     } });
     await flush(); await h.performance.play();
-    assert.equal(context.oscillators.length, 12, 'initial three notes each retain four piano partials');
-    near(context.oscillators[0].startTime, 10.06); near(context.oscillators[4].startTime, 10.06);
-    near(context.oscillators[0].frequency.events[0].value, 440 * Math.pow(2, (60 - 69) / 12));
-    near(context.oscillators[8].frequency.events[0].value, 440 * Math.pow(2, (48 - 69) / 12));
-    near(context.oscillators[0].stopTimes[0], 10.06 + 1.1 + 0.2 + 0.025);
-    h.advance(0.4); h.performance.pause(); assert(context.oscillators.every((node) => node.disconnected));
-    await h.performance.play(); assert(context.oscillators.some((node) => !node.disconnected));
-    h.performance.stop(); assert(context.oscillators.every((node) => node.disconnected));
-    h.performance.dispose(); h.audio.dispose(); assert.equal(context.state, 'closed');
+    const context = sampler.context;
+    assert.equal(h.performance.getSnapshot().status, 'playing');
+    assert(context.sources.length >= 3 && context.sources.length <= 6, 'initial three notes use one or two recorded velocity layers each');
+    const expected = new Map([[60, { start: 10.06, duration: 1.1 }], [64, { start: 10.06, duration: .2 }], [48, { start: 10.14, duration: .12 }]]);
+    const played = new Set();
+    for (const source of context.sources) {
+      const root = sampler.samples.PIANO_SAMPLES.find(({ url }) => url === source.buffer.sampleUrl);
+      const midi = Math.round(root.midi + 12 * Math.log2(source.playbackRate.events[0].value));
+      const note = expected.get(midi); assert(note, `unexpected initial pitch ${midi}`); played.add(midi);
+      near(source.startTime, note.start); near(source.offset, 0);
+      const envelope = [...source.connections][0];
+      near(envelope.gain.events.findLast((event) => event.type === 'set').time, note.start + note.duration, 'sample note-off');
+      assert(source.stopTimes[0] > note.start + note.duration && source.stopTimes[0] < note.start + note.duration + .25);
+      for (let index = 1; index < envelope.gain.events.length; index++) assert(envelope.gain.events[index].time >= envelope.gain.events[index - 1].time);
+    }
+    assert.deepEqual([...played].sort((a, b) => a - b), [48, 60, 64]);
+    h.advance(.4); h.performance.pause(); assert(context.sources.every((node) => node.disconnected));
+    await h.performance.play(); assert(context.sources.some((node) => !node.disconnected));
+    assert.equal(sampler.requests.length, 60, 'pause/resume reuses decoded recordings');
+    h.performance.stop(); assert(context.sources.every((node) => node.disconnected));
+    h.performance.dispose(); h.audio.dispose(); assert.equal(context.state, 'closed'); assert.equal(sampler.timers.size, 0);
   });
 
   await check('explicit stop also cancels the final release after finished state', async () => {

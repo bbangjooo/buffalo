@@ -5,25 +5,42 @@ import { EventBus } from '../UI/EventBus';
 import { isRoomId, ObjectId, ROOM_IDS, RoomId, RoomView, ROOMS } from '../../design/rooms';
 import Environment from './Environment';
 import MonitorScreen from './MonitorScreen';
+import LeaderboardScreen from './LeaderboardScreen';
 import Room from './Room';
 import GuideRobot from './GuideRobot';
-import MemoryGame from './MemoryGame';
+import HamsterRoam from './HamsterRoam';
+import RhythmGame from './RhythmGame';
+import RhythmStage from './RhythmStage';
+import type { RhythmMusicState } from './RhythmMusic';
+import { RHYTHM_KEYS, TRACK } from '../../design/rhythm-game';
 import PianoPerformance from './PianoPerformance';
 import Curtains from './Curtains';
 import Portrait from './Portrait';
+import Courtyard from './Courtyard';
 import { pianoMidiForKeyboard } from '../../design/piano-keys';
+import type { LoadedModel } from '../../types';
 
 export default class World {
   application: Application;
   room: Room;
   monitorScreen: MonitorScreen;
   resumeScreen: MonitorScreen;
+  leaderboardScreen: LeaderboardScreen;
   environment: Environment;
   guide: GuideRobot;
-  game: MemoryGame;
+  hamster: GuideRobot;
+  private hamsterRoam: HamsterRoam;
+  game: RhythmGame;
+  rhythmStage?: RhythmStage;
+  private rhythmMusic: RhythmMusicState = { ready: false, playing: false, time: 0, duration: 0, playerState: 'unstarted', muted: false };
+  private rhythmStarting = false;
+  private rhythmFocusPaused = false;
+  private rhythmTimingOffset = 0;
+  private rhythmActiveOffset = 0;
   performance: PianoPerformance;
   curtains: Curtains;
   portrait?: Portrait;
+  courtyard?: Courtyard;
   ready = false;
   night = false;
   view: RoomView = 'developer';
@@ -48,17 +65,15 @@ export default class World {
 
   constructor() {
     this.application = new Application();
-    this.game = new MemoryGame({
+    this.game = new RhythmGame({
       onPad: (index, on) => {
         if (!this.ready) return;
-        this.room.lightPad(index, on, this.reducedMotion.matches);
-        if (on && this.view === 'ai') {
-          this.room.pressPad(index, this.reducedMotion.matches);
-          void this.application.audioPlayer.playNote([60, 64, 67, 72][index], 0.4);
-        }
+        this.rhythmStage?.setPad(index, on);
+        if (on && this.view === 'rhythm') this.hamster.danceStep(index);
       },
-      onState: (game) => EventBus.dispatch('world-state', { game }),
-      onResult: (result) => this.guide?.react(result === 'won' ? 'success' : 'failure'),
+      onState: (game) => EventBus.dispatch('rhythm-state', game),
+      onJudgement: (hit) => EventBus.dispatch('rhythm-hit', hit),
+      onResult: () => this.hamster?.react('success'),
     });
     this.application.resources.on('ready', () => this.initialize());
     this.application.resources.on('error', (error: string) => { this.error = error; this.publish(); });
@@ -70,7 +85,7 @@ export default class World {
       this.syncScreens();
       this.readingOverlay = isReadingView(this.view) ? this.view : null;
       this.seatedOverlay = this.view === 'piano-seat';
-      if (!isReadingView(this.view) && this.view !== 'piano-seat') {
+      if (!isReadingView(this.view) && this.view !== 'piano-seat' && this.view !== 'courtyard' && this.view !== 'exhibit' && this.view !== 'rhythm') {
         this.guide.setReading(false);
         this.guide.setRoom(this.activeRoom, true);
       }
@@ -78,14 +93,37 @@ export default class World {
     });
     EventBus.on('world-request-state', () => this.publish());
     EventBus.on('navigate', ({ view }: { view: unknown }) => { if (isRoomId(view)) this.navigate(view); });
+    EventBus.on('enter-courtyard', ({ id }: { id?: string }) => {
+      if (!this.ready || this.error || this.application.camera.transitioning || !isRoomId(this.view)) return;
+      this.navigate('courtyard', id);
+    });
+    EventBus.on('leave-courtyard', () => { if (this.view === 'courtyard') this.navigate(this.activeRoom); });
     EventBus.on('interact', ({ id }: { id: ObjectId }) => this.interact(id));
     EventBus.on('close-monitor', () => this.closeReading());
     EventBus.on('close-reading', () => this.closeReading());
+    EventBus.on('leaderboard-open', () => {
+      if (this.ready && !this.error && !this.application.camera.transitioning && this.activeRoom === 'ai' && (this.view === 'ai' || this.view === 'rhythm')) this.navigate('leaderboard');
+    });
     EventBus.on('close-piano', () => { if (this.view === 'piano-seat') this.navigate('piano'); });
     EventBus.on('guide-dismiss', () => this.guide?.dismiss());
     EventBus.on('guide-help', () => this.guide?.help());
     EventBus.on('play-note', ({ midi }: { midi: number }) => this.playNote(midi));
     EventBus.on('night-toggle', () => this.toggleNight());
+    EventBus.on('rhythm-request-state', () => EventBus.dispatch('rhythm-state', this.game.getSnapshot()));
+    EventBus.on('rhythm-music-state', (state: RhythmMusicState) => this.onRhythmMusic(state));
+    EventBus.on('rhythm-viewport', (rect: { left: number; top: number; width: number; height: number }) => this.application.camera.setRhythmViewport(rect));
+    EventBus.on('rhythm-action', ({ action }: { action: string }) => this.rhythmAction(action));
+    EventBus.on('rhythm-timing', ({ offsetMs }: { offsetMs: number }) => {
+      if (typeof offsetMs === 'number' && Number.isFinite(offsetMs)) this.rhythmTimingOffset = THREE.MathUtils.clamp(offsetMs, -250, 250) / 1000;
+    });
+    EventBus.on('rhythm-input', ({ lane, down, source }: { lane: number; down: boolean; source: string }) => {
+      if (!down) { this.game.release(source); return; }
+      if (this.view !== 'rhythm' || this.rhythmFocusPaused || !this.rhythmMusic.playing) return;
+      this.game.update(this.rhythmMusic.time + this.rhythmActiveOffset, true); this.game.press(lane, source);
+    });
+    EventBus.on('world-state', ({ muted }: { muted?: boolean }) => {
+      if (typeof muted === 'boolean' && this.view === 'rhythm') EventBus.dispatch('rhythm-music-action', { action: 'mute', muted });
+    });
     EventBus.on('piano-performance', ({ action }: { action: 'play' | 'pause' | 'stop' }) => {
       if (!this.ready || this.application.camera.transitioning || (this.view !== 'piano' && this.view !== 'piano-seat')) return;
       if (action === 'play') {
@@ -97,10 +135,13 @@ export default class World {
       else if (action === 'stop') this.performance.stop();
     });
     document.addEventListener('keydown', (event) => this.keydown(event));
+    window.addEventListener('keyup', (event) => this.game.release('key-' + event.code));
+    window.addEventListener('blur', () => this.pauseRhythmForFocus());
+    document.addEventListener('visibilitychange', () => { if (document.hidden) this.pauseRhythmForFocus(); });
     window.addEventListener('message', (event) => {
       if (!isReadingView(this.view) || event.data?.type !== 'keydown' || event.data?.key !== 'Escape') return;
-      const screen = this.view === 'resume' ? this.resumeScreen : this.monitorScreen;
-      const origin = this.view === 'resume' ? window.location.origin : 'https://blog.bbangjo.kr';
+      const screen = this.view === 'resume' ? this.resumeScreen : this.view === 'leaderboard' ? this.leaderboardScreen : this.monitorScreen;
+      const origin = this.view === 'monitor' ? 'https://blog.bbangjo.kr' : window.location.origin;
       if (event.origin === origin && event.source === screen?.iframe.contentWindow) this.closeReading();
     });
     this.bindCanvas();
@@ -110,7 +151,35 @@ export default class World {
     try {
       this.room = new Room();
       this.room.add();
+      this.rhythmStage = new RhythmStage(this.application.scene);
+      const playRoom = this.room.groups.get('ai')!;
+      this.rhythmStage.root.position.copy(playRoom.localToWorld(new THREE.Vector3(2.8, 0, 2.3)));
+      playRoom.getWorldQuaternion(this.rhythmStage.root.quaternion);
+      this.rhythmStage.root.userData.interactiveId = 'game';
+      this.room.targets.get('game')!.visible = false;
+      this.room.targets.set('game', this.rhythmStage.root);
+      this.room.anchors.set('game', this.rhythmStage.focusAnchor);
+      this.application.camera.setRhythmTarget(this.rhythmStage.focusAnchor);
       this.guide = new GuideRobot(this.application, this.room.robot);
+      this.hamster = new GuideRobot(this.application, (this.application.resources.items.guideCharacterModel as LoadedModel).scene, { role: 'companion' });
+      this.hamsterRoam = new HamsterRoam(this.hamster);
+      this.hamsterRoam.resume();
+      this.courtyard = new Courtyard(this.application, this.guide, {
+        canInteract: () => this.ready && !this.error,
+        open: (anchor) => {
+          this.curtains?.cancelDrag(); this.cancelCameraDrag();
+          this.view = 'exhibit';
+          this.application.camera.setExhibit(anchor, 2.6, 1.7);
+          this.application.camera.navigate('exhibit');
+          this.publish();
+        },
+        close: () => {
+          if (this.view !== 'exhibit') return;
+          this.view = 'courtyard';
+          this.application.camera.navigate('courtyard');
+          this.publish();
+        },
+      });
       this.performance = new PianoPerformance(this.application.audioPlayer, {
         onKeys: (keys) => this.room.holdKeys(keys, this.reducedMotion.matches),
         onRepeatedAttack: (keys) => this.room.restrikeKeys(keys, this.reducedMotion.matches),
@@ -124,7 +193,7 @@ export default class World {
         camera: () => this.application.camera.instance,
         getRoom: () => this.activeRoom,
         pick: (event) => this.pick(event),
-        canInteract: () => this.ready && !this.error && !isReadingView(this.view) && !this.application.camera.transitioning,
+        canInteract: () => this.ready && !this.error && this.view !== 'courtyard' && this.view !== 'exhibit' && !isReadingView(this.view) && !this.application.camera.transitioning,
         onChange: () => { this.application.renderer.instance.shadowMap.needsUpdate = true; },
         onDragStart: () => EventBus.dispatch('curtain-drag-start', {}),
       });
@@ -136,6 +205,8 @@ export default class World {
         id: 'resumeScreen', src: '/story.html', title: 'bbangjo · Summary', width: 2.3, height: 2.78, pixels: 720, mobilePixels: 420,
       });
       this.resumeScreen.add();
+      this.leaderboardScreen = new LeaderboardScreen(this.room.leaderboardAnchor);
+      this.leaderboardScreen.add();
       const portraitAnchor = this.room.root.getObjectByName('PortraitScreenAnchor');
       if (portraitAnchor) {
         this.portrait = new Portrait(portraitAnchor);
@@ -143,6 +214,7 @@ export default class World {
       }
       this.application.camera.setMonitor(this.room.monitorAnchor, 1.4, 0.84);
       this.application.camera.setResume(this.room.resumeAnchor, 2.3, 2.78);
+      this.application.camera.setLeaderboard(this.room.leaderboardAnchor, 2.3, 2.78);
       this.application.camera.setPianoSeat(this.room.pianoEyeAnchor, this.room.pianoLookAnchor);
       this.application.camera.navigate('developer', true);
       this.environment.setRoom('developer', true);
@@ -152,7 +224,7 @@ export default class World {
       this.publish();
     } catch (error) {
       console.error('Guided room initialization failed', error);
-      this.error = '공간을 준비하지 못했어요. 블로그로 바로 이동할 수 있어요.';
+      this.error = 'Could not load this space. You can still visit the blog.';
       this.publish();
     }
   }
@@ -167,27 +239,48 @@ export default class World {
     if (this.performance) EventBus.dispatch('world-state', { performance: this.performance.getSnapshot() });
   }
 
-  private closeReading() { if (isReadingView(this.view)) this.navigate(this.view === 'resume' ? 'developer' : 'blog'); }
+  private closeReading() { if (isReadingView(this.view)) this.navigate(this.view === 'resume' ? 'developer' : this.view === 'leaderboard' ? 'ai' : 'blog'); }
 
-  navigate(view: RoomView) {
+  navigate(view: RoomView, stationId?: string) {
     if (!this.ready || this.view === view) return;
     if (view === 'monitor' && this.activeRoom !== 'blog') return;
     if (view === 'resume' && this.activeRoom !== 'developer') return;
+    if (view === 'leaderboard' && this.activeRoom !== 'ai') return;
     if (view === 'piano-seat' && this.activeRoom !== 'piano') return;
+    if (view === 'rhythm' && this.activeRoom !== 'ai') return;
     const oldView = this.view;
+    if ((oldView === 'courtyard' || oldView === 'exhibit') && view !== 'courtyard') this.courtyard?.leave();
     this.curtains?.cancelDrag();
     this.cancelCameraDrag();
     this.setHover(null);
     const pianoContext = (oldView === 'piano' || oldView === 'piano-seat') && (view === 'piano' || view === 'piano-seat');
     if (!pianoContext) this.stopRoomActivity();
+    if (view === 'rhythm') this.performance.stop();
+    if (oldView === 'rhythm') {
+      this.hamster.setDancing(null);
+      this.hamsterRoam.resume();
+      this.guide.setReading(false);
+      this.courtyard?.meadow.setOutdoor(false);
+    }
     this.monitorScreen.setInteractive(false);
     this.resumeScreen.setInteractive(false);
+    this.leaderboardScreen.setInteractive(false);
     if (isReadingView(oldView)) this.pendingRestore = oldView;
     this.view = view;
     if (isRoomId(view)) this.activeRoom = view;
     this.room.show();
     this.syncScreens();
-    if (isReadingView(view)) {
+    if (view === 'courtyard') {
+      this.readingOverlay = null;
+      this.seatedOverlay = false;
+      this.courtyard?.enter(stationId, this.activeRoom);
+    } else if (view === 'rhythm') {
+      this.readingOverlay = null; this.seatedOverlay = false;
+      this.guide.setReading(true);
+      this.hamster.root.scale.setScalar(1);
+      this.hamster.setDancing(this.rhythmStage!.dancerAnchor);
+      this.application.scene.fog = null;
+    } else if (isReadingView(view)) {
       // A quick re-entry cancels the pending reveal and preserves only the reader.
       this.pendingRestore = null;
       this.readingOverlay = view;
@@ -199,7 +292,9 @@ export default class World {
       this.guide.setRoom(this.activeRoom, this.reducedMotion.matches);
     }
     this.environment.setRoom(this.activeRoom, this.reducedMotion.matches);
-    this.application.camera.navigate(view);
+    this.environment.setCourtyard?.(view === 'courtyard' || view === 'exhibit');
+    this.application.camera.navigate(view, view === 'rhythm' || oldView === 'rhythm');
+    if (view === 'piano' || view === 'piano-seat') void this.application.audioPlayer.preload();
     this.publish();
   }
 
@@ -212,28 +307,29 @@ export default class World {
 
   private syncScreens() {
     // Both documents remain in the house, depth-occluded naturally by its walls.
-    this.monitorScreen.setVisible(true);
-    this.resumeScreen.setVisible(true);
+    const rhythm = this.view === 'rhythm';
+    this.room.root.visible = !rhythm;
+    this.monitorScreen.setVisible(!rhythm);
+    this.resumeScreen.setVisible(!rhythm);
+    this.leaderboardScreen.setVisible(!rhythm);
+    this.rhythmStage?.setVisible(true);
+    if (this.courtyard) { this.courtyard.root.visible = !rhythm; this.courtyard.meadow.root.visible = !rhythm; }
+    if (this.portrait) this.portrait.object.visible = this.portrait.mesh.visible = !rhythm && this.portrait.image.naturalWidth > 0;
   }
 
   interact(id: ObjectId) {
-    if (!this.ready || isReadingView(this.view) || this.application.camera.transitioning) return;
+    if (!this.ready || this.error || this.view === 'courtyard' || this.view === 'exhibit' || this.view === 'rhythm' || isReadingView(this.view) || this.application.camera.transitioning) return;
     if (id === 'guide') { this.guide.help(); return; }
     if (id.startsWith('key')) { this.playNote(Number(id.slice(3))); return; }
     if (id.startsWith('gamePad')) {
-      if (this.view === 'ai') this.game.press(Number(id.slice(7)));
+      if (this.view === 'ai') this.navigate('rhythm');
       return;
     }
     if (!ROOMS[this.activeRoom].actions.some((action) => action.id === id)) return;
     if (id === 'pianoSeat') this.navigate('piano-seat');
-    else if (id === 'monitor' || id === 'resume') this.navigate(id);
+    else if (id === 'monitor' || id === 'resume' || id === 'leaderboard') this.navigate(id);
     else if (id === 'blogLamp') this.toggleNight();
-    else if (id === 'game') {
-      if (this.game.state.phase === 'showing' || this.game.state.phase === 'input') return;
-      this.guide.hide();
-      // The first light callback is synchronous, so audio is unlocked by this gesture.
-      this.game.start();
-    }
+    else if (id === 'game') this.navigate('rhythm');
   }
 
   private toggleNight() {
@@ -253,9 +349,58 @@ export default class World {
     this.noteTimer = window.setTimeout(() => EventBus.dispatch('world-state', { note: null }), 350);
   }
 
+  private rhythmAction(action: string) {
+    if (this.view !== 'rhythm' || !this.ready) return;
+    if (action === 'exit') { this.navigate('ai'); return; }
+    if (action === 'pause') {
+      this.rhythmStarting = false; this.game.pause();
+      EventBus.dispatch('rhythm-music-action', { action: 'pause' });
+      return;
+    }
+    if (!this.rhythmMusic.ready) return;
+    this.rhythmFocusPaused = false;
+    if (action === 'start' || action === 'restart') {
+      this.rhythmStarting = true;
+      this.rhythmActiveOffset = this.rhythmTimingOffset;
+      this.game.cancel();
+      // Dispatch synchronously to preserve the browser's playback gesture.
+      EventBus.dispatch('rhythm-music-action', { action: 'restart' });
+    } else if (action === 'resume') EventBus.dispatch('rhythm-music-action', { action: 'play' });
+  }
+
+  private onRhythmMusic(state: RhythmMusicState) {
+    if (this.view !== 'rhythm') return;
+    this.rhythmMusic = state;
+    if (this.rhythmFocusPaused) {
+      if (state.playing) EventBus.dispatch('rhythm-music-action', { action: 'pause' });
+      this.hamster?.setDanceBeat(state.time, false, TRACK.bpm);
+      return;
+    }
+    if (state.error) { this.rhythmStarting = false; this.game.pause(); }
+    if (this.rhythmStarting) {
+      // A seek is asynchronous. Old timestamps must not instantly miss a new run.
+      if (state.time > .5 || !state.ready) return;
+      this.rhythmStarting = false; this.game.start();
+    }
+    if (state.playerState === 'ended') this.game.update(TRACK.duration, true);
+    else if (state.playing) this.game.update(state.time + this.rhythmActiveOffset, true);
+    else if (state.playerState === 'paused' || state.playerState === 'buffering') this.game.pause();
+    this.hamster?.setDanceBeat(state.time, state.playing && this.game.state.phase !== 'finished', TRACK.bpm);
+  }
+
+  private pauseRhythmForFocus() {
+    if (this.view !== 'rhythm') return;
+    this.rhythmFocusPaused = true; this.rhythmStarting = false;
+    this.game.pause();
+    EventBus.dispatch('rhythm-music-action', { action: 'pause' });
+    this.hamster?.setDanceBeat(this.rhythmMusic.time, false, TRACK.bpm);
+  }
+
   private stopRoomActivity() {
     window.clearTimeout(this.noteTimer);
     this.game.cancel();
+    this.rhythmStarting = false; this.rhythmFocusPaused = false;
+    if (this.view === 'rhythm') EventBus.dispatch('rhythm-music-action', { action: 'stop' });
     this.application.audioPlayer.stopInteractiveNotes();
     this.room.stopMotion({ preservePiano: this.performance?.getSnapshot().status === 'playing' });
     EventBus.dispatch('world-state', { note: null });
@@ -268,18 +413,35 @@ export default class World {
   }
 
   private keydown(event: KeyboardEvent) {
-    if (!this.ready || event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
+    if (!this.ready || this.error || event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
     const target = event.target;
+    if (this.view === 'exhibit') {
+      if (event.key === 'Escape' && !event.repeat) { event.preventDefault(); this.courtyard?.close(); }
+      return;
+    }
     if (target instanceof Element && target.closest('input, textarea, select, [contenteditable="true"]')) return;
+    if (this.view === 'rhythm') {
+      if (event.key === 'Escape') { event.preventDefault(); if (!event.repeat) this.navigate('ai'); return; }
+      const key = RHYTHM_KEYS.find(item => item.code === event.code);
+      if (key) {
+        event.preventDefault();
+        if (!event.repeat && !this.rhythmFocusPaused && this.rhythmMusic.playing) {
+          this.game.update(this.rhythmMusic.time + this.rhythmActiveOffset, true); this.game.press(key.lane, 'key-' + event.code);
+        }
+      }
+      return;
+    }
+    if (this.view === 'courtyard') {
+      if (event.key === 'Escape') { event.preventDefault(); if (!event.repeat) this.navigate(this.activeRoom); }
+      else this.courtyard?.keydown(event);
+      return;
+    }
     if (event.key === 'Escape' && isReadingView(this.view)) { this.closeReading(); return; }
     if (isReadingView(this.view)) return;
     if (event.key === 'Escape' && this.view === 'piano-seat') { this.navigate('piano'); return; }
     if (this.view === 'piano' || this.view === 'piano-seat') {
       const midi = pianoMidiForKeyboard(event);
       if (midi !== undefined && !event.repeat) { event.preventDefault(); this.playNote(midi); return; }
-    }
-    if (this.view === 'ai' && /^[1-4]$/.test(event.key) && !event.repeat) {
-      event.preventDefault(); this.game.press(Number(event.key) - 1); return;
     }
     if (this.view === 'piano-seat') return;
     if ((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && !event.repeat) {
@@ -325,6 +487,7 @@ export default class World {
           const dx = event.clientX - this.lastDrag.x;
           const dy = event.clientY - this.lastDrag.y;
           if (this.view === 'piano-seat') this.application.camera.lookSeated(dx, dy);
+          else if (this.view === 'courtyard') this.application.camera.lookCourtyard(dx, dy);
           else this.application.camera.lookRoom(dx, dy);
           this.lastDrag.set(event.clientX, event.clientY);
           this.setHover(null);
@@ -345,7 +508,8 @@ export default class World {
     listen(window, 'keydown', (event: KeyboardEvent) => { if (event.key === 'Escape') this.cancelCameraDrag(); });
     listen(canvas, 'webglcontextlost', (event) => {
       event.preventDefault();
-      this.error = '3D 화면이 잠시 멈췄어요. 새로고침하거나 블로그로 이동해 주세요.';
+      this.error = 'The 3D view has paused. Please reload or visit the blog.';
+      this.courtyard?.walk.stop();
       this.curtains?.cancelDrag();
       this.cancelCameraDrag();
       if (this.ready) this.stopActions();
@@ -355,7 +519,7 @@ export default class World {
   }
 
   private canLookAround(): boolean {
-    return this.ready && !this.error && !isReadingView(this.view) && !this.application.camera.transitioning;
+    return this.ready && !this.error && this.view !== 'rhythm' && this.view !== 'exhibit' && !isReadingView(this.view) && !this.application.camera.transitioning;
   }
 
   private cancelCameraDrag() {
@@ -375,11 +539,11 @@ export default class World {
   }
 
   private pick(event: PointerEvent): ObjectId | null {
-    if (!this.ready || isReadingView(this.view) || this.application.camera.transitioning) return null;
+    if (!this.ready || this.view === 'courtyard' || this.view === 'exhibit' || this.view === 'rhythm' || isReadingView(this.view) || this.application.camera.transitioning) return null;
     const rect = this.application.renderer.instance.domElement.getBoundingClientRect();
     this.pointer.set((event.clientX - rect.left) / rect.width * 2 - 1, -(event.clientY - rect.top) / rect.height * 2 + 1);
     this.raycaster.setFromCamera(this.pointer, this.application.camera.instance);
-    const hit = this.raycaster.intersectObjects([this.room.root, this.guide.root], true).find((item) => {
+    const hit = this.raycaster.intersectObjects([this.room.root, this.guide.root, ...(this.rhythmStage ? [this.rhythmStage.root] : [])], true).find((item) => {
       let ancestor: THREE.Object3D | null = item.object;
       while (ancestor) { if (!ancestor.visible) return false; ancestor = ancestor.parent; }
       return true;
@@ -390,6 +554,7 @@ export default class World {
     while (object) {
       if (!id && object.userData.interactiveId) id = object.userData.interactiveId as ObjectId;
       if (object === this.room.groups.get(this.activeRoom) || object === this.guide.root) active = true;
+      if (object === this.rhythmStage?.root && this.activeRoom === 'ai') { id = 'game'; active = true; }
       object = object.parent;
     }
     return active ? id : null;
@@ -408,12 +573,25 @@ export default class World {
     if (!this.ready) return;
     this.performance.update();
     this.guide.update();
+    if (!this.error) this.courtyard?.update();
+    this.hamster.root.visible = this.view === 'rhythm' || this.view === 'courtyard' || isRoomId(this.view);
+    if (this.view === 'rhythm') this.hamster.update();
+    else if (this.hamster.root.visible && !this.error && !this.application.camera.transitioning) {
+      this.hamsterRoam.update(this.application.time.delta, this.view === 'courtyard' ? this.courtyard?.walk : undefined);
+    }
+    if (this.view === 'rhythm') {
+      this.application.scene.fog = null;
+      if (this.portrait) this.portrait.mesh.visible = this.portrait.object.visible = false;
+    }
     this.monitorScreen.update();
     this.resumeScreen.update();
+    this.leaderboardScreen.update();
+    this.leaderboardScreen.setDisplay(this.activeRoom === 'ai' && (this.view === 'ai' || this.view === 'leaderboard'), this.night);
     this.portrait?.update();
     const settled = !this.application.camera.transitioning;
     this.monitorScreen.setInteractive(settled && this.view === 'monitor');
     this.resumeScreen.setInteractive(settled && this.view === 'resume');
+    this.leaderboardScreen.setInteractive(settled && this.view === 'leaderboard');
     this.room.anchors.forEach((anchor, id) => {
       let marker = this.markers.get(id);
       if (!marker || !marker.isConnected) {
@@ -424,7 +602,7 @@ export default class World {
       anchor.getWorldPosition(this.projection).project(this.application.camera.instance);
       const x = (this.projection.x * 0.5 + 0.5) * innerWidth;
       const y = (-this.projection.y * 0.5 + 0.5) * innerHeight;
-      const visible = !isReadingView(this.view) && !this.seatedOverlay && settled
+      const visible = this.view !== 'courtyard' && this.view !== 'exhibit' && this.view !== 'rhythm' && !isReadingView(this.view) && !this.seatedOverlay && settled
         && ROOMS[this.activeRoom].actions.some((action) => action.id === id)
         && x > 24 && x < innerWidth - 24 && y > 80 && y < innerHeight - 110 && Math.abs(this.projection.z) < 1;
       marker.style.transform = `translate(${x}px, ${y}px)`;

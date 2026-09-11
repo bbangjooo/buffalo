@@ -1,0 +1,101 @@
+{
+  "status": "PASS",
+  "method": "Saved Blender source inspection plus GLB JSON/accessor metadata; actual tagged sculpture vertices projected to the screen plane from walking, reading and jumping eye levels. No Draco decoding or rendered ray-visibility claim.",
+  "source": "assets/courtyard.blend",
+  "export": "public/Room/courtyard.glb",
+  "sha256": "08e6e0b14a888ca12d4879a6d9b9d6999c516366df04aab00a4222e49c1436b3",
+  "stationGroups": 13,
+  "screenAnchors": 13,
+  "reader": {
+    "width": 2.6,
+    "height": 1.7,
+    "centerY": 2.1,
+    "localZ": 0.015
+  },
+  "bytes": 197996,
+  "meshes": 33,
+  "primitives": 33,
+  "triangles": 10498,
+  "sourceTriangles": 10502,
+  "sourceMeshes": 33,
+  "templateTriangleDeduplication": [
+    {
+      "mesh": "MeadowGrassClump",
+      "sourceTriangles": 8,
+      "exportTriangles": 4,
+      "duplicateFacesRemoved": 4,
+      "reason": "Identical vertex triples with reversed winding in a double-sided template."
+    }
+  ],
+  "sourceFaces": 4741,
+  "flatFaces": 4741,
+  "smoothFaces": 0,
+  "paintedSourceMeshes": 26,
+  "paintedExportPrimitives": 28,
+  "sourceArtifactPrimitives": 288,
+  "maxArtifactHeight": 1.14,
+  "minArtifactForwardClearance": 0.305,
+  "maxProjectedArtifactHeight": 1.089092,
+  "artifactProjectionSamples": 44848,
+  "maxStationRadius": 1.959984,
+  "materials": [
+    {
+      "name": "Sculpture matte paint",
+      "roughness": 0.9,
+      "metallic": 0.0,
+      "whiteVertexColourFactor": true
+    },
+    {
+      "name": "Sculpture satin metal",
+      "roughness": 0.62,
+      "metallic": 0.12,
+      "whiteVertexColourFactor": true
+    }
+  ],
+  "baseline": {
+    "bytes": 629644,
+    "meshes": 119,
+    "triangles": 48698
+  },
+  "reductionsPercent": {
+    "bytes": 68.55,
+    "meshes": 72.27,
+    "triangles": 78.44
+  },
+  "qualityGates": {
+    "valid_glb_header": true,
+    "glb_json_chunk": true,
+    "thirteen_station_groups": true,
+    "thirteen_screen_anchors": true,
+    "only_requested_station_replacement": true,
+    "only_requested_anchor_replacement": true,
+    "no_star_exhibit": true,
+    "no_exported_engineering_route": true,
+    "source_groups_match_export": true,
+    "source_anchors_match_export": true,
+    "source_station_ids_match_layout": true,
+    "no_authored_engineering_route": true,
+    "fixed_reader_dimensions": true,
+    "layout_positions_preserved": true,
+    "layout_yaw_preserved": true,
+    "retained_baseline_interaction_transforms_preserved": true,
+    "screen_anchor_transform_and_size": true,
+    "actual_aperture_corner_geometry": true,
+    "artifact_height_clearance": true,
+    "artifact_projection_clearance_at_walk_read_and_jump_heights": true,
+    "no_numbered_station_text_or_nameplate": true,
+    "station_geometry_radius_below_two_metres": true,
+    "painted_source_meshes_have_active_vertex_colours": true,
+    "all_authored_faces_flat_including_templates": true,
+    "no_unapplied_geometry_modifiers": true,
+    "no_source_curves": true,
+    "source_matte_and_satin_material_contract": true,
+    "exported_painted_primitives_preserve_colour_and_draco": true,
+    "exported_materials_preserve_white_factor_and_roughness": true,
+    "source_and_export_topology_counts_reconcile": true,
+    "fewer_triangles_than_baseline": true,
+    "fewer_meshes_than_baseline": true,
+    "smaller_glb_than_baseline": true
+  },
+  "failures": []
+}

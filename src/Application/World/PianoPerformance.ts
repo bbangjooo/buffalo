@@ -21,7 +21,7 @@ export function readScore(value: unknown): Score {
   if (!score || typeof score.title !== 'string' || !score.title.trim()
     || !Array.isArray(score.notes) || !score.notes.length || score.notes.length > 100000
     || !Number.isFinite(score.duration) || score.duration! <= 0 || score.duration! > 7200) {
-    throw new Error('악보 데이터를 읽지 못했어요.');
+    throw new Error('Could not read the performance data.');
   }
   const notes = score.notes.map((note) => {
     if (!note || ![note.time, note.duration, note.midi, note.velocity].every(Number.isFinite)
@@ -30,7 +30,7 @@ export function readScore(value: unknown): Score {
       || note.velocity <= 0 || note.velocity > 1
       || (note.soundDuration !== undefined && (!Number.isFinite(note.soundDuration)
         || note.soundDuration <= 0 || note.time + note.soundDuration > score.duration! + 0.001))) {
-      throw new Error('악보의 음표 정보를 확인해 주세요.');
+      throw new Error('The performance contains invalid note data.');
     }
     return { time: note.time, duration: note.duration, midi: note.midi, velocity: note.velocity,
       ...(note.soundDuration === undefined ? {} : { soundDuration: note.soundDuration }) };
@@ -73,7 +73,7 @@ export default class PianoPerformance {
     const soundReady = await unlocked;
     if (this.disposed || request !== this.generation || !loaded || document.hidden) return;
     if (!soundReady) {
-      this.state = { ...this.state, status: 'error', error: '소리를 시작하지 못했어요. 다시 눌러 주세요.' };
+      this.state = { ...this.state, status: 'error', error: 'Could not start the audio. Please try again.' };
       this.publish();
       return;
     }
@@ -199,7 +199,7 @@ export default class PianoPerformance {
         return true;
       } catch {
         if (!this.disposed) {
-          this.state = { ...this.state, status: 'error', error: '악보를 불러오지 못했어요. 다시 시도해 주세요.' };
+          this.state = { ...this.state, status: 'error', error: 'Could not load the performance. Please try again.' };
           this.publish();
         }
         return false;

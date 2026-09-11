@@ -1,0 +1,63 @@
+{
+  "root": "GuideCharacter",
+  "facing": "+Z",
+  "height": 1.479215,
+  "width": 1.161176,
+  "depth": 1.108,
+  "footY": 0.0,
+  "triangles": 4152,
+  "meshes": 16,
+  "bytes": 60680,
+  "pivots": {
+    "GuideHead": [
+      0.0,
+      0.985,
+      -0.0
+    ],
+    "GuideArm": [
+      -0.315,
+      0.605,
+      0.275
+    ],
+    "GuideArmLeft": [
+      0.315,
+      0.605,
+      0.275
+    ],
+    "GuideFootLeft": [
+      0.245,
+      0.085,
+      0.085
+    ],
+    "GuideFootRight": [
+      -0.245,
+      0.085,
+      0.085
+    ],
+    "GuideAnchor": [
+      0.0,
+      1.62,
+      -0.0
+    ]
+  },
+  "headDepthScale": 1.42,
+  "bodyDepthScale": 1.55,
+  "skinTopology": {
+    "headSegments": 20,
+    "headLevels": 15,
+    "bodySegments": 20,
+    "bodyLevels": 14
+  },
+  "patchFit": "Projected polygon clipped to actual front-facing skin triangles",
+  "embeddedPhotos": false,
+  "materials": [
+    "Plush warm cream",
+    "Plush ivory face and belly",
+    "Plush strawberry ears paws feet",
+    "Plush peach cheeks",
+    "Plush dark embroidered eyes",
+    "Plush rose embroidery",
+    "Plush smiling pink mouth",
+    "Plush coral nose"
+  ]
+}

@@ -1,0 +1,42 @@
+.guestbook-reader { color: inherit; margin-top: 32px; }
+.guestbook-reader h1 { margin: 0 0 10px; font-size: 24px; }
+.guestbook-reader-intro { margin: 0 0 25px; color: var(--meadow-muted, #69736c); font-size: 15px; line-height: 1.8; }
+.guestbook-reader-form { display: grid; gap: 10px; padding: 24px; border: 1px solid var(--meadow-border, rgba(72, 90, 68, .19)); border-radius: 12px; background: var(--meadow-reader-heading, #e8eedb); }
+.guestbook-reader-form label { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 14px; font-weight: 600; }
+.guestbook-reader-form label:not(:first-child) { margin-top: 8px; }
+.guestbook-reader-form label span { color: var(--meadow-muted, #737c72); font-size: 12px; font-weight: 400; }
+.guestbook-reader input { box-sizing: border-box; width: 100%; min-height: 46px; border: 1px solid var(--meadow-reader-line, #c5cebf); border-radius: 6px; padding: 11px 13px; background: var(--meadow-reader-paper, #fffdf7); color: var(--meadow-ink, #28382d); font: inherit; font-size: 16px; }
+.guestbook-reader input::placeholder { color: var(--meadow-muted, #858b7e); }
+.guestbook-reader input:focus-visible, .guestbook-reader button:focus-visible { outline: 3px solid var(--meadow-focus, #6f9661); outline-offset: 3px; }
+.guestbook-reader button { min-height: 42px; border: 1px solid var(--meadow-accent, #416047); border-radius: 6px; padding: 10px 15px; background: var(--meadow-accent, #38593f); color: var(--meadow-accent-ink, #fffdf6); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.guestbook-reader button:hover:not(:disabled) { filter: brightness(.91); }
+.guestbook-reader button:disabled { opacity: .6; cursor: wait; }
+.guestbook-reader-submit { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-top: 6px; }
+.guestbook-reader-submit p { flex: 1; margin: 0; font-size: 12px; color: var(--meadow-muted, #707b70); line-height: 1.7; }
+.guestbook-reader-submit button { flex-shrink: 0; }
+.guestbook-reader-error { margin: 8px 0 0; color: #9e3f37; font-size: 13px; line-height: 1.7; }
+.guestbook-reader-notice { margin: 0; color: var(--meadow-accent, #3c683e); font-size: 13px; line-height: 1.7; }
+.guestbook-reader-notice:empty { display: none; }
+.guestbook-reader-list-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 32px 0 13px; }
+.guestbook-reader-list-heading h3 { margin: 0; font-size: 16px; }
+.guestbook-reader-list-heading button { padding: 6px 11px; min-height: 36px; background: transparent; color: var(--meadow-accent, #45634a); border-color: var(--meadow-reader-line, #b6c3ad); font-size: 12px; }
+.guestbook-reader-list-heading button:hover:not(:disabled) { background: var(--meadow-reader-heading, #e6eddf); }
+.guestbook-reader-empty, .guestbook-reader-limit { font-size: 13px; color: var(--meadow-muted, #6b7669); line-height: 1.8; }
+.guestbook-reader-entries { list-style: none; padding: 0; margin: 0; }
+.guestbook-reader-entries li { padding: 20px 0; border-bottom: 1px solid var(--meadow-border, rgba(72, 90, 68, .15)); }
+.guestbook-reader-entries header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.guestbook-reader-entries strong { font-size: 14px; overflow-wrap: anywhere; }
+.guestbook-reader-entries time { flex-shrink: 0; font-size: 11px; color: var(--meadow-muted, #7f8779); }
+.guestbook-reader-entries li p { margin: 9px 0 0; font-size: 15px; line-height: 1.8; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .guestbook-reader-form { padding: 17px; }
+  .guestbook-reader-submit { align-items: stretch; flex-direction: column; gap: 10px; }
+  .guestbook-reader-entries header { flex-wrap: wrap; gap: 6px 12px; }
+}
+
+body[data-night="true"] .guestbook-reader-error { color: #f4aca1; }
+@container (max-width: 470px) {
+  .guestbook-reader-form { padding: 17px; }
+  .guestbook-reader-submit { align-items: stretch; flex-direction: column; gap: 10px; }
+  .guestbook-reader-entries header { flex-wrap: wrap; gap: 6px 12px; }
+}

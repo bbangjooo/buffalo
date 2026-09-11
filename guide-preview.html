@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#F1EDE3" />
+    <title>Hamster · Comparison</title>
+    <link rel="icon" type="image/png" href="/bbang.png" />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+  </head>
+  <body>
+    <div class="preview-shell">
+      <header class="preview-header">
+        <h1>Hamster <span>· Comparison</span></h1>
+      </header>
+      <main id="preview-stage" aria-label="Character model comparison" aria-busy="true">
+        <div class="preview-comparison">
+          <section class="preview-variant" data-variant="faceted" data-state="loading" aria-labelledby="faceted-title" aria-busy="true">
+            <header class="preview-variant-heading">
+              <h2 id="faceted-title">Low-poly</h2>
+            </header>
+            <div class="preview-viewport">
+              <p class="preview-status" role="status">Loading Low-poly…</p>
+            </div>
+          </section>
+          <section class="preview-variant" data-variant="smooth" data-state="loading" aria-labelledby="smooth-title" aria-busy="true">
+            <header class="preview-variant-heading">
+              <h2 id="smooth-title">Smooth</h2>
+            </header>
+            <div class="preview-viewport">
+              <p class="preview-status" role="status">Loading Smooth…</p>
+            </div>
+          </section>
+        </div>
+      </main>
+      <footer class="preview-footer">
+        <div class="preview-controls" role="group" aria-label="Character viewing angle">
+          <button type="button" data-view="front" aria-pressed="false" disabled>Front</button>
+          <button type="button" data-view="quarter" aria-pressed="true" disabled>Three-quarter</button>
+          <button type="button" data-view="side" aria-pressed="false" disabled>Side</button>
+          <button type="button" data-view="back" aria-pressed="false" disabled>Back</button>
+        </div>
+        <button type="button" id="preview-night" role="switch" aria-label="Night lighting" aria-checked="false" disabled>Day / Night</button>
+        <a class="preview-robot-link" href="/">Return to the rooms</a>
+      </footer>
+    </div>
+    <noscript>This preview needs JavaScript. <a href="/">Return to the rooms</a>.</noscript>
+    <script type="module" src="/src/guide-preview.ts"></script>
+  </body>
+</html>

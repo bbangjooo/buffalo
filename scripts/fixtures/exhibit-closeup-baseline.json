@@ -1,0 +1,411 @@
+{
+  "sha256": "ab065a7015320953da678d66ba9742ce1e200546475f67eead3b405e7df345e5",
+  "bytes": 629644,
+  "meshCount": 119,
+  "primitives": 119,
+  "triangles": 48698,
+  "anchors": {
+    "ScreenAnchor_guestbook--visitors": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.015000343322753906
+      ]
+    },
+    "ScreenAnchor_piano--en-avril": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.0149993896484375
+      ]
+    },
+    "ScreenAnchor_piano--graceful-ghost": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.015001296997070312
+      ]
+    },
+    "ScreenAnchor_piano--last-rag": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.01500082015991211
+      ]
+    },
+    "ScreenAnchor_piano--pathetique": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.015001296997070312
+      ]
+    },
+    "ScreenAnchor_piano--traumerei": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.015000343322753906
+      ]
+    },
+    "ScreenAnchor_work--doeat-availability-zone": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.014998924918472767
+      ]
+    },
+    "ScreenAnchor_work--doeat-growth-integrity": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.01500057801604271
+      ]
+    },
+    "ScreenAnchor_work--doeat-observability": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.014999274164438248
+      ]
+    },
+    "ScreenAnchor_work--doeat-quiz-queue": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.015000227838754654
+      ]
+    },
+    "ScreenAnchor_work--doeat-radial-dispatch": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.014999878592789173
+      ]
+    },
+    "ScreenAnchor_work--doeat-response-compression": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.014998574741184711
+      ]
+    },
+    "ScreenAnchor_work--doeat-storage-lifecycle": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.015000482089817524
+      ]
+    },
+    "ScreenAnchor_work--doeat-windows-deployment": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.014999624341726303
+      ]
+    },
+    "ScreenAnchor_writing--2025-1": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.014999866485595703
+      ]
+    },
+    "ScreenAnchor_writing--2025-2": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.015000343322753906
+      ]
+    },
+    "ScreenAnchor_writing--2025-3": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.015000343322753906
+      ]
+    },
+    "ScreenAnchor_writing--exchange-student-1": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.014998912811279297
+      ]
+    },
+    "ScreenAnchor_writing--exchange-student-2": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.014998435974121094
+      ]
+    },
+    "ScreenAnchor_writing--exchange-student-3": {
+      "translation": [
+        0,
+        2.0999999046325684,
+        0.014999866485595703
+      ]
+    }
+  },
+  "stations": {
+    "Exhibit_guestbook--visitors": {
+      "translation": [
+        -12.5,
+        0,
+        10.5
+      ],
+      "rotation": [
+        0,
+        0.8765996694564819,
+        0,
+        0.4812203645706177
+      ]
+    },
+    "Exhibit_piano--en-avril": {
+      "translation": [
+        11,
+        0,
+        -10
+      ],
+      "rotation": [
+        0,
+        -0.4472157955169678,
+        0,
+        0.8944262266159058
+      ]
+    },
+    "Exhibit_piano--graceful-ghost": {
+      "translation": [
+        28.399999618530273,
+        0,
+        -18.200000762939453
+      ],
+      "rotation": [
+        0,
+        -0.23405848443508148,
+        0,
+        0.972222626209259
+      ]
+    },
+    "Exhibit_piano--last-rag": {
+      "translation": [
+        23.799999237060547,
+        0,
+        -9.199999809265137
+      ],
+      "rotation": [
+        0,
+        -0.9074606895446777,
+        0,
+        0.42013704776763916
+      ]
+    },
+    "Exhibit_piano--pathetique": {
+      "translation": [
+        17.200000762939453,
+        0,
+        -14.800000190734863
+      ],
+      "rotation": [
+        0,
+        -0.44036033749580383,
+        0,
+        0.8978211283683777
+      ]
+    },
+    "Exhibit_piano--traumerei": {
+      "translation": [
+        23.899999618530273,
+        0,
+        -25.600000381469727
+      ],
+      "rotation": [
+        0,
+        0.2698141634464264,
+        0,
+        0.9629124402999878
+      ]
+    },
+    "Exhibit_work--doeat-availability-zone": {
+      "translation": [
+        18,
+        0,
+        27
+      ],
+      "rotation": [
+        0,
+        -0.7071080803871155,
+        0,
+        0.7071055769920349
+      ]
+    },
+    "Exhibit_work--doeat-growth-integrity": {
+      "translation": [
+        10,
+        0,
+        11
+      ],
+      "rotation": [
+        0,
+        0.7071080803871155,
+        0,
+        0.7071055769920349
+      ]
+    },
+    "Exhibit_work--doeat-observability": {
+      "translation": [
+        18,
+        0,
+        19
+      ],
+      "rotation": [
+        0,
+        -0.7071080803871155,
+        0,
+        0.7071055769920349
+      ]
+    },
+    "Exhibit_work--doeat-quiz-queue": {
+      "translation": [
+        10,
+        0,
+        19
+      ],
+      "rotation": [
+        0,
+        0.7071080803871155,
+        0,
+        0.7071055769920349
+      ]
+    },
+    "Exhibit_work--doeat-radial-dispatch": {
+      "translation": [
+        10,
+        0,
+        27
+      ],
+      "rotation": [
+        0,
+        0.7071080803871155,
+        0,
+        0.7071055769920349
+      ]
+    },
+    "Exhibit_work--doeat-response-compression": {
+      "translation": [
+        18,
+        0,
+        35
+      ],
+      "rotation": [
+        0,
+        -0.7071080803871155,
+        0,
+        0.7071055769920349
+      ]
+    },
+    "Exhibit_work--doeat-storage-lifecycle": {
+      "translation": [
+        10,
+        0,
+        35
+      ],
+      "rotation": [
+        0,
+        0.7071080803871155,
+        0,
+        0.7071055769920349
+      ]
+    },
+    "Exhibit_work--doeat-windows-deployment": {
+      "translation": [
+        18,
+        0,
+        11
+      ],
+      "rotation": [
+        0,
+        -0.7071080803871155,
+        0,
+        0.7071055769920349
+      ]
+    },
+    "Exhibit_writing--2025-1": {
+      "translation": [
+        -23.5,
+        0,
+        -10.5
+      ],
+      "rotation": [
+        0,
+        0.8869735598564148,
+        0,
+        0.4618203043937683
+      ]
+    },
+    "Exhibit_writing--2025-2": {
+      "translation": [
+        -29.200000762939453,
+        0,
+        -18
+      ],
+      "rotation": [
+        0,
+        0.31926146149635315,
+        0,
+        0.9476667642593384
+      ]
+    },
+    "Exhibit_writing--2025-3": {
+      "translation": [
+        -23.5,
+        0,
+        -25.5
+      ],
+      "rotation": [
+        0,
+        -0.31926146149635315,
+        0,
+        0.9476667642593384
+      ]
+    },
+    "Exhibit_writing--exchange-student-1": {
+      "translation": [
+        -9.5,
+        0,
+        -11
+      ],
+      "rotation": [
+        0,
+        0.27568286657333374,
+        0,
+        0.9612486362457275
+      ]
+    },
+    "Exhibit_writing--exchange-student-2": {
+      "translation": [
+        -15,
+        0,
+        -16
+      ],
+      "rotation": [
+        0,
+        0.40456217527389526,
+        0,
+        0.9145104885101318
+      ]
+    },
+    "Exhibit_writing--exchange-student-3": {
+      "translation": [
+        -8.5,
+        0,
+        -21
+      ],
+      "rotation": [
+        0,
+        -0.4417514204978943,
+        0,
+        0.8971375226974487
+      ]
+    }
+  }
+}

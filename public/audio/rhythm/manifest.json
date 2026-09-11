@@ -1,0 +1,25 @@
+{
+  "title": "Lasso Lady",
+  "author": "congusbongus",
+  "bpm": 140,
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "sourcePage": "https://opengameart.org/content/lasso-lady-seamless-loop",
+  "sourceFile": "https://opengameart.org/sites/default/files/lassolady_4.ogg",
+  "durationSeconds": 73.723923,
+  "alignmentSeconds": 0.012,
+  "alignmentMethod": "20-second low-frequency attack grid,140BPM; strongest phase at12ms. User timing calibration remains available.",
+  "modification": "Original Ogg transcoded to MP3 using libmp3lame quality3; no trimming or looping.",
+  "files": [
+    {
+      "name": "lasso-lady.mp3",
+      "bytes": 1207776,
+      "sha256": "316e483956606091b047810f2da23c4eccdb8085f157f210693215f99c0a4667"
+    },
+    {
+      "name": "lasso-lady.ogg",
+      "bytes": 917124,
+      "sha256": "bf1bcd2f81953142d8a2e79766d37ca0bde5c11a435f109f026b0cb937ce6085"
+    }
+  ]
+}

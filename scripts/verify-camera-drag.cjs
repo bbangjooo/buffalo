@@ -51,7 +51,7 @@ function harness() {
     exports: {}, window, performance: { now: () => 1000 },
     require(name) {
       if (name === 'three') return THREE;
-      if (name.endsWith('/Camera')) return { isReadingView: (view) => view === 'resume' || view === 'monitor' };
+      if (name.endsWith('/Camera')) return { isReadingView: (view) => ['resume', 'monitor', 'leaderboard'].includes(view) };
       if (name.endsWith('/EventBus')) return { EventBus: { dispatch: (name) => calls.events.push(name) } };
       if (name.endsWith('/rooms')) return { isRoomId: (view) => ['developer', 'piano', 'blog', 'ai'].includes(view) };
       return {};
@@ -70,6 +70,7 @@ function harness() {
     curtains: { isDragging: false, cancelDrag() {} },
     room: { show() {} }, guide: { setRoom() {}, setReading() {} },
     monitorScreen: { setInteractive() {} }, resumeScreen: { setInteractive() {} },
+    leaderboardScreen: { setInteractive() {} },
     environment: { setRoom() {} }, reducedMotion: { matches: false },
     syncScreens() {}, publish() {}, stopRoomActivity() {},
   });
@@ -173,6 +174,7 @@ check('loading, readers, camera transitions, and errors block both starting and 
     (h) => { h.world.ready = false; },
     (h) => { h.world.view = 'resume'; },
     (h) => { h.world.view = 'monitor'; },
+    (h) => { h.world.view = 'leaderboard'; },
     (h) => { h.camera.transitioning = true; },
     (h) => { h.world.error = 'context lost'; },
   ];

@@ -30,7 +30,7 @@ export default class Resources extends EventEmitter {
 
   loadSources() {
     const failed = () => {
-      this.error = "연결을 확인한 뒤 다시 불러오거나 블로그로 바로 이동해 주세요.";
+      this.error = "Check your connection and reload, or visit the blog.";
       this.trigger("error", [this.error]);
     };
     for (const source of this.sources) {

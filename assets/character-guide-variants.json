@@ -1,0 +1,145 @@
+{
+  "baseline": "character-guide.glb",
+  "variants": {
+    "faceted": {
+      "style": "faceted",
+      "root": "GuideCharacter",
+      "facing": "+Z",
+      "height": 1.477528,
+      "width": 1.161609,
+      "depth": 1.108,
+      "footY": 0.0,
+      "triangles": 1512,
+      "meshes": 16,
+      "bytes": 33928,
+      "pivots": {
+        "GuideHead": [
+          0.0,
+          0.985,
+          -0.0
+        ],
+        "GuideArm": [
+          -0.315,
+          0.605,
+          0.275
+        ],
+        "GuideArmLeft": [
+          0.315,
+          0.605,
+          0.275
+        ],
+        "GuideFootLeft": [
+          0.245,
+          0.085,
+          0.085
+        ],
+        "GuideFootRight": [
+          -0.245,
+          0.085,
+          0.085
+        ],
+        "GuideAnchor": [
+          0.0,
+          1.62,
+          -0.0
+        ]
+      },
+      "headDepthScale": 1.42,
+      "bodyDepthScale": 1.55,
+      "skinTopology": {
+        "headSegments": 12,
+        "headLevels": 9,
+        "bodySegments": 12,
+        "bodyLevels": 8
+      },
+      "patchFit": "Projected polygon clipped to actual front-facing skin triangles",
+      "embeddedPhotos": false,
+      "materials": [
+        "Plush warm cream",
+        "Plush ivory face and belly",
+        "Plush strawberry ears paws feet",
+        "Plush peach cheeks",
+        "Plush dark embroidered eyes",
+        "Plush rose embroidery",
+        "Plush smiling pink mouth",
+        "Plush coral nose"
+      ],
+      "source": "assets/character-guide-faceted.blend",
+      "export": "public/Room/character-guide-faceted.glb",
+      "smoothFaces": 0,
+      "flatFaces": 828,
+      "normalTreatment": "Flat face normals on every surface",
+      "maxPatchSurfaceError": 8.669853210352407e-07
+    },
+    "smooth": {
+      "style": "smooth",
+      "root": "GuideCharacter",
+      "facing": "+Z",
+      "height": 1.479215,
+      "width": 1.163901,
+      "depth": 1.108,
+      "footY": 0.0,
+      "triangles": 33196,
+      "meshes": 16,
+      "bytes": 100748,
+      "pivots": {
+        "GuideHead": [
+          0.0,
+          0.985,
+          -0.0
+        ],
+        "GuideArm": [
+          -0.315,
+          0.605,
+          0.275
+        ],
+        "GuideArmLeft": [
+          0.315,
+          0.605,
+          0.275
+        ],
+        "GuideFootLeft": [
+          0.245,
+          0.085,
+          0.085
+        ],
+        "GuideFootRight": [
+          -0.245,
+          0.085,
+          0.085
+        ],
+        "GuideAnchor": [
+          0.0,
+          1.62,
+          -0.0
+        ]
+      },
+      "headDepthScale": 1.42,
+      "bodyDepthScale": 1.55,
+      "skinTopology": {
+        "headSegments": 64,
+        "headLevels": 48,
+        "bodySegments": 64,
+        "bodyLevels": 44
+      },
+      "patchFit": "Projected polygon clipped to actual front-facing skin triangles",
+      "embeddedPhotos": false,
+      "materials": [
+        "Plush warm cream",
+        "Plush ivory face and belly",
+        "Plush strawberry ears paws feet",
+        "Plush peach cheeks",
+        "Plush dark embroidered eyes",
+        "Plush rose embroidery",
+        "Plush smiling pink mouth",
+        "Plush coral nose"
+      ],
+      "source": "assets/character-guide-smooth.blend",
+      "export": "public/Room/character-guide-smooth.glb",
+      "smoothFaces": 17672,
+      "flatFaces": 0,
+      "normalTreatment": "Interpolated skin vertex normals on all fitted markings",
+      "maxPatchSurfaceError": 1.276063919086745e-06
+    }
+  }
+}

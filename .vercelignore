@@ -5,3 +5,14 @@
 /node_modules/
 /dist/
 /public/Room/diorama.glb
+
+# Local-only data, credentials, and review output must never be uploaded.
+/.local-data/
+/.env*
+/.vercel/
+/.playwright-mcp/
+/tmp/
+/public/blender/
+**/.DS_Store
+**/__pycache__/
+*.log
