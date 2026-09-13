@@ -1,5 +1,6 @@
 import { EventBus } from "./UI/EventBus";
-import { PIANO_SAMPLES, pianoSampleMix } from "../design/piano-samples";
+import { PIANO_INTERACTIVE_SAMPLES as PIANO_SAMPLES, pianoSampleMix } from "../design/piano-samples";
+import { PianoDownloads } from './PianoDownloads';
 
 type VoiceKind = "interactive" | "score";
 type Voice = { kind: VoiceKind; sources: AudioBufferSourceNode[]; nodes: AudioNode[]; dispose: () => void };
@@ -17,8 +18,7 @@ export class AudioPlayer {
   private roomImpulse: AudioBuffer | null = null;
   private buffers = new Map<string, AudioBuffer>();
   private loading: Promise<boolean> | null = null;
-  private loadingAbort: AbortController | null = null;
-  private loadingTimer: ReturnType<typeof setTimeout> | null = null;
+  private downloads = new PianoDownloads();
   private audioState: PianoAudioState = { status: "idle" };
   private voices = new Set<Voice>();
   private noteRequest = 0;
@@ -29,11 +29,18 @@ export class AudioPlayer {
   constructor() {
     this.unsubscribe = [
       EventBus.on("sound-toggle", () => { void this.toggle(); }),
-      EventBus.on("world-request-state", () => this.publish()),
+      EventBus.on("world-request-state", () => { this.publish(); this.downloads.publish(true); }),
+      EventBus.on('piano-assets-retry', ({ id }: { id?: string }) => {
+        if (id === 'keys') void (this.context ? this.preload() : this.download());
+      }),
+      EventBus.on('piano-keyboard-open', () => { void this.preload(); }),
     ];
   }
 
-  /** Warm the sample cache on piano-room entry without starting sound or resuming audio. */
+  /** Fetch the interactive bank without sound, decoding, or an AudioContext. */
+  download(): Promise<boolean> { return this.downloads.download(); }
+
+  /** Prepare the interactive keyboard without starting sound or resuming audio. */
   async preload(): Promise<boolean> {
     const context = this.ensureContext();
     if (!context) return false;
@@ -134,9 +141,7 @@ export class AudioPlayer {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true; ++this.noteRequest;
-    this.loadingAbort?.abort(); this.loadingAbort = null;
-    if (this.loadingTimer !== null) clearTimeout(this.loadingTimer);
-    this.loadingTimer = null; this.loading = null;
+    this.downloads.dispose(); this.loading = null;
     this.stopVoices(); this.unsubscribe.forEach((off) => off());
     [this.dry, this.roomSend, this.room, this.master, this.compressor].forEach((node) => node?.disconnect());
     if (this.context && this.context.state !== "closed") void this.context.close().catch(() => { /* Browser already closed it. */ });
@@ -186,33 +191,35 @@ export class AudioPlayer {
     }
     if (this.loading) return this.loading;
     this.audioState = { status: "loading" }; this.publish();
-    const abort = new AbortController(); this.loadingAbort = abort;
-    const timeout = setTimeout(() => abort.abort(), 30000); this.loadingTimer = timeout;
-    const missing = PIANO_SAMPLES.filter(({ url }) => !this.buffers.has(url));
-    let next = 0, failed = false;
-    const worker = async () => {
-      while (next < missing.length && !abort.signal.aborted && !this.disposed) {
-        const sample = missing[next++];
-        try {
-          const response = await fetch(sample.url, { signal: abort.signal });
-          if (!response.ok) throw new Error("Sample unavailable");
-          const buffer = await context.decodeAudioData(await response.arrayBuffer());
-          if (!buffer.length || !Number.isFinite(buffer.duration) || buffer.duration <= 0) throw new Error("Invalid sample");
-          if (!this.disposed && context === this.context && !abort.signal.aborted) this.buffers.set(sample.url, buffer);
-        } catch { failed = true; }
-      }
-    };
     this.loading = (async () => {
       try {
-        await Promise.all(Array.from({ length: Math.min(4, missing.length) }, worker));
+        const downloaded = await this.download();
         if (this.disposed || context !== this.context) return false;
-        const ready = !failed && !abort.signal.aborted && this.buffers.size === PIANO_SAMPLES.length;
+        if (downloaded) this.downloads.setPhase('preparing');
+        const missing = PIANO_SAMPLES.filter(({ url }) => !this.buffers.has(url));
+        let next = 0;
+        const worker = async () => {
+          while (next < missing.length && !this.disposed) {
+            const sample = missing[next++];
+            const bytes = this.downloads.get(sample.url);
+            if (!bytes) continue;
+            try {
+              // decodeAudioData detaches its input; keep the original bytes until success for retries.
+              const buffer = await context.decodeAudioData(bytes.slice(0));
+              if (!buffer.length || !Number.isFinite(buffer.duration) || buffer.duration <= 0) throw new Error('Invalid sample');
+              if (!this.disposed && context === this.context) {
+                this.buffers.set(sample.url, buffer); this.downloads.release(sample.url);
+              }
+            } catch { /* Retain downloaded bytes so Retry can decode without downloading again. */ }
+          }
+        };
+        await Promise.all(Array.from({ length: Math.min(2, missing.length) }, worker));
+        if (this.disposed || context !== this.context) return false;
+        const ready = this.buffers.size === PIANO_SAMPLES.length;
+        this.downloads.setPhase(ready ? 'ready' : 'error');
         this.audioState = ready ? { status: "ready" } : { status: "error", error: "Piano sounds could not load. Please try again." };
         this.publish(); return ready;
-      } finally {
-        clearTimeout(timeout);
-        if (this.loadingAbort === abort) { this.loadingAbort = null; this.loadingTimer = null; this.loading = null; }
-      }
+      } finally { this.loading = null; }
     })();
     return this.loading;
   }

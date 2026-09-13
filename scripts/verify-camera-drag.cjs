@@ -31,6 +31,7 @@ const code = ts.transpileModule(fs.readFileSync(path.join(__dirname, '../src/App
 
 function harness() {
   const window = new Surface();
+  window.clearTimeout = () => {};
   const canvas = new Surface();
   canvas.style = {};
   const captured = new Set();
@@ -48,7 +49,7 @@ function harness() {
     navigate() {},
   };
   const sandbox = {
-    exports: {}, window, performance: { now: () => 1000 },
+    exports: {}, window, document: { body: { dataset: {} } }, performance: { now: () => 1000 },
     require(name) {
       if (name === 'three') return THREE;
       if (name.endsWith('/Camera')) return { isReadingView: (view) => ['resume', 'monitor', 'leaderboard'].includes(view) };

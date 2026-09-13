@@ -33,10 +33,15 @@ export default class Portrait {
     Object.assign(this.container.style, {
       display: 'block', width: '900px', height: '600px', objectFit: 'contain',
       pointerEvents: 'none', userSelect: 'none', backfaceVisibility: 'hidden',
+      backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
     });
     Object.assign(this.image.style, {
       position: 'absolute', inset: '0', display: 'block', width: '100%', height: '100%',
       objectFit: 'contain', pointerEvents: 'none', userSelect: 'none',
+      // Keep image loading/decoding separate from painting the CSS3D surface.
+      // A replaced img can disappear beneath the WebGL aperture after a
+      // viewport/theme change; a background on its normal div stays visible.
+      visibility: 'hidden',
     });
     this.mesh = new THREE.Mesh(new THREE.PlaneGeometry(1.8, 1.2), new THREE.MeshBasicMaterial({
       color: 0x000000, opacity: 0, transparent: false, blending: THREE.NoBlending,
@@ -74,6 +79,7 @@ export default class Portrait {
     this.image.removeEventListener('load', this.onLoad);
     this.image.removeEventListener('error', this.onError);
     this.image.removeAttribute('src');
+    this.container.style.removeProperty('background-image');
     this.object.removeFromParent();
     this.mesh.removeFromParent();
     this.container.remove();
@@ -85,7 +91,10 @@ export default class Portrait {
   private readonly onLoad = async () => {
     try {
       await this.image.decode();
-      if (!this.disposed) this.object.visible = this.mesh.visible = this.image.naturalWidth > 0;
+      if (!this.disposed) {
+        this.container.style.backgroundImage = `url(${JSON.stringify(this.image.src)})`;
+        this.object.visible = this.mesh.visible = this.image.naturalWidth > 0;
+      }
     } catch { this.onError(); }
   };
 

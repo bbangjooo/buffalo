@@ -16,6 +16,7 @@ function evaluate(file, requireModule, globals = {}) {
   return sandbox.exports;
 }
 const samples = evaluate('src/design/piano-samples.ts', () => { throw new Error('Unexpected sample dependency'); });
+const activeCount = samples.PIANO_INTERACTIVE_SAMPLES.length;
 const near = (a, b, label = '') => assert(Math.abs(a - b) < 1e-7, `${label}: ${a} != ${b}`);
 const flush = async () => { for (let i = 0; i < 16; i++) await Promise.resolve(); };
 const deferred = () => { let resolve; const promise = new Promise((yes) => { resolve = yes; }); return { promise, resolve }; };
@@ -69,22 +70,36 @@ function createAudioHarness(options = {}) {
     finishResume() { this.state = 'running'; this.resumes.splice(0).forEach((resolve) => resolve()); }
     close() { this.state = 'closed'; return Promise.resolve(); }
   }
-  const { AudioPlayer } = evaluate('src/Application/AudioPlayer.ts', (name) => {
-    if (name === '../design/piano-samples') return samples;
-    if (name === './UI/EventBus') return { EventBus: {
-      on: (event, callback) => { const entry = { event, callback }; subscriptions.add(entry); return () => subscriptions.delete(entry); },
-      dispatch: (event, state) => messages.push({ event, state }),
-    } };
-    throw new Error(`Unexpected audio dependency: ${name}`);
-  }, {
+  const eventBus = { EventBus: {
+    on: (event, callback) => { const entry = { event, callback }; subscriptions.add(entry); return () => subscriptions.delete(entry); },
+    dispatch: (event, state) => messages.push({ event, state }),
+  } };
+  const globals = {
     window: { AudioContext: Context }, AbortController,
-    fetch: (url, request) => {
+    fetch: async (url, request) => {
       requests.push({ url, request });
-      return options.fetch ? options.fetch(url, request, requests.length) : Promise.resolve({ ok: true, arrayBuffer: async () => ({ url }) });
+      const response = await (options.fetch ? options.fetch(url, request, requests.length) : { ok: true, arrayBuffer: async () => ({ url }) });
+      if (response.body) return response;
+      return { ...response, arrayBuffer: async () => {
+        const data = await response.arrayBuffer();
+        if (data.byteLength !== undefined) return data;
+        return { ...data, byteLength: samples.PIANO_SAMPLES.find(s => s.url === url).bytes, slice() { return this; } };
+      } };
     },
     setTimeout: (callback, ms) => { timers.set(++timerId, { callback, ms }); return timerId; },
     clearTimeout: (id) => timers.delete(id),
-  });
+  };
+  const downloads = evaluate('src/Application/PianoDownloads.ts', (name) => {
+    if (name === '../design/piano-samples') return samples;
+    if (name === './UI/EventBus') return eventBus;
+    throw new Error(`Unexpected download dependency: ${name}`);
+  }, globals);
+  const { AudioPlayer } = evaluate('src/Application/AudioPlayer.ts', (name) => {
+    if (name === '../design/piano-samples') return samples;
+    if (name === './UI/EventBus') return eventBus;
+    if (name === './PianoDownloads') return downloads;
+    throw new Error(`Unexpected audio dependency: ${name}`);
+  }, globals);
   return { player: new AudioPlayer(), contexts, requests, messages, timers, subscriptions, samples,
     get context() { return contexts[0]; },
   };
@@ -119,20 +134,56 @@ async function main() {
     try { await run(); console.log(`PASS ${name}`); }
     catch (error) { failures.push(name); console.error(`FAIL ${name}: ${error.stack}`); }
   }
+  await check('interactive downloads are silent and shared with decoding without duplicate requests', async () => {
+    const blocked = blockedFetch(), h = createAudioHarness({ suspended: true, fetch: blocked.fetch });
+    const background = h.player.download(); await flush();
+    assert.equal(h.contexts.length, 0, 'background download must not allocate decoded audio');
+    assert.equal(h.requests.length, 4);
+    const preload = h.player.preload(); blocked.release();
+    assert(await background); assert(await preload);
+    assert.equal(h.requests.length, activeCount); assert.equal(h.context.resumeCount, 0); assert.equal(h.context.sources.length, 0);
+    assert(h.messages.some(m => m.event === 'piano-assets' && m.state.phase === 'downloaded'));
+    assert(h.messages.some(m => m.event === 'piano-assets' && m.state.phase === 'ready'));
+    assert.equal(h.player.downloads.snapshot().received, h.player.downloads.snapshot().total);
+    assert.equal(h.player.downloads.bytes.size, 0, 'encoded buffers are released after decoding');
+    h.player.dispose();
+  });
+  await check('streamed byte progress advances before files finish and never reports premature completion', async () => {
+    const gate = deferred();
+    const h = createAudioHarness({ fetch: async (url) => {
+      const size = samples.PIANO_SAMPLES.find(s => s.url === url).bytes;
+      let part = 0;
+      return { ok: true, body: { getReader: () => ({
+        async read() {
+          if (part++ === 0) return { done: false, value: new Uint8Array(Math.floor(size / 2)) };
+          if (part === 2) { await gate.promise; return { done: false, value: new Uint8Array(size - Math.floor(size / 2)) }; }
+          return { done: true };
+        }, releaseLock() {},
+      }) } };
+    } });
+    const downloading = h.player.download(); await flush();
+    const partial = h.player.downloads.snapshot();
+    assert.equal(partial.phase, 'downloading'); assert.equal(partial.completed, 0);
+    assert(partial.received > 0 && partial.received < partial.total);
+    gate.resolve(); assert(await downloading);
+    assert.equal(h.player.downloads.snapshot().phase, 'downloaded');
+    assert.equal(h.contexts.length, 0); assert.equal(h.timers.size, 0);
+    h.player.dispose();
+  });
   await check('sample preload is lazy, deduplicated and silent, with reusable stereo buffers and a short room response', async () => {
     const h = createAudioHarness({ suspended: true });
     assert.equal(h.contexts.length, 0); assert.equal(h.requests.length, 0);
     assert(await h.player.preload()); assert.equal(h.context.resumeCount, 0); assert.equal(h.context.sources.length, 0);
-    assert.equal(h.requests.length, 60); assert.equal(h.player.buffers.size, 60); assert.equal(h.timers.size, 0);
+    assert.equal(h.requests.length, activeCount); assert.equal(h.player.buffers.size, activeCount); assert.equal(h.timers.size, 0);
     assert.equal(h.player.roomImpulse.numberOfChannels, 2); assert(h.player.roomImpulse.duration < .8);
     assert.notDeepEqual(h.player.roomImpulse.getChannelData(0), h.player.roomImpulse.getChannelData(1));
-    assert(await h.player.preload()); assert.equal(h.requests.length, 60);
+    assert(await h.player.preload()); assert.equal(h.requests.length, activeCount);
     assert(await h.player.unlock()); assert.equal(h.context.resumeCount, 1);
     h.player.dispose();
   });
-  await check('pitches cover the full piano and velocity selects or blends actual recordings', async () => {
+  await check('pitches cover the interactive keyboard and velocity selects or blends actual recordings', async () => {
     const h = createAudioHarness(); assert(await h.player.unlock());
-    for (const midi of [0, 21, 29, 60, 61, 83, 106, 108, 127]) {
+    for (const midi of [60, 61, 72, 82, 83]) {
       for (const velocity of [.2, .65, 1]) {
         const before = h.context.sources.length; h.player.scheduleNote(midi, velocity, 11, .5);
         const created = h.context.sources.slice(before); assert(created.length >= 1 && created.length <= 2);
@@ -182,7 +233,7 @@ async function main() {
     const pendingNote = loading.player.playNote(60), pendingUnlock = loading.player.unlock(); await flush();
     assert.equal(loading.requests.length, 4, 'network/decode concurrency should be bounded');
     loading.player.stopInteractiveNotes(); blocked.release(); await pendingNote; assert(await pendingUnlock);
-    assert.equal(loading.player.voices.size, 0); assert.equal(loading.requests.length, 60, 'concurrent callers share one sample load'); loading.player.dispose();
+    assert.equal(loading.player.voices.size, 0); assert.equal(loading.requests.length, activeCount, 'concurrent callers share one sample load'); loading.player.dispose();
   });
   await check('stop, mute and dispose cancel both voice channels and all pending note requests', async () => {
     for (const action of ['stopNotes', 'toggle', 'dispose']) {
@@ -203,9 +254,9 @@ async function main() {
   });
   await check('failed fetch or decode returns an honest error and retries only the missing samples without synthesis', async () => {
     for (const failure of ['fetch', 'decode']) {
-      let failed = false;
+      let failed = false, fetchFailures = 0;
       const h = createAudioHarness({
-        fetch: async (url) => ({ ok: !(failure === 'fetch' && !failed && (failed = true)), arrayBuffer: async () => ({ url }) }),
+        fetch: async (url) => ({ ok: !(failure === 'fetch' && url === samples.PIANO_INTERACTIVE_SAMPLES[0].url && fetchFailures++ < 2), arrayBuffer: async () => ({ url }) }),
         decode: async (bytes) => {
           if (failure === 'decode' && !failed) { failed = true; throw new Error('Decoder failed'); }
           return { duration: 8, length: 352800, numberOfChannels: 2, sampleUrl: bytes.url };
@@ -213,13 +264,14 @@ async function main() {
       });
       assert.equal(await h.player.unlock(), false); assert.equal(h.context.sources.length, 0);
       assert.equal(h.messages.at(-1).state.pianoAudio.status, 'error');
-      assert.equal(h.player.buffers.size, 59); assert(await h.player.unlock()); assert.equal(h.requests.length, 61);
+      assert.equal(h.player.buffers.size, activeCount - 1); assert(await h.player.unlock()); assert.equal(h.requests.length, failure === 'fetch' ? activeCount + 2 : activeCount);
       assert.equal(h.messages.at(-1).state.pianoAudio.status, 'ready'); h.player.dispose();
     }
   });
   await check('sample timeout and dispose abort pending downloads and stale decodes cannot repopulate disposed caches', async () => {
     const blocked = blockedFetch(), h = createAudioHarness({ fetch: blocked.fetch });
-    const pending = h.player.unlock(); await flush(); [...h.timers.values()][0].callback();
+    const pending = h.player.unlock(); await flush();
+    for (let round = 0; round < 40 && h.timers.size; round++) { [...h.timers.values()].forEach(timer => timer.callback()); await flush(); }
     assert.equal(await pending, false); assert.equal(h.timers.size, 0); assert(h.requests.every(({ request }) => request.signal.aborted)); h.player.dispose();
     const decoding = deferred(), late = createAudioHarness({ decode: () => decoding.promise });
     const load = late.player.preload(); await flush(); late.player.dispose();
@@ -240,7 +292,7 @@ async function main() {
   });
   await check('every declared root/layer is a licensed local MP3 and covers all authored score pitches', async () => {
     assert.equal(samples.PIANO_SAMPLES.length, 60); assert.equal(new Set(samples.PIANO_SAMPLES.map(({ url }) => url)).size, 60);
-    const manifest = JSON.parse(fs.readFileSync(path.join(root, 'public/audio/piano/manifest.json'), 'utf8'));
+    const manifest = JSON.parse(fs.readFileSync(path.join(root, 'public', samples.PIANO_BANK_PATH, 'manifest.json'), 'utf8'));
     assert.equal(manifest.license, 'CC-BY-3.0'); assert.equal(manifest.author, 'Alexander Holm');
     let bytes = 0;
     for (const sample of samples.PIANO_SAMPLES) {

@@ -3,6 +3,9 @@ import { gsap } from 'gsap';
 import { LoadedModel } from '../../types';
 import { BaseObject } from './BaseObject';
 import { COLORS, ObjectId, ROOM_IDS, RoomId, ROOMS } from '../../design/rooms';
+import { isPenInkObject, preparePenInkModel } from './PenInk';
+import type { ArtTheme } from '../../design/art-themes';
+import ArtThemeMeshes from './ArtThemeMeshes';
 
 const TARGETS: Record<string, { name: string; anchor: string }> = {
   resume: { name: 'ResumeBoard', anchor: 'ResumeAnchor' },
@@ -16,16 +19,21 @@ type Rest = { position: THREE.Vector3; quaternion: THREE.Quaternion };
 
 export default class Room extends BaseObject {
   root: THREE.Group;
+  readonly themeVisuals: ArtThemeMeshes;
   groups = new Map<RoomId, THREE.Object3D>();
   targets = new Map<ObjectId, THREE.Object3D>();
   anchors = new Map<ObjectId, THREE.Object3D>();
   private rest = new Map<THREE.Object3D, Rest>();
   private padMaterials: THREE.MeshStandardMaterial[][] = [];
+  private readonly padOwnedMaterials = new Set<THREE.Material>();
   private heldKeys = new Set<number>();
 
   constructor() {
     super();
     this.root = (this.resources.items.dioramaModel as LoadedModel).scene;
+    preparePenInkModel(this.root);
+    this.themeVisuals = new ArtThemeMeshes(this.root,
+      (this.resources.items.classicRoomModel as LoadedModel).scene, ['Robot']);
     this.root.updateMatrixWorld(true);
     ROOM_IDS.forEach((id) => {
       const group = this.root.getObjectByName(ROOMS[id].group);
@@ -34,8 +42,8 @@ export default class Room extends BaseObject {
     });
     this.root.traverse((child) => {
       if (child instanceof THREE.Mesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
+        child.castShadow = !isPenInkObject(child);
+        child.receiveShadow = !isPenInkObject(child);
         const materials = Array.isArray(child.material) ? child.material : [child.material];
         materials.forEach((material) => {
           if (material instanceof THREE.MeshStandardMaterial) {
@@ -73,7 +81,10 @@ export default class Room extends BaseObject {
       pad.traverse((child) => {
         if (!(child instanceof THREE.Mesh)) return;
         const clones = (Array.isArray(child.material) ? child.material : [child.material]).map((material) => {
-          const clone = material.clone();
+          // Grafted materials are already owned; unlit ink needs no emissive clone.
+          const clone = material instanceof THREE.MeshStandardMaterial && child.userData.artTheme !== 'classic'
+            ? material.clone() : material;
+          if (clone !== material) this.padOwnedMaterials.add(clone);
           if (clone instanceof THREE.MeshStandardMaterial) {
             clone.emissive.set(COLORS.glow).convertSRGBToLinear();
             clone.emissiveIntensity = 0;
@@ -86,6 +97,17 @@ export default class Room extends BaseObject {
       this.padMaterials.push(materials);
     }
     this.show();
+  }
+
+  setArtTheme(theme: ArtTheme): void {
+    this.themeVisuals.setArtTheme(theme);
+    this.invalidateShadows();
+  }
+
+  disposeThemeVisuals(): void {
+    this.themeVisuals.dispose();
+    this.padOwnedMaterials.forEach(material => material.dispose());
+    this.padOwnedMaterials.clear();
   }
 
   private remember(object: THREE.Object3D) {

@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment';
 import { COLORS, RoomId } from '../../design/rooms';
 import { BaseObject } from './BaseObject';
+import type { ArtTheme } from '../../design/art-themes';
 
 export default class Environment extends BaseObject {
   sunLight = new THREE.DirectionalLight(COLORS.glow, 2.1);
@@ -13,6 +14,7 @@ export default class Environment extends BaseObject {
   private environmentMap: THREE.WebGLRenderTarget;
   private night = false;
   private outdoors = false;
+  private artTheme: ArtTheme = 'ink';
 
   constructor() {
     super();
@@ -29,7 +31,7 @@ export default class Environment extends BaseObject {
     this.sunLight.shadow.normalBias = 0.025;
     this.sunLight.shadow.bias = -0.00012;
     this.sunLight.shadow.radius = 4;
-    this.ground = new THREE.Mesh(new THREE.PlaneGeometry(160, 160), new THREE.ShadowMaterial({ opacity: 0.13, color: COLORS.shadow }));
+    this.ground = new THREE.Mesh(new THREE.PlaneGeometry(160, 160), new THREE.ShadowMaterial({ opacity: 0.10, color: '#202327' }));
     this.ground.rotation.x = -Math.PI / 2;
     this.ground.position.y = -0.5;
     this.ground.receiveShadow = true;
@@ -78,15 +80,25 @@ export default class Environment extends BaseObject {
     this.applyLighting(night, reduced);
   }
 
+  setArtTheme(theme: ArtTheme, reduced: boolean) {
+    this.artTheme = theme;
+    const shadow = this.ground.material as THREE.ShadowMaterial;
+    shadow.color.set(theme === 'classic' ? COLORS.shadow : '#202327');
+    shadow.opacity = theme === 'classic' ? .13 : .10;
+    this.applyLighting(this.night, reduced);
+    this.application.renderer.instance.shadowMap.needsUpdate = true;
+  }
+
   private applyLighting(night: boolean, reduced: boolean) {
     const duration = reduced ? 0 : 0.65;
-    this.sunLight.color.set(night ? '#BCCCD8' : COLORS.glow);
-    this.ambientLight.color.set(night ? '#8FA7BF' : COLORS.paper);
-    gsap.to(this.sunLight, { intensity: night ? 0.32 : 2.1, duration, overwrite: true });
-    gsap.to(this.ambientLight, { intensity: night ? 0.35 : 0.9, duration, overwrite: true });
-    gsap.to(this.fillLight, { intensity: night ? 0.16 : 0.8, duration, overwrite: true });
+    const classic = this.artTheme === 'classic';
+    this.sunLight.color.set(night ? classic ? '#BCCCD8' : '#D5D3CA' : COLORS.glow);
+    this.ambientLight.color.set(night ? classic ? '#8FA7BF' : '#B8B8B2' : COLORS.paper);
+    gsap.to(this.sunLight, { intensity: night ? classic ? .32 : .62 : 2.1, duration, overwrite: true });
+    gsap.to(this.ambientLight, { intensity: night ? classic ? .35 : .62 : .9, duration, overwrite: true });
+    gsap.to(this.fillLight, { intensity: night ? classic ? .16 : .28 : .8, duration, overwrite: true });
     this.scene.environment = night ? null : this.environmentMap.texture;
-    gsap.to(this.application.renderer.instance, { toneMappingExposure: night ? 0.9 : 1, duration, overwrite: true });
+    gsap.to(this.application.renderer.instance, { toneMappingExposure: classic && night ? .9 : 1, duration, overwrite: true });
     gsap.to(this.lamp, { intensity: night ? 4 : 0, duration, overwrite: true });
   }
 

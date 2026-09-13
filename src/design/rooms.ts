@@ -12,11 +12,11 @@ export const ROOMS: Record<RoomId, { name: string; group: string; angle: number;
   },
   piano: {
     name: 'Piano', group: 'RoomPiano', angle: Math.PI / 2, color: palette.colors.brass,
-    actions: [{ id: 'pianoSeat', label: 'Sit at the piano' }],
+    actions: [{ id: 'pianoSeat', label: 'Sit at the organ' }],
   },
   blog: {
     name: 'Blog', group: 'RoomBlog', angle: Math.PI, color: palette.colors.slate,
-    actions: [{ id: 'monitor', label: 'Read the blog' }, { id: 'blogLamp', label: 'Desk lamp' }],
+    actions: [{ id: 'monitor', label: 'Read the blog' }, { id: 'blogLamp', label: 'Torch' }],
   },
   ai: {
     name: 'Play', group: 'RoomAI', angle: Math.PI * 1.5, color: palette.colors.sage,

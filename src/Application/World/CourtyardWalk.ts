@@ -18,6 +18,24 @@ export function walkDirection(code: string): WalkDirection | undefined { return 
 
 /** Renderer-independent first-person movement, relative to the visitor's heading. */
 export class CourtyardWalk {
+  private villageObstacles: ReadonlyArray<{ x: number; z: number; radius: number }> = [];
+  setVillageObstacles(obstacles: ReadonlyArray<{ x: number; z: number; radius: number }>) { this.villageObstacles = obstacles; }
+  /** A newly enabled visual theme may add a solid at the visitor's position. */
+  ensureSafePosition(): boolean {
+    if (this.canStand(this.x, this.z)) return false;
+    // Find nearby open ground without changing heading or the active record.
+    const startX = this.x, startZ = this.z;
+    for (let radius = .25; radius <= 10; radius += .25) {
+      const steps = Math.ceil(2 * Math.PI * radius / .2);
+      for (let i = 0; i < steps; i++) {
+        const angle = i * Math.PI * 2 / steps;
+        const x = startX + Math.sin(angle) * radius, z = startZ + Math.cos(angle) * radius;
+        if (this.canStand(x,z)) { this.x=x;this.z=z; return true; }
+      }
+    }
+    [this.x,this.z] = COURTYARD.entrance;
+    return true;
+  }
   x = COURTYARD.entrance[0];
   y = 0;
   z = COURTYARD.entrance[1];
@@ -114,6 +132,7 @@ export class CourtyardWalk {
     if (Math.abs(x) < houseRadius && Math.abs(z) < houseRadius) return false;
     const obstacles = COURTYARD.obstacles as { x: number; z: number; radius: number }[];
     if (obstacles.some((obstacle) => Math.hypot(x - obstacle.x, z - obstacle.z) < obstacle.radius + ROBOT_RADIUS)) return false;
+    if (this.villageObstacles.some(obstacle => Math.hypot(x - obstacle.x, z - obstacle.z) < obstacle.radius + ROBOT_RADIUS)) return false;
     return COURTYARD.stations.every((station) => Math.hypot(x - station.x, z - station.z) >= STATION_RADIUS);
   }
 }

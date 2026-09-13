@@ -17,7 +17,7 @@ export default class ExhibitScreen {
   constructor(private application: Application) {
     this.container.id='exhibit-screen';
     this.content.id='exhibit-screen-content';
-    Object.assign(this.container.style,{background:'#F1EDE3',backfaceVisibility:'hidden',pointerEvents:'none'});
+    Object.assign(this.container.style,{background:'#F2E6CE',backfaceVisibility:'hidden',pointerEvents:'none'});
     Object.assign(this.content.style,{width:'100%',height:'100%',overflow:'hidden'});
     this.container.appendChild(this.content);
     this.container.setAttribute('aria-hidden','true');
@@ -39,7 +39,7 @@ export default class ExhibitScreen {
     if(active)this.container.removeAttribute('inert');else this.container.setAttribute('inert','');
   }
   update() {
-    this.container.style.background=this.application.world.night?'#243A32':'#F1EDE3';
+    this.container.style.background=this.application.world.night?'#0E1011':'#F2E6CE';
     if(!this.anchor)return;
     this.anchor.updateWorldMatrix(true,false);
     this.anchor.matrixWorld.decompose(this.position,this.rotation,this.scale);

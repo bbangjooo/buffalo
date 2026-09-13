@@ -1,0 +1,150 @@
+{
+  "date": "2026-09-13",
+  "branch": "codex/pen-ink-world",
+  "worktree": "/Users/bbangjo/buffalo-pen-ink",
+  "localUrl": "http://localhost:4178/",
+  "revision": "wide-hamlets-volumetric-trees-and-art-themes",
+  "intent": "Keep the same four-room interaction space, extend ink hamlets across roughly106m, give courtyard trees genuine volume, and independently switch art style and time of day.",
+  "camera": {
+    "elevationDegrees": 36,
+    "coreWidthIncreasePercent": [
+      16.1,
+      17.1
+    ],
+    "projectedAreaIncreasePercent": [
+      31.5,
+      40.8
+    ],
+    "checkedViewports": [
+      [
+        1440,
+        960
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        320,
+        740
+      ]
+    ],
+    "functionalContentClipped": false,
+    "unchangedFrom": "319df7f3b884a6a223993ca8959ddc18125184cd"
+  },
+  "background": {
+    "features": 19,
+    "cottages": 9,
+    "props": 10,
+    "propKinds": [
+      "well",
+      "market",
+      "cart",
+      "notice",
+      "barrel_cluster",
+      "crates_cluster",
+      "well",
+      "market",
+      "cart",
+      "barrel_cluster"
+    ],
+    "plantClusters": 21,
+    "plantCounts": {
+      "grass": 274,
+      "flower": 63,
+      "shrub": 35,
+      "rock": 20,
+      "tree": 24
+    },
+    "fixedPlantInstances": 416,
+    "plantBatches": 5,
+    "omittedPlantInstances": 0,
+    "original72PlacementsPreserved": true,
+    "repeatingPlantField": false,
+    "conservativeFootprintMeters": {
+      "before": [
+        50.7,
+        48.4
+      ],
+      "after": [
+        105.63,
+        105.63
+      ]
+    },
+    "villageTriangles": 131608,
+    "villageGlbBytes": 940760,
+    "visibleInitialView": "Original small cottage and framing trees remain. A complete handcart, barrels, notices and crates fill separated near edges; larger cottage yards and gardens extend outward for exploration.",
+    "original220PlacementsPreserved": true,
+    "trees": {
+      "closedCanopyLobes": 7,
+      "vertices": 4474,
+      "triangles": 5746,
+      "width": 2.7405,
+      "depth": 2.9866,
+      "height": 3.44,
+      "footprintRadius": 2.0373,
+      "renderSide": "FrontSide",
+      "inkHull": true,
+      "surfaceHatching": true
+    }
+  },
+  "validation": {
+    "build": "npm run build passed",
+    "framingChecks": 19,
+    "atlasChecks": 16,
+    "assetPreservationChecks": 10,
+    "regression": [
+      "leaderboard",
+      "first-person",
+      "camera-drag",
+      "courtyard"
+    ],
+    "originalContentAndCharactersPreserved": true,
+    "nestedCottageScaleAndTorchMatch": true,
+    "dayNightBrowserChecks": true,
+    "mobileHorizontalOverflow": false,
+    "mobileCompassActionOverlap": false,
+    "finalCartAtlasChecks": 16,
+    "solidApproaches": 297,
+    "screenSightlineSamples": 234,
+    "browserRoomsVisited": [
+      "developer",
+      "piano",
+      "blog",
+      "ai"
+    ],
+    "browserExploreEnterAndReturn": true,
+    "browserConsoleErrors": 0,
+    "artThemeChecks": 9,
+    "portraitPaintRestored": true
+  },
+  "artifacts": {
+    "blender": "assets/atlas-world.blend",
+    "day": "docs/media/atlas/day.png",
+    "night": "docs/media/atlas/night.png",
+    "mobile": "docs/media/atlas/mobile-night.png",
+    "villageOverviewDay": "docs/media/atlas/village-overview-day.png",
+    "villageOverviewNight": "docs/media/atlas/village-overview-night.png",
+    "landscape": "src/design/atlas-landscape.json",
+    "classicDay": "docs/media/atlas/classic-day.png",
+    "classicNight": "docs/media/atlas/classic-night.png",
+    "treeFourViews": "docs/media/atlas/tree-volume-four-views.png",
+    "themeValidation": "assets/art-theme-validation.json"
+  },
+  "blenderReview": {
+    "generatedWith": "Blender 5.2.1 LTS via scripts/prepare_atlas_review.py",
+    "scenes": [
+      "Day",
+      "Night"
+    ],
+    "landmarks": 19,
+    "fixedPlantInstances": 416,
+    "whiteFlames": 13,
+    "defaultCamera": "VillageOverviewCamera",
+    "overviewOrtho": 106.750328,
+    "preservedCamera": "RoomCompositionCamera",
+    "roomOrtho": 20,
+    "sourceFilesUnchanged": true,
+    "purpose": "Editable static village overview; browser is authoritative for interactive content."
+  }
+}

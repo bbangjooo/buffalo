@@ -66,6 +66,8 @@ export default class Application {
     this.sizes.off("resize");
     this.time.off("tick");
     this.world.disposeInput();
+    this.world.room?.disposeThemeVisuals();
+    this.world.village?.dispose();
     this.world.courtyard?.dispose();
     this.world.monitorScreen?.dispose();
     this.world.resumeScreen?.dispose();

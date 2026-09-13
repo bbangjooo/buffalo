@@ -2,12 +2,15 @@ import * as THREE from 'three';
 import type Application from '../Application';
 import type GuideRobot from './GuideRobot';
 import { EventBus } from '../UI/EventBus';
-import { COLORS, isRoomId, RoomId } from '../../design/rooms';
+import { isRoomId, RoomId } from '../../design/rooms';
 import { COURTYARD, EXHIBITIONS } from '../../design/history';
 import { LoadedModel } from '../../types';
 import { CourtyardWalk, walkDirection, WalkDirection } from './CourtyardWalk';
 import Meadow from './Meadow';
 import ExhibitScreen from './ExhibitScreen';
+import { isPenInkObject, preparePenInkModel } from './PenInk';
+import type { ArtTheme } from '../../design/art-themes';
+import ArtThemeMeshes from './ArtThemeMeshes';
 
 export interface CourtyardState { active: boolean; nearby: string | null; visited: string[]; x: number; z: number; room: RoomId; reading: string | null; }
 interface ReadingActions { canInteract: () => boolean; open: (anchor: THREE.Object3D) => void; close: () => void; }
@@ -37,6 +40,7 @@ function coverLines(context: CanvasRenderingContext2D, text: string, y: number, 
 /** Four continuous room quadrants, with one physical screen for every history record. */
 export default class Courtyard {
   readonly root: THREE.Group;
+  readonly themeVisuals: ArtThemeMeshes;
   readonly walk = new CourtyardWalk();
   readonly screen: ExhibitScreen;
   readonly meadow: Meadow;
@@ -54,6 +58,7 @@ export default class Courtyard {
   private readonly pointer = new THREE.Vector2();
   private pointerDown: { id: number; x: number; y: number; moved: boolean } | null = null;
   private coverNight = false;
+  private artTheme: ArtTheme = 'ink';
   private readonly onKeyUp = (event: KeyboardEvent) => {
     const code = event.code || event.key;
     this.walk.setInput(code, null);
@@ -67,8 +72,11 @@ export default class Courtyard {
 
   constructor(private application: Application, private guide: GuideRobot, private actions: ReadingActions) {
     this.root = (application.resources.items.courtyardModel as LoadedModel).scene;
+    preparePenInkModel(this.root);
+    this.themeVisuals = new ArtThemeMeshes(this.root,
+      (application.resources.items.classicCourtyardModel as LoadedModel).scene, ['MeadowTemplates']);
     this.root.traverse((object) => {
-      if (object instanceof THREE.Mesh) { object.castShadow = true; object.receiveShadow = true; }
+      if (object instanceof THREE.Mesh) { object.castShadow = !isPenInkObject(object); object.receiveShadow = object.userData.artTheme === 'classic'; }
     });
     application.scene.add(this.root);
     this.meadow = new Meadow(application, this.root);
@@ -81,7 +89,7 @@ export default class Courtyard {
       const model = this.root.getObjectByName(THREE.PropertyBinding.sanitizeNodeName(`Exhibit_${station.id}`));
       if (model) model.userData.exhibitId = station.id;
       const halo = new THREE.Mesh(new THREE.RingGeometry(1.91, 1.97, 32),
-        new THREE.MeshBasicMaterial({ color: COLORS.brass, side: THREE.DoubleSide }));
+        new THREE.MeshBasicMaterial({ color: '#292b2e', toneMapped: false, side: THREE.DoubleSide }));
       halo.rotation.x = -Math.PI / 2;
       halo.position.set(station.x, COURTYARD.groundY + .012, station.z);
       halo.visible = false;
@@ -141,6 +149,23 @@ export default class Courtyard {
     }));
     this.off.push(EventBus.on('world-request-state',()=>this.publish()));
   }
+  setArtTheme(theme: ArtTheme): void {
+    this.artTheme = theme;
+    this.themeVisuals.setArtTheme(theme);
+    this.meadow.setArtTheme(theme);
+    this.repaintCovers();
+    this.application.renderer.instance.shadowMap.needsUpdate = true;
+  }
+
+  private repaintCovers(): void {
+    this.covers.forEach(cover => {
+      const texture = cover.material.map;
+      if (!texture) return;
+      this.paintCover(texture.image as HTMLCanvasElement, cover.userData.coverStation, this.coverNight, cover.userData.qrImage);
+      texture.needsUpdate = true;
+    });
+  }
+
   private addCover(station: typeof COURTYARD.stations[number], anchor: THREE.Object3D) {
     const record = EXHIBITIONS.find(item => item.id === station.exhibitionId)!.entries[station.entryIndex];
     const canvas = document.createElement('canvas');
@@ -171,15 +196,21 @@ export default class Courtyard {
     context.setTransform(canvas.width / 520, 0, 0, canvas.height / 340, 0, 0);
     const exhibition=EXHIBITIONS.find(item=>item.id===station.exhibitionId)!;
     const record=exhibition.entries[station.entryIndex];
-    context.fillStyle = night ? '#1E352F' : '#F1EDE3'; context.fillRect(0, 0, 520, 340);
+    const classic = this.artTheme === 'classic';
+    const palette = classic
+      ? (night ? { paper: '#1E352F', ink: '#E1EBE4', muted: '#A8BEB4', accent: '#A6C7B7' }
+        : { paper: '#F1EDE3', ink: '#183C43', muted: '#52676B', accent: '#3C7D7B' })
+      : (night ? { paper: '#0E1011', ink: '#D8D4CA', muted: '#A7A399', accent: '#C5C0B6' }
+        : { paper: '#F2E6CE', ink: '#5C422D', muted: '#725B43', accent: '#5C422D' });
+    context.fillStyle = palette.paper; context.fillRect(0, 0, 520, 340);
     if(record.kind==='guestbook'){
-      context.fillStyle=night?'#E1EBE4':'#183C43';context.font='600 44px "Pretendard Variable", sans-serif';
+      context.fillStyle=palette.ink;context.font='600 44px "Pretendard Variable", sans-serif';
       context.fillText('Guestbook',32,112);return;
     }
     if(record.kind==='coffee' && qrImage?.complete && qrImage.naturalWidth){
-      context.fillStyle=night?'#E1EBE4':'#183C43';context.font='600 30px "Pretendard Variable", sans-serif';
+      context.fillStyle=palette.ink;context.font='600 30px "Pretendard Variable", sans-serif';
       context.fillText(record.title,32,64);
-      context.fillStyle=night?'#A6C7B7':'#3C7D7B';context.font='600 20px "Pretendard Variable", sans-serif';
+      context.fillStyle=palette.accent;context.font='600 20px "Pretendard Variable", sans-serif';
       context.fillText(record.actionLabel || 'Buy me a coffee',32,213);
       // Preserve the supplied QR's colors and a white quiet zone in both lighting modes.
       context.fillStyle='#FFFFFF';context.fillRect(272,92,224,224);
@@ -187,16 +218,16 @@ export default class Courtyard {
       return;
     }
     if(record.kind==='coffee'){
-      context.fillStyle=night?'#E1EBE4':'#183C43';context.font='600 32px "Pretendard Variable", sans-serif';
+      context.fillStyle=palette.ink;context.font='600 32px "Pretendard Variable", sans-serif';
       const bottom=coverLines(context,record.title,88,40,2);
-      context.fillStyle=night?'#A8BEB4':'#52676B';context.font='22px "Pretendard Variable", sans-serif';
+      context.fillStyle=palette.muted;context.font='22px "Pretendard Variable", sans-serif';
       coverLines(context,record.text,bottom+55,32,3);
-      context.fillStyle=night?'#A6C7B7':'#3C7D7B';context.font='600 20px "Pretendard Variable", sans-serif';
+      context.fillStyle=palette.accent;context.font='600 20px "Pretendard Variable", sans-serif';
       context.fillText(record.actionUrl?record.actionLabel||'Open':'Link coming soon',32,294);return;
     }
-    context.fillStyle = night ? '#E1EBE4' : '#183C43'; context.font = '600 30px "Pretendard Variable", sans-serif';
+    context.fillStyle = palette.ink; context.font = '600 30px "Pretendard Variable", sans-serif';
     const bottom=coverLines(context,record.title,84,40,3);
-    context.fillStyle = night ? '#A8BEB4' : '#52676B';
+    context.fillStyle = palette.muted;
     if(station.room==='piano'){
       context.font = '22px "Pretendard Variable", sans-serif';
       coverLines(context,record.text,bottom+52,32,3);
@@ -272,9 +303,7 @@ export default class Courtyard {
     this.meadow.setNight(this.application.world.night);
     if(this.coverNight!==this.application.world.night){
       this.coverNight=this.application.world.night;
-      this.covers.forEach(cover=>{const texture=cover.material.map;
-        if(texture){this.paintCover(texture.image as HTMLCanvasElement,cover.userData.coverStation,this.coverNight,cover.userData.qrImage);texture.needsUpdate=true;}
-      });
+      this.repaintCovers();
     }
     this.screen.update();
     if(!this.active)return;
@@ -300,7 +329,7 @@ export default class Courtyard {
     EventBus.dispatch('courtyard-state',{active:this.active,nearby:this.nearby,visited:[...this.visited],x:this.walk.x,z:this.walk.z,room:this.walk.getRoom(),reading:this.reading||this.closingRecord} as CourtyardState);
   }
   dispose() {
-    this.stop();this.off.forEach(off=>off());this.screen.dispose();this.meadow.dispose();
+    this.stop();this.off.forEach(off=>off());this.screen.dispose();this.meadow.dispose();this.themeVisuals.dispose();
     this.covers.forEach(cover=>{cover.material.map?.dispose();cover.material.dispose();cover.geometry.dispose();cover.removeFromParent();});
     window.removeEventListener('keyup',this.onKeyUp);window.removeEventListener('blur',this.stop);window.removeEventListener('resize',this.stop);document.removeEventListener('visibilitychange',this.onVisibility);
     this.halos.forEach(halo=>{halo.geometry.dispose();(halo.material as THREE.Material).dispose();halo.removeFromParent();});
