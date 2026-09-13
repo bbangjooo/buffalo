@@ -14,4 +14,10 @@ This site selects two of the original velocity layers (5 and 11), with 30 root n
 
 The recordings were obtained from the versioned npm packages above. No performance-video audio is included. [manifest.json](manifest.json) records source archives and members, package integrity, original and derived SHA-256 hashes, note mapping, measured duration, and conversion settings.
 
+The website serves a compact stereo MP3 version, re-encoded from this bank using libmp3lame VBR quality 5 at 44.1 kHz. There is no additional trimming or mono conversion. The [compact manifest](compact-88aebbf569b9/manifest.json) records the derived files and checksums; all 60 files total 3,022,649 bytes. The original bank remains available for provenance.
+
 Human-readable credits are available at [/audio/piano/](/audio/piano/). The recorded instrument is a Yamaha C5 grand piano; naming the instrument does not imply endorsement by its manufacturer or the sample creator.
+
+## Pre-rendered performance
+
+The automatic performance of “En avril, à Paris” is rendered from the site's authored score using the original Salamander recordings, the existing velocity mix, envelopes, compressor, and room ambience. It includes a one-second reverb tail and is encoded as stereo 44.1 kHz MP3 using libmp3lame VBR quality 3. No performance-video audio is used. [Recording provenance and checksums](performance-b402484fb237/manifest.json). The Salamander sample attribution and CC BY 3.0 terms above apply to the adapted instrument recordings.

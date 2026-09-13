@@ -12,7 +12,7 @@
 
 Retrieved on 2026-09-10 from the versioned npm registry archives. SHA-512 archive integrity was checked against each package's registry metadata. The original MP3 files total 11,103,588 bytes. Sixty samples cover two original velocity layers (5 and 11), with 30 roots per layer at MIDI 21, 24, 27, …, 108. Nearest-root playback covers the 88-key range with at most one semitone of transposition.
 
-Naming: `/audio/piano/v{5|11}-{note}.mp3`, where notes are `A0`, `C1`, `Ds1`, `Fs1`, `A1`, …, `A7`, `C8`. `s` represents a sharp in the local filename only; manifest note names use normal sharp spelling.
+Original bank naming: `/audio/piano/v{5|11}-{note}.mp3`, where notes are `A0`, `C1`, `Ds1`, `Fs1`, `A1`, …, `A7`, `C8`. `s` represents a sharp in the local filename only; manifest note names use normal sharp spelling.
 
 Long notes are capped at 8 seconds and faded over the final 0.4 seconds to bound decoded memory while preserving the score's longest note (about 5.08 seconds). Shorter recordings keep their original bytes. The adaptation is disclosed in both visible and file-level credits.
 
@@ -32,15 +32,32 @@ The existing public APIs remain: `playNote`, `unlock`, `currentTime`, `scheduleN
 
 The gain envelope adds a short anti-click attack and a 120–220ms damped release at score note-off. It does not synthesize a decay over the recording. Recordings play once rather than looping; the natural tail or eight-second adaptation ends even if a caller requests a longer hold. A quiet 680ms stereo convolution room sits beside the dry signal, followed by the existing compressor. The room impulse is generated noise, not a musical recording. Global stop and mute disconnect its previous tail immediately.
 
-`preload(): Promise<boolean>` loads and decodes the bank without resuming the AudioContext or playing a note. Room-entry integration can call it to warm the cache. `unlock()` invokes `context.resume()` synchronously while the user's gesture is active, then waits for the bank. A failed fetch, decode, or timeout returns `false`, publishes an English retry message, and retains successfully decoded files for the next attempt. `world-state.pianoAudio` reports `idle`, `loading`, `ready`, or `error`; it never pretends a mechanical fallback is ready.
+## Pre-rendered automatic performance
 
-Loading uses at most four fetch/decode workers and one shared promise, with a 30-second timeout. Disposal aborts downloads, clears that timer, disconnects all voices and output nodes, closes the context, and discards decoded samples. Pending resumes, loads, and interactive strikes retain independent cancellation generations. `stopInteractiveNotes()` leaves score voices running; global stop, mute, and dispose cancel both channels. The voice limit is 64 notes, each using at most two sample sources.
+`PianoPerformance` owns a hidden native HTMLAudioElement, preloaded asynchronously after scene initialization. It streams `/audio/piano/performance-b402484fb237/en-avril-a-paris.mp3` (3,527,836 bytes, 221.204218 seconds). Listen calls `play()` synchronously in the input gesture, without `AudioPlayer.unlock()`, bank download, or Web Audio decoding. The authored score JSON is used only for key animation; `currentTime` of the media element is the only playback clock. Buffering freezes that clock. Pause, resume, stop, hidden-tab cancellation, mute, errors/retry, and pending-play cancellation keep media and UI aligned. The one-second render tail plays through before the ended state.
 
-The final bank is **5,966,897 bytes** on disk (about 5.69MiB). Full decoded stereo buffers use approximately **144.25MiB at 44.1kHz** or **157.01MiB at 48kHz**, plus Web Audio overhead. They are loaded only when the piano is requested; this is a deliberate timbre/coverage tradeoff. The bank covers every authored En avril pitch (MIDI29–106) with at most one semitone of transposition and preserves all supplied sounding durations up to about 5.08 seconds.
+`PianoAssetProgress` shows recording readiness separately from interactive-key preparation. The recording uses buffered seconds, not an invented byte count. It is marked ready on `canplay`, even with only a portion buffered; the entire file is not a prerequisite to listening. Each asset has its own Retry target and four-second completion dismissal.
+
+### Reproducing the recording
+
+1. Start Vite on `127.0.0.1:5173` and `python3 scripts/receive-piano-render.py`.
+2. Open `/scripts/render-piano.html` and click Render recording. The authoring-only page renders without audible playback, using OfflineAudioContext and the real AudioPlayer instrument graph/strike envelope. All 1,747 notes are scheduled offline with the live voice cap disabled; original higher-quality bank files are decoded, not compact derivatives.
+3. The localhost-only receiver saves one fixed file, `.vercel/piano-render/render.wav`. It accepts only the local authoring origin and validates the WAV header/size; it does not touch app storage. Stop it after authoring.
+4. Run `python3 scripts/package-piano-recording.py`. It produces the MP3, content-derived path, provenance manifest, and audioUrl. The original WAV is not deployed. Current PCM peak is 0.6256, below clipping.
+
+The original source bank and score remain unchanged. The recording is an adaptation of the existing authored performance, not extracted from YouTube or another pianist's recording.
+
+## Interactive keys and caching
+
+Opening the keyboard, sitting at it, or pressing a physical shortcut starts the interactive sample preparation. Merely entering the Piano room or pressing Listen does not create the sample AudioContext or request compact MP3s. The rendered keyboard exposes MIDI 60–83, requiring 18 recordings (roots 60–84, two velocities), rather than the full 60-file bank. `PianoDownloads` fetches only those recordings, at most four low-priority requests at a time. Two decode workers prepare them for interactive playback. Source coverage for the rendered song is independent of this smaller interactive set.
+
+Byte progress, 30-second per-request inactivity deadlines, one automatic retry, retained successful downloads, and retry of failed decodes without another fetch remain in place. The UI labels these as Piano keys, separate from Piano recording. Disposal aborts pending requests and prevents stale callbacks from refilling caches.
+
+Content-versioned compact and performance directories receive `Cache-Control: public, max-age=31536000, immutable` on Vercel. New encoded bytes produce a new URL. Native media playback supports starting before the complete recording downloads; caching alone is not relied on for the first-visit improvement.
 
 ## Verification
 
 - `node scripts/verify-audio-channels.cjs` exercises the real transpiled AudioPlayer with controlled Web Audio nodes, asynchronous loading, and timers. It verifies pitch/velocity mapping, absolute starts and note-offs, late offsets, cancellation during resume/load, independent voice channels, error/retry behavior, timeout/disposal cleanup, reverb shutdown, and the voice cap. It also verifies every local MP3 against its recorded SHA-256, root/layer metadata, and license record.
-- `node scripts/verify-piano-performance.cjs` retains the existing transport tests and exercises actual sampled AudioPlayer scheduling against the shared clock. Chords, bass pitches, key holds, sustain durations, repeated strikes, pause/resume, stop, hidden tabs, and disposal remain covered.
+- `node scripts/verify-piano-performance.cjs` exercises the native recording transport: partial buffering, no sample calls, the media clock, chords/repeated strikes, physical key duration versus sustain, pause/resume, pending-play cancellation, hidden tabs, mute, failure/retry, end/tail and disposal.
 - Acquisition checks decoded all sixty MP3s completely with ffmpeg and checked stereo channels, durations, package integrity, and output hashes.
 - These automated checks establish content integrity and scheduling behavior. They do not substitute for hearing the mix in the browser or measuring a particular device's output latency; root browser QA handles the in-app sound check.

@@ -18,6 +18,8 @@ export function walkDirection(code: string): WalkDirection | undefined { return 
 
 /** Renderer-independent first-person movement, relative to the visitor's heading. */
 export class CourtyardWalk {
+  private villageObstacles: ReadonlyArray<{ x: number; z: number; radius: number }> = [];
+  setVillageObstacles(obstacles: ReadonlyArray<{ x: number; z: number; radius: number }>) { this.villageObstacles = obstacles; }
   x = COURTYARD.entrance[0];
   y = 0;
   z = COURTYARD.entrance[1];
@@ -114,6 +116,7 @@ export class CourtyardWalk {
     if (Math.abs(x) < houseRadius && Math.abs(z) < houseRadius) return false;
     const obstacles = COURTYARD.obstacles as { x: number; z: number; radius: number }[];
     if (obstacles.some((obstacle) => Math.hypot(x - obstacle.x, z - obstacle.z) < obstacle.radius + ROBOT_RADIUS)) return false;
+    if (this.villageObstacles.some(obstacle => Math.hypot(x - obstacle.x, z - obstacle.z) < obstacle.radius + ROBOT_RADIUS)) return false;
     return COURTYARD.stations.every((station) => Math.hypot(x - station.x, z - station.z) >= STATION_RADIUS);
   }
 }

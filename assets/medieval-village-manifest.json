@@ -1,0 +1,27 @@
+{
+  "revision": "antique-atlas-four-features-3",
+  "landmarkCount": 4,
+  "cottageCount": 2,
+  "meshCount": 6,
+  "triangles": 30010,
+  "obstacleCount": 4,
+  "torchCount": 2,
+  "windowCount": 2,
+  "style": "four purposeful background features on open antique-map paper; two small cottages, well and modest scaled market; no village clutter or paving",
+  "authoringSource": "scripts/build_medieval_village.py",
+  "preserved": [
+    "central house clear area",
+    "all courtyard station anchors/assets",
+    "four spawn clearances",
+    "open cross roads",
+    "reader sightline segments"
+  ],
+  "propScales": {
+    "well": 1,
+    "market": 0.76
+  },
+  "cottageScales": {
+    "scribe": 0.62,
+    "weaver": 1
+  }
+}

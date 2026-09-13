@@ -40,7 +40,7 @@ export default class Camera extends EventEmitter {
   private readonly orthographic = new THREE.OrthographicCamera(-8, 8, 5, -5, 0.05, 1000);
   private readonly perspective = new THREE.PerspectiveCamera(35, 1, 0.02, 1000);
   private readonly up = new THREE.Vector3(0, 1, 0);
-  private readonly defaultElevation = Math.atan2(1.4, Math.SQRT2);
+  private readonly defaultElevation = THREE.MathUtils.degToRad(36);
   private readonly reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   private readonly readingTargets: Record<ReadingView, ReadingTarget> = {
     monitor: {
@@ -342,19 +342,19 @@ export default class Camera extends EventEmitter {
     const height = Math.max(this.sizes.height, 1);
     const aspect = width / height;
     const sidebar = width >= 1000;
-    const leftInset = sidebar ? 280 : 12;
-    const rightInset = sidebar ? 24 : 12;
-    const topInset = sidebar ? 88 : 185;
-    const bottomInset = sidebar ? 110 : this.view === 'piano' ? 230 : this.view === 'ai' ? 210 : 130;
+    const leftInset = sidebar ? 190 : 8;
+    const rightInset = sidebar ? 20 : 8;
+    const topInset = sidebar ? 88 : 160;
+    const bottomInset = sidebar ? 118 : this.view === 'piano' ? 230 : this.view === 'ai' ? 210 : 130;
     const safeHeight = Math.max(height - topInset - bottomInset, sidebar ? height * 0.35 : 90);
     const safeWidth = Math.max(width - leftInset - rightInset, width * 0.5);
-    // The entire 11.2m house remains present. Fit its diagonal floor silhouette
-    // and central cross walls, including trim, rather than an isolated quadrant.
+    // A lower viewing angle exposes larger furniture faces while the four
+    // rooms still read as one house. Peripheral paper corners may bleed on a
+    // phone; functional furniture and the document apertures stay inside.
     const buildingWidth = ROOM_SIZE * 2 * Math.SQRT2 + 0.6;
-    // A steeper view exposes more of the floor's diagonal; keep its far edge
-    // inside the same UI-safe area without changing the default room framing.
-    const buildingHeight = Math.max(11.8, buildingWidth * Math.sin(elevation) + 0.2);
-    const span = Math.max(13, buildingWidth * height / safeWidth, buildingHeight * height / safeHeight);
+    const buildingHeight = Math.max(9.8, buildingWidth * Math.sin(elevation) + 0.3);
+    const fit = Math.max(12.6, buildingWidth * height / safeWidth, buildingHeight * height / safeHeight);
+    const span = fit * (width < 700 ? .88 : 1);
     const yaw = new THREE.Quaternion().setFromAxisAngle(this.up, angle);
     const horizontal = Math.cos(elevation) / Math.SQRT2;
     const rotation = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().lookAt(

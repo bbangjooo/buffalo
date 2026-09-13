@@ -1,0 +1,74 @@
+{
+  "date": "2026-09-13",
+  "branch": "codex/pen-ink-world",
+  "worktree": "/Users/bbangjo/buffalo-pen-ink",
+  "localUrl": "http://localhost:4178/",
+  "revision": "larger-central-house-curated-village",
+  "intent": "The four rooms are visibly primary, with a restrained village and garden around them; not an empty background.",
+  "camera": {
+    "elevationDegrees": 36,
+    "coreWidthIncreasePercent": [
+      16.1,
+      17.1
+    ],
+    "projectedAreaIncreasePercent": [
+      31.5,
+      40.8
+    ],
+    "checkedViewports": [
+      [
+        1200,
+        760
+      ],
+      [
+        1440,
+        900
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "functionalContentClipped": false
+  },
+  "background": {
+    "features": 4,
+    "cottages": 2,
+    "well": 1,
+    "marketStall": 1,
+    "plantClusters": 4,
+    "grass": 48,
+    "flowers": 10,
+    "shrubs": 5,
+    "trees": 4,
+    "smallRocks": 5,
+    "fixedPlantInstances": 72,
+    "plantBatches": 5,
+    "repeatingPlantField": false,
+    "visibleInitialView": "Complete small cottage, market edge, two tree silhouettes and small beds; central house remains dominant."
+  },
+  "validation": {
+    "build": "npm run build passed",
+    "framingChecks": 19,
+    "atlasChecks": 16,
+    "assetPreservationChecks": 10,
+    "regression": [
+      "leaderboard",
+      "first-person",
+      "camera-drag",
+      "courtyard"
+    ],
+    "originalContentAndCharactersPreserved": true,
+    "nestedCottageScaleAndTorchMatch": true,
+    "dayNightBrowserChecks": true,
+    "mobileHorizontalOverflow": false,
+    "mobileCompassActionOverlap": false
+  },
+  "artifacts": {
+    "blender": "assets/atlas-world.blend",
+    "day": "assets/atlas-web-day.png",
+    "night": "assets/atlas-web-night.png",
+    "landscape": "src/design/atlas-landscape.json"
+  },
+  "blenderUI": "Updated file saved and verified by background Blender. Native window automation returned noWindowsAvailable during reload; reopen the file for its latest scene."
+}

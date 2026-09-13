@@ -29,7 +29,7 @@ export default class Environment extends BaseObject {
     this.sunLight.shadow.normalBias = 0.025;
     this.sunLight.shadow.bias = -0.00012;
     this.sunLight.shadow.radius = 4;
-    this.ground = new THREE.Mesh(new THREE.PlaneGeometry(160, 160), new THREE.ShadowMaterial({ opacity: 0.13, color: COLORS.shadow }));
+    this.ground = new THREE.Mesh(new THREE.PlaneGeometry(160, 160), new THREE.ShadowMaterial({ opacity: 0.10, color: '#202327' }));
     this.ground.rotation.x = -Math.PI / 2;
     this.ground.position.y = -0.5;
     this.ground.receiveShadow = true;
@@ -80,13 +80,13 @@ export default class Environment extends BaseObject {
 
   private applyLighting(night: boolean, reduced: boolean) {
     const duration = reduced ? 0 : 0.65;
-    this.sunLight.color.set(night ? '#BCCCD8' : COLORS.glow);
-    this.ambientLight.color.set(night ? '#8FA7BF' : COLORS.paper);
-    gsap.to(this.sunLight, { intensity: night ? 0.32 : 2.1, duration, overwrite: true });
-    gsap.to(this.ambientLight, { intensity: night ? 0.35 : 0.9, duration, overwrite: true });
-    gsap.to(this.fillLight, { intensity: night ? 0.16 : 0.8, duration, overwrite: true });
+    this.sunLight.color.set(night ? '#D5D3CA' : COLORS.glow);
+    this.ambientLight.color.set(night ? '#B8B8B2' : COLORS.paper);
+    gsap.to(this.sunLight, { intensity: night ? 0.62 : 2.1, duration, overwrite: true });
+    gsap.to(this.ambientLight, { intensity: night ? 0.62 : 0.9, duration, overwrite: true });
+    gsap.to(this.fillLight, { intensity: night ? 0.28 : 0.8, duration, overwrite: true });
     this.scene.environment = night ? null : this.environmentMap.texture;
-    gsap.to(this.application.renderer.instance, { toneMappingExposure: night ? 0.9 : 1, duration, overwrite: true });
+    gsap.to(this.application.renderer.instance, { toneMappingExposure: 1, duration, overwrite: true });
     gsap.to(this.lamp, { intensity: night ? 4 : 0, duration, overwrite: true });
   }
 

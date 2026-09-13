@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { LoadedModel } from '../../types';
 import { BaseObject } from './BaseObject';
 import { COLORS, ObjectId, ROOM_IDS, RoomId, ROOMS } from '../../design/rooms';
+import { isPenInkObject, preparePenInkModel } from './PenInk';
 
 const TARGETS: Record<string, { name: string; anchor: string }> = {
   resume: { name: 'ResumeBoard', anchor: 'ResumeAnchor' },
@@ -26,6 +27,7 @@ export default class Room extends BaseObject {
   constructor() {
     super();
     this.root = (this.resources.items.dioramaModel as LoadedModel).scene;
+    preparePenInkModel(this.root);
     this.root.updateMatrixWorld(true);
     ROOM_IDS.forEach((id) => {
       const group = this.root.getObjectByName(ROOMS[id].group);
@@ -34,8 +36,8 @@ export default class Room extends BaseObject {
     });
     this.root.traverse((child) => {
       if (child instanceof THREE.Mesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
+        child.castShadow = !isPenInkObject(child);
+        child.receiveShadow = !isPenInkObject(child);
         const materials = Array.isArray(child.material) ? child.material : [child.material];
         materials.forEach((material) => {
           if (material instanceof THREE.MeshStandardMaterial) {

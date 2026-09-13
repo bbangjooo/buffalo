@@ -1,288 +1,121 @@
-/* Deterministic transport regression checks; no browser, network, or real audio. */
+/* Native recording transport: deterministic media events, no browser/device dependencies. */
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const ts = require('typescript');
-
 const root = path.resolve(__dirname, '..');
-const fixture = {
-  title: 'Transport fixture', duration: 2,
-  notes: [
-    { time: 0.35, duration: 0.5, midi: 67, velocity: 0.6 },
-    { time: 0, duration: 1.1, midi: 60, velocity: 0.75 },
-    { time: 0.08, duration: 0.12, midi: 48, velocity: 0.5 },
-    { time: 0, duration: 0.2, midi: 64, velocity: 0.7 },
-    { time: 0.2, duration: 0.25, midi: 84, velocity: 0.5 },
-    { time: 0.35, duration: 0.2, midi: 60, velocity: 0.65 },
-    { time: 1.8, duration: 0.2, midi: 72, velocity: 0.7 },
-  ],
-};
-const near = (actual, expected, label = 'time') => assert(Math.abs(actual - expected) < 1e-8, `${label}: ${actual} != ${expected}`);
-const flush = async () => { for (let i = 0; i < 12; i++) await Promise.resolve(); };
-const deferred = () => { let resolve; const promise = new Promise((yes) => { resolve = yes; }); return { promise, resolve }; };
-
-function evaluate(file, dependencies, globals) {
-  const output = ts.transpileModule(fs.readFileSync(path.join(root, file), 'utf8'), {
-    compilerOptions: { target: ts.ScriptTarget.ES2016, module: ts.ModuleKind.CommonJS },
-  }).outputText;
-  const sandbox = { exports: {}, require: (name) => {
-    if (!(name in dependencies)) throw new Error(`Unexpected dependency: ${name}`);
-    return dependencies[name];
-  }, AbortController, ...globals };
-  vm.runInNewContext(output, sandbox, { filename: file });
-  return sandbox.exports;
-}
-
-function createHarness(options = {}) {
-  let now = 10;
-  let nextTimer = 0;
-  const intervals = new Map();
-  const visibilityListeners = new Set();
-  const document = {
-    hidden: false,
-    addEventListener: (name, callback) => { assert.equal(name, 'visibilitychange'); visibilityListeners.add(callback); },
-    removeEventListener: (name, callback) => { assert.equal(name, 'visibilitychange'); visibilityListeners.delete(callback); },
+const fixture = { title: 'Recording fixture', duration: 2, notes: [
+  { time: 0, duration: .5, midi: 60, velocity: .75 },
+  { time: 0, duration: .2, midi: 64, velocity: .7 },
+  { time: .1, duration: .1, midi: 48, velocity: .5 },
+  { time: .3, duration: .5, midi: 60, velocity: .7, soundDuration: 1 },
+  { time: 1.5, duration: .2, midi: 72, velocity: .6 },
+] };
+const deferred = () => { let resolve, reject; const promise = new Promise((a,b) => { resolve=a; reject=b; }); return { promise, resolve, reject }; };
+const flush = async () => { for(let i=0;i<24;i++) await Promise.resolve(); };
+function createHarness(options={}) {
+  const states=[], keyChanges=[], repeated=[], events=[], subscriptions=new Map(), visibility=new Set();
+  const mediaListeners=new Map();
+  const pending=[];
+  const media={ src:'', dataset:{}, paused:true, ended:false, readyState:0, duration:2.1, currentTime:0, muted:false, error:null,
+    playCalls:0, loadCalls:0, removed:false, ranges:[],
+    buffered:{ get length(){return media.ranges.length;}, start(i){return media.ranges[i][0];}, end(i){return media.ranges[i][1];} },
+    setAttribute(){}, removeAttribute(key){if(key==='src')this.src='';}, remove(){this.removed=true;},
+    addEventListener(type,fn){if(!mediaListeners.has(type))mediaListeners.set(type,new Set());mediaListeners.get(type).add(fn);},
+    removeEventListener(type,fn){mediaListeners.get(type)?.delete(fn);},
+    emit(type){for(const fn of mediaListeners.get(type)||[])fn();},
+    load(){this.loadCalls++;this.error=null;this.readyState=0;},
+    play(){this.playCalls++;this.paused=false;
+      if(options.pendingPlay){const d=deferred();pending.push(d);return d.promise;}
+      if(options.rejectPlay)return Promise.reject(new Error('Blocked'));
+      this.readyState=3;this.emit('playing');return Promise.resolve();},
+    pause(){const was=this.paused;this.paused=true;if(!was)this.emit('pause');},
   };
-  const audio = options.makeAudio ? options.makeAudio({ get currentTime() { return now; } }) : {
-    get currentTime() { return now; },
-    scheduled: [], stopCount: 0, unlockCount: 0,
-    unlock() { this.unlockCount++; return options.unlock ? options.unlock() : Promise.resolve(true); },
-    scheduleNote(midi, velocity, time, duration) { this.scheduled.push({ midi, velocity, time, duration, cancelled: false }); },
-    stopNotes() { this.stopCount++; this.scheduled.forEach((note) => { note.cancelled = true; }); },
+  const audio={muted:false, canceled:0, stopInteractiveNotes(){this.canceled++;},
+    unlock(){throw Error('A recording must not unlock the sample instrument');},
+    scheduleNote(){throw Error('A recording must not schedule sample voices');},
+    preload(){throw Error('A recording must not load samples');},
   };
-  const states = [];
-  const keyChanges = [];
-  const repeatedAttacks = [];
-  let fetchCount = 0;
-  let fetchSignal;
-  const module = evaluate('src/Application/World/PianoPerformance.ts', {
-    '../../design/piano-performance': { PIANO_PERFORMANCE: { title: fixture.title, scoreUrl: '/fixture.json' } },
-  }, {
-    document,
-    fetch: (url, request) => {
-      assert.equal(url, '/fixture.json'); fetchCount++; fetchSignal = request.signal;
-      return options.fetch ? options.fetch(fetchCount) : Promise.resolve({ ok: true, json: async () => options.score || fixture });
-    },
-    setInterval: (callback, milliseconds) => {
-      assert.equal(milliseconds, 25); intervals.set(++nextTimer, { callback, step: milliseconds / 1000, at: now + milliseconds / 1000 }); return nextTimer;
-    },
-    clearInterval: (id) => intervals.delete(id),
-  });
-  const performance = new module.default(audio, {
-    onState: (state) => states.push(state),
-    onKeys: (keys) => keyChanges.push({ at: now, keys: Array.from(keys).sort((a, b) => a - b) }),
-    onRepeatedAttack: (keys) => repeatedAttacks.push({ at: now, keys: Array.from(keys) }),
-  });
-  const advance = (seconds, frames = true) => {
-    const target = now + seconds;
-    let guard = 0;
-    while (true) {
-      const next = [...intervals].filter(([, timer]) => timer.at <= target + 1e-12).sort((a, b) => a[1].at - b[1].at)[0];
-      if (!next) break;
-      if (++guard > 100000) throw new Error('Unbounded timer');
-      now = next[1].at;
-      next[1].at += next[1].step;
-      next[1].callback();
-      if (frames) performance.update();
-    }
-    now = target;
-    if (frames) performance.update();
+  const document={hidden:false,body:{appendChild(){}},createElement(type){assert.equal(type,'audio');return media;},
+    addEventListener(type,fn){assert.equal(type,'visibilitychange');visibility.add(fn);},removeEventListener(type,fn){visibility.delete(fn);}};
+  let fetches=0;
+  const sandbox={exports:{}, AbortController, document,
+    require(name){if(name.endsWith('piano-performance'))return {PIANO_PERFORMANCE:{title:fixture.title,scoreUrl:'/score.json',audioUrl:'/recording.mp3'}};
+      if(name.endsWith('EventBus'))return {EventBus:{on(type,fn){if(!subscriptions.has(type))subscriptions.set(type,new Set());subscriptions.get(type).add(fn);return()=>subscriptions.get(type).delete(fn);},dispatch(type,state){events.push({type,state});}}};
+      throw Error('Unexpected dependency '+name);},
+    fetch:async(url,request)=>{assert.equal(url,'/score.json');fetches++;return options.fetch?options.fetch(request):{ok:true,json:async()=>fixture};},
   };
-  return {
-    performance, audio, states, keyChanges, repeatedAttacks, intervals, visibilityListeners, readScore: module.readScore, advance,
-    get keys() { return keyChanges.length ? keyChanges[keyChanges.length - 1].keys : []; },
-    get fetchSignal() { return fetchSignal; },
-    get fetchCount() { return fetchCount; },
-    visibility(hidden) { document.hidden = hidden; visibilityListeners.forEach((callback) => callback()); },
+  vm.runInNewContext(ts.transpileModule(fs.readFileSync(path.join(root,'src/Application/World/PianoPerformance.ts'),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText,sandbox);
+  const performance=new sandbox.exports.default(audio,{onState:s=>states.push(s),onKeys:k=>keyChanges.push([...k]),onRepeatedAttack:k=>repeated.push([...k])});
+  return {performance,media,audio,states,keyChanges,repeated,events,pending,visibility,mediaListeners,subscriptions,readScore:sandbox.exports.readScore,
+    get fetches(){return fetches;},get keys(){return keyChanges.at(-1)||[];},
+    seek(time){media.currentTime=time;performance.update();},
+    hide(){document.hidden=true;visibility.forEach(fn=>fn());},
+    show(){document.hidden=false;visibility.forEach(fn=>fn());},
+    event(type,data){subscriptions.get(type)?.forEach(fn=>fn(data));},
   };
 }
-
-const failures = [];
-async function check(name, run) {
-  try { await run(); console.log(`PASS ${name}`); }
-  catch (error) { failures.push({ name, error }); console.error(`FAIL ${name}: ${error.message}`); }
+async function main(){
+ let failures=0;
+ async function check(name,fn){try{await fn();console.log('PASS '+name);}catch(e){failures++;console.error('FAIL '+name+': '+e.stack);}}
+ await check('silent native preload and partial buffering readiness never require sample downloads',async()=>{
+  const h=createHarness();await flush();assert.equal(h.media.src,'/recording.mp3');assert.equal(h.media.preload,'auto');assert.equal(h.media.playCalls,0);assert.equal(h.fetches,1);
+  h.media.ranges=[[0,.3]];h.media.readyState=3;h.media.emit('canplay');
+  assert.equal(h.events.at(-1).state.phase,'ready');assert.equal(h.events.at(-1).state.received,.3);
+  await h.performance.play();assert.equal(h.performance.getSnapshot().status,'playing');assert.equal(h.audio.canceled,1);h.performance.dispose();
+ });
+ await check('score validation and original visible keyboard pitches remain intact',async()=>{
+  const h=createHarness();await flush();assert.throws(()=>h.readScore({...fixture,duration:-1}));assert.throws(()=>h.readScore({...fixture,notes:[{...fixture.notes[0],midi:128}]}));
+  await h.performance.play();h.seek(.15);assert.deepEqual(h.keys.sort(),[60,64]);assert(!h.keys.includes(48));h.seek(.25);assert.deepEqual(h.keys,[60]);h.performance.dispose();
+ });
+ await check('media time controls chords, repeated strikes, and buffering without wall-clock drift',async()=>{
+  const h=createHarness();await flush();await h.performance.play();h.seek(.29);h.seek(.31);assert.equal(h.repeated.length,1);assert.deepEqual(h.repeated[0],[60]);
+  h.media.emit('waiting');assert.equal(h.performance.getSnapshot().status,'buffering');for(let i=0;i<100;i++)h.performance.update();assert.equal(h.performance.getSnapshot().elapsed,.31);assert.equal(h.repeated.length,1);
+  h.media.emit('playing');h.seek(.81);assert.deepEqual(h.keys,[],'pedal tail must not hold physical keys');h.performance.dispose();
+ });
+ await check('pause/resume preserves recording position and does not re-attack held notes',async()=>{
+  const h=createHarness();await flush();await h.performance.play();h.seek(.4);h.performance.pause();assert.equal(h.performance.getSnapshot().status,'paused');assert(h.media.paused);assert.deepEqual(h.keys,[]);
+  const repeated=h.repeated.length;await h.performance.play();assert.equal(h.media.currentTime,.4);assert.deepEqual(h.keys,[60]);assert.equal(h.repeated.length,repeated);h.performance.stop();assert.equal(h.media.currentTime,0);h.performance.dispose();
+ });
+ await check('stop and hidden tabs cancel a pending play and cannot cause a surprise restart',async()=>{
+  for(const action of ['stop','pause','hide','dispose']){
+   const h=createHarness({pendingPlay:true});await flush();const play=h.performance.play();assert.equal(h.media.playCalls,1);assert.equal(h.performance.getSnapshot().status,'buffering');
+   action==='hide'?h.hide():h.performance[action]();h.pending[0].resolve();await play;assert(h.media.paused);assert.notEqual(h.performance.getSnapshot().status,'playing');h.show();assert(h.media.paused);h.performance.dispose();
+  }
+ });
+ await check('stale play resolution cannot pause a newer play request',async()=>{
+  const h=createHarness({pendingPlay:true});await flush();const old=h.performance.play();h.performance.pause();const latest=h.performance.play();h.pending[1].resolve();await latest;
+  h.pending[0].resolve();await old;assert.equal(h.performance.getSnapshot().status,'playing');assert(!h.media.paused);h.performance.dispose();
+ });
+ await check('play rejection and media errors are retryable and report no false playing state',async()=>{
+  const h=createHarness({rejectPlay:true});await flush();await h.performance.play();assert.equal(h.performance.getSnapshot().status,'error');assert(h.media.paused);h.performance.dispose();
+  const good=createHarness();await flush();await good.performance.play();good.media.error={code:2};good.media.emit('error');assert.equal(good.performance.getSnapshot().status,'error');assert.equal(good.events.at(-1).state.phase,'error');
+  good.event('piano-assets-retry',{id:'keys'});assert.equal(good.media.loadCalls,1);good.event('piano-assets-retry',{id:'performance'});assert.equal(good.media.loadCalls,2);await good.performance.play();assert.equal(good.performance.getSnapshot().status,'playing');good.performance.dispose();
+ });
+ await check('mute applies to the recording, and its reverb tail completes before replay resets time',async()=>{
+  const h=createHarness();await flush();h.event('world-state',{muted:true});assert(h.media.muted);h.event('world-state',{muted:false});assert(!h.media.muted);
+  await h.performance.play();h.seek(2.01);assert.equal(h.performance.getSnapshot().status,'playing');h.media.currentTime=2.1;h.media.ended=true;h.media.emit('ended');assert.equal(h.performance.getSnapshot().status,'finished');assert.deepEqual(h.keys,[]);
+  h.media.ended=false;await h.performance.play();assert.equal(h.media.currentTime,0);h.performance.dispose();
+ });
+ await check('dispose releases the media source, listeners, and outstanding score fetch',async()=>{
+  const gate=deferred();let signal;const h=createHarness({fetch:request=>{signal=request.signal;return gate.promise;}});h.performance.dispose();const count=h.states.length;
+  assert(signal.aborted);assert(h.media.removed);assert.equal(h.media.src,'');assert.equal(h.visibility.size,0);assert([...h.mediaListeners.values()].every(s=>s.size===0));assert([...h.subscriptions.values()].every(s=>s.size===0));
+  gate.resolve({ok:true,json:async()=>fixture});await flush();assert.equal(h.states.length,count);
+ });
+ await check('published recording matches its score, stereo provenance, and content-versioned checksum',async()=>{
+  const crypto=require('node:crypto');
+  const config=fs.readFileSync(path.join(root,'src/design/piano-performance.ts'),'utf8');
+  const url=config.match(/audioUrl: '([^']+)'/)[1];
+  const file=path.join(root,'public',url);const bytes=fs.readFileSync(file);
+  const manifest=JSON.parse(fs.readFileSync(path.join(path.dirname(file),'manifest.json'),'utf8'));
+  const scoreBytes=fs.readFileSync(path.join(root,'public/Piano/en-avril-a-paris.json'));
+  const score=JSON.parse(scoreBytes);const sha=crypto.createHash('sha256').update(bytes).digest('hex');
+  assert.equal(sha,manifest.sha256);assert(url.includes(sha.slice(0,12)));assert.equal(bytes.length,manifest.bytes);
+  assert.equal(crypto.createHash('sha256').update(scoreBytes).digest('hex'),manifest.scoreSha256);
+  assert.equal(manifest.notes,score.notes.length);assert.equal(manifest.channels,2);assert.equal(manifest.license,'CC-BY-3.0');
+  assert(manifest.durationSeconds>=score.duration+.9&&manifest.durationSeconds<=score.duration+1.1);assert(manifest.peakPCM>0&&manifest.peakPCM<1);
+ });
+ if(failures)process.exitCode=1;else console.log('All pre-rendered piano transport checks passed');
 }
-
-async function main() {
-  await check('score bounds, pitch validation, sorted copy, and invalid fetch retry', async () => {
-    const h = createHarness(); await flush();
-    const score = h.readScore(fixture);
-    assert.equal(score.notes[0].midi, 60); assert.equal(score.notes[1].midi, 64); assert.equal(fixture.notes[0].midi, 67);
-    for (const invalid of [null, {}, { ...fixture, title: ' ' }, { ...fixture, duration: NaN }, { ...fixture, duration: 7201 },
-      { ...fixture, notes: [] }, { ...fixture, notes: Array(100001).fill(fixture.notes[0]) }]) assert.throws(() => h.readScore(invalid));
-    for (const patch of [{ time: -1 }, { time: NaN }, { duration: 0 }, { duration: Infinity }, { duration: 3 },
-      { midi: -1 }, { midi: 128 }, { midi: 60.5 }, { velocity: 0 }, { velocity: 1.01 }, { velocity: NaN },
-      { soundDuration: NaN }, { soundDuration: Infinity }, { soundDuration: 0 }, { soundDuration: -1 }, { soundDuration: 3 }]) {
-      assert.throws(() => h.readScore({ ...fixture, notes: [{ ...fixture.notes[1], ...patch }] }));
-    }
-    h.performance.dispose();
-    const retry = createHarness({ fetch: async (count) => count === 1 ? { ok: false } : { ok: true, json: async () => fixture } });
-    await flush(); assert.equal(retry.performance.getSnapshot().status, 'error'); await retry.performance.play();
-    assert.equal(retry.fetchCount, 2); assert.equal(retry.performance.getSnapshot().status, 'playing'); retry.performance.dispose();
-  });
-
-  await check('absolute audio timing, simultaneous chords, original out-of-range pitches, and held keys', async () => {
-    const h = createHarness(); await flush(); await h.performance.play();
-    assert.equal(h.audio.unlockCount, 1); assert.equal(h.intervals.size, 1);
-    assert.deepEqual(h.audio.scheduled.map((note) => note.midi), [60, 64, 48]);
-    near(h.audio.scheduled[0].time, 10.06); near(h.audio.scheduled[1].time, 10.06); near(h.audio.scheduled[2].time, 10.14);
-    h.advance(0.04); assert.deepEqual(h.keys, [], 'keys must wait for scheduled attack');
-    h.advance(0.03); assert.deepEqual(h.keys, [60, 64]);
-    h.advance(0.21); assert.deepEqual(h.keys, [60], 'out-of-range MIDI48/84 must not map to visible keys');
-    assert(h.audio.scheduled.some((note) => note.midi === 84));
-    h.advance(0.15); assert.deepEqual(h.keys, [60, 67]);
-    h.advance(0.5); assert.deepEqual(h.keys, [60], 'long note stays down after repeated same-key note releases');
-    h.advance(0.3); assert.deepEqual(h.keys, []); h.performance.dispose();
-  });
-
-  await check('pause freezes time, cancels audio, and resumes held notes for their remaining durations', async () => {
-    const h = createHarness(); await flush(); await h.performance.play(); h.advance(0.46);
-    near(h.performance.getSnapshot().elapsed, 0.4); h.performance.pause(); assert.equal(h.performance.getSnapshot().status, 'paused');
-    assert.equal(h.intervals.size, 0); assert.deepEqual(h.keys, []); assert(h.audio.scheduled.every((note) => note.cancelled));
-    h.advance(1); near(h.performance.getSnapshot().elapsed, 0.4);
-    const before = h.audio.scheduled.length; await h.performance.play();
-    const restarted = h.audio.scheduled.slice(before);
-    assert.deepEqual(restarted.map((note) => note.midi), [60, 84, 60, 67]);
-    near(restarted[0].time, 11.52); near(restarted[0].duration, 0.7); near(restarted[1].duration, 0.05);
-    near(restarted[2].duration, 0.15); near(restarted[3].duration, 0.45);
-    h.advance(0.04); assert.deepEqual(h.keys, []); h.advance(0.03); assert.deepEqual(h.keys, [60, 67]); h.performance.dispose();
-  });
-
-  await check('pedal soundDuration outlasts physical keys and resumes only the remaining audio tail', async () => {
-    const score = { title: 'Pedal fixture', duration: 2, notes: [
-      { time: 0, duration: 0.2, soundDuration: 1.2, midi: 60, velocity: 0.7 },
-      { time: 1.6, duration: 0.2, midi: 64, velocity: 0.6 },
-    ] };
-    const h = createHarness({ score }); await flush();
-    assert.equal(h.readScore(score).notes[0].soundDuration, 1.2);
-    assert.equal(h.readScore(score).notes[1].soundDuration, undefined);
-    await h.performance.play(); near(h.audio.scheduled[0].duration, 1.2, 'pedal schedules acoustic duration');
-    h.advance(0.07); assert.deepEqual(h.keys, [60]);
-    h.advance(0.2); assert.deepEqual(h.keys, [], 'physical key releases after written0.2, not acoustic1.2');
-    assert.equal(h.audio.scheduled[0].cancelled, false, 'pedal tail remains sounding after key release');
-    h.advance(0.39); near(h.performance.getSnapshot().elapsed, 0.6);
-    h.performance.pause(); assert(h.audio.scheduled.every((note) => note.cancelled)); h.advance(0.5);
-    const before = h.audio.scheduled.length; await h.performance.play();
-    const tail = h.audio.scheduled.slice(before); assert.equal(tail.length, 1); assert.equal(tail[0].midi, 60);
-    near(tail[0].duration, 0.6, 'resume retains only remaining pedal tail'); near(tail[0].time, 11.22);
-    h.advance(0.07); assert.deepEqual(h.keys, [], 'audio-only resumed tail must never depress its expired physical key');
-    h.advance(0.73); near(h.performance.getSnapshot().elapsed, 1.34); h.performance.pause();
-    const afterTail = h.audio.scheduled.length; await h.performance.play();
-    assert.equal(h.audio.scheduled.length, afterTail, 'expired pedal tail cannot restart on a later resume');
-    h.performance.dispose();
-  });
-
-  await check('adjacent repeated pitch restrikes once at its onset and never on held-key updates or mid-note resume', async () => {
-    const score = { title: 'Repeated key fixture', duration: 1.4, notes: [
-      { time: 0, duration: 0.5, midi: 60, velocity: 0.7 },
-      { time: 0.5, duration: 0.5, midi: 60, velocity: 0.65 },
-    ] };
-    const h = createHarness({ score }); await flush(); await h.performance.play();
-    h.advance(0.06); assert.deepEqual(h.keys, [60]); assert.equal(h.repeatedAttacks.length, 0);
-    h.advance(0.49); assert.equal(h.repeatedAttacks.length, 0, 'held key cannot restrike at every25ms update');
-    h.advance(0.01); assert.equal(h.repeatedAttacks.length, 1); assert.deepEqual(h.repeatedAttacks[0].keys, [60]);
-    near(h.repeatedAttacks[0].at, 10.56, 'same-key second attack occurs at score0.5');
-    assert.deepEqual(h.keys, [60], 'adjacent notes keep identical active-key membership');
-    h.advance(0.15); assert.equal(h.repeatedAttacks.length, 1);
-    h.performance.pause(); near(h.performance.getSnapshot().elapsed, 0.65); h.advance(1);
-    await h.performance.play(); h.advance(0.07); assert.deepEqual(h.keys, [60]);
-    assert.equal(h.repeatedAttacks.length, 1, 'resume of partially held note does not replay its original attack callback');
-    h.advance(0.4); assert.deepEqual(h.keys, []); assert.equal(h.repeatedAttacks.length, 1);
-    h.performance.dispose();
-  });
-
-  await check('explicit stop cancels pending unlock, active timers, and scheduled notes', async () => {
-    const pending = deferred(); const h = createHarness({ unlock: () => pending.promise }); await flush();
-    const request = h.performance.play(); h.performance.stop(); pending.resolve(true); await request;
-    assert.equal(h.performance.getSnapshot().status, 'ready'); assert.equal(h.audio.scheduled.length, 0); assert.equal(h.intervals.size, 0);
-    await h.performance.play(); h.advance(0.1); h.performance.stop(); const count = h.audio.scheduled.length;
-    h.advance(10); assert.equal(h.audio.scheduled.length, count); assert(h.audio.scheduled.every((note) => note.cancelled));
-    assert.deepEqual(h.keys, []); near(h.performance.getSnapshot().elapsed, 0); h.performance.dispose();
-  });
-
-  await check('latest play wins when two unlock requests resolve out of order', async () => {
-    const first = deferred(); const second = deferred(); let unlocks = 0;
-    const h = createHarness({ unlock: () => ++unlocks === 1 ? first.promise : second.promise }); await flush();
-    const p1 = h.performance.play(); const p2 = h.performance.play(); second.resolve(true); await p2;
-    const scheduled = h.audio.scheduled.length; first.resolve(true); await p1;
-    assert.equal(h.audio.scheduled.length, scheduled); assert.equal(h.intervals.size, 1); h.performance.dispose();
-  });
-
-  await check('hidden tab pauses active playback without automatic restart', async () => {
-    const h = createHarness(); await flush(); await h.performance.play(); h.advance(0.3); h.visibility(true);
-    assert.equal(h.performance.getSnapshot().status, 'paused'); assert.equal(h.intervals.size, 0); assert.deepEqual(h.keys, []);
-    assert(h.audio.scheduled.every((note) => note.cancelled)); h.advance(3); h.visibility(false);
-    assert.equal(h.performance.getSnapshot().status, 'paused'); h.performance.dispose();
-  });
-
-  await check('dispose aborts fetch and pending unlock, unsubscribes, and cannot publish late state', async () => {
-    const response = deferred(); const sound = deferred();
-    const h = createHarness({ fetch: () => response.promise, unlock: () => sound.promise });
-    const playing = h.performance.play(); h.performance.dispose(); const stateCount = h.states.length;
-    assert.equal(h.fetchSignal.aborted, true); assert.equal(h.visibilityListeners.size, 0); assert.equal(h.intervals.size, 0);
-    response.resolve({ ok: true, json: async () => fixture }); sound.resolve(true); await playing; await flush();
-    assert.equal(h.states.length, stateCount); assert.equal(h.audio.scheduled.length, 0); await h.performance.play(); assert.equal(h.states.length, stateCount);
-  });
-
-  await check('finished state releases keys and timers while allowing the final audio release', async () => {
-    const h = createHarness(); await flush(); await h.performance.play(); h.advance(2.061);
-    assert.equal(h.performance.getSnapshot().status, 'finished'); near(h.performance.getSnapshot().elapsed, 2);
-    assert.deepEqual(h.keys, []); assert.equal(h.intervals.size, 0);
-    const last = h.audio.scheduled.at(-1); assert.equal(last.midi, 72); near(last.time, 11.86); near(last.duration, 0.2);
-    assert.equal(last.cancelled, false, 'natural release must not be cut at score end');
-    const count = h.audio.scheduled.length; h.advance(3); assert.equal(h.audio.scheduled.length, count); h.performance.dispose();
-  });
-
-  await check('real sampled AudioPlayer shares the score clock, pitch and sounding duration and cancels both layers', async () => {
-    const { createAudioHarness } = require('./verify-audio-channels.cjs');
-    let sampler;
-    const h = createHarness({ makeAudio: (clock) => {
-      sampler = createAudioHarness({ clock, suspended: true }); return sampler.player;
-    } });
-    await flush(); await h.performance.play();
-    const context = sampler.context;
-    assert.equal(h.performance.getSnapshot().status, 'playing');
-    assert(context.sources.length >= 3 && context.sources.length <= 6, 'initial three notes use one or two recorded velocity layers each');
-    const expected = new Map([[60, { start: 10.06, duration: 1.1 }], [64, { start: 10.06, duration: .2 }], [48, { start: 10.14, duration: .12 }]]);
-    const played = new Set();
-    for (const source of context.sources) {
-      const root = sampler.samples.PIANO_SAMPLES.find(({ url }) => url === source.buffer.sampleUrl);
-      const midi = Math.round(root.midi + 12 * Math.log2(source.playbackRate.events[0].value));
-      const note = expected.get(midi); assert(note, `unexpected initial pitch ${midi}`); played.add(midi);
-      near(source.startTime, note.start); near(source.offset, 0);
-      const envelope = [...source.connections][0];
-      near(envelope.gain.events.findLast((event) => event.type === 'set').time, note.start + note.duration, 'sample note-off');
-      assert(source.stopTimes[0] > note.start + note.duration && source.stopTimes[0] < note.start + note.duration + .25);
-      for (let index = 1; index < envelope.gain.events.length; index++) assert(envelope.gain.events[index].time >= envelope.gain.events[index - 1].time);
-    }
-    assert.deepEqual([...played].sort((a, b) => a - b), [48, 60, 64]);
-    h.advance(.4); h.performance.pause(); assert(context.sources.every((node) => node.disconnected));
-    await h.performance.play(); assert(context.sources.some((node) => !node.disconnected));
-    assert.equal(sampler.requests.length, 60, 'pause/resume reuses decoded recordings');
-    h.performance.stop(); assert(context.sources.every((node) => node.disconnected));
-    h.performance.dispose(); h.audio.dispose(); assert.equal(context.state, 'closed'); assert.equal(sampler.timers.size, 0);
-  });
-
-  await check('explicit stop also cancels the final release after finished state', async () => {
-    const h = createHarness(); await flush(); await h.performance.play(); h.advance(2.061); h.performance.stop();
-    assert(h.audio.scheduled.every((note) => note.cancelled), 'stop leaves finished performance audio release playing'); h.performance.dispose();
-  });
-
-  await check('hide and return while unlock is pending must not start playback afterward', async () => {
-    const sound = deferred(); const h = createHarness({ unlock: () => sound.promise }); await flush();
-    const playing = h.performance.play(); h.visibility(true); h.visibility(false); sound.resolve(true); await playing;
-    assert.notEqual(h.performance.getSnapshot().status, 'playing', 'hidden-tab cancellation did not invalidate pending play');
-    assert.equal(h.audio.scheduled.length, 0); h.performance.dispose();
-  });
-
-  await check('pause cancels a play request waiting for audio unlock', async () => {
-    const sound = deferred(); const h = createHarness({ unlock: () => sound.promise }); await flush();
-    const playing = h.performance.play(); h.performance.pause(); sound.resolve(true); await playing;
-    assert.notEqual(h.performance.getSnapshot().status, 'playing', 'pause did not invalidate pending play'); h.performance.dispose();
-  });
-
-  console.log(`\n${failures.length ? `${failures.length} failing checks` : 'All transport checks passed'}`);
-  if (failures.length) process.exitCode = 1;
-}
-main().catch((error) => { console.error(error); process.exitCode = 1; });
+main().catch(e=>{console.error(e);process.exitCode=1;});

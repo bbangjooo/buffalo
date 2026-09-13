@@ -1,0 +1,145 @@
+{
+  "revision": "antique-atlas-four-features-3",
+  "groundY": -0.16,
+  "houseClearance": 6.6,
+  "crossPathHalfWidth": 1.05,
+  "landmarkCount": 4,
+  "cottages": [
+    {
+      "id": "scribe",
+      "x": -8.3,
+      "z": 2.65,
+      "width": 2.8,
+      "depth": 2.5,
+      "eave": 2.1,
+      "ridge": 3.3,
+      "roof": "shingle",
+      "yaw": 1.2397,
+      "scale": 0.62,
+      "radius": 1.439,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.0571,
+          -0.005,
+          -0.9772
+        ],
+        "max": [
+          1.0569,
+          2.3606,
+          1.1408
+        ]
+      }
+    },
+    {
+      "id": "weaver",
+      "x": 12.6,
+      "z": -4.0,
+      "width": 2.8,
+      "depth": 2.5,
+      "eave": 1.98,
+      "ridge": 3.1,
+      "roof": "thatch",
+      "yaw": -1.24,
+      "radius": 2.2465,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.705,
+          -0.008,
+          -1.5761
+        ],
+        "max": [
+          1.7046,
+          3.6075,
+          1.84
+        ]
+      }
+    }
+  ],
+  "props": [
+    {
+      "id": "well",
+      "kind": "well",
+      "x": 4.0,
+      "z": -12.8,
+      "yaw": 0.12,
+      "radius": 1.3952,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.23,
+          -0.008,
+          -1.0278
+        ],
+        "max": [
+          1.36,
+          2.8135,
+          1.0278
+        ]
+      }
+    },
+    {
+      "id": "market",
+      "kind": "market",
+      "x": -4.0,
+      "z": 9.8,
+      "yaw": 0.3,
+      "scale": 0.76,
+      "radius": 1.3271,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.0868,
+          -0.0061,
+          -0.7303
+        ],
+        "max": [
+          1.0868,
+          1.9125,
+          0.7303
+        ]
+      }
+    }
+  ],
+  "obstacles": [
+    {
+      "id": "cottage-scribe",
+      "x": -8.3,
+      "z": 2.65,
+      "radius": 1.439
+    },
+    {
+      "id": "cottage-weaver",
+      "x": 12.6,
+      "z": -4.0,
+      "radius": 2.2465
+    },
+    {
+      "id": "well",
+      "x": 4.0,
+      "z": -12.8,
+      "radius": 1.3952
+    },
+    {
+      "id": "market",
+      "x": -4.0,
+      "z": 9.8,
+      "radius": 1.3271
+    }
+  ],
+  "torches": [
+    {
+      "id": "scribe",
+      "x": -7.10096,
+      "y": 0.8847,
+      "z": 2.32789
+    },
+    {
+      "id": "weaver",
+      "x": 11.39377,
+      "y": 1.525,
+      "z": -2.40156
+    }
+  ],
+  "limits": {
+    "maxLandmarks": 4,
+    "maxTriangles": 50000
+  }
+}

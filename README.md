@@ -6,9 +6,9 @@ This project is listed on the [portfolio-ideas](https://github.com/Evavic44/port
 
 ## Description
 
-Hello! This is my little corner of the internet, made with Three.js, TypeScript and Blender. I wanted a place that feels like meeting me: some music, some writing, a bit of travel, and something to play. Four isometric rooms open into low-poly meadows, with a robot nearby to show you around.
+Hello! This is my little corner of the internet, made with Three.js, TypeScript and Blender. I wanted a place that feels like meeting me: some music, some writing, a bit of travel, and something to play. Four isometric rooms sit on a hand-drawn atlas of warm paper and brown ink, with a robot nearby to show you around.
 
-Sit at the piano, read a few stories, try the four-key rhythm game, or step outside to browse the pieces I have played and the places I have been. You can leave a message in the guestbook, too.
+Sit at the antique organ console, read a few stories, try the four-key rhythm game, or follow the compass and explore the pieces I have played and the places I have been. At night the atlas becomes silver ink beneath the stars. You can leave a message in the guestbook, too.
 
 Visit [my rooms](https://bbangjo.kr), or head straight to [my blog](https://blog.bbangjo.kr). Thanks for stopping by!
 

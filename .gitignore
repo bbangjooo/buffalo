@@ -32,6 +32,17 @@ dist-ssr
 /assets/blender-evolution-*.mp4
 /assets/blender-evolution-*.json
 /assets/low-poly-review.html
+# Local snapshots of earlier concepts. Final source: assets/atlas-world.blend
+# and scripts/prepare_atlas_review.py; current design: design/atlas-ink-world.md.
+/assets/pen-ink-world.blend
+/assets/medieval-ink-world.blend
+/assets/atlas-validation.json
+/assets/medieval-validation.json
+/assets/pen-ink-validation.json
+/design/pen-ink-world.md
+/design/medieval-ink-village.md
+/scripts/prepare_pen_ink_review.py
+/scripts/prepare_medieval_review.py
 /assets/four-rooms-curtain-validation.json
 /assets/four-rooms-focus-statistics.json
 *.blend[0-9]*

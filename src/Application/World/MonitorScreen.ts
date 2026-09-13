@@ -30,6 +30,17 @@ export default class MonitorScreen {
   private pixels = 0;
   private added = false;
   private interactive = false;
+  private documentNight = false;
+  private readonly applyDocumentTheme = () => {
+    // This controls our local summary only, never the external blog document.
+    if (new URL(this.iframe.src, window.location.href).origin !== window.location.origin) return;
+    const document = this.iframe.contentDocument;
+    if (!document?.body) return;
+    document.body.dataset.night = String(this.documentNight);
+    document.documentElement.style.colorScheme = this.documentNight ? 'dark' : 'light';
+    const paper = this.documentNight ? '#0e1011' : '#f2e6ce';
+    this.container.style.background = this.iframe.style.background = paper;
+  };
 
   constructor(anchor: THREE.Object3D, config: MonitorScreenConfig = {}) {
     this.application = new Application();
@@ -41,7 +52,7 @@ export default class MonitorScreen {
     this.container = document.createElement("div");
     this.container.className = "monitor-surface";
     Object.assign(this.container.style, {
-      background: "#fff",
+      background: "#f2e6ce",
       // Clipping this transformed parent prevents iframe pointer hit testing.
       overflow: "visible",
       pointerEvents: "none",
@@ -53,6 +64,7 @@ export default class MonitorScreen {
     this.iframe.id = config.id ?? "monitorScreen";
     this.iframe.title = config.title ?? (config.id === "resumeScreen" ? "Byeong-geun Jo — Summary" : "bbangjo — Blog");
     this.iframe.tabIndex = -1;
+    this.iframe.addEventListener('load', this.applyDocumentTheme);
     this.iframe.setAttribute("aria-hidden", "true");
     Object.assign(this.iframe.style, {
       display: "block",
@@ -60,7 +72,7 @@ export default class MonitorScreen {
       height: "100%",
       border: "0",
       padding: "0",
-      background: "#fff",
+      background: "#f2e6ce",
       pointerEvents: "none",
     });
     this.container.appendChild(this.iframe);
@@ -103,6 +115,12 @@ export default class MonitorScreen {
     if (!visible) this.setInteractive(false);
   }
 
+  setNightTheme(night: boolean) {
+    if (night === this.documentNight) return;
+    this.documentNight = night;
+    this.applyDocumentTheme();
+  }
+
   setInteractive(enabled: boolean) {
     enabled = enabled && this.object.visible;
     if (this.interactive === enabled) return;
@@ -140,6 +158,7 @@ export default class MonitorScreen {
   }
 
   dispose() {
+    this.iframe.removeEventListener('load', this.applyDocumentTheme);
     this.setInteractive(false);
     this.object.removeFromParent();
     this.mesh.removeFromParent();

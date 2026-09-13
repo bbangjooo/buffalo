@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { EventBus } from "../EventBus";
-import { COLORS, ROOM_IDS, ROOMS, isRoomId, ObjectId, RoomId, RoomView } from "../../../design/rooms";
+import { ROOM_IDS, ROOMS, isRoomId, ObjectId, RoomId, RoomView } from "../../../design/rooms";
 import { PROFILE } from "../../../design/profile";
 import { PIANO_KEYS } from "../../../design/piano-keys";
 import RhythmGameUI from "./RhythmGameUI";
 import InfoMenu from "./InfoMenu";
+import PianoAssetProgress from './PianoAssetProgress';
 import type { PianoPerformanceState } from "../../World/PianoPerformance";
 import CourtyardUI from './CourtyardUI';
+import AtlasCompass from './AtlasCompass';
 
 interface WorldState {
   ready: boolean;
@@ -69,8 +71,8 @@ function Icon({ name }: { name: string }) {
     pianoSeat: <><path d="M5 11h14v5H5Zm2 5v5m10-5v5M8 11V4h8v7" /></>,
     performance: <path d="m8 4 12 8-12 8Z" />,
     pause: <path d="M8 5v14M16 5v14" />,
-    monitor: <><rect x="3" y="4" width="18" height="12" rx="1" /><path d="M8 21h8m-4-5v5" /></>,
-    blogLamp: <><path d="m8 3-4 10h16L16 3Zm4 10v8m-5 0h10m1-8v4" /></>,
+    monitor: <><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Zm0 0v14M6 8l3 1m-3 3 3 1m6-4 3-1m-3 5 3-1" /></>,
+    blogLamp: <><path d="M12 2c1 3-3 4-3 7a3 3 0 0 0 6 0c0-1.4-.5-2.6-1.5-3.5-.2 1.2-.7 1.9-1.5 2.5.7-2 .8-4 0-6ZM8 14h8l-2 3h-4Zm3 3v5h2v-5" /></>,
     resume: <><path d="M5 3h14v18H5Zm4 5h6m-6 4h6m-6 4h4" /></>,
     leaderboard: <path d="M3 21h18M5 21V11h4v10m0 0V5h6v16m0 0v-7h4v7" />,
     game: <><rect x="3" y="4" width="7" height="7" rx="1" /><rect x="14" y="4" width="7" height="7" rx="1" /><rect x="3" y="15" width="7" height="7" rx="1" /><rect x="14" y="15" width="7" height="7" rx="1" /></>,
@@ -109,9 +111,9 @@ const InterfaceUI: React.FC = () => {
   const actionsUnavailable = unavailable || !!world.transitioning;
   const seatAction = ROOMS.piano.actions.find((action) => action.id === "pianoSeat");
   const performance = world.performance || INITIAL_PERFORMANCE;
-  const performanceActive = performance.status === "playing" || performance.status === "paused";
+  const performanceActive = performance.status === "playing" || performance.status === "paused" || performance.status === 'buffering';
   const performanceLabel = performance.status === "loading" ? "Loading"
-    : performance.status === "playing" ? "Pause"
+    : performance.status === "playing" || performance.status === 'buffering' ? "Pause"
     : performance.status === "paused" ? "Resume"
     : performance.status === "error" ? "Try again" : "Listen";
 
@@ -133,7 +135,7 @@ const InterfaceUI: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", world.night ? COLORS.ink : COLORS.paper);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", world.night ? "#050607" : "#eadcc0");
   }, [world.night]);
 
   useEffect(() => {
@@ -221,7 +223,8 @@ const InterfaceUI: React.FC = () => {
   }
 
   return (
-    <div className={`room-interface${inSeat ? " room-interface--seated" : ""}`}>
+    <div className={`room-interface${inSeat ? " room-interface--seated" : ""}`} data-transitioning={world.transitioning ? "true" : "false"}>
+      <PianoAssetProgress />
       <aside className="personal-bio" hidden={inReading || inSeat || inCourtyard || inRhythm} aria-label="bbangjo">
         <h1>bbangjo</h1>
         <div className="profile-links">
@@ -235,6 +238,7 @@ const InterfaceUI: React.FC = () => {
       </aside>
       {inCourtyard && <CourtyardUI disabled={actionsUnavailable} night={world.night} />}
       {inRhythm && <RhythmGameUI disabled={actionsUnavailable} night={world.night} muted={world.muted} />}
+      <AtlasCompass room={room} disabled={actionsUnavailable} hidden={inReading || inRhythm || inSeat || inCourtyard || unavailable} />
 
       <header hidden={inRhythm} className={`gallery-header${inReading ? " gallery-header--reading" : inSeat ? " gallery-header--seated" : ""}`}>
         {inReading && <button ref={readingBack} className="back-control stand-control" aria-label="Back to room" aria-keyshortcuts="Escape" title="Back to room (Esc)" onClick={() => EventBus.dispatch("close-reading", {})}><Icon name="back" /><span>Back to room</span><kbd aria-hidden="true">Esc</kbd></button>}
@@ -243,9 +247,10 @@ const InterfaceUI: React.FC = () => {
           {!inSeat && !inCourtyard && !inRhythm && <button ref={guideHelp} className="icon-control guide-help" disabled={unavailable} onClick={() => interact("guide")} aria-label="Show robot guide" title="Guide"><Icon name="guide" /></button>}
           <button className="icon-control sound-control" onClick={() => EventBus.dispatch("sound-toggle", {})} disabled={unavailable} aria-label={world.muted ? "Unmute" : "Mute"} aria-pressed={!world.muted} title={world.muted ? "Unmute" : "Mute"}><Icon name={world.muted ? "muted" : "sound"} /></button>
           <button type="button" className="icon-control night-switch" role="switch" aria-label="Dark mode" aria-checked={world.night}
-            title={world.night ? "Turn off dark mode" : "Turn on dark mode"} disabled={unavailable}
+            title={world.night ? "Bring back the daylight" : "Light the village at night"} disabled={unavailable}
             onClick={() => EventBus.dispatch("night-toggle", {})}>
-            <Icon name={world.night ? "moon" : "sun"} />
+            <span className="theme-glyph" data-active={!world.night} aria-hidden="true"><Icon name="sun" /></span>
+            <span className="theme-glyph" data-active={world.night} aria-hidden="true"><Icon name="moon" /></span>
           </button>
           <InfoMenu key={world.view} />
         </div>}
@@ -292,14 +297,17 @@ const InterfaceUI: React.FC = () => {
           </div>
           <div className="piano-toolbar">
             {!inSeat && seatAction && <button className="room-action piano-seat-entry" data-action="pianoSeat" disabled={actionsUnavailable} aria-label={seatAction.label} onClick={() => interact("pianoSeat")}><Icon name="pianoSeat" /><span>{seatAction.label}</span></button>}
-            <button ref={pianoToggle} className="keyboard-control" aria-expanded={keyboardOpen} aria-controls="piano-keys" onClick={() => setKeyboardOpen((open) => !open)}><Icon name="piano" /><span>Keyboard</span></button>
+            <button ref={pianoToggle} className="keyboard-control" aria-expanded={keyboardOpen} aria-controls="piano-keys" onClick={() => {
+              if (!keyboardOpen) EventBus.dispatch('piano-keyboard-open', {});
+              setKeyboardOpen((open) => !open);
+            }}><Icon name="piano" /><span>Keyboard</span></button>
           </div>
-          <div className="piano-performance" data-status={performance.status} role="group" aria-label="Piano performance">
+          <div className="piano-performance" data-status={performance.status} role="group" aria-label="Keyboard performance">
             <div className="performance-controls">
               <button className="room-action performance-play" disabled={actionsUnavailable || performance.status === "loading"}
                 aria-busy={performance.status === "loading" || undefined}
-                onClick={() => EventBus.dispatch("piano-performance", { action: performance.status === "playing" ? "pause" : "play" })}>
-                <Icon name={performance.status === "playing" ? "pause" : "performance"} /><span>{performanceLabel}</span>
+                onClick={() => EventBus.dispatch("piano-performance", { action: performance.status === "playing" || performance.status === 'buffering' ? "pause" : "play" })}>
+                <Icon name={performance.status === "playing" || performance.status === 'buffering' ? "pause" : "performance"} /><span>{performanceLabel}</span>
               </button>
               {performanceActive && <button className="room-action performance-stop" disabled={actionsUnavailable} onClick={() => EventBus.dispatch("piano-performance", { action: "stop" })}>Stop</button>}
             </div>
@@ -308,6 +316,7 @@ const InterfaceUI: React.FC = () => {
               {performance.duration > 0 && <output className="performance-time" aria-label="Playback time">{performanceTime(performance.elapsed)} / {performanceTime(performance.duration)}</output>}
             </div>}
             {world.pianoAudio?.status === "loading" && <p className="performance-info" role="status">Loading grand piano…</p>}
+            {performance.status === 'buffering' && <p className="performance-info" role="status">Buffering recording…</p>}
             {world.pianoAudio?.status === "error" && <p className="performance-error" role="alert">{world.pianoAudio.error}</p>}
             {performance.status === "error" && <p className="performance-error" role="alert">{performance.error || "Could not load the performance. Please try again."}</p>}
           </div>
