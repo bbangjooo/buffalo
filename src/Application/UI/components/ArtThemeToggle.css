@@ -1,6 +1,8 @@
 .bio-scene-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .bio-scene-controls .tour-entry { margin-top: 0; }
 .art-theme-toggle { position: relative; flex: 0 0 auto; pointer-events: auto; }
+.art-theme-symbol { display: none; }
+body[data-view='courtyard'] .room-interface .header-controls { gap: 8px; }
 .art-theme-trigger { display: inline-flex; align-items: center; justify-content: space-between; gap: 14px; width: 124px; min-height: 44px; padding: 6px 12px; color: var(--color-text); background: var(--control-surface, var(--color-surface)); border: 1px solid var(--control-border, var(--color-border-subtle)); border-radius: var(--radius-control); box-shadow: 0 2px 8px var(--control-shadow); }
 .art-theme-title { display: flex; flex-direction: column; gap: 1px; align-items: flex-start; }
 .art-theme-title > span { font-size: 10px; line-height: 1.15; color: var(--color-text-muted); }
@@ -10,21 +12,26 @@
 .art-theme-menu > button[aria-checked='true'] { color: var(--color-accent); font-weight: 600; }
 .art-theme-menu > button:hover:not(:disabled), .art-theme-menu > button:focus-visible { background: var(--color-surface-hover); }
 .art-theme-trigger, .art-theme-title > span, .art-theme-menu, .art-theme-menu > button { transition: color var(--theme-duration, 1100ms) var(--theme-ease, ease), background-color var(--theme-duration, 1100ms) var(--theme-ease, ease), border-color var(--theme-duration, 1100ms) var(--theme-ease, ease), box-shadow var(--theme-duration, 1100ms) var(--theme-ease, ease); }
-.art-theme-context { position: fixed; top: calc(max(20px, env(safe-area-inset-top)) + 112px); left: max(22px, env(safe-area-inset-left)); z-index: var(--z-popover); pointer-events: auto; }
-.art-theme-context--seated { top: calc(max(16px, env(safe-area-inset-top)) + 56px); left: max(16px, env(safe-area-inset-left)); }
-@media (min-width: 1000px) {
-  .bio-scene-controls { flex-direction: column; align-items: flex-start; }
-}
 @media (max-width: 760px) {
   .bio-scene-controls { margin-top: 4px; }
-  .art-theme-trigger { min-height: 38px; padding: 5px 10px; gap: 10px; }
-  .art-theme-context { top: calc(max(12px, env(safe-area-inset-top)) + 96px); left: max(12px, env(safe-area-inset-left)); }
-  .art-theme-context--seated { top: calc(max(12px, env(safe-area-inset-top)) + 52px); }
-  .room-interface--seated .piano-seat-hint { top: calc(max(var(--space-16), calc(env(safe-area-inset-top) + var(--space-16))) + 48px); }
+  .header-controls .art-theme-trigger { width: 44px; height: 44px; min-height: 44px; padding: 0; justify-content: center; }
+  .header-controls .art-theme-title, .header-controls .art-theme-chevron { display: none; }
+  .header-controls .art-theme-symbol { display: block; }
 }
-@media (max-width: 600px) {
-  /* Leave a full line of space beneath the seated keyboard hint. */
+@media (max-width: 480px) {
+  /* Brand + Explore, then the complete right-aligned control row, then links. */
+  .personal-bio .bio-scene-controls { position: absolute; top: 0; right: 0; margin-top: 0; }
+  .personal-bio .profile-links { margin-top: 60px; }
+  .room-interface:not(.room-interface--seated) .gallery-header:not(.gallery-header--reading) { inset-block-start: calc(max(16px, env(safe-area-inset-top)) + 52px); inset-inline-end: max(16px, env(safe-area-inset-right)); }
+  body[data-view='courtyard'] .room-interface .header-controls { gap: 4px; }
+  .room-interface--seated .gallery-header { display: block; }
+  .room-interface--seated .header-controls { justify-content: flex-end; margin-top: 8px; }
+  .room-interface--seated .piano-seat-hint { top: calc(max(var(--space-16), calc(env(safe-area-inset-top) + var(--space-16))) + 48px); }
+  .room-interface:not(.room-interface--seated) .piano-asset-stack { top: calc(max(16px, env(safe-area-inset-top)) + 164px); }
   .room-interface--seated .piano-asset-stack { top: calc(max(16px, env(safe-area-inset-top)) + 182px); }
+}
+@media (max-width: 380px) {
+  .header-controls .art-theme-trigger { width: 36px; height: 40px; min-height: 40px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .art-theme-toggle, .art-theme-toggle * { transition: none; }

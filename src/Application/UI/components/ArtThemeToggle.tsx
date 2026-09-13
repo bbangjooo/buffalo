@@ -54,15 +54,16 @@ export default function ArtThemeToggle({ theme, disabled }: { theme: ArtTheme; d
 
   return <div className="art-theme-toggle" ref={host}>
     <button ref={trigger} type="button" className="art-theme-trigger" disabled={disabled}
-      aria-label={`Theme: ${THEMES[activeIndex].label}`} aria-haspopup="menu" aria-expanded={open}
+      aria-label={`Theme: ${THEMES[activeIndex].label}`} title={`Theme: ${THEMES[activeIndex].label}`} aria-haspopup="menu" aria-expanded={open}
       onClick={() => setOpen(value => !value)}
       onKeyDown={event => {
         if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
           event.preventDefault(); event.stopPropagation(); setOpen(true);
         }
       }}>
+      <svg className="art-theme-symbol" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m12 3-9 5 9 5 9-5-9-5ZM3 12l9 5 9-5M3 16l9 5 9-5" /></svg>
       <span className="art-theme-title"><span>Theme</span><strong>{THEMES[activeIndex].label}</strong></span>
-      <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
+      <svg className="art-theme-chevron" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
     </button>
     {open && <div className="art-theme-menu" role="menu" aria-label="Art theme" onKeyDown={event => {
       const index = choices.current.findIndex(choice => choice === document.activeElement);

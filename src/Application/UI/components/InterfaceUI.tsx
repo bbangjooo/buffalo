@@ -257,12 +257,8 @@ const InterfaceUI: React.FC = () => {
           {!unavailable && <button className="tour-entry" disabled={actionsUnavailable} onClick={() => EventBus.dispatch('enter-courtyard', {})}>
             <span>Explore</span><Icon name="next" />
           </button>}
-          <ArtThemeToggle theme={world.artTheme} disabled={actionsUnavailable} />
         </div>
       </aside>
-      {(inCourtyard || inSeat) && !inReading && !inRhythm && <div className={`art-theme-context${inSeat ? ' art-theme-context--seated' : ''}`}>
-        <ArtThemeToggle theme={world.artTheme} disabled={actionsUnavailable} />
-      </div>}
       {inCourtyard && <CourtyardUI disabled={actionsUnavailable} night={world.night} />}
       {inRhythm && <RhythmGameUI disabled={actionsUnavailable} night={world.night} muted={world.muted} />}
       <AtlasCompass room={room} disabled={actionsUnavailable} hidden={inReading || inRhythm || inSeat || inCourtyard || unavailable} />
@@ -271,6 +267,7 @@ const InterfaceUI: React.FC = () => {
         {inReading && <button ref={readingBack} className="back-control stand-control" aria-label="Back to room" aria-keyshortcuts="Escape" title="Back to room (Esc)" onClick={() => EventBus.dispatch("close-reading", {})}><Icon name="back" /><span>Back to room</span><kbd aria-hidden="true">Esc</kbd></button>}
         {inSeat && !inReading && <button ref={standControl} className="back-control stand-control" aria-label="Stand up" aria-keyshortcuts="Escape" title="Stand up (Esc)" onClick={() => EventBus.dispatch("close-piano", {})}><Icon name="back" /><span>Stand up</span><kbd aria-hidden="true">Esc</kbd></button>}
         {!inReading && <div className="header-controls">
+          <ArtThemeToggle theme={world.artTheme} disabled={actionsUnavailable} />
           {!inSeat && !inCourtyard && !inRhythm && <button ref={guideHelp} className="icon-control guide-help" disabled={unavailable} onClick={() => interact("guide")} aria-label="Show robot guide" title="Guide"><Icon name="guide" /></button>}
           <button className="icon-control sound-control" onClick={() => EventBus.dispatch("sound-toggle", {})} disabled={unavailable} aria-label={world.muted ? "Unmute" : "Mute"} aria-pressed={!world.muted} title={world.muted ? "Unmute" : "Mute"}><Icon name={world.muted ? "muted" : "sound"} /></button>
           <button type="button" className="icon-control night-switch" role="switch" aria-label="Dark mode" aria-checked={world.night}
