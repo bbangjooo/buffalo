@@ -6,7 +6,7 @@ This project is listed on the [portfolio-ideas](https://github.com/Evavic44/port
 
 ## Description
 
-Hello! This is my little corner of the internet, made with Three.js, TypeScript and Blender. I wanted a place that feels like meeting me: some music, some writing, a bit of travel, and something to play. Four isometric rooms sit on a hand-drawn atlas of warm paper and brown ink, with a robot nearby to show you around.
+Hello! This is my little corner of the internet, made with Three.js, TypeScript and Blender. I wanted a place that feels like meeting me: some music, some writing, a bit of travel, and something to play. Four isometric rooms sit on a hand-drawn atlas of warm paper and brown ink, with a robot nearby to show you around. The Theme menu also brings back the original low-poly rooms and green meadows, independently of day and night.
 
 Sit at the antique organ console, read a few stories, try the four-key rhythm game, or follow the compass and explore the pieces I have played and the places I have been. At night the atlas becomes silver ink beneath the stars. You can leave a message in the guestbook, too.
 
@@ -20,4 +20,4 @@ Inspired by [Henry Heffernan](https://henryheffernan.com) and [Bruno Simon](http
 
 ## Design specification
 
-[Antique Pen-Drawn Atlas · v1.0](design/atlas-ink-world.md) documents the visual direction, palette, room and village layout, responsive controls, day/night behavior, Blender handoff, and acceptance criteria. The specification includes the current web screenshots and village overview.
+[Pen Drawing & Low-poly Themes · v1.1](design/atlas-ink-world.md) documents the visual direction, palette, room and village layout, responsive controls, day/night behavior, Blender handoff, and acceptance criteria. The specification includes the current web screenshots and village overview.

@@ -51,7 +51,9 @@
     "seatPreservedOnStyleSwitch": true,
     "mobileOverflow": false,
     "seatedHintToToastGapPx": 23.61,
-    "portraitVisibleInBothStyles": true
+    "portraitVisibleInBothStyles": true,
+    "themeTriggerSameBoundsInBothStyles": true,
+    "themeTriggerWidthPx": 124
   },
   "validation": [
     "npm run build",
