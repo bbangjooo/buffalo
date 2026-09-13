@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-13",
+  "styles": [
+    "ink",
+    "classic"
+  ],
+  "default": "ink",
+  "nightIndependent": true,
+  "storageKey": "bbangjo.art-theme",
+  "defaultNightAfterReload": false,
+  "switchMidpointMs": 200,
+  "uiStylePaintMs": 400,
+  "reducedMotionImmediate": true,
+  "sourceGeometryGraftedOnce": true,
+  "preserved": [
+    "camera pose and room",
+    "24 physical keyboard pivots",
+    "curtain pivots",
+    "reading anchors and persistent iframes",
+    "robot and hamster",
+    "active performance playback"
+  ],
+  "tests": {
+    "command": "node scripts/verify-art-themes.cjs",
+    "passed": 9,
+    "actualGlbClassicLeafCounts": {
+      "rooms": 143,
+      "courtyard": 30
+    },
+    "modelRoundTrips": 40,
+    "meadowRoundTrips": 30,
+    "newSolidRecoveryCases": 19
+  },
+  "browser": {
+    "viewports": [
+      [
+        1440,
+        960
+      ],
+      [
+        320,
+        740
+      ]
+    ],
+    "fourStyleLightCombinations": true,
+    "savedClassicReload": true,
+    "summaryFramePalettePropagation": true,
+    "playbackBeforeSwitch": "0:03",
+    "playbackAfterSwitch": "0:03",
+    "playbackStatusAfterSwitch": "playing",
+    "seatPreservedOnStyleSwitch": true,
+    "mobileOverflow": false,
+    "seatedHintToToastGapPx": 23.61,
+    "portraitVisibleInBothStyles": true
+  },
+  "validation": [
+    "npm run build",
+    "verify-medieval-village.cjs",
+    "verify-pen-ink.cjs",
+    "verify-atlas-framing.cjs",
+    "verify-first-person.cjs",
+    "verify-courtyard.cjs",
+    "verify-leaderboard-wall.cjs",
+    "verify-camera-drag.cjs",
+    "verify-rhythm-game.cjs"
+  ]
+}

@@ -1,14 +1,14 @@
 {
-  "revision": "antique-atlas-distributed-village-2",
-  "landmarkCount": 11,
-  "cottageCount": 5,
-  "propCount": 6,
-  "meshCount": 16,
-  "triangles": 72402,
-  "obstacleCount": 11,
-  "torchCount": 5,
-  "windowCount": 5,
-  "style": "five distributed cottage landmarks and six purposeful village objects; grouped deliveries, handcart and notices on broad unpaved atlas paper",
+  "revision": "antique-atlas-outer-hamlets-1",
+  "landmarkCount": 19,
+  "cottageCount": 9,
+  "propCount": 10,
+  "meshCount": 28,
+  "triangles": 131608,
+  "obstacleCount": 19,
+  "torchCount": 9,
+  "windowCount": 9,
+  "style": "nineteen grouped cottage and everyday-life landmarks, including eight far outer hamlets; original inner village preserved on broad unpaved atlas paper",
   "authoringSource": "scripts/build_medieval_village.py",
   "preserved": [
     "central house clear area",
@@ -24,13 +24,21 @@
     "cart": 0.54,
     "notice": 0.9,
     "barrels": 0.9,
-    "crates": 0.9
+    "crates": 0.9,
+    "hill-well": 0.98,
+    "orchard-market": 0.88,
+    "woodland-cart": 0.86,
+    "riverside-barrels": 1.05
   },
   "cottageScales": {
     "scribe": 0.62,
     "weaver": 1,
     "baker": 0.9,
     "herbalist": 0.88,
-    "potter": 0.92
+    "potter": 0.92,
+    "miller": 0.94,
+    "beekeeper": 0.96,
+    "woodcarver": 0.92,
+    "orchard-keeper": 0.95
   }
 }

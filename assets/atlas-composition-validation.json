@@ -3,8 +3,8 @@
   "branch": "codex/pen-ink-world",
   "worktree": "/Users/bbangjo/buffalo-pen-ink",
   "localUrl": "http://localhost:4178/",
-  "revision": "expanded-village-preserved-central-rooms",
-  "intent": "Keep the established central rooms unchanged and populate a wider village with separated cottage yards, everyday objects and gardens.",
+  "revision": "wide-hamlets-volumetric-trees-and-art-themes",
+  "intent": "Keep the same four-room interaction space, extend ink hamlets across roughly106m, give courtyard trees genuine volume, and independently switch art style and time of day.",
   "camera": {
     "elevationDegrees": 36,
     "coreWidthIncreasePercent": [
@@ -33,43 +33,60 @@
     "unchangedFrom": "319df7f3b884a6a223993ca8959ddc18125184cd"
   },
   "background": {
-    "features": 11,
-    "cottages": 5,
-    "props": 6,
+    "features": 19,
+    "cottages": 9,
+    "props": 10,
     "propKinds": [
       "well",
       "market",
       "cart",
       "notice",
       "barrel_cluster",
-      "crates_cluster"
+      "crates_cluster",
+      "well",
+      "market",
+      "cart",
+      "barrel_cluster"
     ],
-    "plantClusters": 13,
+    "plantClusters": 21,
     "plantCounts": {
-      "grass": 146,
-      "flower": 31,
-      "shrub": 19,
-      "rock": 12,
-      "tree": 12
+      "grass": 274,
+      "flower": 63,
+      "shrub": 35,
+      "rock": 20,
+      "tree": 24
     },
-    "fixedPlantInstances": 220,
+    "fixedPlantInstances": 416,
     "plantBatches": 5,
     "omittedPlantInstances": 0,
     "original72PlacementsPreserved": true,
     "repeatingPlantField": false,
     "conservativeFootprintMeters": {
       "before": [
-        27.2,
-        30.6
-      ],
-      "after": [
         50.7,
         48.4
+      ],
+      "after": [
+        105.63,
+        105.63
       ]
     },
-    "villageTriangles": 72402,
-    "villageGlbBytes": 518164,
-    "visibleInitialView": "Original small cottage and framing trees remain. A complete handcart, barrels, notices and crates fill separated near edges; larger cottage yards and gardens extend outward for exploration."
+    "villageTriangles": 131608,
+    "villageGlbBytes": 940760,
+    "visibleInitialView": "Original small cottage and framing trees remain. A complete handcart, barrels, notices and crates fill separated near edges; larger cottage yards and gardens extend outward for exploration.",
+    "original220PlacementsPreserved": true,
+    "trees": {
+      "closedCanopyLobes": 7,
+      "vertices": 4474,
+      "triangles": 5746,
+      "width": 2.7405,
+      "depth": 2.9866,
+      "height": 3.44,
+      "footprintRadius": 2.0373,
+      "renderSide": "FrontSide",
+      "inkHull": true,
+      "surfaceHatching": true
+    }
   },
   "validation": {
     "build": "npm run build passed",
@@ -88,7 +105,7 @@
     "mobileHorizontalOverflow": false,
     "mobileCompassActionOverlap": false,
     "finalCartAtlasChecks": 16,
-    "solidApproaches": 169,
+    "solidApproaches": 297,
     "screenSightlineSamples": 234,
     "browserRoomsVisited": [
       "developer",
@@ -97,7 +114,9 @@
       "ai"
     ],
     "browserExploreEnterAndReturn": true,
-    "browserConsoleErrors": 0
+    "browserConsoleErrors": 0,
+    "artThemeChecks": 9,
+    "portraitPaintRestored": true
   },
   "artifacts": {
     "blender": "assets/atlas-world.blend",
@@ -106,7 +125,11 @@
     "mobile": "docs/media/atlas/mobile-night.png",
     "villageOverviewDay": "docs/media/atlas/village-overview-day.png",
     "villageOverviewNight": "docs/media/atlas/village-overview-night.png",
-    "landscape": "src/design/atlas-landscape.json"
+    "landscape": "src/design/atlas-landscape.json",
+    "classicDay": "docs/media/atlas/classic-day.png",
+    "classicNight": "docs/media/atlas/classic-night.png",
+    "treeFourViews": "docs/media/atlas/tree-volume-four-views.png",
+    "themeValidation": "assets/art-theme-validation.json"
   },
   "blenderReview": {
     "generatedWith": "Blender 5.2.1 LTS via scripts/prepare_atlas_review.py",
@@ -114,11 +137,11 @@
       "Day",
       "Night"
     ],
-    "landmarks": 11,
-    "fixedPlantInstances": 220,
-    "whiteFlames": 9,
+    "landmarks": 19,
+    "fixedPlantInstances": 416,
+    "whiteFlames": 13,
     "defaultCamera": "VillageOverviewCamera",
-    "overviewOrtho": 57.28854,
+    "overviewOrtho": 106.750328,
     "preservedCamera": "RoomCompositionCamera",
     "roomOrtho": 20,
     "sourceFilesUnchanged": true,

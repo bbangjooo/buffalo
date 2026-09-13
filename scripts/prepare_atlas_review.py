@@ -124,14 +124,26 @@ def vertex_palette(original,night=False):
     vertex=next((n for n in original.node_tree.nodes if n.bl_idname=='ShaderNodeVertexColor'),None) if original.use_nodes else None
     if vertex is None:return None
     mat=bpy.data.materials.new(('Atlas Review Night | ' if night else 'Atlas Review Day | ')+original.name)
-    mat.use_nodes=True;mat.node_tree.nodes.clear();nodes=mat.node_tree.nodes
+    mat.use_nodes=True;mat.use_backface_culling=original.use_backface_culling
+    mat.node_tree.nodes.clear();nodes=mat.node_tree.nodes
     color=nodes.new('ShaderNodeVertexColor');color.layer_name=vertex.layer_name
     ramp=nodes.new('ShaderNodeValToRGB');ramp.color_ramp.elements[0].position=.04
     ramp.color_ramp.elements[0].color=(*(SILVER if night else INK),1)
     ramp.color_ramp.elements[1].position=.90;ramp.color_ramp.elements[1].color=(*(BLACK if night else PAPER),1)
     out=nodes.new('ShaderNodeOutputMaterial')
     mat.node_tree.links.new(color.outputs['Color'],ramp.inputs['Fac'])
-    mat.node_tree.links.new(ramp.outputs['Color'],out.inputs[0]);cache[original.name]=mat
+    if original.use_backface_culling:
+        # Cycles needs explicit transparency for the reversed tree ink hull;
+        # viewport/glTF front-face culling alone only affects the live viewer.
+        geometry=nodes.new('ShaderNodeNewGeometry');transparent=nodes.new('ShaderNodeBsdfTransparent')
+        emission=nodes.new('ShaderNodeEmission');mix=nodes.new('ShaderNodeMixShader')
+        mat.node_tree.links.new(ramp.outputs['Color'],emission.inputs['Color'])
+        mat.node_tree.links.new(geometry.outputs['Backfacing'],mix.inputs[0])
+        mat.node_tree.links.new(emission.outputs[0],mix.inputs[1])
+        mat.node_tree.links.new(transparent.outputs[0],mix.inputs[2])
+        mat.node_tree.links.new(mix.outputs[0],out.inputs[0])
+    else:mat.node_tree.links.new(ramp.outputs['Color'],out.inputs[0])
+    cache[original.name]=mat
     return mat
 
 

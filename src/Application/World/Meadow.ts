@@ -4,6 +4,9 @@ import { COURTYARD } from '../../design/history';
 import landscape from '../../design/atlas-landscape.json';
 import village from '../../design/medieval-village-layout.json';
 import { ATLAS_NIGHT, ATLAS_PAPER, inkNight, preparePenInkMaterial } from './PenInk';
+import type { ArtTheme } from '../../design/art-themes';
+import type { LoadedModel } from '../../types';
+import ClassicMeadow from './ClassicMeadow';
 
 type PlantKind = keyof typeof landscape.templates;
 type Placement = typeof landscape.placements[number];
@@ -23,6 +26,10 @@ export default class Meadow {
   private reading = false;
   private cellX = Infinity;
   private cellZ = Infinity;
+  private artTheme: ArtTheme = 'ink';
+  private classic?: ClassicMeadow;
+  private lastX = 0;
+  private lastZ = 0;
 
   constructor(private application: Application, model: THREE.Group) {
     this.root.name = 'AtlasPaperGround';
@@ -47,6 +54,11 @@ export default class Meadow {
     this.planting.userData.revision=landscape.revision;
     this.root.add(this.planting);
     this.createPlanting(model);
+    const classicSource = (application.resources?.items.classicCourtyardModel as LoadedModel | undefined)?.scene;
+    if (classicSource) {
+      this.classic = new ClassicMeadow(application, classicSource);
+      this.root.add(this.classic.root);
+    }
     application.scene.add(this.root);
     this.update(0,0);
   }
@@ -79,7 +91,9 @@ export default class Meadow {
       colors.needsUpdate=true;
       const material=source.material.clone();
       material.name=`PenAtlasPlant_${kind}`;
-      material.side=THREE.DoubleSide;
+      // Volumetric trees carry a reversed ink hull; honour their authored
+      // front-face culling so the hull outlines, rather than covers, foliage.
+      material.side=kind==='tree'?source.material.side:THREE.DoubleSide;
       preparePenInkMaterial(material);
       const placements=landscape.placements.filter(item=>item.kind===kind&&this.isClear(item,template.radius*item.scale));
       const mesh=new THREE.InstancedMesh(geometry,material,placements.length);
@@ -114,10 +128,18 @@ export default class Meadow {
     if(COURTYARD.quadrants.some(q=>Math.hypot(q.spawn[0]-item.x,q.spawn[1]-item.z)<c.spawnPadding+radius))return false;
     return [...COURTYARD.obstacles,...village.obstacles].every(o=>Math.hypot(o.x-item.x,o.z-item.z)>=o.radius+radius+c.solidPadding);
   }
-  setOutdoor(active:boolean) {this.outdoor=active;this.applyAtmosphere();if(!active)this.update(0,0);}
-  setReading(reading:boolean) {this.reading=reading;this.applyAtmosphere();}
-  setNight(_night:boolean) {this.applyAtmosphere();}
+  setArtTheme(theme: ArtTheme) {
+    if (theme === 'classic' && !this.classic) throw new Error('Original meadow assets are unavailable');
+    this.artTheme = theme;
+    this.planting.visible = this.ground.visible = theme === 'ink';
+    this.classic?.setEnabled(theme === 'classic');
+    this.update(this.lastX, this.lastZ);
+  }
+  setOutdoor(active:boolean) {this.outdoor=active;this.classic?.setOutdoor(active);this.applyAtmosphere();if(!active)this.update(0,0);}
+  setReading(reading:boolean) {this.reading=reading;this.classic?.setReading(reading);this.applyAtmosphere();}
+  setNight(night:boolean) {this.classic?.setNight(night);this.applyAtmosphere();}
   private applyAtmosphere() {
+    if (this.artTheme === 'classic') return;
     const sky=this.sky.copy(this.daySky).lerp(this.nightSky,inkNight.amount.value);
     const offset=this.application.camera.getAtmosphereDistanceOffset();
     this.atmosphere.color.copy(sky);
@@ -127,6 +149,8 @@ export default class Meadow {
     this.application.scene.background=this.outdoor?this.skyBackground.copy(sky).convertLinearToSRGB():null;
   }
   update(x:number,z:number) {
+    this.lastX=x;this.lastZ=z;
+    if (this.artTheme === 'classic') { this.classic?.update(x,z); return; }
     this.applyAtmosphere();
     const cellX=Math.floor(x/24),cellZ=Math.floor(z/24);
     if(cellX===this.cellX&&cellZ===this.cellZ)return;
@@ -137,6 +161,7 @@ export default class Meadow {
     this.ground.position.z=(cellZ+.5)*24;
   }
   dispose() {
+    this.classic?.dispose();
     this.ground.geometry.dispose();this.ground.material.dispose();
     this.plants.forEach(mesh=>{
       mesh.geometry.dispose();

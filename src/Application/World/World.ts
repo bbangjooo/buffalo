@@ -20,6 +20,7 @@ import Courtyard from './Courtyard';
 import MedievalVillage from './MedievalVillage';
 import { pianoMidiForKeyboard } from '../../design/piano-keys';
 import type { LoadedModel } from '../../types';
+import { ArtTheme, isArtTheme, readArtTheme, writeArtTheme } from '../../design/art-themes';
 
 export default class World {
   application: Application;
@@ -45,6 +46,9 @@ export default class World {
   village?: MedievalVillage;
   ready = false;
   night = false;
+  artTheme: ArtTheme = 'ink';
+  artThemeTransitioning = false;
+  private artThemeTimer?: number;
   view: RoomView = 'developer';
   activeRoom: RoomId = 'developer';
   private pendingRestore: ReadingView | null = null;
@@ -67,6 +71,9 @@ export default class World {
 
   constructor() {
     this.application = new Application();
+    this.artTheme = readArtTheme();
+    document.body.dataset.artTheme = this.artTheme;
+    document.body.dataset.artThemeTransitioning = 'false';
     this.game = new RhythmGame({
       onPad: (index, on) => {
         if (!this.ready) return;
@@ -111,6 +118,7 @@ export default class World {
     EventBus.on('guide-help', () => this.guide?.help());
     EventBus.on('play-note', ({ midi }: { midi: number }) => this.playNote(midi));
     EventBus.on('night-toggle', () => this.toggleNight());
+    EventBus.on('art-theme-toggle', (detail: { theme?: unknown } = {}) => this.toggleArtTheme(detail.theme));
     EventBus.on('rhythm-request-state', () => EventBus.dispatch('rhythm-state', this.game.getSnapshot()));
     EventBus.on('rhythm-music-state', (state: RhythmMusicState) => this.onRhythmMusic(state));
     EventBus.on('rhythm-viewport', (rect: { left: number; top: number; width: number; height: number }) => this.application.camera.setRhythmViewport(rect));
@@ -219,6 +227,7 @@ export default class World {
       this.application.camera.setResume(this.room.resumeAnchor, 2.3, 2.78);
       this.application.camera.setLeaderboard(this.room.leaderboardAnchor, 2.3, 2.78);
       this.application.camera.setPianoSeat(this.room.pianoEyeAnchor, this.room.pianoLookAnchor);
+      this.applyArtTheme(this.artTheme, false);
       this.application.camera.navigate('developer', true);
       this.environment.setRoom('developer', true);
       this.ready = true;
@@ -238,7 +247,9 @@ export default class World {
     document.body.dataset.seated = String(this.seatedOverlay);
     const night = this.night;
     document.body.dataset.night = String(night);
-    EventBus.dispatch('world-state', { ready: this.ready, transitioning: this.application.camera.transitioning, view: this.view, room: this.activeRoom, readingView: this.readingOverlay, seated: this.view === 'piano-seat', seatedTransition: this.seatedOverlay, night, activity: null, error: this.error, game: this.game.getSnapshot() });
+    document.body.dataset.artTheme = this.artTheme;
+    document.body.dataset.artThemeTransitioning = String(this.artThemeTransitioning);
+    EventBus.dispatch('world-state', { ready: this.ready, transitioning: this.application.camera.transitioning, artTheme: this.artTheme, artThemeTransitioning: this.artThemeTransitioning, view: this.view, room: this.activeRoom, readingView: this.readingOverlay, seated: this.view === 'piano-seat', seatedTransition: this.seatedOverlay, night, activity: null, error: this.error, game: this.game.getSnapshot() });
     if (this.performance) EventBus.dispatch('world-state', { performance: this.performance.getSnapshot() });
   }
 
@@ -317,7 +328,7 @@ export default class World {
     this.leaderboardScreen.setVisible(!rhythm);
     this.rhythmStage?.setVisible(true);
     if (this.courtyard) {
-      this.courtyard.root.visible = this.view === 'courtyard' || this.view === 'exhibit';
+      this.courtyard.root.visible = this.artTheme === 'classic' ? !rhythm : this.view === 'courtyard' || this.view === 'exhibit';
       this.courtyard.meadow.root.visible = !rhythm;
     }
     if (this.portrait) this.portrait.object.visible = this.portrait.mesh.visible = !rhythm && this.portrait.image.naturalWidth > 0;
@@ -343,7 +354,49 @@ export default class World {
     this.night = !this.night;
     this.environment.setNight(this.night, this.reducedMotion.matches);
     this.village?.setNight(this.night);
+    this.courtyard?.meadow.setNight(this.night);
     this.publish();
+  }
+
+  private applyArtTheme(theme: ArtTheme, persist = true) {
+    this.room.setArtTheme(theme);
+    this.courtyard?.setArtTheme(theme);
+    this.courtyard?.meadow.setNight(this.night);
+    this.rhythmStage?.setArtTheme(theme);
+    this.environment.setArtTheme(theme, true);
+    this.village?.setArtTheme(theme);
+    this.artTheme = theme;
+    document.body.dataset.artTheme = theme;
+    this.resumeScreen.setArtTheme(theme);
+    this.leaderboardScreen.setDisplay(this.activeRoom === 'ai' && (this.view === 'ai' || this.view === 'leaderboard'), this.night, theme);
+    if (persist) writeArtTheme(theme);
+    this.syncScreens();
+    this.application.renderer.instance.shadowMap.needsUpdate = true;
+  }
+
+  private toggleArtTheme(requested?: unknown) {
+    if (!this.ready || this.error || this.artThemeTransitioning || this.application.camera.transitioning) return;
+    if (requested !== undefined && !isArtTheme(requested)) return;
+    const next = isArtTheme(requested) ? requested : this.artTheme === 'ink' ? 'classic' : 'ink';
+    if (next === this.artTheme) return;
+    const previous = this.artTheme;
+    const apply = () => {
+      this.artThemeTimer = undefined;
+      try { this.applyArtTheme(next); }
+      catch (error) {
+        this.applyArtTheme(previous, false);
+        console.error('Could not change the art theme.', error);
+      } finally {
+        this.artThemeTransitioning = false;
+        this.publish();
+      }
+    };
+    if (this.reducedMotion.matches) { apply(); return; }
+    // Fade the two render layers together, then swap visual leaves only. The
+    // live anchors, camera, active documents and audio playback never remount.
+    this.artThemeTransitioning = true;
+    this.publish();
+    this.artThemeTimer = window.setTimeout(apply, 200);
   }
 
   private playNote(midi: number) {
@@ -541,6 +594,10 @@ export default class World {
   }
 
   disposeInput() {
+    window.clearTimeout(this.artThemeTimer);
+    this.artThemeTimer = undefined;
+    this.artThemeTransitioning = false;
+    document.body.dataset.artThemeTransitioning = 'false';
     this.cancelCameraDrag();
     this.canvasListeners.splice(0).forEach((off) => off());
   }
@@ -595,7 +652,7 @@ export default class World {
     this.resumeScreen.update();
     this.resumeScreen.setNightTheme(this.night);
     this.leaderboardScreen.update();
-    this.leaderboardScreen.setDisplay(this.activeRoom === 'ai' && (this.view === 'ai' || this.view === 'leaderboard'), this.night);
+    this.leaderboardScreen.setDisplay(this.activeRoom === 'ai' && (this.view === 'ai' || this.view === 'leaderboard'), this.night, this.artTheme);
     this.portrait?.update();
     const settled = !this.application.camera.transitioning;
     this.monitorScreen.setInteractive(settled && this.view === 'monitor');

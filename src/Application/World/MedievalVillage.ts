@@ -4,6 +4,7 @@ import type Application from '../Application';
 import type { LoadedModel } from '../../types';
 import layout from '../../design/medieval-village-layout.json';
 import { ATLAS_OBJECT_PAPER, INK_FIRE_LIMIT, inkNight, preparePenInkModel } from './PenInk';
+import type { ArtTheme } from '../../design/art-themes';
 
 /** Authored village + a bounded set of living fire, window and sky effects. */
 export default class MedievalVillage {
@@ -25,6 +26,7 @@ export default class MedievalVillage {
   private readonly amber = new THREE.Color('#d5cebd').convertSRGBToLinear();
   private elapsed = 0;
   private night = false;
+  private artTheme: ArtTheme = 'ink';
   private disposed = false;
   private readonly onMotionChange = () => {
     if (this.reducedMotion.matches) {
@@ -168,12 +170,23 @@ export default class MedievalVillage {
     } else gsap.to(inkNight.amount, { value:night?1:0, duration:1.1, ease:'power2.inOut', overwrite:true });
   }
 
+  setArtTheme(theme: ArtTheme): void {
+    if (this.disposed) return;
+    this.artTheme = theme;
+    const walk = this.application.world.courtyard!.walk;
+    walk.setVillageObstacles(theme === 'ink' ? layout.obstacles : []);
+    if (theme === 'ink' && walk.ensureSafePosition()) {
+      this.application.camera.followCourtyard(walk.x,walk.z,true);
+    }
+    this.update(0, this.application.world.view === 'piano-seat' || ['monitor','resume','leaderboard'].includes(this.application.world.view));
+  }
+
   update(deltaMs: number, interiorFocus = false): void {
     if (this.disposed) return;
     if (!this.reducedMotion.matches) this.elapsed += Math.min(deltaMs,50)/1000;
     inkNight.time.value = this.reducedMotion.matches ? 0 : this.elapsed;
     const amount = inkNight.amount.value;
-    const worldVisible = this.application.world.view !== 'rhythm';
+    const worldVisible = this.artTheme === 'ink' && this.application.world.view !== 'rhythm';
     // Mobile document fitting moves the camera outside the centre house.
     // Surrounding roofs must not stand between that camera and its document.
     this.root.visible = worldVisible && !interiorFocus;
@@ -182,8 +195,8 @@ export default class MedievalVillage {
     const positions = this.embers.geometry.attributes.position as THREE.BufferAttribute;
     this.firePositions.forEach((position,index) => {
       const flicker = this.reducedMotion.matches ? 1 : .94 + .07*Math.sin(this.elapsed*3.1+index*1.7)+.035*Math.sin(this.elapsed*6.3+index);
-      inkNight.fires.value[index].set(position.x,position.y,position.z,flicker*this.fireScales[index]);
-      if (this.lights[index]) this.lights[index].intensity = amount*flicker*1.8;
+      inkNight.fires.value[index].set(position.x,position.y,position.z,worldVisible?flicker*this.fireScales[index]:0);
+      if (this.lights[index]) this.lights[index].intensity = worldVisible ? amount*flicker*1.8 : 0;
       this.glows[index].scale.setScalar((.78 + flicker*.06)*this.fireScales[index]);
       for (let j=0;j<5;j++) {
         const t = (this.elapsed*.28+j*.19+index*.071)%1;

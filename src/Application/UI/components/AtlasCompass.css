@@ -9,6 +9,7 @@
   pointer-events: none;
   isolation: isolate;
 }
+body[data-art-theme='classic'] .atlas-compass { color: var(--color-text); --color-paper: var(--color-surface); }
 .atlas-compass, .atlas-compass::before, .atlas-compass-link, .atlas-compass-cardinal,
 .atlas-compass-current, .atlas-compass-tooltip, .atlas-compass-rose, .atlas-compass-rose * {
   transition-property: color, background-color, border-color, box-shadow, text-shadow, fill, stroke;

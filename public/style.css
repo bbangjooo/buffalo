@@ -101,6 +101,96 @@ html body[data-night='true'] {
   --control-shadow: rgba(0, 0, 0, .18);
 }
 
+/* The original UI palette is independent of the ink/daylight palette above. */
+html body[data-art-theme='classic'] {
+  color-scheme: light;
+/* Immutable brand primitives. Keep in sync with src/design/jo-colors.json. */
+  --color-ink: oklch(33.303381097% 0.0427957688 212.129955936); /* #183C43 */
+  --color-paper: oklch(94.646734904% 0.0139832922 88.685205761); /* #F1EDE3 */
+  --color-teal: oklch(54.665994016% 0.0665488268 192.712723990); /* #3C7D7B */
+  --color-brass: oklch(71.387110807% 0.0963786402 75.106732644); /* #C69A5B */
+  --color-signal: oklch(89.554122541% 0.0961533630 115.878679703); /* #D9E59B */
+  --color-sage: oklch(80.413465454% 0.0689014272 123.478258517); /* #B6C796 */
+  --color-slate: oklch(66.859887635% 0.0290773108 211.109162761); /* #819A9F */
+  --color-walnut: oklch(48.379442647% 0.0554948711 52.700113056); /* #785641 */
+  --color-wood: oklch(75.329017744% 0.0658461527 76.672344336); /* #C7AA80 */
+  --color-chalk: oklch(88.430934900% 0.0273748742 85.667250249); /* #E1D8C5 */
+  --color-muted: oklch(49.812318669% 0.0259442758 210.481603965); /* #52676B */
+  --color-line: oklch(81.212450263% 0.0163415254 160.532132080); /* #B9C5BE */
+  --color-developer-wall: oklch(77.142390263% 0.0286069666 179.432620544); /* #A2BBB5 */
+  --color-piano-wall: oklch(88.430934900% 0.0273748742 85.667250249); /* #E1D8C5 */
+  --color-blog-wall: oklch(78.436043292% 0.0226947854 211.058133395); /* #A9BDC1 */
+  --color-ai-wall: oklch(82.177439667% 0.0478911665 127.373308575); /* #BCCBAA */
+  --color-shadow: oklch(39.391555500% 0.0326456485 210.891428544); /* #314B50 */
+  --color-glow: oklch(90.113059203% 0.0815172619 87.961598169); /* #F5DCA0 */
+  --color-transparent: color-mix(in oklch, var(--color-paper) 0%, transparent);
+
+  /* Opaque reading surfaces. Alpha modifiers are for overlays and shadows only. */
+  --color-bg: var(--color-paper);
+  --color-surface: var(--color-paper);
+  --color-surface-hover: color-mix(in oklch, var(--color-paper) 75%, var(--color-chalk));
+  --color-surface-translucent: color-mix(in oklch, var(--color-surface) 96%, transparent);
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-muted);
+  --color-border: color-mix(in oklch, var(--color-muted) 80%, var(--color-paper));
+  --color-border-subtle: var(--color-line);
+  --color-border-strong: var(--color-muted);
+
+  /* Raw teal/paper is 4.07:1. This semantic mix supports normal-sized text. */
+  --color-accent: color-mix(in oklch, var(--color-teal) 80%, var(--color-ink));
+  --color-on-accent: var(--color-paper);
+  --color-accent-ink: var(--color-on-accent);
+  --color-focus: var(--color-teal);
+  --color-shadow-soft: color-mix(in oklch, var(--color-ink) 12%, transparent);
+  --color-shadow-deep: color-mix(in oklch, var(--color-ink) 28%, transparent);
+  --color-scrim: color-mix(in oklch, var(--color-ink) 48%, transparent);
+  --color-hotspot: var(--color-paper);
+  --color-hotspot-ink: var(--color-ink);
+  --color-on-brass: var(--color-ink);
+  --color-on-signal: var(--color-ink);
+  --color-on-sage: var(--color-ink);
+
+  /* Material/decoration accents. Never use these as small text on paper. */
+  --color-room-developer: var(--color-teal);
+  --color-room-piano: var(--color-brass);
+  --color-room-blog: var(--color-slate);
+  --color-room-ai: var(--color-sage);
+  --color-game-pad-0: var(--color-teal);
+  --color-game-pad-1: var(--color-brass);
+  --color-game-pad-2: var(--color-slate);
+  --color-game-pad-3: var(--color-sage);
+  --control-surface: rgba(241, 237, 227, .9);
+  --control-label-surface: rgba(241, 237, 227, .76);
+  --control-border: rgba(82, 103, 107, .28);
+  --control-shadow: rgba(24, 60, 67, .09);
+}
+html body[data-art-theme='classic'][data-night='true'] {
+  color-scheme: dark;
+--color-bg: var(--color-ink);
+  --color-surface: var(--color-shadow);
+  --color-surface-hover: color-mix(in oklch, var(--color-shadow) 84%, var(--color-muted));
+  --color-surface-translucent: color-mix(in oklch, var(--color-surface) 96%, transparent);
+  --color-text: var(--color-paper);
+  --color-text-muted: var(--color-line);
+  --color-border: var(--color-slate);
+  --color-border-subtle: color-mix(in oklch, var(--color-slate) 42%, transparent);
+  --color-border-strong: var(--color-line);
+  --color-accent: var(--color-glow);
+  --color-on-accent: var(--color-ink);
+  --color-accent-ink: var(--color-on-accent);
+  --color-focus: var(--color-brass);
+  --color-shadow-soft: color-mix(in oklch, var(--color-ink) 42%, transparent);
+  --color-shadow-deep: color-mix(in oklch, var(--color-ink) 72%, transparent);
+  --color-scrim: color-mix(in oklch, var(--color-ink) 72%, transparent);
+  --control-surface: rgba(49, 75, 80, .9);
+  --control-label-surface: rgba(49, 75, 80, .76);
+  --control-border: rgba(129, 154, 159, .42);
+  --control-shadow: rgba(24, 60, 67, .28);
+}
+body[data-art-theme-painting='true'] { --theme-duration: 400ms; }
+body[data-art-theme='classic']::after { opacity: 0; }
+body[data-art-theme='classic'] .portrait-photo, body[data-art-theme='classic'] .portrait-surface { filter: none; }
+
 /* Theme paint follows the scene; button feedback stays brief and playable keys stay immediate. */
 body, .personal-bio h1, .profile-link, .header-controls .icon-control,
 .room-action, .room-step, .room-navigation, .keyboard-control, .stand-control,
@@ -116,17 +206,17 @@ body, .personal-bio h1, .profile-link, .header-controls .icon-control,
 .game-round, .game-best, .game-input-progress, .scene-status-icon {
   transition: color var(--theme-duration) var(--theme-ease);
 }
-html body[data-night='true'] .piano-key {
+html body[data-night='true']:not([data-art-theme='classic']) .piano-key {
   --color-ink: #5c422d;
   --color-paper: #e7dfcf;
   --color-muted: #67543f;
   --color-chalk: #cec0a7;
   --color-shadow: #292a28;
 }
-html body[data-night='true'] .game-pad[data-lit='true'] { color: var(--color-accent-ink); }
-html body[data-night='true'] .game-pad[data-lit='true'] .game-pad-shape { background: var(--color-accent-ink); }
-html body[data-night='true'] .walk-key:active,
-html body[data-night='true'] .map-station[data-visited='true'] > span { color: var(--color-accent-ink); }
+html body[data-night='true']:not([data-art-theme='classic']) .game-pad[data-lit='true'] { color: var(--color-accent-ink); }
+html body[data-night='true']:not([data-art-theme='classic']) .game-pad[data-lit='true'] .game-pad-shape { background: var(--color-accent-ink); }
+html body[data-night='true']:not([data-art-theme='classic']) .walk-key:active,
+html body[data-night='true']:not([data-art-theme='classic']) .map-station[data-visited='true'] > span { color: var(--color-accent-ink); }
 
 @media (prefers-reduced-motion: reduce) {
   html:root { --theme-duration: 0ms; }
@@ -149,11 +239,14 @@ button svg, a svg { flex: 0 0 auto; pointer-events: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: var(--space-0); margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
 #webgl, #css { position: fixed; inset: 0; width: 100%; height: 100%; overflow: clip; }
+#webgl, #css { transition: opacity 200ms ease; }
+body[data-art-theme-transitioning='true'] #webgl, body[data-art-theme-transitioning='true'] #css { opacity: 0; }
+body[data-art-theme-transitioning='true'] #webgl canvas { pointer-events: none; }
 #css { z-index: 0; pointer-events: none; }
 #webgl { z-index: var(--z-base); pointer-events: none; }
 #webgl canvas { display: block; width: 100%; height: 100%; touch-action: none; pointer-events: auto; }
 #css .monitor-surface, #css .resume-surface { overflow: visible; }
-.portrait-photo { filter: grayscale(1) contrast(1.12); }
+.portrait-photo, .portrait-surface { filter: grayscale(1) contrast(1.12); }
 #css #monitorScreen, #css #resumeScreen, #css #leaderboardScreen { pointer-events: none; }
 body[data-view="monitor"] #webgl canvas, body[data-view="resume"] #webgl canvas, body[data-view="leaderboard"] #webgl canvas { pointer-events: none; }
 body[data-view="monitor"] #css #monitorScreen, body[data-view="resume"] #css #resumeScreen, body[data-view="leaderboard"] #css #leaderboardScreen { pointer-events: auto; }

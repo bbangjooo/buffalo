@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { CSS3DObject } from "three/examples/jsm/renderers/CSS3DRenderer.js";
 import Application from "../Application";
+import type { ArtTheme } from '../../design/art-themes';
 
 export type MonitorScreenConfig = {
   id?: string;
@@ -31,14 +32,16 @@ export default class MonitorScreen {
   private added = false;
   private interactive = false;
   private documentNight = false;
+  private documentArtTheme: ArtTheme = 'ink';
   private readonly applyDocumentTheme = () => {
     // This controls our local summary only, never the external blog document.
     if (new URL(this.iframe.src, window.location.href).origin !== window.location.origin) return;
     const document = this.iframe.contentDocument;
     if (!document?.body) return;
     document.body.dataset.night = String(this.documentNight);
+    document.body.dataset.artTheme = this.documentArtTheme;
     document.documentElement.style.colorScheme = this.documentNight ? 'dark' : 'light';
-    const paper = this.documentNight ? '#0e1011' : '#f2e6ce';
+    const paper = this.documentArtTheme === 'classic' ? this.documentNight ? '#314b50' : '#f1ede3' : this.documentNight ? '#0e1011' : '#f2e6ce';
     this.container.style.background = this.iframe.style.background = paper;
   };
 
@@ -118,6 +121,12 @@ export default class MonitorScreen {
   setNightTheme(night: boolean) {
     if (night === this.documentNight) return;
     this.documentNight = night;
+    this.applyDocumentTheme();
+  }
+
+  setArtTheme(theme: ArtTheme) {
+    if (theme === this.documentArtTheme) return;
+    this.documentArtTheme = theme;
     this.applyDocumentTheme();
   }
 

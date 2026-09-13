@@ -33,6 +33,27 @@
   --rhythm-hit-halo: rgba(216, 212, 202, .18);
   --rhythm-error: #f0a49b;
 }
+/* Original component palette (7821671); art style and day/night are separate axes. */
+body[data-art-theme="classic"] .rhythm-ui {
+  --rhythm-ink: #183c43;
+  --rhythm-muted: #52676b;
+  --rhythm-paper: #f1ede3;
+  --rhythm-surface: rgba(249, 247, 240, .96);
+  --rhythm-line: rgba(73, 99, 102, .24);
+  --rhythm-accent: #3c7d7b;
+  --rhythm-on-accent: #fff;
+  --rhythm-held: rgba(217, 244, 234, .07);
+  --rhythm-error: #f6aa9f;
+}
+body[data-art-theme="classic"][data-night="true"] .rhythm-ui {
+  --rhythm-ink: #e1e9dd;
+  --rhythm-muted: #aebdb4;
+  --rhythm-paper: #172c31;
+  --rhythm-surface: rgba(24, 44, 47, .97);
+  --rhythm-line: rgba(173, 197, 184, .24);
+  --rhythm-accent: #9bc5b8;
+  --rhythm-on-accent: #183c43;
+}
 .rhythm-ui, .rhythm-back, .rhythm-scorebar, .rhythm-highway, .rhythm-board-message,
 .rhythm-progress, .rhythm-timing-content, .rhythm-buffering, .rhythm-highway::before,
 .rhythm-back kbd,
@@ -141,6 +162,77 @@
 .rhythm-timing-content output { min-width: 48px; text-align: right; font-variant-numeric: tabular-nums; }
 .rhythm-timing-content button { min-height: 32px; padding: 4px; color: var(--rhythm-accent); text-decoration: underline; text-underline-offset: 3px; }
 .rhythm-timing-content p { grid-column: 1 / -1; margin: 0; color: var(--rhythm-muted); font-size: 10px; line-height: 1.4; }
+
+/* The classic game keeps its dark teal playfield and existing per-lane colors. */
+body[data-art-theme="classic"] .rhythm-highway {
+  background: linear-gradient(180deg, #173d45, #09272f);
+  border-color: #527a7d;
+  box-shadow: 0 5px 0 #09262b, 0 10px 30px rgba(12, 38, 41, .2);
+}
+body[data-art-theme="classic"][data-night="true"] .rhythm-highway {
+  background: linear-gradient(180deg, #112d35, #071e26);
+  border-color: #3c6268;
+}
+body[data-art-theme="classic"] .rhythm-highway::before {
+  background: rgba(227, 253, 248, .32);
+  box-shadow: 0 0 12px rgba(154, 226, 208, .2);
+}
+body[data-art-theme="classic"] .rhythm-lane {
+  color: var(--lane-color);
+  border-left-color: rgba(190, 224, 223, .16);
+}
+body[data-art-theme="classic"] .rhythm-lane:nth-child(odd) { background: rgba(192, 224, 217, .025); }
+body[data-art-theme="classic"] .rhythm-lane[data-held="true"] { background: var(--rhythm-held); }
+body[data-art-theme="classic"] .rhythm-lane:nth-child(3) { border-left-color: rgba(190, 224, 223, .35); }
+body[data-art-theme="classic"] .rhythm-receptor {
+  background: #12323b;
+  box-shadow: 0 4px 0 rgba(0, 12, 18, .45);
+}
+body[data-art-theme="classic"] .rhythm-receptor[data-hit="true"],
+body[data-art-theme="classic"] .rhythm-lane[data-held="true"] .rhythm-receptor {
+  background: var(--lane-color);
+  color: #103039;
+  box-shadow: 0 0 18px var(--lane-color);
+}
+body[data-art-theme="classic"] .rhythm-note {
+  color: #103039;
+  background: var(--lane-color);
+  border-color: rgba(255, 255, 245, .55);
+  border-bottom-color: rgba(5, 24, 31, .35);
+  box-shadow: 0 3px 0 rgba(0, 8, 13, .55), 0 0 9px color-mix(in srgb, var(--lane-color) 35%, transparent);
+}
+body[data-art-theme="classic"] .rhythm-hit-effect { color: var(--lane-color); }
+body[data-art-theme="classic"] .rhythm-judgement { color: #eff8e8; }
+body[data-art-theme="classic"] .rhythm-judgement strong { text-shadow: 0 3px 0 rgba(0, 15, 22, .45); }
+body[data-art-theme="classic"] .rhythm-judgement span { color: #b8dbd5; }
+body[data-art-theme="classic"] .rhythm-judgement[data-judgement="Perfect"] strong { color: #e4f5a4; }
+body[data-art-theme="classic"] .rhythm-judgement[data-judgement="Great"] strong { color: #8ae5d1; }
+body[data-art-theme="classic"] .rhythm-judgement[data-judgement="Good"] strong { color: #a8d4fc; }
+body[data-art-theme="classic"] .rhythm-judgement[data-judgement="Miss"] strong { color: #f6aa9f; }
+body[data-art-theme="classic"] .rhythm-combo-milestone {
+  border-block-color: rgba(227, 246, 173, .55);
+  color: #e3f6ad;
+  background: rgba(7, 28, 34, .86);
+}
+body[data-art-theme="classic"] .rhythm-board-message {
+  --rhythm-ink: #edf5e9;
+  --rhythm-muted: #b1ccca;
+  --rhythm-paper: #12333b;
+  --rhythm-line: rgba(189, 222, 211, .32);
+  --rhythm-accent: #c6e89a;
+  --rhythm-on-accent: #143d3a;
+  background: rgba(10, 37, 45, .92);
+}
+body[data-art-theme="classic"] .rhythm-ready-keys kbd { border-color: var(--lane-color); color: var(--lane-color); }
+body[data-art-theme="classic"] .rhythm-countdown { color: #e4f5a4; text-shadow: 0 4px 0 #09252c; }
+body[data-art-theme="classic"] .rhythm-buffering { background: #123640; color: #d7ece3; border-color: #3c6268; }
+body[data-art-theme="classic"] .rhythm-pad {
+  border-color: #50737b;
+  border-bottom-color: #08252d;
+  background: #173d46;
+  color: var(--lane-color);
+}
+body[data-art-theme="classic"] .rhythm-pad[data-held="true"] { border-color: var(--lane-color); }
 
 @keyframes rhythm-receptor-pulse { 0% { scale: .8; filter: drop-shadow(0 0 12px currentColor); } 45% { scale: 1.15; } 100% { scale: 1; filter: none; } }
 @keyframes rhythm-hit-beam { 0% { opacity: .5; scale: .65 1; } 100% { opacity: 0; scale: 1.05 1; } }

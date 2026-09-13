@@ -9,6 +9,8 @@ import PianoAssetProgress from './PianoAssetProgress';
 import type { PianoPerformanceState } from "../../World/PianoPerformance";
 import CourtyardUI from './CourtyardUI';
 import AtlasCompass from './AtlasCompass';
+import ArtThemeToggle from './ArtThemeToggle';
+import { readArtTheme, type ArtTheme } from '../../../design/art-themes';
 
 interface WorldState {
   ready: boolean;
@@ -20,6 +22,8 @@ interface WorldState {
   room: RoomId;
   muted: boolean;
   night: boolean;
+  artTheme: ArtTheme;
+  artThemeTransitioning?: boolean;
   note: number | null;
   pianoAudio?: { status: "idle" | "loading" | "ready" | "error"; error?: string };
   performance: PianoPerformanceState;
@@ -73,6 +77,7 @@ function Icon({ name }: { name: string }) {
     pause: <path d="M8 5v14M16 5v14" />,
     monitor: <><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Zm0 0v14M6 8l3 1m-3 3 3 1m6-4 3-1m-3 5 3-1" /></>,
     blogLamp: <><path d="M12 2c1 3-3 4-3 7a3 3 0 0 0 6 0c0-1.4-.5-2.6-1.5-3.5-.2 1.2-.7 1.9-1.5 2.5.7-2 .8-4 0-6ZM8 14h8l-2 3h-4Zm3 3v5h2v-5" /></>,
+    light: <path d="M7 4h10l3 10H4ZM12 14v7m-5 0h10" />,
     resume: <><path d="M5 3h14v18H5Zm4 5h6m-6 4h6m-6 4h4" /></>,
     leaderboard: <path d="M3 21h18M5 21V11h4v10m0 0V5h6v16m0 0v-7h4v7" />,
     game: <><rect x="3" y="4" width="7" height="7" rx="1" /><rect x="14" y="4" width="7" height="7" rx="1" /><rect x="3" y="15" width="7" height="7" rx="1" /><rect x="14" y="15" width="7" height="7" rx="1" /></>,
@@ -85,10 +90,10 @@ function Icon({ name }: { name: string }) {
 }
 
 const InterfaceUI: React.FC = () => {
-  const [world, setWorld] = useState<WorldState>({
+  const [world, setWorld] = useState<WorldState>(() => ({
     ready: false, view: "developer", readingView: null, seated: false, seatedTransition: false, room: "developer", muted: false, night: false,
-    note: null, performance: INITIAL_PERFORMANCE,
-  });
+    note: null, performance: INITIAL_PERFORMANCE, artTheme: readArtTheme(), artThemeTransitioning: false,
+  }));
   const [guide, setGuide] = useState<GuideMessage>({ text: "", actionId: null, actionLabel: "", visible: false });
   const [slowLoading, setSlowLoading] = useState(false);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
@@ -108,7 +113,7 @@ const InterfaceUI: React.FC = () => {
   const room = isRoomId(world.room) ? world.room : "developer";
   const roomIndex = ROOM_IDS.indexOf(room);
   const unavailable = !world.ready || !!world.error;
-  const actionsUnavailable = unavailable || !!world.transitioning;
+  const actionsUnavailable = unavailable || !!world.transitioning || !!world.artThemeTransitioning;
   const seatAction = ROOMS.piano.actions.find((action) => action.id === "pianoSeat");
   const performance = world.performance || INITIAL_PERFORMANCE;
   const performanceActive = performance.status === "playing" || performance.status === "paused" || performance.status === 'buffering';
@@ -135,8 +140,19 @@ const InterfaceUI: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", world.night ? "#050607" : "#eadcc0");
-  }, [world.night]);
+    const color = world.artTheme === 'classic' ? (world.night ? '#183c43' : '#f1ede3') : (world.night ? '#050607' : '#eadcc0');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', color);
+  }, [world.night, world.artTheme]);
+
+  useEffect(() => {
+    if (world.artThemeTransitioning) {
+      document.body.dataset.artThemePainting = 'true';
+      return undefined;
+    }
+    const clear = window.setTimeout(() => { delete document.body.dataset.artThemePainting; }, 420);
+    return () => window.clearTimeout(clear);
+  }, [world.artThemeTransitioning, world.artTheme]);
+  useEffect(() => () => { delete document.body.dataset.artThemePainting; }, []);
 
   useEffect(() => {
     if (!inReading) return undefined;
@@ -216,6 +232,11 @@ const InterfaceUI: React.FC = () => {
     if (id === "blogLamp") return world.night;
     return undefined;
   }
+  function actionLabel(id: ObjectId, fallback: string) {
+    if (id === 'pianoSeat') return world.artTheme === 'classic' ? 'Sit at the piano' : 'Sit at the organ';
+    if (id === 'blogLamp') return world.artTheme === 'classic' ? 'Light' : 'Torch';
+    return fallback;
+  }
   function dismissGuide() {
     setGuide((previous) => ({ ...previous, visible: false }));
     EventBus.dispatch("guide-dismiss", {});
@@ -223,7 +244,7 @@ const InterfaceUI: React.FC = () => {
   }
 
   return (
-    <div className={`room-interface${inSeat ? " room-interface--seated" : ""}`} data-transitioning={world.transitioning ? "true" : "false"}>
+    <div className={`room-interface${inSeat ? " room-interface--seated" : ""}`} data-transitioning={world.transitioning || world.artThemeTransitioning ? "true" : "false"}>
       <PianoAssetProgress />
       <aside className="personal-bio" hidden={inReading || inSeat || inCourtyard || inRhythm} aria-label="bbangjo">
         <h1>bbangjo</h1>
@@ -232,10 +253,16 @@ const InterfaceUI: React.FC = () => {
           <a className="profile-link" href={PROFILE.githubUrl} target="_blank" rel="noopener noreferrer">GitHub<Icon name="external" /><span className="sr-only"> (new tab)</span></a>
           <a className="profile-link" href={BLOG} target="_blank" rel="noopener noreferrer">Blog<Icon name="external" /><span className="sr-only"> (new tab)</span></a>
         </div>
-        {!unavailable && <button className="tour-entry" disabled={actionsUnavailable} onClick={() => EventBus.dispatch('enter-courtyard', {})}>
-          <span>Explore</span><Icon name="next" />
-        </button>}
+        <div className="bio-scene-controls">
+          {!unavailable && <button className="tour-entry" disabled={actionsUnavailable} onClick={() => EventBus.dispatch('enter-courtyard', {})}>
+            <span>Explore</span><Icon name="next" />
+          </button>}
+          <ArtThemeToggle theme={world.artTheme} disabled={actionsUnavailable} />
+        </div>
       </aside>
+      {(inCourtyard || inSeat) && !inReading && !inRhythm && <div className={`art-theme-context${inSeat ? ' art-theme-context--seated' : ''}`}>
+        <ArtThemeToggle theme={world.artTheme} disabled={actionsUnavailable} />
+      </div>}
       {inCourtyard && <CourtyardUI disabled={actionsUnavailable} night={world.night} />}
       {inRhythm && <RhythmGameUI disabled={actionsUnavailable} night={world.night} muted={world.muted} />}
       <AtlasCompass room={room} disabled={actionsUnavailable} hidden={inReading || inRhythm || inSeat || inCourtyard || unavailable} />
@@ -260,7 +287,7 @@ const InterfaceUI: React.FC = () => {
       <main className="gallery-stage" aria-label="Byeong-geun Jo's 3D space">
         <div className="hotspots" data-labels-hidden={hideLabels} hidden={unavailable || inReading || inSeat || inCourtyard || inRhythm}>
           {HOTSPOTS.map((action) => (
-            <button key={action.id} data-hotspot={action.id} data-hotspot-room={action.room} className="hotspot" aria-label={action.label} aria-pressed={actionPressed(action.id)} disabled={unavailable} onClick={() => interact(action.id)}><span className="hotspot-dot" /><span className="hotspot-label">{action.label}</span></button>
+            <button key={action.id} data-hotspot={action.id} data-hotspot-room={action.room} className="hotspot" aria-label={actionLabel(action.id, action.label)} aria-pressed={actionPressed(action.id)} disabled={unavailable || !!world.artThemeTransitioning} onClick={() => interact(action.id)}><span className="hotspot-dot" /><span className="hotspot-label">{actionLabel(action.id, action.label)}</span></button>
           ))}
         </div>
         {unavailable && <div className="scene-status" role={world.error ? "alert" : "status"}>
@@ -274,7 +301,7 @@ const InterfaceUI: React.FC = () => {
       <aside className="guide-bubble" data-guide-bubble aria-label="Robot guide" hidden={inReading || inSeat || inCourtyard || inRhythm || unavailable || !guide.visible}>
         <button className="icon-control guide-close" onClick={dismissGuide} aria-label="Close guide"><Icon name="close" /></button>
         <p className="guide-text" role="status">{guide.visible ? guide.text : ""}</p>
-        {guide.actionId && <button className="guide-action" onClick={() => interact(guide.actionId!)}>{guide.actionLabel}<Icon name="next" /></button>}
+        {guide.actionId && <button className="guide-action" onClick={() => interact(guide.actionId!)}>{actionLabel(guide.actionId, guide.actionLabel)}<Icon name="next" /></button>}
       </aside>
 
       <div className="gallery-dock" hidden={inReading || inCourtyard || inRhythm}>
@@ -296,7 +323,7 @@ const InterfaceUI: React.FC = () => {
             <p className="piano-keyboard-shortcuts">White keys {WHITE_SHORTCUTS}<span>Black keys {BLACK_SHORTCUTS}</span></p>
           </div>
           <div className="piano-toolbar">
-            {!inSeat && seatAction && <button className="room-action piano-seat-entry" data-action="pianoSeat" disabled={actionsUnavailable} aria-label={seatAction.label} onClick={() => interact("pianoSeat")}><Icon name="pianoSeat" /><span>{seatAction.label}</span></button>}
+            {!inSeat && seatAction && <button className="room-action piano-seat-entry" data-action="pianoSeat" disabled={actionsUnavailable} aria-label={actionLabel('pianoSeat', seatAction.label)} onClick={() => interact("pianoSeat")}><Icon name="pianoSeat" /><span>{actionLabel('pianoSeat', seatAction.label)}</span></button>}
             <button ref={pianoToggle} className="keyboard-control" aria-expanded={keyboardOpen} aria-controls="piano-keys" onClick={() => {
               if (!keyboardOpen) EventBus.dispatch('piano-keyboard-open', {});
               setKeyboardOpen((open) => !open);
@@ -322,7 +349,7 @@ const InterfaceUI: React.FC = () => {
           </div>
         </div>
         <div className="room-actions" hidden={room === "piano"} role="group" aria-label="Object interactions">
-          {(room === "piano" ? [] : ROOMS[room].actions).filter((action) => action.id !== "pianoSeat").map((action) => <button key={action.id} className={`room-action${action.id === "game" ? " room-action--primary" : ""}`} data-action={action.id} disabled={actionsUnavailable} aria-label={action.label} aria-pressed={actionPressed(action.id)} onClick={() => interact(action.id)}><Icon name={action.id} /><span>{action.label}</span></button>)}
+          {(room === "piano" ? [] : ROOMS[room].actions).filter((action) => action.id !== "pianoSeat").map((action) => <button key={action.id} className={`room-action${action.id === "game" ? " room-action--primary" : ""}`} data-action={action.id} disabled={actionsUnavailable} aria-label={actionLabel(action.id, action.label)} aria-pressed={actionPressed(action.id)} onClick={() => interact(action.id)}><Icon name={world.artTheme === 'classic' && action.id === 'blogLamp' ? 'light' : action.id} /><span>{actionLabel(action.id, action.label)}</span></button>)}
         </div>
         <nav className="room-navigation" aria-label="Room navigation" hidden={inSeat}>
           <button className="room-step" disabled={unavailable} aria-label="Previous room" onClick={() => navigate(ROOM_IDS[(roomIndex + ROOM_IDS.length - 1) % ROOM_IDS.length])}><Icon name="previous" /></button>

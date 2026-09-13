@@ -9,11 +9,13 @@ from math import sin, cos, pi, sqrt
 from collections import defaultdict
 import json
 import random
+import sys
 
 import bpy
 from mathutils import Vector, Matrix
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT/'scripts'))
 bpy.ops.wm.open_mainfile(filepath=str(ROOT / 'assets/courtyard.blend'))
 bpy.context.preferences.filepaths.save_version = 0
 LAYOUT = json.loads((ROOT / 'src/design/courtyard-layout.json').read_text())
@@ -49,6 +51,9 @@ def material(name, color=None, vertex=False):
 PAPER_MAT = material('PenPaper', WHITE)
 INK_MAT = material('PenInk', INK)
 VERTEX_MAT = material('PenPaperBotanicalVertex', vertex=True)
+TREE_MAT = material('PenPaperBotanicalTree', vertex=True)
+TREE_MAT.use_backface_culling=True
+TREE_MAT['treeFrontFaces']=True
 
 
 class Drawing:
@@ -242,51 +247,18 @@ def shrub_template():
 
 
 def tree_template():
-    d=Drawing()
-    # Irregular white trunk, contour and bark strokes; ample visible white.
-    left=[(-.16,0,.03),(-.12,.75,-.01),(-.19,1.32,-.02),(-.05,2.2,0)]
-    right=[(.17,0,.03),(.11,.78,.025),(.13,1.35,.01),(.04,2.2,0)]
-    d.polygon(left+list(reversed(right)))
-    d.stroke(left,.026);d.stroke(right,.023)
-    for i in range(8):
-        h=.06+i*.17
-        d.stroke([(-.13,h,.046),(.05,h+.2,.045)],.010)
-    for angle in [0,2.1,4.2]:
-        tip=Vector((cos(angle)*.91,2.28+sin(angle)*.16,sin(angle)*.81))
-        joint=Vector((0,1.25,0))
-        d.stroke([joint,(joint+tip)*.5+Vector((0,.13,0)),tip],.075)
-    # Five canopy clusters, each with curved scallops on three intersecting
-    # paper planes. This retains a drawn silhouette around a 3D trunk.
-    for c,(cx,cy,cz,r) in enumerate([(-.72,2.23,.1,.72),(.65,2.4,.08,.81),(.03,2.95,0,.74),(0,2.19,-.63,.71),(.1,2.16,.65,.64)]):
-        for plane in range(2):
-            angle=plane*pi/2+c*.48
-            side=Vector((cos(angle),0,sin(angle)))
-            front=Vector((-sin(angle),0,cos(angle)))
-            center=Vector((cx,cy,cz))+front*.012
-            points=[]
-            for n in range(40):
-                a=n*2*pi/40
-                rr=r*(1+.095*sin(n*2.1+c)+.055*sin(n*4.3))
-                points.append(center+side*cos(a)*rr+Vector((0,sin(a)*rr*.62,0)))
-            d.polygon(points)
-            d.stroke(points,.015,cyclic=True)
-            # Bottom-third diagonal hatch; upper leaf mass stays paper white.
-            for n in range(8):
-                xx=(-.65+n*.18)*r
-                yy=-.31*r+.07*sin(n*3)
-                a=center+side*xx+Vector((0,yy,0))+front*.008
-                b=a+side*.22*r+Vector((0,.2*r,0))
-                d.stroke([a,b],.009,SOFT)
-            for n in range(4):
-                a=center+side*((n-1.5)*r*.32)+Vector((0,.14*sin(n*3),0))+front*.01
-                d.stroke([a,a+side*.06+Vector((0,.05,0)),a+side*.12],.0075)
-    return d
+    from pen_ink.volumetric_tree import build_tree
+    return build_tree(Drawing,WHITE,INK,SOFT)
 
 
 sources={}
 for name,builder in [('MeadowGrassClump',grass_template),('MeadowFlower',flower_template),('MeadowRock',rock_template),('MeadowInkShrub',shrub_template),('MeadowInkTree',tree_template)]:
-    obj=builder().object(name,parent)
+    drawing=builder();obj=drawing.object(name,parent)
     obj['templateOnly']=True
+    if name=='MeadowInkTree':
+        for key,value in drawing.tree_stats.items():obj[key]=value
+        obj.data.materials[0]=TREE_MAT
+        for polygon in obj.data.polygons:polygon.use_smooth=True
     sources[name]=obj
 
 # Small botanical beds frame the house corners while leaving all four room
@@ -352,13 +324,28 @@ for name,obj in sources.items():
     # A merged/static placement accidentally baked into a shared template would
     # replicate a whole garden thousands of times in the streamed meadow.
     bounds=[(min(point.co[axis] for point in obj.data.vertices),max(point.co[axis] for point in obj.data.vertices)) for axis in range(3)]
-    max_height=3.6 if name=='MeadowInkTree' else 1.0
+    max_height=3.48 if name=='MeadowInkTree' else 1.0
     max_width=3.1 if name=='MeadowInkTree' else 1.0
     assert -.025 < bounds[2][0] < .04 and bounds[2][1] < max_height, (name,bounds)
     assert bounds[0][1]-bounds[0][0] < max_width and bounds[1][1]-bounds[1][0] < max_width, (name,bounds)
+    if name=='MeadowInkTree':
+        radius=sqrt(max(abs(v) for v in bounds[0])**2+max(abs(v) for v in bounds[1])**2)
+        assert radius<=2.1,(name,'footprint',radius)
     assert obj.location.length < .00001 and all(abs(value-1)<.00001 for value in obj.scale), name
 
 bpy.ops.export_scene.gltf(filepath=str(ROOT/'public/Room/pen-ink-courtyard.glb'),export_format='GLB',export_apply=True,export_cameras=False,export_lights=False,export_animations=False,export_extras=True,export_vertex_color='ACTIVE',export_all_vertex_colors=False,export_draco_mesh_compression_enable=True,export_draco_mesh_compression_level=6)
+
+# Cycles does not use the viewport culling flag. Keep the exported pure-unlit
+# FrontSide material above, and make only its native Blender preview explicitly
+# transparent on back faces so the contour hull never becomes a black ball.
+nodes=TREE_MAT.node_tree.nodes
+pigment=next(node for node in nodes if node.bl_idname=='ShaderNodeVertexColor')
+output=next(node for node in nodes if node.bl_idname=='ShaderNodeOutputMaterial')
+geometry=nodes.new('ShaderNodeNewGeometry');transparent=nodes.new('ShaderNodeBsdfTransparent');mix=nodes.new('ShaderNodeMixShader')
+TREE_MAT.node_tree.links.new(geometry.outputs['Backfacing'],mix.inputs[0])
+TREE_MAT.node_tree.links.new(pigment.outputs['Color'],mix.inputs[1])
+TREE_MAT.node_tree.links.new(transparent.outputs[0],mix.inputs[2])
+TREE_MAT.node_tree.links.new(mix.outputs[0],output.inputs[0])
 
 # Saved authoring review: linked pooled plants, white ground and a close camera.
 review=bpy.data.objects.new('RenderOnlyPenInkMeadowPreview',None)
@@ -394,6 +381,9 @@ for screen in bpy.data.screens:
             area.spaces.active.shading.type='MATERIAL'
             area.spaces.active.shading.use_scene_world=True
             area.spaces.active.region_3d.view_perspective='CAMERA'
+from pen_ink.tree_review import add_tree_review
+tree_review=add_tree_review(sources['MeadowInkTree'],ROOT/'assets')
+if bpy.context.window:bpy.context.window.scene=tree_review
 bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'assets/pen-ink-courtyard.blend'))
 for name,obj in sources.items():
     assert len(obj.data.vertices) < 5000, (name, 'Unexpected template geometry growth')

@@ -53,7 +53,7 @@ function harness() {
     },
     dispatch(name, data = {}) { calls.events.push({ name, data }); for (const callback of subscriptions.get(name) || []) callback(data); },
   };
-  const window = new Surface(); window.location = { origin: 'https://portfolio.example' };
+  const window = new Surface(); window.location = { origin: 'https://portfolio.example', href: 'https://portfolio.example/' };
   window.matchMedia = () => ({ matches: false }); window.clearTimeout = () => {};
   const document = new Surface(); document.body = { dataset: {} }; document.hidden = false;
   document.querySelector = () => null; document.createElement = (tag) => new ElementFixture(tag);
@@ -77,12 +77,14 @@ function harness() {
     setItem: (key, value) => { calls.storageWrites.push({ key, value }); storage.set(key, value); },
   };
   const gameModule = load('src/Application/World/RhythmGame.ts', () => rhythm, { localStorage: storageApi });
+  const artThemes = load('src/design/art-themes.ts', () => ({}), { localStorage: storageApi });
   const { default: World } = load('src/Application/World/World.ts', (name) => {
     if (name === 'three') return THREE;
     if (name === '../Application') return class Application { constructor() { return application; } };
     if (name.endsWith('/Camera')) return { isReadingView: (view) => ['monitor', 'resume', 'leaderboard'].includes(view) };
     if (name.endsWith('/EventBus')) return { EventBus: bus };
     if (name.endsWith('/rooms')) return rooms;
+    if (name.endsWith('/art-themes')) return artThemes;
     if (name.endsWith('/rhythm-game')) return rhythm;
     if (name.endsWith('/RhythmGame')) return gameModule;
     if (name.endsWith('/piano-keys')) return { pianoMidiForKeyboard: () => undefined };
@@ -116,7 +118,7 @@ function harness() {
   world.environment = { setRoom() {}, setNight() {}, setCourtyard() {} };
   world.village = { setNight() {}, update(delta, interiorFocus) { calls.villageUpdates.push({ delta, interiorFocus }); } };
   world.curtains = { isDragging: false, cancelDrag() {} };
-  world.courtyard = { root: new THREE.Group(), meadow: { root: new THREE.Group(), setOutdoor() {} },
+  world.courtyard = { root: new THREE.Group(), meadow: { root: new THREE.Group(), setOutdoor() {}, setNight() {} },
     walk: { x: 7, z: 7 }, leave() {}, update() {}, enter() {} };
   world.ready = true; world.view = 'ai'; world.activeRoom = 'ai';
   return { world, application, camera, calls, bus, window, document, storage, subscriptions,
@@ -258,7 +260,7 @@ check('the real persistent screen pairs its iframe with the same transformed dep
     if (name.endsWith('/CSS3DRenderer.js')) return { CSS3DObject };
     if (name === '../Application') return class Application { constructor() { return h.application; } };
     throw new Error(`Unexpected screen dependency: ${name}`);
-  }, { document: h.document });
+  }, { document: h.document, window: h.window, URL });
   const wall = new THREE.Object3D(); wall.position.set(-.22, 2, 3); wall.rotation.y = Math.PI * 1.5;
   const anchor = new THREE.Object3D(); wall.add(anchor);
   const screen = new MonitorScreen(anchor, { id: 'leaderboardScreen', src: '/leaderboard.html', width: 2.3, height: 2.78, pixels: 720, mobilePixels: 420 });
@@ -287,7 +289,7 @@ check('wall iframe handshake, night state and refresh obey source ownership with
     if (name.endsWith('/CSS3DRenderer.js')) return { CSS3DObject };
     if (name === '../Application') return class Application { constructor() { return h.application; } };
     throw new Error(`Unexpected screen dependency: ${name}`);
-  }, { document: h.document });
+  }, { document: h.document, window: h.window, URL });
   const { default: LeaderboardScreen } = load('src/Application/World/LeaderboardScreen.ts', (name) => {
     if (name.endsWith('/MonitorScreen')) return monitor;
     if (name.endsWith('/EventBus')) return { EventBus: h.bus };

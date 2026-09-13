@@ -41,6 +41,8 @@
 }
 
 body[data-night="true"] .guestbook-reader-error { color: #f0a49b; }
+/* Form colors inherit the meadow's selected art palette and room accent. */
+body[data-art-theme="classic"][data-night="true"] .guestbook-reader-error { color: #f4aca1; }
 @container (max-width: 470px) {
   .guestbook-reader-form { padding: 17px; }
   .guestbook-reader-submit { align-items: stretch; flex-direction: column; gap: 10px; }

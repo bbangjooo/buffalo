@@ -1,13 +1,16 @@
 import * as THREE from 'three';
 import { RHYTHM_KEYS } from '../../design/rhythm-game';
+import type { ArtTheme } from '../../design/art-themes';
 import { ATLAS_INK, inkNight, penMaterial } from './PenInk';
 
 export const RHYTHM_PAD_POSITIONS = [[-.98, .34], [-.98, -.34], [.98, -.34], [.98, .34]] as const;
 
+type ThemeMaterial = { ink: THREE.MeshBasicMaterial; classic: THREE.MeshStandardMaterial };
 type Pad = {
   root: THREE.Group;
-  face: THREE.MeshBasicMaterial;
-  glyph: THREE.MeshBasicMaterial;
+  face: ThemeMaterial;
+  glyph: ThemeMaterial;
+  on: boolean;
   restingY: number;
 };
 
@@ -20,6 +23,10 @@ export default class RhythmStage {
   private readonly geometries = new Set<THREE.BufferGeometry>();
   private readonly materials = new Set<THREE.Material>();
   private readonly outline = new THREE.LineBasicMaterial({ color: ATLAS_INK, toneMapped: false });
+  private readonly surfaces: Array<{ mesh: THREE.Mesh; material: ThemeMaterial }> = [];
+  private readonly contours: THREE.LineSegments[] = [];
+  private readonly classicRail: THREE.Mesh[] = [];
+  private artTheme: ArtTheme = 'ink';
   private disposed = false;
 
   constructor(scene: THREE.Scene) {
@@ -43,7 +50,8 @@ export default class RhythmStage {
     this.slab('StagePlinth', 2.74, 1.84, 0.11, 0.11, 0.025, ink, 0.025);
     this.slab('BrassEdge', 2.67, 1.77, 0.016, 0.09, 0.007, brass, 0.14);
     this.slab('IvoryDeck', 2.61, 1.71, 0.012, 0.085, 0.009, ivory, 0.162);
-    this.slab('DancerLanding', 1.13, 1.45, 0.01, 0.085, 0.007, ivory, 0.185);
+    this.slab('DancerLanding', 1.13, 1.45, 0.01, 0.085, 0.007,
+      { ink: ivory.ink, classic: rubber.classic }, 0.185);
 
     // One large pad at each corner leaves a clear central landing for the hamster.
     RHYTHM_PAD_POSITIONS.forEach(([x, z], lane) => {
@@ -57,14 +65,35 @@ export default class RhythmStage {
       this.root.add(padRoot);
 
       const face = this.material(RHYTHM_KEYS[lane].color, 0.57, 0.12);
+      face.classic.emissive.set(RHYTHM_KEYS[lane].color);
       const tile = this.mesh(`PadSurface${lane}`, this.chamferedSlab(0.603, 0.514, 0.012, 0.028, 0.004), face, padRoot);
       tile.rotation.x = -Math.PI / 2;
       const glyph = this.material('#fbefce', 0.45, 0.12);
+      glyph.classic.emissive.set(RHYTHM_KEYS[lane].color);
       const letter = this.mesh(`PadLetter${RHYTHM_KEYS[lane].label}`, this.letterGeometry(RHYTHM_KEYS[lane].label), glyph, padRoot);
       letter.rotation.x = -Math.PI / 2;
       letter.position.y = 0.018;
-      this.pads.push({ root: padRoot, face, glyph, restingY: padRoot.position.y });
+      this.pads.push({ root: padRoot, face, glyph, on: false, restingY: padRoot.position.y });
+      this.setPad(lane, false);
     });
+
+    // The original dance floor's rear rail belongs only to the low-poly treatment.
+    const rail = (name: string, geometry: THREE.BufferGeometry, material: ThemeMaterial) => {
+      const mesh = this.mesh(name, geometry, material, this.root, false);
+      this.classicRail.push(mesh);
+      return mesh;
+    };
+    for (const x of [-0.63, 0.63]) {
+      rail('RailSocket', new THREE.CylinderGeometry(0.087, 0.11, 0.055, 8), brass).position.set(x, 0.204, -0.75);
+      rail('RailUpright', new THREE.CylinderGeometry(0.041, 0.051, 0.66, 8), ink).position.set(x, 0.55, -0.75);
+      rail('RailCollar', new THREE.CylinderGeometry(0.053, 0.053, 0.05, 8), brass).position.set(x, 0.82, -0.75);
+    }
+    const crossbar = rail('RailCrossbar', new THREE.CylinderGeometry(0.052, 0.052, 1.37, 8), ink);
+    crossbar.rotation.z = Math.PI / 2;
+    crossbar.position.set(0, 0.89, -0.75);
+    const grip = rail('RailGrip', new THREE.CylinderGeometry(0.058, 0.058, 0.69, 8), ivory);
+    grip.rotation.z = Math.PI / 2;
+    grip.position.set(0, 0.89, -0.75);
 
     // Small forged corner pins and incised front marks finish the game board.
     for (const x of [-1.23, 1.23]) for (const z of [-0.735, 0.735]) {
@@ -81,7 +110,25 @@ export default class RhythmStage {
     this.focusAnchor.name = 'RhythmFocusAnchor';
     this.focusAnchor.position.set(0, 0.9, 0);
     this.root.add(this.dancerAnchor, this.focusAnchor);
+    this.setArtTheme('ink');
     scene.add(this.root);
+  }
+
+  setArtTheme(theme: ArtTheme): void {
+    if (this.disposed) return;
+    this.artTheme = theme;
+    this.surfaces.forEach(({ mesh, material }) => {
+      mesh.material = material[theme];
+      mesh.castShadow = theme === 'classic';
+      mesh.receiveShadow = theme === 'classic';
+    });
+    this.contours.forEach(contour => { contour.visible = theme === 'ink'; });
+    this.classicRail.forEach(mesh => { mesh.visible = theme === 'classic'; });
+  }
+
+  get themeStats() {
+    return { theme: this.artTheme, surfaces: this.surfaces.length, classicRailMeshes: this.classicRail.length,
+      litPads: this.pads.map((pad, index) => pad.on ? index : -1).filter(index => index >= 0) };
   }
 
   setVisible(visible: boolean): void {
@@ -93,9 +140,12 @@ export default class RhythmStage {
   setPad(index: number, on: boolean): void {
     if (this.disposed || !Number.isInteger(index) || !this.pads[index]) return;
     const pad = this.pads[index];
+    pad.on = on;
     pad.root.position.y = pad.restingY - (on ? 0.009 : 0);
-    pad.face.color.set(on ? '#202327' : '#ffffff').convertSRGBToLinear();
-    pad.glyph.color.set(on ? '#ffffff' : '#202327').convertSRGBToLinear();
+    pad.face.ink.color.set(on ? '#202327' : '#ffffff').convertSRGBToLinear();
+    pad.glyph.ink.color.set(on ? '#ffffff' : '#202327').convertSRGBToLinear();
+    pad.face.classic.emissiveIntensity = on ? 0.68 : 0;
+    pad.glyph.classic.emissiveIntensity = on ? 0.9 : 0;
   }
 
   dispose(): void {
@@ -110,27 +160,34 @@ export default class RhythmStage {
     this.disposed = true;
   }
 
-  private material(color: string, _roughness: number, _metalness: number): THREE.MeshBasicMaterial {
-    const material = penMaterial(['#25343c', '#172329', '#fbefce'].includes(color));
-    this.materials.add(material);
-    return material;
+  private material(color: string, roughness: number, metalness: number): ThemeMaterial {
+    const ink = penMaterial(['#25343c', '#172329', '#fbefce'].includes(color));
+    const classic = new THREE.MeshStandardMaterial({ color, roughness, metalness, flatShading: true });
+    this.materials.add(ink);
+    this.materials.add(classic);
+    return { ink, classic };
   }
 
-  private mesh(name: string, geometry: THREE.BufferGeometry, material: THREE.Material, parent: THREE.Object3D = this.root): THREE.Mesh {
+  private mesh(name: string, geometry: THREE.BufferGeometry, material: ThemeMaterial,
+    parent: THREE.Object3D = this.root, inkContour = true): THREE.Mesh {
     this.geometries.add(geometry);
-    const mesh = new THREE.Mesh(geometry, material);
+    const mesh = new THREE.Mesh(geometry, material[this.artTheme]);
     mesh.name = name;
-    const edges = new THREE.EdgesGeometry(geometry, 28);
-    this.geometries.add(edges);
-    const strokes = new THREE.LineSegments(edges, this.outline);
-    strokes.name = `${name}InkContour`;
-    mesh.add(strokes);
+    this.surfaces.push({ mesh, material });
+    if (inkContour) {
+      const edges = new THREE.EdgesGeometry(geometry, 28);
+      this.geometries.add(edges);
+      const strokes = new THREE.LineSegments(edges, this.outline);
+      strokes.name = `${name}InkContour`;
+      this.contours.push(strokes);
+      mesh.add(strokes);
+    }
     parent.add(mesh);
     return mesh;
   }
 
   private slab(name: string, width: number, depth: number, height: number, corner: number, bevel: number,
-    material: THREE.Material, y: number): THREE.Mesh {
+    material: ThemeMaterial, y: number): THREE.Mesh {
     const slab = this.mesh(name, this.chamferedSlab(width, depth, height, corner, bevel), material);
     slab.rotation.x = -Math.PI / 2;
     slab.position.y = y;

@@ -4,23 +4,24 @@ import Leaderboard from './Application/UI/components/Leaderboard';
 
 const embedded = window.parent !== window;
 
-type DisplayMessage = { type: 'leaderboard-display'; active: boolean; night: boolean; refresh?: boolean };
+type DisplayMessage = { type: 'leaderboard-display'; active: boolean; night: boolean; artTheme?: 'ink' | 'classic'; refresh?: boolean };
 function isDisplayMessage(value: unknown): value is DisplayMessage {
   if (!value || typeof value !== 'object') return false;
   const message = value as Partial<DisplayMessage>;
   return message.type === 'leaderboard-display' && typeof message.active === 'boolean' && typeof message.night === 'boolean'
-    && (message.refresh === undefined || typeof message.refresh === 'boolean');
+    && (message.refresh === undefined || typeof message.refresh === 'boolean')
+    && (message.artTheme === undefined || message.artTheme === 'ink' || message.artTheme === 'classic');
 }
 
 function LeaderboardPage() {
-  const [display, setDisplay] = useState({ active: !embedded, night: false, refreshKey: 0 });
+  const [display, setDisplay] = useState({ active: !embedded, night: false, artTheme: 'ink', refreshKey: 0 });
 
   useEffect(() => {
     const onMessage = (event: MessageEvent) => {
       if (!embedded || event.source !== window.parent || event.origin !== window.location.origin || !isDisplayMessage(event.data)) return;
       const message = event.data;
       setDisplay(previous => ({
-        active: message.active, night: message.night,
+        active: message.active, night: message.night, artTheme: message.artTheme || 'ink',
         refreshKey: previous.refreshKey + (message.refresh ? 1 : 0),
       }));
     };
@@ -41,9 +42,10 @@ function LeaderboardPage() {
 
   useEffect(() => {
     document.body.dataset.night = String(display.night);
+    document.body.dataset.artTheme = display.artTheme;
     document.documentElement.style.colorScheme = display.night ? 'dark' : 'light';
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', display.night ? '#050607' : '#eadcc0');
-  }, [display.night]);
+  }, [display.night, display.artTheme]);
 
   return <Leaderboard active={display.active} refreshKey={display.refreshKey} />;
 }

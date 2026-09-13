@@ -44,6 +44,39 @@ body[data-night="true"] .meadow-interface, body[data-night="true"] .meadow-recor
   --meadow-reader-line: #414440;
   --meadow-focus: #d8d4ca;
 }
+/* Classic palettes come from the original meadow (7821671), independently of lighting. */
+body[data-art-theme="classic"] :is(.meadow-interface, .meadow-record) {
+  --meadow-ink: #254035;
+  --meadow-muted: #526658;
+  --meadow-paper: rgba(250, 252, 241, .94);
+  --meadow-accent: #426e66;
+  --meadow-accent-ink: #fff;
+  --meadow-border: rgba(64, 87, 63, .2);
+  --meadow-reader-paper: #f8faef;
+  --meadow-reader-heading: #e8eedb;
+  --meadow-reader-strip: #e8eedb;
+  --meadow-reader-line: #ccd7c3;
+  --meadow-focus: #193e50;
+}
+body[data-art-theme="classic"] :is(.meadow-interface, .meadow-record)[data-room="piano"] { --meadow-accent: #81622c; }
+body[data-art-theme="classic"] :is(.meadow-interface, .meadow-record)[data-room="blog"] { --meadow-accent: #53647c; }
+body[data-art-theme="classic"] :is(.meadow-interface, .meadow-record)[data-room="ai"] { --meadow-accent: #56713e; }
+body[data-art-theme="classic"][data-night="true"] :is(.meadow-interface, .meadow-record) {
+  --meadow-ink: #e0e9de;
+  --meadow-muted: #acbcad;
+  --meadow-paper: rgba(24, 36, 31, .94);
+  --meadow-accent: #a0cbb9;
+  --meadow-accent-ink: #1a3028;
+  --meadow-border: rgba(164, 187, 165, .25);
+  --meadow-reader-paper: #1b2722;
+  --meadow-reader-heading: #28372d;
+  --meadow-reader-strip: #28372d;
+  --meadow-reader-line: #425347;
+  --meadow-focus: #a0d6cf;
+}
+body[data-art-theme="classic"][data-night="true"] :is(.meadow-interface, .meadow-record)[data-room="piano"] { --meadow-accent: #d5bd87; }
+body[data-art-theme="classic"][data-night="true"] :is(.meadow-interface, .meadow-record)[data-room="blog"] { --meadow-accent: #aec6dc; }
+body[data-art-theme="classic"][data-night="true"] :is(.meadow-interface, .meadow-record)[data-room="ai"] { --meadow-accent: #b7cb95; }
 .tour-entry, .meadow-interface, .meadow-record, .meadow-back, .meadow-location, .meadow-nearby,
 .meadow-map, .meadow-list, .meadow-sector, .meadow-map-house, .meadow-map-robot,
 .meadow-location-dot, .meadow-walk-controls > p, .meadow-support-icon,

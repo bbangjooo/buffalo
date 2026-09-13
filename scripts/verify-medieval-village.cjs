@@ -472,12 +472,14 @@ async function verifyAtlasPresentation() {
   const landscape = JSON.parse(read('src/design/atlas-landscape.json'));
   check('curated plants match the bounded placement plan, preserve source geometry and stay fixed while the paper moves', () => {
     const pen = loadTS('src/Application/World/PenInk.ts', () => THREE);
+    const { default: ClassicMeadow } = loadTS('src/Application/World/ClassicMeadow.ts', name => name === 'three' ? THREE : { COURTYARD: courtyard });
     const { default: Meadow } = loadTS('src/Application/World/Meadow.ts', name => {
       if (name === 'three') return THREE;
       if (name.endsWith('/history')) return { COURTYARD: courtyard };
       if (name.endsWith('/PenInk')) return pen;
       if (name.endsWith('/atlas-landscape.json')) return landscape;
       if (name.endsWith('/medieval-village-layout.json')) return layout;
+      if (name.endsWith('/ClassicMeadow')) return ClassicMeadow;
       throw new Error(name);
     });
     const data = sourceAsset.data;

@@ -26,6 +26,18 @@
         --story-muted: #aaa79e;
         --story-line: #414440;
       }
+      body[data-art-theme="classic"] {
+        --story-ink: #183c43;
+        --story-paper: #f1ede3;
+        --story-muted: #52676b;
+        --story-line: #b9c5be;
+      }
+      body[data-art-theme="classic"][data-night="true"] {
+        --story-ink: #f1ede3;
+        --story-paper: #314b50;
+        --story-muted: #b9c5be;
+        --story-line: #819a9f;
+      }
       * { box-sizing: border-box; }
       body { margin: 0; min-height: 100vh; color: var(--story-ink); background: var(--story-paper); font-size: 20px; line-height: 1.65; word-break: keep-all; overflow-wrap: anywhere; }
       body, .principles, .principles strong, .period, li { transition: color 650ms ease, background-color 650ms ease, border-color 650ms ease; }
@@ -36,6 +48,7 @@
       .profile-photo { display: block; width: 200px; max-width: 100%; color: inherit; }
       .profile-photo:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
       .profile-photo img { display: block; width: 100%; height: auto; object-fit: contain; filter: grayscale(1) contrast(1.12); }
+      body[data-art-theme="classic"] .profile-photo img { filter: none; }
       h1, h2 { font-family: "Clash Display", "Wanted Sans Variable", "Pretendard Variable", sans-serif; }
       h1 { font-size: 42px; line-height: 1.2; letter-spacing: -0.04em; font-weight: 600; margin: 0 0 10px; }
       .principles { display: flex; flex-wrap: wrap; gap: 4px 20px; color: var(--story-muted); font-size: 16px; }
@@ -61,7 +74,7 @@
         .summary-intro { margin-top: 16px; font-size: 18px; }
       }
       @media print {
-        body, body[data-night="true"] { color-scheme: light; --story-ink: #191919; --story-paper: #fff; --story-muted: #585858; --story-line: #c8c8c8; }
+        body, body[data-night="true"], body[data-art-theme][data-night] { color-scheme: light; --story-ink: #191919; --story-paper: #fff; --story-muted: #585858; --story-line: #c8c8c8; }
         main { padding: 0; max-width: none; }
         li { break-inside: avoid; }
       }

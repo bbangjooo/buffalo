@@ -1,11 +1,13 @@
 import * as THREE from 'three';
 import MonitorScreen from './MonitorScreen';
 import { EventBus } from '../UI/EventBus';
+import type { ArtTheme } from '../../design/art-themes';
 
 /** Persistent wall content; only visiting Play or requesting refresh reads scores. */
 export default class LeaderboardScreen extends MonitorScreen {
   private active = false;
   private night = false;
+  private artTheme: ArtTheme = 'ink';
   private loaded = false;
   private dirty = true;
   private readonly offUpdated: () => void;
@@ -27,18 +29,21 @@ export default class LeaderboardScreen extends MonitorScreen {
     });
   }
 
-  setDisplay(active: boolean, night: boolean) {
-    if (this.active === active && this.night === night) return;
+  setDisplay(active: boolean, night: boolean, artTheme: ArtTheme = 'ink') {
+    if (this.active === active && this.night === night && this.artTheme === artTheme) return;
     if (active && !this.active) this.dirty = true;
     this.active = active;
     this.night = night;
+    this.artTheme = artTheme;
+    this.setArtTheme(artTheme);
+    this.setNightTheme(night);
     this.send();
   }
 
   private send() {
     if (!this.loaded) return;
     this.iframe.contentWindow?.postMessage({ type: 'leaderboard-display', active: this.active,
-      night: this.night, refresh: this.active && this.dirty }, window.location.origin);
+      night: this.night, artTheme: this.artTheme, refresh: this.active && this.dirty }, window.location.origin);
     if (this.active) this.dirty = false;
   }
 

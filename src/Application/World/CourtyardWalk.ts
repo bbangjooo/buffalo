@@ -20,6 +20,22 @@ export function walkDirection(code: string): WalkDirection | undefined { return 
 export class CourtyardWalk {
   private villageObstacles: ReadonlyArray<{ x: number; z: number; radius: number }> = [];
   setVillageObstacles(obstacles: ReadonlyArray<{ x: number; z: number; radius: number }>) { this.villageObstacles = obstacles; }
+  /** A newly enabled visual theme may add a solid at the visitor's position. */
+  ensureSafePosition(): boolean {
+    if (this.canStand(this.x, this.z)) return false;
+    // Find nearby open ground without changing heading or the active record.
+    const startX = this.x, startZ = this.z;
+    for (let radius = .25; radius <= 10; radius += .25) {
+      const steps = Math.ceil(2 * Math.PI * radius / .2);
+      for (let i = 0; i < steps; i++) {
+        const angle = i * Math.PI * 2 / steps;
+        const x = startX + Math.sin(angle) * radius, z = startZ + Math.cos(angle) * radius;
+        if (this.canStand(x,z)) { this.x=x;this.z=z; return true; }
+      }
+    }
+    [this.x,this.z] = COURTYARD.entrance;
+    return true;
+  }
   x = COURTYARD.entrance[0];
   y = 0;
   z = COURTYARD.entrance[1];

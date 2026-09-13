@@ -1,6 +1,6 @@
 {
-  "revision": "atlas-curated-gardens-3-outer-orchards",
-  "description": "Thirteen discrete planting groups: four original gardens, six outer gardens, and three small plantings beside nearby props; twelve framing trees and generous gaps between groups.",
+  "revision": "atlas-curated-gardens-4-outer-hamlets",
+  "description": "Twenty-one separated garden groups across an approximately106m atlas: the original220plants stay fixed, with eight outer gardens and twelve additional framing trees.",
   "groundOffset": 0.012,
   "clearance": {
     "housePadding": 0.55,
@@ -107,6 +107,46 @@
       "id": "crate-footings",
       "x": 10.983,
       "z": 4.162
+    },
+    {
+      "id": "far-west-north",
+      "x": -47,
+      "z": -13
+    },
+    {
+      "id": "far-east-north",
+      "x": 47,
+      "z": -13
+    },
+    {
+      "id": "far-west-south",
+      "x": -47,
+      "z": 18
+    },
+    {
+      "id": "far-east-south",
+      "x": 47,
+      "z": 18
+    },
+    {
+      "id": "far-northwest",
+      "x": -15,
+      "z": -47
+    },
+    {
+      "id": "far-northeast",
+      "x": 15,
+      "z": -47
+    },
+    {
+      "id": "far-southwest",
+      "x": -13,
+      "z": 47
+    },
+    {
+      "id": "far-southeast",
+      "x": 13,
+      "z": 47
     }
   ],
   "placements": [
@@ -2089,16 +2129,1789 @@
       "z": -4,
       "scale": 0.87,
       "yaw": 0.3
+    },
+    {
+      "id": "grass-147",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -47.723,
+      "z": -13.784,
+      "scale": 0.78,
+      "yaw": 0.0
+    },
+    {
+      "id": "grass-148",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -47.203,
+      "z": -14.036,
+      "scale": 0.9,
+      "yaw": 2.399
+    },
+    {
+      "id": "grass-149",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -46.7,
+      "z": -13.73,
+      "scale": 0.82,
+      "yaw": 4.798
+    },
+    {
+      "id": "grass-150",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -46.197,
+      "z": -13.36,
+      "scale": 0.94,
+      "yaw": 0.9138
+    },
+    {
+      "id": "grass-151",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -45.987,
+      "z": -12.833,
+      "scale": 0.86,
+      "yaw": 3.3128
+    },
+    {
+      "id": "grass-152",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -46.358,
+      "z": -12.296,
+      "scale": 0.78,
+      "yaw": 5.7118
+    },
+    {
+      "id": "grass-153",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -47.004,
+      "z": -12.095,
+      "scale": 0.9,
+      "yaw": 1.8276
+    },
+    {
+      "id": "grass-154",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -47.648,
+      "z": -12.315,
+      "scale": 0.82,
+      "yaw": 4.2266
+    },
+    {
+      "id": "grass-155",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -48.024,
+      "z": -12.978,
+      "scale": 0.94,
+      "yaw": 0.3424
+    },
+    {
+      "id": "grass-156",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -47.547,
+      "z": -13.226,
+      "scale": 0.86,
+      "yaw": 2.7414
+    },
+    {
+      "id": "grass-157",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -46.984,
+      "z": -12.806,
+      "scale": 0.78,
+      "yaw": 5.1404
+    },
+    {
+      "id": "grass-158",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -46.553,
+      "z": -12.897,
+      "scale": 0.9,
+      "yaw": 1.2563
+    },
+    {
+      "id": "grass-159",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -45.697,
+      "z": -13.45,
+      "scale": 0.82,
+      "yaw": 3.6553
+    },
+    {
+      "id": "grass-160",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -48.253,
+      "z": -12.323,
+      "scale": 0.94,
+      "yaw": 6.0543
+    },
+    {
+      "id": "grass-161",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -46.48,
+      "z": -14.068,
+      "scale": 0.86,
+      "yaw": 2.1701
+    },
+    {
+      "id": "grass-162",
+      "kind": "grass",
+      "cluster": "far-west-north",
+      "x": -45.928,
+      "z": -12.107,
+      "scale": 0.78,
+      "yaw": 4.5691
+    },
+    {
+      "id": "flower-32",
+      "kind": "flower",
+      "cluster": "far-west-north",
+      "x": -47.491,
+      "z": -13.431,
+      "scale": 0.85,
+      "yaw": 0.2
+    },
+    {
+      "id": "flower-33",
+      "kind": "flower",
+      "cluster": "far-west-north",
+      "x": -46.574,
+      "z": -12.518,
+      "scale": 0.885,
+      "yaw": 1.9
+    },
+    {
+      "id": "flower-34",
+      "kind": "flower",
+      "cluster": "far-west-north",
+      "x": -47.286,
+      "z": -12.267,
+      "scale": 0.92,
+      "yaw": 3.6
+    },
+    {
+      "id": "flower-35",
+      "kind": "flower",
+      "cluster": "far-west-north",
+      "x": -46.439,
+      "z": -13.728,
+      "scale": 0.955,
+      "yaw": 5.3
+    },
+    {
+      "id": "shrub-20",
+      "kind": "shrub",
+      "cluster": "far-west-north",
+      "x": -47.721,
+      "z": -12.84,
+      "scale": 0.8,
+      "yaw": 0.2
+    },
+    {
+      "id": "shrub-21",
+      "kind": "shrub",
+      "cluster": "far-west-north",
+      "x": -46.14,
+      "z": -13.234,
+      "scale": 0.855,
+      "yaw": 1.55
+    },
+    {
+      "id": "rock-13",
+      "kind": "rock",
+      "cluster": "far-west-north",
+      "x": -46.033,
+      "z": -11.924,
+      "scale": 0.78,
+      "yaw": 0.55
+    },
+    {
+      "id": "grass-163",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 45.99,
+      "z": -13.342,
+      "scale": 0.82,
+      "yaw": 0.64
+    },
+    {
+      "id": "grass-164",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 46.325,
+      "z": -13.812,
+      "scale": 0.94,
+      "yaw": 3.039
+    },
+    {
+      "id": "grass-165",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 46.913,
+      "z": -13.784,
+      "scale": 0.86,
+      "yaw": 5.438
+    },
+    {
+      "id": "grass-166",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 47.532,
+      "z": -13.701,
+      "scale": 0.78,
+      "yaw": 1.5538
+    },
+    {
+      "id": "grass-167",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 47.969,
+      "z": -13.339,
+      "scale": 0.9,
+      "yaw": 3.9528
+    },
+    {
+      "id": "grass-168",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 47.901,
+      "z": -12.69,
+      "scale": 0.82,
+      "yaw": 0.0686
+    },
+    {
+      "id": "grass-169",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 47.43,
+      "z": -12.204,
+      "scale": 0.94,
+      "yaw": 2.4676
+    },
+    {
+      "id": "grass-170",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 46.759,
+      "z": -12.088,
+      "scale": 0.86,
+      "yaw": 4.8666
+    },
+    {
+      "id": "grass-171",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 46.112,
+      "z": -12.49,
+      "scale": 0.78,
+      "yaw": 0.9824
+    },
+    {
+      "id": "grass-172",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 46.412,
+      "z": -12.936,
+      "scale": 0.9,
+      "yaw": 3.3814
+    },
+    {
+      "id": "grass-173",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 47.107,
+      "z": -12.837,
+      "scale": 0.82,
+      "yaw": 5.7804
+    },
+    {
+      "id": "grass-174",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 47.442,
+      "z": -13.124,
+      "scale": 0.94,
+      "yaw": 1.8963
+    },
+    {
+      "id": "grass-175",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 47.928,
+      "z": -14.02,
+      "scale": 0.86,
+      "yaw": 4.2953
+    },
+    {
+      "id": "grass-176",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 46.225,
+      "z": -11.805,
+      "scale": 0.78,
+      "yaw": 0.4111
+    },
+    {
+      "id": "grass-177",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 46.944,
+      "z": -14.186,
+      "scale": 0.9,
+      "yaw": 2.8101
+    },
+    {
+      "id": "grass-178",
+      "kind": "grass",
+      "cluster": "far-east-north",
+      "x": 48.369,
+      "z": -12.73,
+      "scale": 0.82,
+      "yaw": 5.2091
+    },
+    {
+      "id": "flower-36",
+      "kind": "flower",
+      "cluster": "far-east-north",
+      "x": 46.362,
+      "z": -13.143,
+      "scale": 0.85,
+      "yaw": 5.9832
+    },
+    {
+      "id": "flower-37",
+      "kind": "flower",
+      "cluster": "far-east-north",
+      "x": 47.605,
+      "z": -12.781,
+      "scale": 0.885,
+      "yaw": 1.4
+    },
+    {
+      "id": "flower-38",
+      "kind": "flower",
+      "cluster": "far-east-north",
+      "x": 47.1,
+      "z": -12.22,
+      "scale": 0.92,
+      "yaw": 3.1
+    },
+    {
+      "id": "flower-39",
+      "kind": "flower",
+      "cluster": "far-east-north",
+      "x": 47.143,
+      "z": -13.908,
+      "scale": 0.955,
+      "yaw": 4.8
+    },
+    {
+      "id": "shrub-22",
+      "kind": "shrub",
+      "cluster": "far-east-north",
+      "x": 46.444,
+      "z": -12.514,
+      "scale": 0.8,
+      "yaw": 5.9832
+    },
+    {
+      "id": "shrub-23",
+      "kind": "shrub",
+      "cluster": "far-east-north",
+      "x": 47.643,
+      "z": -13.618,
+      "scale": 0.855,
+      "yaw": 1.05
+    },
+    {
+      "id": "rock-14",
+      "kind": "rock",
+      "cluster": "far-east-north",
+      "x": 48.364,
+      "z": -12.519,
+      "scale": 0.82,
+      "yaw": 0.05
+    },
+    {
+      "id": "grass-179",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -46.782,
+      "z": 16.956,
+      "scale": 0.86,
+      "yaw": 1.28
+    },
+    {
+      "id": "grass-180",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -46.275,
+      "z": 17.232,
+      "scale": 0.78,
+      "yaw": 3.679
+    },
+    {
+      "id": "grass-181",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -46.232,
+      "z": 17.819,
+      "scale": 0.9,
+      "yaw": 6.078
+    },
+    {
+      "id": "grass-182",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -46.24,
+      "z": 18.444,
+      "scale": 0.82,
+      "yaw": 2.1938
+    },
+    {
+      "id": "grass-183",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -46.547,
+      "z": 18.921,
+      "scale": 0.94,
+      "yaw": 4.5928
+    },
+    {
+      "id": "grass-184",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -47.199,
+      "z": 18.932,
+      "scale": 0.86,
+      "yaw": 0.7086
+    },
+    {
+      "id": "grass-185",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -47.738,
+      "z": 18.523,
+      "scale": 0.78,
+      "yaw": 3.1076
+    },
+    {
+      "id": "grass-186",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -47.934,
+      "z": 17.871,
+      "scale": 0.9,
+      "yaw": 5.5066
+    },
+    {
+      "id": "grass-187",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -47.613,
+      "z": 17.18,
+      "scale": 0.82,
+      "yaw": 1.6224
+    },
+    {
+      "id": "grass-188",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -47.134,
+      "z": 17.424,
+      "scale": 0.94,
+      "yaw": 4.0214
+    },
+    {
+      "id": "grass-189",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -47.149,
+      "z": 18.126,
+      "scale": 0.86,
+      "yaw": 0.1373
+    },
+    {
+      "id": "grass-190",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -46.824,
+      "z": 18.424,
+      "scale": 0.78,
+      "yaw": 2.5363
+    },
+    {
+      "id": "grass-191",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -45.876,
+      "z": 18.798,
+      "scale": 0.9,
+      "yaw": 4.9353
+    },
+    {
+      "id": "grass-192",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -48.28,
+      "z": 17.375,
+      "scale": 0.82,
+      "yaw": 1.0511
+    },
+    {
+      "id": "grass-193",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -45.829,
+      "z": 17.801,
+      "scale": 0.94,
+      "yaw": 3.4501
+    },
+    {
+      "id": "grass-194",
+      "kind": "grass",
+      "cluster": "far-west-south",
+      "x": -47.103,
+      "z": 19.392,
+      "scale": 0.86,
+      "yaw": 5.8491
+    },
+    {
+      "id": "flower-40",
+      "kind": "flower",
+      "cluster": "far-west-south",
+      "x": -46.935,
+      "z": 17.35,
+      "scale": 0.85,
+      "yaw": 1.15
+    },
+    {
+      "id": "flower-41",
+      "kind": "flower",
+      "cluster": "far-west-south",
+      "x": -47.144,
+      "z": 18.627,
+      "scale": 0.885,
+      "yaw": 2.85
+    },
+    {
+      "id": "flower-42",
+      "kind": "flower",
+      "cluster": "far-west-south",
+      "x": -47.763,
+      "z": 18.193,
+      "scale": 0.92,
+      "yaw": 4.55
+    },
+    {
+      "id": "flower-43",
+      "kind": "flower",
+      "cluster": "far-west-south",
+      "x": -46.082,
+      "z": 18.033,
+      "scale": 0.955,
+      "yaw": 6.25
+    },
+    {
+      "id": "shrub-24",
+      "kind": "shrub",
+      "cluster": "far-west-south",
+      "x": -47.55,
+      "z": 17.506,
+      "scale": 0.8,
+      "yaw": 1.15
+    },
+    {
+      "id": "shrub-25",
+      "kind": "shrub",
+      "cluster": "far-west-south",
+      "x": -46.31,
+      "z": 18.564,
+      "scale": 0.855,
+      "yaw": 2.5
+    },
+    {
+      "id": "rock-15",
+      "kind": "rock",
+      "cluster": "far-west-south",
+      "x": -47.313,
+      "z": 19.412,
+      "scale": 0.86,
+      "yaw": 1.5
+    },
+    {
+      "id": "grass-195",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 45.96,
+      "z": 18.237,
+      "scale": 0.9,
+      "yaw": 1.92
+    },
+    {
+      "id": "grass-196",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 46.0,
+      "z": 17.661,
+      "scale": 0.82,
+      "yaw": 4.319
+    },
+    {
+      "id": "grass-197",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 46.516,
+      "z": 17.377,
+      "scale": 0.94,
+      "yaw": 0.4348
+    },
+    {
+      "id": "grass-198",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 47.087,
+      "z": 17.124,
+      "scale": 0.86,
+      "yaw": 2.8338
+    },
+    {
+      "id": "grass-199",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 47.649,
+      "z": 17.204,
+      "scale": 0.78,
+      "yaw": 5.2328
+    },
+    {
+      "id": "grass-200",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 47.93,
+      "z": 17.793,
+      "scale": 0.9,
+      "yaw": 1.3486
+    },
+    {
+      "id": "grass-201",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 47.783,
+      "z": 18.454,
+      "scale": 0.82,
+      "yaw": 3.7476
+    },
+    {
+      "id": "grass-202",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 47.271,
+      "z": 18.903,
+      "scale": 0.94,
+      "yaw": 6.1466
+    },
+    {
+      "id": "grass-203",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 46.51,
+      "z": 18.899,
+      "scale": 0.86,
+      "yaw": 2.2624
+    },
+    {
+      "id": "grass-204",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 46.532,
+      "z": 18.362,
+      "scale": 0.78,
+      "yaw": 4.6614
+    },
+    {
+      "id": "grass-205",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 47.177,
+      "z": 18.083,
+      "scale": 0.9,
+      "yaw": 0.7773
+    },
+    {
+      "id": "grass-206",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 47.312,
+      "z": 17.663,
+      "scale": 0.82,
+      "yaw": 3.1763
+    },
+    {
+      "id": "grass-207",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 47.258,
+      "z": 16.645,
+      "scale": 0.94,
+      "yaw": 5.5753
+    },
+    {
+      "id": "grass-208",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 46.964,
+      "z": 19.424,
+      "scale": 0.86,
+      "yaw": 1.6911
+    },
+    {
+      "id": "grass-209",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 46.332,
+      "z": 17.018,
+      "scale": 0.78,
+      "yaw": 4.0901
+    },
+    {
+      "id": "grass-210",
+      "kind": "grass",
+      "cluster": "far-east-south",
+      "x": 48.309,
+      "z": 17.514,
+      "scale": 0.9,
+      "yaw": 0.2059
+    },
+    {
+      "id": "flower-44",
+      "kind": "flower",
+      "cluster": "far-east-south",
+      "x": 46.382,
+      "z": 18.211,
+      "scale": 0.85,
+      "yaw": 5.4332
+    },
+    {
+      "id": "flower-45",
+      "kind": "flower",
+      "cluster": "far-east-south",
+      "x": 47.63,
+      "z": 17.87,
+      "scale": 0.885,
+      "yaw": 0.85
+    },
+    {
+      "id": "flower-46",
+      "kind": "flower",
+      "cluster": "far-east-south",
+      "x": 47.493,
+      "z": 18.613,
+      "scale": 0.92,
+      "yaw": 2.55
+    },
+    {
+      "id": "flower-47",
+      "kind": "flower",
+      "cluster": "far-east-south",
+      "x": 46.647,
+      "z": 17.151,
+      "scale": 0.955,
+      "yaw": 4.25
+    },
+    {
+      "id": "shrub-26",
+      "kind": "shrub",
+      "cluster": "far-east-south",
+      "x": 46.78,
+      "z": 18.705,
+      "scale": 0.8,
+      "yaw": 5.4332
+    },
+    {
+      "id": "shrub-27",
+      "kind": "shrub",
+      "cluster": "far-east-south",
+      "x": 47.225,
+      "z": 17.138,
+      "scale": 0.855,
+      "yaw": 0.5
+    },
+    {
+      "id": "rock-16",
+      "kind": "rock",
+      "cluster": "far-east-south",
+      "x": 48.414,
+      "z": 17.697,
+      "scale": 0.78,
+      "yaw": 5.7832
+    },
+    {
+      "id": "grass-211",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -15.597,
+      "z": -47.883,
+      "scale": 0.94,
+      "yaw": 2.56
+    },
+    {
+      "id": "grass-212",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -15.046,
+      "z": -48.055,
+      "scale": 0.86,
+      "yaw": 4.959
+    },
+    {
+      "id": "grass-213",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -14.595,
+      "z": -47.677,
+      "scale": 0.78,
+      "yaw": 1.0748
+    },
+    {
+      "id": "grass-214",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -14.152,
+      "z": -47.236,
+      "scale": 0.9,
+      "yaw": 3.4738
+    },
+    {
+      "id": "grass-215",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -14.023,
+      "z": -46.683,
+      "scale": 0.82,
+      "yaw": 5.8728
+    },
+    {
+      "id": "grass-216",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -14.47,
+      "z": -46.208,
+      "scale": 0.94,
+      "yaw": 1.9886
+    },
+    {
+      "id": "grass-217",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -15.139,
+      "z": -46.106,
+      "scale": 0.86,
+      "yaw": 4.3876
+    },
+    {
+      "id": "grass-218",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -15.744,
+      "z": -46.42,
+      "scale": 0.78,
+      "yaw": 0.5034
+    },
+    {
+      "id": "grass-219",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -16.016,
+      "z": -47.131,
+      "scale": 0.9,
+      "yaw": 2.9024
+    },
+    {
+      "id": "grass-220",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -15.507,
+      "z": -47.305,
+      "scale": 0.82,
+      "yaw": 5.3014
+    },
+    {
+      "id": "grass-221",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -15.014,
+      "z": -46.805,
+      "scale": 0.94,
+      "yaw": 1.4173
+    },
+    {
+      "id": "grass-222",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -14.573,
+      "z": -46.831,
+      "scale": 0.86,
+      "yaw": 3.8163
+    },
+    {
+      "id": "grass-223",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -13.644,
+      "z": -47.25,
+      "scale": 0.78,
+      "yaw": 6.2153
+    },
+    {
+      "id": "grass-224",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -16.34,
+      "z": -46.518,
+      "scale": 0.9,
+      "yaw": 2.3311
+    },
+    {
+      "id": "grass-225",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -14.327,
+      "z": -47.978,
+      "scale": 0.82,
+      "yaw": 4.7301
+    },
+    {
+      "id": "grass-226",
+      "kind": "grass",
+      "cluster": "far-northwest",
+      "x": -14.073,
+      "z": -45.956,
+      "scale": 0.94,
+      "yaw": 0.8459
+    },
+    {
+      "id": "flower-48",
+      "kind": "flower",
+      "cluster": "far-northwest",
+      "x": -15.421,
+      "z": -47.5,
+      "scale": 0.85,
+      "yaw": 0.35
+    },
+    {
+      "id": "flower-49",
+      "kind": "flower",
+      "cluster": "far-northwest",
+      "x": -14.651,
+      "z": -46.46,
+      "scale": 0.885,
+      "yaw": 2.05
+    },
+    {
+      "id": "flower-50",
+      "kind": "flower",
+      "cluster": "far-northwest",
+      "x": -15.393,
+      "z": -46.318,
+      "scale": 0.92,
+      "yaw": 3.75
+    },
+    {
+      "id": "flower-51",
+      "kind": "flower",
+      "cluster": "far-northwest",
+      "x": -14.337,
+      "z": -47.636,
+      "scale": 0.955,
+      "yaw": 5.45
+    },
+    {
+      "id": "shrub-28",
+      "kind": "shrub",
+      "cluster": "far-northwest",
+      "x": -15.737,
+      "z": -46.95,
+      "scale": 0.8,
+      "yaw": 0.35
+    },
+    {
+      "id": "shrub-29",
+      "kind": "shrub",
+      "cluster": "far-northwest",
+      "x": -14.115,
+      "z": -47.103,
+      "scale": 0.855,
+      "yaw": 1.7
+    },
+    {
+      "id": "rock-17",
+      "kind": "rock",
+      "cluster": "far-northwest",
+      "x": -14.205,
+      "z": -45.792,
+      "scale": 0.82,
+      "yaw": 0.7
+    },
+    {
+      "id": "grass-227",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 13.934,
+      "z": -47.028,
+      "scale": 0.78,
+      "yaw": 3.2
+    },
+    {
+      "id": "grass-228",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 14.115,
+      "z": -47.576,
+      "scale": 0.9,
+      "yaw": 5.599
+    },
+    {
+      "id": "grass-229",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 14.685,
+      "z": -47.723,
+      "scale": 0.82,
+      "yaw": 1.7148
+    },
+    {
+      "id": "grass-230",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 15.301,
+      "z": -47.827,
+      "scale": 0.94,
+      "yaw": 4.1138
+    },
+    {
+      "id": "grass-231",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 15.826,
+      "z": -47.61,
+      "scale": 0.86,
+      "yaw": 0.2296
+    },
+    {
+      "id": "grass-232",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 15.953,
+      "z": -46.97,
+      "scale": 0.78,
+      "yaw": 2.6286
+    },
+    {
+      "id": "grass-233",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 15.646,
+      "z": -46.367,
+      "scale": 0.9,
+      "yaw": 5.0276
+    },
+    {
+      "id": "grass-234",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 15.039,
+      "z": -46.058,
+      "scale": 0.82,
+      "yaw": 1.1434
+    },
+    {
+      "id": "grass-235",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 14.303,
+      "z": -46.25,
+      "scale": 0.94,
+      "yaw": 3.5424
+    },
+    {
+      "id": "grass-236",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 14.457,
+      "z": -46.765,
+      "scale": 0.86,
+      "yaw": 5.9414
+    },
+    {
+      "id": "grass-237",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 15.15,
+      "z": -46.876,
+      "scale": 0.78,
+      "yaw": 2.0573
+    },
+    {
+      "id": "grass-238",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 15.386,
+      "z": -47.249,
+      "scale": 0.9,
+      "yaw": 4.4563
+    },
+    {
+      "id": "grass-239",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 15.585,
+      "z": -48.249,
+      "scale": 0.82,
+      "yaw": 0.5721
+    },
+    {
+      "id": "grass-240",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 14.613,
+      "z": -45.629,
+      "scale": 0.94,
+      "yaw": 2.9711
+    },
+    {
+      "id": "grass-241",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 14.596,
+      "z": -48.117,
+      "scale": 0.86,
+      "yaw": 5.3701
+    },
+    {
+      "id": "grass-242",
+      "kind": "grass",
+      "cluster": "far-northeast",
+      "x": 16.388,
+      "z": -47.147,
+      "scale": 0.78,
+      "yaw": 1.4859
+    },
+    {
+      "id": "flower-52",
+      "kind": "flower",
+      "cluster": "far-northeast",
+      "x": 14.349,
+      "z": -46.948,
+      "scale": 0.85,
+      "yaw": 5.6832
+    },
+    {
+      "id": "flower-53",
+      "kind": "flower",
+      "cluster": "far-northeast",
+      "x": 15.642,
+      "z": -46.97,
+      "scale": 0.885,
+      "yaw": 1.1
+    },
+    {
+      "id": "flower-54",
+      "kind": "flower",
+      "cluster": "far-northeast",
+      "x": 15.326,
+      "z": -46.284,
+      "scale": 0.92,
+      "yaw": 2.8
+    },
+    {
+      "id": "flower-55",
+      "kind": "flower",
+      "cluster": "far-northeast",
+      "x": 14.868,
+      "z": -47.91,
+      "scale": 0.955,
+      "yaw": 4.5
+    },
+    {
+      "id": "shrub-30",
+      "kind": "shrub",
+      "cluster": "far-northeast",
+      "x": 14.612,
+      "z": -46.371,
+      "scale": 0.8,
+      "yaw": 5.6832
+    },
+    {
+      "id": "shrub-31",
+      "kind": "shrub",
+      "cluster": "far-northeast",
+      "x": 15.432,
+      "z": -47.78,
+      "scale": 0.855,
+      "yaw": 0.75
+    },
+    {
+      "id": "rock-18",
+      "kind": "rock",
+      "cluster": "far-northeast",
+      "x": 16.445,
+      "z": -46.944,
+      "scale": 0.86,
+      "yaw": 6.0332
+    },
+    {
+      "id": "grass-243",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -13.971,
+      "z": 46.559,
+      "scale": 0.82,
+      "yaw": 3.84
+    },
+    {
+      "id": "grass-244",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -13.591,
+      "z": 46.125,
+      "scale": 0.94,
+      "yaw": 6.239
+    },
+    {
+      "id": "grass-245",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -13.008,
+      "z": 46.211,
+      "scale": 0.86,
+      "yaw": 2.3548
+    },
+    {
+      "id": "grass-246",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -12.401,
+      "z": 46.356,
+      "scale": 0.78,
+      "yaw": 4.7538
+    },
+    {
+      "id": "grass-247",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -12.002,
+      "z": 46.759,
+      "scale": 0.9,
+      "yaw": 0.8696
+    },
+    {
+      "id": "grass-248",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -12.134,
+      "z": 47.398,
+      "scale": 0.82,
+      "yaw": 3.2686
+    },
+    {
+      "id": "grass-249",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -12.652,
+      "z": 47.835,
+      "scale": 0.94,
+      "yaw": 5.6676
+    },
+    {
+      "id": "grass-250",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -13.331,
+      "z": 47.883,
+      "scale": 0.86,
+      "yaw": 1.7834
+    },
+    {
+      "id": "grass-251",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -13.934,
+      "z": 47.419,
+      "scale": 0.78,
+      "yaw": 4.1824
+    },
+    {
+      "id": "grass-252",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -13.591,
+      "z": 47.005,
+      "scale": 0.9,
+      "yaw": 0.2983
+    },
+    {
+      "id": "grass-253",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -12.91,
+      "z": 47.173,
+      "scale": 0.82,
+      "yaw": 2.6973
+    },
+    {
+      "id": "grass-254",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -12.548,
+      "z": 46.921,
+      "scale": 0.94,
+      "yaw": 5.0963
+    },
+    {
+      "id": "grass-255",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -11.975,
+      "z": 46.078,
+      "scale": 0.86,
+      "yaw": 1.2121
+    },
+    {
+      "id": "grass-256",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -13.89,
+      "z": 48.112,
+      "scale": 0.78,
+      "yaw": 3.6111
+    },
+    {
+      "id": "grass-257",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -12.937,
+      "z": 45.814,
+      "scale": 0.9,
+      "yaw": 6.0101
+    },
+    {
+      "id": "grass-258",
+      "kind": "grass",
+      "cluster": "far-southwest",
+      "x": -11.664,
+      "z": 47.405,
+      "scale": 0.82,
+      "yaw": 2.1259
+    },
+    {
+      "id": "flower-56",
+      "kind": "flower",
+      "cluster": "far-southwest",
+      "x": -13.62,
+      "z": 46.794,
+      "scale": 0.85,
+      "yaw": 6.0832
+    },
+    {
+      "id": "flower-57",
+      "kind": "flower",
+      "cluster": "far-southwest",
+      "x": -12.42,
+      "z": 47.278,
+      "scale": 0.885,
+      "yaw": 1.5
+    },
+    {
+      "id": "flower-58",
+      "kind": "flower",
+      "cluster": "far-southwest",
+      "x": -12.978,
+      "z": 47.786,
+      "scale": 0.92,
+      "yaw": 3.2
+    },
+    {
+      "id": "flower-59",
+      "kind": "flower",
+      "cluster": "far-southwest",
+      "x": -12.767,
+      "z": 46.111,
+      "scale": 0.955,
+      "yaw": 4.9
+    },
+    {
+      "id": "shrub-32",
+      "kind": "shrub",
+      "cluster": "far-southwest",
+      "x": -13.602,
+      "z": 47.428,
+      "scale": 0.8,
+      "yaw": 6.0832
+    },
+    {
+      "id": "shrub-33",
+      "kind": "shrub",
+      "cluster": "far-southwest",
+      "x": -12.299,
+      "z": 46.45,
+      "scale": 0.855,
+      "yaw": 1.15
+    },
+    {
+      "id": "rock-19",
+      "kind": "rock",
+      "cluster": "far-southwest",
+      "x": -11.691,
+      "z": 47.615,
+      "scale": 0.78,
+      "yaw": 0.15
+    },
+    {
+      "id": "grass-259",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 12.794,
+      "z": 45.954,
+      "scale": 0.86,
+      "yaw": 4.48
+    },
+    {
+      "id": "grass-260",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 13.368,
+      "z": 46.011,
+      "scale": 0.78,
+      "yaw": 0.5958
+    },
+    {
+      "id": "grass-261",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 13.637,
+      "z": 46.534,
+      "scale": 0.9,
+      "yaw": 2.9948
+    },
+    {
+      "id": "grass-262",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 13.873,
+      "z": 47.113,
+      "scale": 0.82,
+      "yaw": 5.3938
+    },
+    {
+      "id": "grass-263",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 13.776,
+      "z": 47.672,
+      "scale": 0.94,
+      "yaw": 1.5096
+    },
+    {
+      "id": "grass-264",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 13.18,
+      "z": 47.936,
+      "scale": 0.86,
+      "yaw": 3.9086
+    },
+    {
+      "id": "grass-265",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 12.523,
+      "z": 47.769,
+      "scale": 0.78,
+      "yaw": 0.0244
+    },
+    {
+      "id": "grass-266",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 12.089,
+      "z": 47.245,
+      "scale": 0.9,
+      "yaw": 2.4234
+    },
+    {
+      "id": "grass-267",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 12.116,
+      "z": 46.484,
+      "scale": 0.82,
+      "yaw": 4.8224
+    },
+    {
+      "id": "grass-268",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 12.652,
+      "z": 46.522,
+      "scale": 0.94,
+      "yaw": 0.9383
+    },
+    {
+      "id": "grass-269",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 12.912,
+      "z": 47.174,
+      "scale": 0.86,
+      "yaw": 3.3373
+    },
+    {
+      "id": "grass-270",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 13.327,
+      "z": 47.322,
+      "scale": 0.78,
+      "yaw": 5.7363
+    },
+    {
+      "id": "grass-271",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 14.346,
+      "z": 47.298,
+      "scale": 0.9,
+      "yaw": 1.8521
+    },
+    {
+      "id": "grass-272",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 11.578,
+      "z": 46.922,
+      "scale": 0.82,
+      "yaw": 4.2511
+    },
+    {
+      "id": "grass-273",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 14.001,
+      "z": 46.361,
+      "scale": 0.94,
+      "yaw": 0.3669
+    },
+    {
+      "id": "grass-274",
+      "kind": "grass",
+      "cluster": "far-southeast",
+      "x": 13.447,
+      "z": 48.322,
+      "scale": 0.86,
+      "yaw": 2.7659
+    },
+    {
+      "id": "flower-60",
+      "kind": "flower",
+      "cluster": "far-southeast",
+      "x": 12.807,
+      "z": 46.376,
+      "scale": 0.85,
+      "yaw": 0.75
+    },
+    {
+      "id": "flower-61",
+      "kind": "flower",
+      "cluster": "far-southeast",
+      "x": 13.111,
+      "z": 47.633,
+      "scale": 0.885,
+      "yaw": 2.45
+    },
+    {
+      "id": "flower-62",
+      "kind": "flower",
+      "cluster": "far-southeast",
+      "x": 12.373,
+      "z": 47.475,
+      "scale": 0.92,
+      "yaw": 4.15
+    },
+    {
+      "id": "flower-63",
+      "kind": "flower",
+      "cluster": "far-southeast",
+      "x": 13.859,
+      "z": 46.672,
+      "scale": 0.955,
+      "yaw": 5.85
+    },
+    {
+      "id": "shrub-34",
+      "kind": "shrub",
+      "cluster": "far-southeast",
+      "x": 12.302,
+      "z": 46.759,
+      "scale": 0.8,
+      "yaw": 0.75
+    },
+    {
+      "id": "shrub-35",
+      "kind": "shrub",
+      "cluster": "far-southeast",
+      "x": 13.855,
+      "z": 47.25,
+      "scale": 0.855,
+      "yaw": 2.1
+    },
+    {
+      "id": "rock-20",
+      "kind": "rock",
+      "cluster": "far-southeast",
+      "x": 13.262,
+      "z": 48.422,
+      "scale": 0.82,
+      "yaw": 1.1
+    },
+    {
+      "id": "tree-13",
+      "kind": "tree",
+      "cluster": "far-west-north",
+      "x": -51,
+      "z": -9,
+      "scale": 0.86,
+      "yaw": 0.3
+    },
+    {
+      "id": "tree-14",
+      "kind": "tree",
+      "cluster": "far-east-north",
+      "x": 51,
+      "z": -9,
+      "scale": 0.87,
+      "yaw": 1.5
+    },
+    {
+      "id": "tree-15",
+      "kind": "tree",
+      "cluster": "far-west-south",
+      "x": -50,
+      "z": 13,
+      "scale": 0.86,
+      "yaw": 2.2
+    },
+    {
+      "id": "tree-16",
+      "kind": "tree",
+      "cluster": "far-east-south",
+      "x": 50,
+      "z": 13,
+      "scale": 0.88,
+      "yaw": 0.7
+    },
+    {
+      "id": "tree-17",
+      "kind": "tree",
+      "cluster": "far-northwest",
+      "x": -9,
+      "z": -51,
+      "scale": 0.84,
+      "yaw": 1.2
+    },
+    {
+      "id": "tree-18",
+      "kind": "tree",
+      "cluster": "far-northeast",
+      "x": 9,
+      "z": -51,
+      "scale": 0.86,
+      "yaw": 0.2
+    },
+    {
+      "id": "tree-19",
+      "kind": "tree",
+      "cluster": "far-southwest",
+      "x": -9,
+      "z": 51,
+      "scale": 0.87,
+      "yaw": 2.5
+    },
+    {
+      "id": "tree-20",
+      "kind": "tree",
+      "cluster": "far-southeast",
+      "x": 9,
+      "z": 51,
+      "scale": 0.85,
+      "yaw": 1.8
+    },
+    {
+      "id": "tree-21",
+      "kind": "tree",
+      "cluster": "far-west-north",
+      "x": -31,
+      "z": -31,
+      "scale": 0.88,
+      "yaw": 0.9
+    },
+    {
+      "id": "tree-22",
+      "kind": "tree",
+      "cluster": "far-east-north",
+      "x": 31,
+      "z": -31,
+      "scale": 0.85,
+      "yaw": 2.1
+    },
+    {
+      "id": "tree-23",
+      "kind": "tree",
+      "cluster": "far-west-south",
+      "x": -31,
+      "z": 31,
+      "scale": 0.87,
+      "yaw": 0.6
+    },
+    {
+      "id": "tree-24",
+      "kind": "tree",
+      "cluster": "far-east-south",
+      "x": 31,
+      "z": 31,
+      "scale": 0.86,
+      "yaw": 1.3
     }
   ],
   "limits": {
-    "maxPlacements": 220,
-    "maxTrees": 12,
+    "maxPlacements": 430,
+    "maxTrees": 26,
     "maxTreeHeight": 3.3,
-    "maxClusters": 13,
-    "maxGrass": 150,
-    "maxFlowers": 34,
-    "maxShrubs": 20,
-    "maxRocks": 14
+    "maxClusters": 21,
+    "maxGrass": 280,
+    "maxFlowers": 66,
+    "maxShrubs": 36,
+    "maxRocks": 22
+  },
+  "outerExpansion": {
+    "innerPlacementsPreserved": 220,
+    "addedPlacements": 196,
+    "targetRadius": [
+      35,
+      52
+    ],
+    "addedClusters": 8
   }
 }

@@ -1,9 +1,9 @@
 {
-  "revision": "antique-atlas-distributed-village-2",
+  "revision": "antique-atlas-outer-hamlets-1",
   "groundY": -0.16,
   "houseClearance": 6.6,
   "crossPathHalfWidth": 1.05,
-  "landmarkCount": 11,
+  "landmarkCount": 19,
   "cottages": [
     {
       "id": "scribe",
@@ -126,6 +126,106 @@
           1.5682,
           3.4569,
           1.6928
+        ]
+      }
+    },
+    {
+      "id": "miller",
+      "x": -43,
+      "z": -19,
+      "width": 2.9,
+      "depth": 2.6,
+      "eave": 2.08,
+      "ridge": 3.35,
+      "roof": "shingle",
+      "scale": 0.94,
+      "yaw": 1.154732,
+      "radius": 2.184,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.6497,
+          -0.0075,
+          -1.5285
+        ],
+        "max": [
+          1.6493,
+          3.6261,
+          1.7766
+        ]
+      }
+    },
+    {
+      "id": "beekeeper",
+      "x": 42,
+      "z": -19,
+      "width": 2.8,
+      "depth": 2.5,
+      "eave": 2.02,
+      "ridge": 3.2,
+      "roof": "thatch",
+      "scale": 0.96,
+      "yaw": -1.145964,
+      "radius": 2.1676,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.6368,
+          -0.0077,
+          -1.513
+        ],
+        "max": [
+          1.6364,
+          3.5592,
+          1.7664
+        ]
+      }
+    },
+    {
+      "id": "woodcarver",
+      "x": -41,
+      "z": 24,
+      "width": 2.9,
+      "depth": 2.6,
+      "eave": 2.1,
+      "ridge": 3.3,
+      "roof": "shingle",
+      "scale": 0.92,
+      "yaw": 2.100386,
+      "radius": 2.1772,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.6146,
+          -0.0074,
+          -1.496
+        ],
+        "max": [
+          1.6142,
+          3.5029,
+          1.7388
+        ]
+      }
+    },
+    {
+      "id": "orchard-keeper",
+      "x": 40,
+      "z": 24,
+      "width": 2.8,
+      "depth": 2.5,
+      "eave": 2.04,
+      "ridge": 3.3,
+      "roof": "thatch",
+      "scale": 0.95,
+      "yaw": -2.111216,
+      "radius": 2.1461,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.6197,
+          -0.0076,
+          -1.4973
+        ],
+        "max": [
+          1.6194,
+          3.6171,
+          1.748
         ]
       }
     }
@@ -255,6 +355,90 @@
           0.2599
         ]
       }
+    },
+    {
+      "id": "hill-well",
+      "kind": "well",
+      "x": -18,
+      "z": -43,
+      "scale": 0.98,
+      "yaw": 0.1,
+      "radius": 1.368,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.2054,
+          -0.0078,
+          -1.0072
+        ],
+        "max": [
+          1.3328,
+          2.7572,
+          1.0072
+        ]
+      }
+    },
+    {
+      "id": "orchard-market",
+      "kind": "market",
+      "x": 18,
+      "z": 43,
+      "scale": 0.88,
+      "yaw": 3.1,
+      "radius": 1.5312,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.2584,
+          -0.007,
+          -0.8456
+        ],
+        "max": [
+          1.2584,
+          2.2145,
+          0.8456
+        ]
+      }
+    },
+    {
+      "id": "woodland-cart",
+      "kind": "cart",
+      "x": -18,
+      "z": 43,
+      "scale": 0.86,
+      "yaw": -0.7,
+      "radius": 1.4614,
+      "physicalBoundsLocal": {
+        "min": [
+          -0.6768,
+          0.0092,
+          -0.8316
+        ],
+        "max": [
+          0.6768,
+          1.112,
+          1.3331
+        ]
+      }
+    },
+    {
+      "id": "riverside-barrels",
+      "kind": "barrel_cluster",
+      "x": 19,
+      "z": -43,
+      "scale": 1.05,
+      "yaw": 0.5,
+      "radius": 0.7178,
+      "physicalBoundsLocal": {
+        "min": [
+          -0.5103,
+          -0.0084,
+          -0.613
+        ],
+        "max": [
+          0.5178,
+          0.6388,
+          0.436
+        ]
+      }
     }
   ],
   "obstacles": [
@@ -287,6 +471,30 @@
       "x": 18,
       "z": 9,
       "radius": 2.1183
+    },
+    {
+      "id": "cottage-miller",
+      "x": -43,
+      "z": -19,
+      "radius": 2.184
+    },
+    {
+      "id": "cottage-beekeeper",
+      "x": 42,
+      "z": -19,
+      "radius": 2.1676
+    },
+    {
+      "id": "cottage-woodcarver",
+      "x": -41,
+      "z": 24,
+      "radius": 2.1772
+    },
+    {
+      "id": "cottage-orchard-keeper",
+      "x": 40,
+      "z": 24,
+      "radius": 2.1461
     },
     {
       "id": "well",
@@ -323,6 +531,30 @@
       "x": 10.5,
       "z": 2.6,
       "radius": 0.603
+    },
+    {
+      "id": "hill-well",
+      "x": -18,
+      "z": -43,
+      "radius": 1.368
+    },
+    {
+      "id": "orchard-market",
+      "x": 18,
+      "z": 43,
+      "radius": 1.5312
+    },
+    {
+      "id": "woodland-cart",
+      "x": -18,
+      "z": 43,
+      "radius": 1.4614
+    },
+    {
+      "id": "riverside-barrels",
+      "x": 19,
+      "z": -43,
+      "radius": 0.7178
     }
   ],
   "torches": [
@@ -355,10 +587,44 @@
       "x": 16.17322,
       "y": 1.3902,
       "z": 9.23864
+    },
+    {
+      "id": "miller",
+      "x": -41.08903,
+      "y": 1.4239,
+      "z": -19.34772
+    },
+    {
+      "id": "beekeeper",
+      "x": 40.99122,
+      "y": 1.4576,
+      "z": -17.36355
+    },
+    {
+      "id": "woodcarver",
+      "x": -40.18143,
+      "y": 1.3902,
+      "z": 22.28424
+    },
+    {
+      "id": "orchard-keeper",
+      "x": 38.10031,
+      "y": 1.44075,
+      "z": 24.10101
     }
   ],
   "limits": {
-    "maxLandmarks": 12,
-    "maxTriangles": 100000
+    "maxLandmarks": 19,
+    "maxCottages": 9,
+    "maxProps": 10,
+    "maxTriangles": 180000
+  },
+  "outerExpansion": {
+    "innerFeaturesPreserved": 11,
+    "addedFeatures": 8,
+    "targetRadius": [
+      35,
+      52
+    ]
   }
 }
