@@ -53,7 +53,22 @@
     "seatedHintToToastGapPx": 23.61,
     "portraitVisibleInBothStyles": true,
     "themeTriggerSameBoundsInBothStyles": true,
-    "themeTriggerWidthPx": 124
+    "themeTriggerWidthPx": {
+      "desktop": 124,
+      "upTo760px": 44,
+      "upTo380px": 36
+    },
+    "themeControlPlacement": "Upper-right header, immediately before Help; a single instance",
+    "headerPlacementChecks": {
+      "desktopHelpGapPx": 12,
+      "smallScreenHelpGapPx": 4,
+      "smallScreenHeaderY": 68,
+      "smallScreenProfileLinksBottom": 165.59375,
+      "smallScreenToastTop": 180,
+      "smallScreenMenuInViewport": true,
+      "singleThemeInstance": true,
+      "seatedHeaderRowY": 64
+    }
   },
   "validation": [
     "npm run build",

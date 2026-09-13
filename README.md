@@ -20,4 +20,4 @@ Inspired by [Henry Heffernan](https://henryheffernan.com) and [Bruno Simon](http
 
 ## Design specification
 
-[Pen Drawing & Low-poly Themes · v1.1](design/atlas-ink-world.md) documents the visual direction, palette, room and village layout, responsive controls, day/night behavior, Blender handoff, and acceptance criteria. The specification includes the current web screenshots and village overview.
+[Pen Drawing & Low-poly Themes · v1.1.1](design/atlas-ink-world.md) documents the visual direction, palette, room and village layout, responsive controls, day/night behavior, Blender handoff, and acceptance criteria. The specification includes the current web screenshots and village overview.
