@@ -17,3 +17,7 @@ Inspired by [Henry Heffernan](https://henryheffernan.com) and [Bruno Simon](http
 **Game music:** [Lasso Lady](https://opengameart.org/content/lasso-lady-seamless-loop) by congusbongus (CC0).
 
 **Piano:** Salamander Grand Piano by Alexander Holm (CC BY 3.0). [Credits](https://bbangjo.kr/audio/piano/index.html).
+
+## Design specification
+
+[Antique Pen-Drawn Atlas · v1.0](design/atlas-ink-world.md) documents the visual direction, palette, room and village layout, responsive controls, day/night behavior, Blender handoff, and acceptance criteria. The specification includes the current web screenshots and village overview.
