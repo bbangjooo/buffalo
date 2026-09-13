@@ -1,7 +1,7 @@
 .bio-scene-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .bio-scene-controls .tour-entry { margin-top: 0; }
 .art-theme-toggle { position: relative; flex: 0 0 auto; pointer-events: auto; }
-.art-theme-trigger { display: inline-flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 44px; padding: 6px 12px; color: var(--color-text); background: var(--control-surface, var(--color-surface)); border: 1px solid var(--control-border, var(--color-border-subtle)); border-radius: var(--radius-control); box-shadow: 0 2px 8px var(--control-shadow); }
+.art-theme-trigger { display: inline-flex; align-items: center; justify-content: space-between; gap: 14px; width: 124px; min-height: 44px; padding: 6px 12px; color: var(--color-text); background: var(--control-surface, var(--color-surface)); border: 1px solid var(--control-border, var(--color-border-subtle)); border-radius: var(--radius-control); box-shadow: 0 2px 8px var(--control-shadow); }
 .art-theme-title { display: flex; flex-direction: column; gap: 1px; align-items: flex-start; }
 .art-theme-title > span { font-size: 10px; line-height: 1.15; color: var(--color-text-muted); }
 .art-theme-title > strong { font-size: 12px; line-height: 1.3; font-weight: 500; }
@@ -12,6 +12,9 @@
 .art-theme-trigger, .art-theme-title > span, .art-theme-menu, .art-theme-menu > button { transition: color var(--theme-duration, 1100ms) var(--theme-ease, ease), background-color var(--theme-duration, 1100ms) var(--theme-ease, ease), border-color var(--theme-duration, 1100ms) var(--theme-ease, ease), box-shadow var(--theme-duration, 1100ms) var(--theme-ease, ease); }
 .art-theme-context { position: fixed; top: calc(max(20px, env(safe-area-inset-top)) + 112px); left: max(22px, env(safe-area-inset-left)); z-index: var(--z-popover); pointer-events: auto; }
 .art-theme-context--seated { top: calc(max(16px, env(safe-area-inset-top)) + 56px); left: max(16px, env(safe-area-inset-left)); }
+@media (min-width: 1000px) {
+  .bio-scene-controls { flex-direction: column; align-items: flex-start; }
+}
 @media (max-width: 760px) {
   .bio-scene-controls { margin-top: 4px; }
   .art-theme-trigger { min-height: 38px; padding: 5px 10px; gap: 10px; }
