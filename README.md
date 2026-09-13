@@ -6,9 +6,9 @@ This project is listed on the [portfolio-ideas](https://github.com/Evavic44/port
 
 ## Description
 
-Hello! This is my little corner of the internet, made with Three.js, TypeScript and Blender. I wanted a place that feels like meeting me: some music, some writing, a bit of travel, and something to play. Four isometric rooms open into low-poly meadows, with a robot nearby to show you around.
+Hello! This is my little corner of the internet, made with Three.js, TypeScript and Blender. I wanted a place that feels like meeting me: some music, some writing, a bit of travel, and something to play. Four isometric rooms sit on a hand-drawn atlas of warm paper and brown ink, with a robot nearby to show you around.
 
-Sit at the piano, read a few stories, try the four-key rhythm game, or step outside to browse the pieces I have played and the places I have been. You can leave a message in the guestbook, too.
+Sit at the antique organ console, read a few stories, try the four-key rhythm game, or follow the compass and explore the pieces I have played and the places I have been. At night the atlas becomes silver ink beneath the stars. You can leave a message in the guestbook, too.
 
 Visit [my rooms](https://bbangjo.kr), or head straight to [my blog](https://blog.bbangjo.kr). Thanks for stopping by!
 
@@ -17,3 +17,7 @@ Inspired by [Henry Heffernan](https://henryheffernan.com) and [Bruno Simon](http
 **Game music:** [Lasso Lady](https://opengameart.org/content/lasso-lady-seamless-loop) by congusbongus (CC0).
 
 **Piano:** Salamander Grand Piano by Alexander Holm (CC BY 3.0). [Credits](https://bbangjo.kr/audio/piano/index.html).
+
+## Design specification
+
+[Antique Pen-Drawn Atlas · v1.0](design/atlas-ink-world.md) documents the visual direction, palette, room and village layout, responsive controls, day/night behavior, Blender handoff, and acceptance criteria. The specification includes the current web screenshots and village overview.

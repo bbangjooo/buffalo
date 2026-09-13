@@ -17,6 +17,7 @@ import PianoPerformance from './PianoPerformance';
 import Curtains from './Curtains';
 import Portrait from './Portrait';
 import Courtyard from './Courtyard';
+import MedievalVillage from './MedievalVillage';
 import { pianoMidiForKeyboard } from '../../design/piano-keys';
 import type { LoadedModel } from '../../types';
 
@@ -41,6 +42,7 @@ export default class World {
   curtains: Curtains;
   portrait?: Portrait;
   courtyard?: Courtyard;
+  village?: MedievalVillage;
   ready = false;
   night = false;
   view: RoomView = 'developer';
@@ -199,6 +201,7 @@ export default class World {
       });
       const lamp = this.room.anchors.get('blogLamp');
       if (lamp) this.environment.setLampPosition(lamp.getWorldPosition(new THREE.Vector3()));
+      this.village = new MedievalVillage(this.application, this.room.root);
       this.monitorScreen = new MonitorScreen(this.room.monitorAnchor);
       this.monitorScreen.add();
       this.resumeScreen = new MonitorScreen(this.room.resumeAnchor, {
@@ -294,7 +297,7 @@ export default class World {
     this.environment.setRoom(this.activeRoom, this.reducedMotion.matches);
     this.environment.setCourtyard?.(view === 'courtyard' || view === 'exhibit');
     this.application.camera.navigate(view, view === 'rhythm' || oldView === 'rhythm');
-    if (view === 'piano' || view === 'piano-seat') void this.application.audioPlayer.preload();
+    if (view === 'piano-seat') void this.application.audioPlayer.preload();
     this.publish();
   }
 
@@ -313,7 +316,10 @@ export default class World {
     this.resumeScreen.setVisible(!rhythm);
     this.leaderboardScreen.setVisible(!rhythm);
     this.rhythmStage?.setVisible(true);
-    if (this.courtyard) { this.courtyard.root.visible = !rhythm; this.courtyard.meadow.root.visible = !rhythm; }
+    if (this.courtyard) {
+      this.courtyard.root.visible = this.view === 'courtyard' || this.view === 'exhibit';
+      this.courtyard.meadow.root.visible = !rhythm;
+    }
     if (this.portrait) this.portrait.object.visible = this.portrait.mesh.visible = !rhythm && this.portrait.image.naturalWidth > 0;
   }
 
@@ -336,6 +342,7 @@ export default class World {
     if (!this.ready) return;
     this.night = !this.night;
     this.environment.setNight(this.night, this.reducedMotion.matches);
+    this.village?.setNight(this.night);
     this.publish();
   }
 
@@ -571,6 +578,7 @@ export default class World {
 
   update() {
     if (!this.ready) return;
+    this.village?.update(this.application.time.delta, isReadingView(this.view) || this.view === 'piano-seat');
     this.performance.update();
     this.guide.update();
     if (!this.error) this.courtyard?.update();
@@ -585,6 +593,7 @@ export default class World {
     }
     this.monitorScreen.update();
     this.resumeScreen.update();
+    this.resumeScreen.setNightTheme(this.night);
     this.leaderboardScreen.update();
     this.leaderboardScreen.setDisplay(this.activeRoom === 'ai' && (this.view === 'ai' || this.view === 'leaderboard'), this.night);
     this.portrait?.update();

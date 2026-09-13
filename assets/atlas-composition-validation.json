@@ -1,0 +1,127 @@
+{
+  "date": "2026-09-13",
+  "branch": "codex/pen-ink-world",
+  "worktree": "/Users/bbangjo/buffalo-pen-ink",
+  "localUrl": "http://localhost:4178/",
+  "revision": "expanded-village-preserved-central-rooms",
+  "intent": "Keep the established central rooms unchanged and populate a wider village with separated cottage yards, everyday objects and gardens.",
+  "camera": {
+    "elevationDegrees": 36,
+    "coreWidthIncreasePercent": [
+      16.1,
+      17.1
+    ],
+    "projectedAreaIncreasePercent": [
+      31.5,
+      40.8
+    ],
+    "checkedViewports": [
+      [
+        1440,
+        960
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        320,
+        740
+      ]
+    ],
+    "functionalContentClipped": false,
+    "unchangedFrom": "319df7f3b884a6a223993ca8959ddc18125184cd"
+  },
+  "background": {
+    "features": 11,
+    "cottages": 5,
+    "props": 6,
+    "propKinds": [
+      "well",
+      "market",
+      "cart",
+      "notice",
+      "barrel_cluster",
+      "crates_cluster"
+    ],
+    "plantClusters": 13,
+    "plantCounts": {
+      "grass": 146,
+      "flower": 31,
+      "shrub": 19,
+      "rock": 12,
+      "tree": 12
+    },
+    "fixedPlantInstances": 220,
+    "plantBatches": 5,
+    "omittedPlantInstances": 0,
+    "original72PlacementsPreserved": true,
+    "repeatingPlantField": false,
+    "conservativeFootprintMeters": {
+      "before": [
+        27.2,
+        30.6
+      ],
+      "after": [
+        50.7,
+        48.4
+      ]
+    },
+    "villageTriangles": 72402,
+    "villageGlbBytes": 518164,
+    "visibleInitialView": "Original small cottage and framing trees remain. A complete handcart, barrels, notices and crates fill separated near edges; larger cottage yards and gardens extend outward for exploration."
+  },
+  "validation": {
+    "build": "npm run build passed",
+    "framingChecks": 19,
+    "atlasChecks": 16,
+    "assetPreservationChecks": 10,
+    "regression": [
+      "leaderboard",
+      "first-person",
+      "camera-drag",
+      "courtyard"
+    ],
+    "originalContentAndCharactersPreserved": true,
+    "nestedCottageScaleAndTorchMatch": true,
+    "dayNightBrowserChecks": true,
+    "mobileHorizontalOverflow": false,
+    "mobileCompassActionOverlap": false,
+    "finalCartAtlasChecks": 16,
+    "solidApproaches": 169,
+    "screenSightlineSamples": 234,
+    "browserRoomsVisited": [
+      "developer",
+      "piano",
+      "blog",
+      "ai"
+    ],
+    "browserExploreEnterAndReturn": true,
+    "browserConsoleErrors": 0
+  },
+  "artifacts": {
+    "blender": "assets/atlas-world.blend",
+    "day": "docs/media/atlas/day.png",
+    "night": "docs/media/atlas/night.png",
+    "mobile": "docs/media/atlas/mobile-night.png",
+    "villageOverviewDay": "docs/media/atlas/village-overview-day.png",
+    "villageOverviewNight": "docs/media/atlas/village-overview-night.png",
+    "landscape": "src/design/atlas-landscape.json"
+  },
+  "blenderReview": {
+    "generatedWith": "Blender 5.2.1 LTS via scripts/prepare_atlas_review.py",
+    "scenes": [
+      "Day",
+      "Night"
+    ],
+    "landmarks": 11,
+    "fixedPlantInstances": 220,
+    "whiteFlames": 9,
+    "defaultCamera": "VillageOverviewCamera",
+    "overviewOrtho": 57.28854,
+    "preservedCamera": "RoomCompositionCamera",
+    "roomOrtho": 20,
+    "sourceFilesUnchanged": true,
+    "purpose": "Editable static village overview; browser is authoritative for interactive content."
+  }
+}

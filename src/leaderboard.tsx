@@ -42,7 +42,7 @@ function LeaderboardPage() {
   useEffect(() => {
     document.body.dataset.night = String(display.night);
     document.documentElement.style.colorScheme = display.night ? 'dark' : 'light';
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', display.night ? '#1a2b2d' : '#f1ede3');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', display.night ? '#050607' : '#eadcc0');
   }, [display.night]);
 
   return <Leaderboard active={display.active} refreshKey={display.refreshKey} />;

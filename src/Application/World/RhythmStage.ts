@@ -1,16 +1,17 @@
 import * as THREE from 'three';
 import { RHYTHM_KEYS } from '../../design/rhythm-game';
+import { ATLAS_INK, inkNight, penMaterial } from './PenInk';
 
 export const RHYTHM_PAD_POSITIONS = [[-.98, .34], [-.98, -.34], [.98, -.34], [.98, .34]] as const;
 
 type Pad = {
   root: THREE.Group;
-  face: THREE.MeshStandardMaterial;
-  glyph: THREE.MeshStandardMaterial;
+  face: THREE.MeshBasicMaterial;
+  glyph: THREE.MeshBasicMaterial;
   restingY: number;
 };
 
-/** Compact, faceted dance floor with four independently lit corner pads. */
+/** Carved game board; active inlays invert to keep timing cues unmistakable. */
 export default class RhythmStage {
   readonly root = new THREE.Group();
   readonly dancerAnchor = new THREE.Object3D();
@@ -18,12 +19,21 @@ export default class RhythmStage {
   private readonly pads: Pad[] = [];
   private readonly geometries = new Set<THREE.BufferGeometry>();
   private readonly materials = new Set<THREE.Material>();
+  private readonly outline = new THREE.LineBasicMaterial({ color: ATLAS_INK, toneMapped: false });
   private disposed = false;
 
   constructor(scene: THREE.Scene) {
     this.root.name = 'RhythmStage';
     this.root.visible = false;
     this.root.userData.room = 'ai';
+    this.outline.color.convertSRGBToLinear();
+    this.outline.onBeforeCompile = shader => {
+      shader.uniforms.atlasNight = inkNight.amount;
+      shader.fragmentShader = 'uniform float atlasNight;\n' + shader.fragmentShader.replace('#include <color_fragment>',
+        '#include <color_fragment>\n diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.65,.63,.59),atlasNight);');
+    };
+    this.outline.customProgramCacheKey = () => 'atlas-game-outline';
+    this.materials.add(this.outline);
     const ink = this.material('#25343c', 0.63, 0.18);
     const ivory = this.material('#d6ceba', 0.79, 0.06);
     const brass = this.material('#aa8b51', 0.4, 0.6);
@@ -33,7 +43,7 @@ export default class RhythmStage {
     this.slab('StagePlinth', 2.74, 1.84, 0.11, 0.11, 0.025, ink, 0.025);
     this.slab('BrassEdge', 2.67, 1.77, 0.016, 0.09, 0.007, brass, 0.14);
     this.slab('IvoryDeck', 2.61, 1.71, 0.012, 0.085, 0.009, ivory, 0.162);
-    this.slab('DancerLanding', 1.13, 1.45, 0.01, 0.085, 0.007, rubber, 0.185);
+    this.slab('DancerLanding', 1.13, 1.45, 0.01, 0.085, 0.007, ivory, 0.185);
 
     // One large pad at each corner leaves a clear central landing for the hamster.
     RHYTHM_PAD_POSITIONS.forEach(([x, z], lane) => {
@@ -47,36 +57,16 @@ export default class RhythmStage {
       this.root.add(padRoot);
 
       const face = this.material(RHYTHM_KEYS[lane].color, 0.57, 0.12);
-      face.emissive.set(RHYTHM_KEYS[lane].color);
-      face.emissiveIntensity = 0;
       const tile = this.mesh(`PadSurface${lane}`, this.chamferedSlab(0.603, 0.514, 0.012, 0.028, 0.004), face, padRoot);
       tile.rotation.x = -Math.PI / 2;
       const glyph = this.material('#fbefce', 0.45, 0.12);
-      glyph.emissive.set(RHYTHM_KEYS[lane].color);
-      glyph.emissiveIntensity = 0;
       const letter = this.mesh(`PadLetter${RHYTHM_KEYS[lane].label}`, this.letterGeometry(RHYTHM_KEYS[lane].label), glyph, padRoot);
       letter.rotation.x = -Math.PI / 2;
       letter.position.y = 0.018;
       this.pads.push({ root: padRoot, face, glyph, restingY: padRoot.position.y });
     });
 
-    // Grounded back rail: octagonal tubing, visible sockets, and a warm grip.
-    for (const x of [-0.63, 0.63]) {
-      const socket = this.mesh('RailSocket', new THREE.CylinderGeometry(0.087, 0.11, 0.055, 8), brass);
-      socket.position.set(x, 0.204, -0.75);
-      const upright = this.mesh('RailUpright', new THREE.CylinderGeometry(0.041, 0.051, 0.66, 8), ink);
-      upright.position.set(x, 0.55, -0.75);
-      const collar = this.mesh('RailCollar', new THREE.CylinderGeometry(0.053, 0.053, 0.05, 8), brass);
-      collar.position.set(x, 0.82, -0.75);
-    }
-    const crossbar = this.mesh('RailCrossbar', new THREE.CylinderGeometry(0.052, 0.052, 1.37, 8), ink);
-    crossbar.rotation.z = Math.PI / 2;
-    crossbar.position.set(0, 0.89, -0.75);
-    const grip = this.mesh('RailGrip', new THREE.CylinderGeometry(0.058, 0.058, 0.69, 8), ivory);
-    grip.rotation.z = Math.PI / 2;
-    grip.position.set(0, 0.89, -0.75);
-
-    // Corner fasteners and inset front grooves give the base useful scale cues.
+    // Small forged corner pins and incised front marks finish the game board.
     for (const x of [-1.23, 1.23]) for (const z of [-0.735, 0.735]) {
       const bolt = this.mesh('DeckFastener', new THREE.CylinderGeometry(0.022, 0.022, 0.007, 6), ink);
       bolt.position.set(x, 0.187, z);
@@ -104,8 +94,8 @@ export default class RhythmStage {
     if (this.disposed || !Number.isInteger(index) || !this.pads[index]) return;
     const pad = this.pads[index];
     pad.root.position.y = pad.restingY - (on ? 0.009 : 0);
-    pad.face.emissiveIntensity = on ? 0.68 : 0;
-    pad.glyph.emissiveIntensity = on ? 0.9 : 0;
+    pad.face.color.set(on ? '#202327' : '#ffffff').convertSRGBToLinear();
+    pad.glyph.color.set(on ? '#ffffff' : '#202327').convertSRGBToLinear();
   }
 
   dispose(): void {
@@ -120,8 +110,8 @@ export default class RhythmStage {
     this.disposed = true;
   }
 
-  private material(color: string, roughness: number, metalness: number): THREE.MeshStandardMaterial {
-    const material = new THREE.MeshStandardMaterial({ color, roughness, metalness, flatShading: true });
+  private material(color: string, _roughness: number, _metalness: number): THREE.MeshBasicMaterial {
+    const material = penMaterial(['#25343c', '#172329', '#fbefce'].includes(color));
     this.materials.add(material);
     return material;
   }
@@ -130,8 +120,11 @@ export default class RhythmStage {
     this.geometries.add(geometry);
     const mesh = new THREE.Mesh(geometry, material);
     mesh.name = name;
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
+    const edges = new THREE.EdgesGeometry(geometry, 28);
+    this.geometries.add(edges);
+    const strokes = new THREE.LineSegments(edges, this.outline);
+    strokes.name = `${name}InkContour`;
+    mesh.add(strokes);
     parent.add(mesh);
     return mesh;
   }

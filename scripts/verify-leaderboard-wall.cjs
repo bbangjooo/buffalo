@@ -44,7 +44,7 @@ const rhythm = load('src/design/rhythm-game.ts', (name) => {
 
 function harness() {
   const calls = { events: [], camera: [], guideReading: [], guideRoom: [], hamsterDance: [], roam: 0, roamUpdates: 0,
-    audioStops: 0, screenMessages: [], storageWrites: [], requests: [] };
+    audioStops: 0, screenMessages: [], storageWrites: [], requests: [], villageUpdates: [] };
   const subscriptions = new Map();
   const bus = {
     on(name, callback) {
@@ -95,11 +95,12 @@ function harness() {
   const world = new World();
   function screen(id) {
     return {
-      id, object: new THREE.Object3D(), mesh: new THREE.Object3D(), interactive: false, updates: 0,
+      id, object: new THREE.Object3D(), mesh: new THREE.Object3D(), interactive: false, updates: 0, nightThemes: [],
       iframe: { contentWindow: { postMessage(data, origin) { calls.screenMessages.push({ id, data, origin }); } } },
       setInteractive(value) { this.interactive = value; },
       setVisible(value) { this.object.visible = this.mesh.visible = value; if (!value) this.setInteractive(false); },
       setDisplay(active, night) { this.display = { active, night }; },
+      setNightTheme(night) { this.nightThemes.push(night); },
       update() { this.updates++; },
     };
   }
@@ -113,6 +114,7 @@ function harness() {
   world.rhythmStage = { root: new THREE.Group(), dancerAnchor: new THREE.Object3D(), setVisible() {}, setPad() {} };
   world.performance = { update() {}, stop() {}, getSnapshot: () => ({ status: 'idle' }) };
   world.environment = { setRoom() {}, setNight() {}, setCourtyard() {} };
+  world.village = { setNight() {}, update(delta, interiorFocus) { calls.villageUpdates.push({ delta, interiorFocus }); } };
   world.curtains = { isDragging: false, cancelDrag() {} };
   world.courtyard = { root: new THREE.Group(), meadow: { root: new THREE.Group(), setOutdoor() {} },
     walk: { x: 7, z: 7 }, leave() {}, update() {}, enter() {} };
@@ -143,6 +145,46 @@ check('Play action and leaderboard event open the persistent reader and return t
     assert.equal(h.world.game.state.best, 345678); assert.equal(h.calls.storageWrites.length, 0); assert.equal(h.calls.requests.length, 0);
     h.world.disposeInput();
   }
+});
+
+check('night toggles reach both the local Summary page and persistent leaderboard display', () => {
+  const h = harness(); h.world.update();
+  assert.equal(h.world.resumeScreen.nightThemes.at(-1), false);
+  assert.equal(h.world.leaderboardScreen.display.night, false);
+  h.bus.dispatch('night-toggle'); h.world.update();
+  assert.equal(h.world.resumeScreen.nightThemes.at(-1), true);
+  assert.equal(h.world.leaderboardScreen.display.night, true);
+  h.bus.dispatch('night-toggle'); h.world.update();
+  assert.equal(h.world.resumeScreen.nightThemes.at(-1), false);
+  assert.equal(h.world.leaderboardScreen.display.night, false);
+  h.world.disposeInput();
+});
+
+check('all close interior views request village occlusion protection and ordinary views restore the scenery', () => {
+  const h = harness();
+  for (const [view, interiorFocus] of [['resume', true], ['monitor', true], ['leaderboard', true], ['piano-seat', true],
+    ['developer', false], ['piano', false], ['blog', false], ['ai', false], ['courtyard', false], ['rhythm', false]]) {
+    h.world.view = view; h.world.update();
+    assert.equal(h.calls.villageUpdates.at(-1).interiorFocus, interiorFocus, view);
+    assert.equal(h.calls.villageUpdates.at(-1).delta, h.application.time.delta);
+  }
+  h.world.disposeInput();
+});
+
+check('atlas room views hide outdoor exhibits while Explore restores the same content objects', () => {
+  const h = harness(), exhibit = new THREE.Object3D(), content = new THREE.Object3D();
+  h.world.courtyard.root.add(exhibit); h.world.room.root.add(content);
+  const screens = [h.world.monitorScreen, h.world.resumeScreen, h.world.leaderboardScreen];
+  for (const view of ['courtyard', 'exhibit', 'developer', 'resume', 'developer', 'piano', 'piano-seat', 'piano',
+    'blog', 'monitor', 'blog', 'ai', 'leaderboard', 'ai', 'rhythm', 'ai', 'courtyard']) {
+    h.world.navigate(view); h.settle(); h.world.update();
+    assert.equal(h.world.courtyard.root.visible, view === 'courtyard' || view === 'exhibit', `${view}: outdoor exhibit visibility`);
+    assert.equal(h.world.room.root.visible, view !== 'rhythm', `${view}: central content visibility`);
+    assert.equal(h.world.courtyard.meadow.root.visible, view !== 'rhythm', `${view}: paper ground visibility`);
+    assert.equal(exhibit.parent, h.world.courtyard.root); assert.equal(content.parent, h.world.room.root);
+    assert.deepEqual([h.world.monitorScreen, h.world.resumeScreen, h.world.leaderboardScreen], screens, 'reader objects were replaced');
+  }
+  h.world.disposeInput();
 });
 
 check('wrong rooms, loading, transitions and errors cannot open the leaderboard', () => {
@@ -382,7 +424,7 @@ async function verifyPageContracts() {
   tree = hooks.render(Page); assert.equal(tree.props.active, false); assert.equal(tree.props.refreshKey, 0);
   h.window.emit('message', { origin: h.window.location.origin, source: h.window.parent, data: display });
   tree = hooks.render(Page); assert.equal(tree.props.active, true); assert.equal(tree.props.refreshKey, 1);
-  assert.equal(h.document.body.dataset.night, 'true'); assert.equal(h.document.documentElement.style.colorScheme, 'dark');
+  assert.equal(h.document.body.dataset.night, 'true'); assert.equal(h.document.documentElement.style.colorScheme, 'dark', 'the reading page follows the restored parent night state');
   const beforeEscape = messages.length;
   for (const repeat of [false, true]) h.document.emit('keydown', { key: 'Escape', repeat, preventDefault() {}, stopPropagation() {} });
   assert.equal(messages.length, beforeEscape + 1); assert.equal(messages.at(-1).data.key, 'Escape');

@@ -1,0 +1,364 @@
+{
+  "revision": "antique-atlas-distributed-village-2",
+  "groundY": -0.16,
+  "houseClearance": 6.6,
+  "crossPathHalfWidth": 1.05,
+  "landmarkCount": 11,
+  "cottages": [
+    {
+      "id": "scribe",
+      "x": -8.3,
+      "z": 2.65,
+      "width": 2.8,
+      "depth": 2.5,
+      "eave": 2.1,
+      "ridge": 3.3,
+      "roof": "shingle",
+      "yaw": 1.2397,
+      "scale": 0.62,
+      "radius": 1.439,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.0571,
+          -0.005,
+          -0.9772
+        ],
+        "max": [
+          1.0569,
+          2.3606,
+          1.1408
+        ]
+      }
+    },
+    {
+      "id": "weaver",
+      "x": 12.6,
+      "z": -4.0,
+      "width": 2.8,
+      "depth": 2.5,
+      "eave": 1.98,
+      "ridge": 3.1,
+      "roof": "thatch",
+      "yaw": -1.24,
+      "radius": 2.2465,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.705,
+          -0.008,
+          -1.5761
+        ],
+        "max": [
+          1.7046,
+          3.6075,
+          1.84
+        ]
+      }
+    },
+    {
+      "id": "baker",
+      "x": -15,
+      "z": -4,
+      "width": 2.8,
+      "depth": 2.5,
+      "eave": 2.05,
+      "ridge": 3.15,
+      "roof": "shingle",
+      "yaw": 1.31019,
+      "scale": 0.9,
+      "radius": 2.0731,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.5345,
+          -0.0072,
+          -1.4185
+        ],
+        "max": [
+          1.5342,
+          3.2918,
+          1.656
+        ]
+      }
+    },
+    {
+      "id": "herbalist",
+      "x": -4,
+      "z": 17,
+      "width": 2.8,
+      "depth": 2.5,
+      "eave": 1.98,
+      "ridge": 3.15,
+      "roof": "thatch",
+      "yaw": 2.9105,
+      "scale": 0.88,
+      "radius": 2.0278,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.5004,
+          -0.007,
+          -1.3869
+        ],
+        "max": [
+          1.5001,
+          3.2186,
+          1.6192
+        ]
+      }
+    },
+    {
+      "id": "potter",
+      "x": 18,
+      "z": 9,
+      "width": 2.8,
+      "depth": 2.5,
+      "eave": 2.0,
+      "ridge": 3.25,
+      "roof": "shingle",
+      "yaw": -2.03444,
+      "scale": 0.92,
+      "radius": 2.1183,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.5686,
+          -0.0074,
+          -1.45
+        ],
+        "max": [
+          1.5682,
+          3.4569,
+          1.6928
+        ]
+      }
+    }
+  ],
+  "props": [
+    {
+      "id": "well",
+      "kind": "well",
+      "x": 4.0,
+      "z": -12.8,
+      "yaw": 0.12,
+      "radius": 1.3952,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.23,
+          -0.008,
+          -1.0278
+        ],
+        "max": [
+          1.36,
+          2.8135,
+          1.0278
+        ]
+      }
+    },
+    {
+      "id": "market",
+      "kind": "market",
+      "x": -4.0,
+      "z": 9.8,
+      "yaw": 0.3,
+      "scale": 0.76,
+      "radius": 1.3271,
+      "physicalBoundsLocal": {
+        "min": [
+          -1.0868,
+          -0.0061,
+          -0.7303
+        ],
+        "max": [
+          1.0868,
+          1.9125,
+          0.7303
+        ]
+      }
+    },
+    {
+      "id": "cart",
+      "kind": "cart",
+      "x": -9.0,
+      "z": -2.3,
+      "yaw": 0.64,
+      "scale": 0.54,
+      "radius": 0.9307,
+      "physicalBoundsLocal": {
+        "min": [
+          -0.425,
+          0.0058,
+          -0.5221
+        ],
+        "max": [
+          0.425,
+          0.6982,
+          0.8371
+        ]
+      }
+    },
+    {
+      "id": "notice",
+      "kind": "notice",
+      "x": 3,
+      "z": 9.7,
+      "yaw": -0.28,
+      "scale": 0.9,
+      "radius": 0.516,
+      "physicalBoundsLocal": {
+        "min": [
+          -0.4707,
+          -0.0072,
+          -0.1052
+        ],
+        "max": [
+          0.4707,
+          1.6272,
+          0.1052
+        ]
+      }
+    },
+    {
+      "id": "barrels",
+      "kind": "barrel_cluster",
+      "x": -2.35,
+      "z": 7.9,
+      "yaw": 0.2,
+      "scale": 0.9,
+      "radius": 0.6202,
+      "physicalBoundsLocal": {
+        "min": [
+          -0.4374,
+          -0.0072,
+          -0.5254
+        ],
+        "max": [
+          0.4438,
+          0.5476,
+          0.3737
+        ]
+      }
+    },
+    {
+      "id": "crates",
+      "kind": "crates_cluster",
+      "x": 10.5,
+      "z": 2.6,
+      "yaw": -0.32,
+      "scale": 0.9,
+      "radius": 0.603,
+      "physicalBoundsLocal": {
+        "min": [
+          -0.4752,
+          -0.0072,
+          -0.2554
+        ],
+        "max": [
+          0.5112,
+          0.75,
+          0.2599
+        ]
+      }
+    }
+  ],
+  "obstacles": [
+    {
+      "id": "cottage-scribe",
+      "x": -8.3,
+      "z": 2.65,
+      "radius": 1.439
+    },
+    {
+      "id": "cottage-weaver",
+      "x": 12.6,
+      "z": -4.0,
+      "radius": 2.2465
+    },
+    {
+      "id": "cottage-baker",
+      "x": -15,
+      "z": -4,
+      "radius": 2.0731
+    },
+    {
+      "id": "cottage-herbalist",
+      "x": -4,
+      "z": 17,
+      "radius": 2.0278
+    },
+    {
+      "id": "cottage-potter",
+      "x": 18,
+      "z": 9,
+      "radius": 2.1183
+    },
+    {
+      "id": "well",
+      "x": 4.0,
+      "z": -12.8,
+      "radius": 1.3952
+    },
+    {
+      "id": "market",
+      "x": -4.0,
+      "z": 9.8,
+      "radius": 1.3271
+    },
+    {
+      "id": "cart",
+      "x": -9.0,
+      "z": -2.3,
+      "radius": 0.9307
+    },
+    {
+      "id": "notice",
+      "x": 3,
+      "z": 9.7,
+      "radius": 0.516
+    },
+    {
+      "id": "barrels",
+      "x": -2.35,
+      "z": 7.9,
+      "radius": 0.6202
+    },
+    {
+      "id": "crates",
+      "x": 10.5,
+      "z": 2.6,
+      "radius": 0.603
+    }
+  ],
+  "torches": [
+    {
+      "id": "scribe",
+      "x": -7.10096,
+      "y": 0.8847,
+      "z": 2.32789
+    },
+    {
+      "id": "weaver",
+      "x": 11.39377,
+      "y": 1.525,
+      "z": -2.40156
+    },
+    {
+      "id": "baker",
+      "x": -13.29672,
+      "y": 1.3565,
+      "z": -4.58901
+    },
+    {
+      "id": "herbalist",
+      "x": -4.62482,
+      "y": 1.3228,
+      "z": 15.35229
+    },
+    {
+      "id": "potter",
+      "x": 16.17322,
+      "y": 1.3902,
+      "z": 9.23864
+    }
+  ],
+  "limits": {
+    "maxLandmarks": 12,
+    "maxTriangles": 100000
+  }
+}

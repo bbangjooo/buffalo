@@ -1,0 +1,60 @@
+.atlas-compass {
+  position: fixed;
+  right: max(28px, env(safe-area-inset-right));
+  bottom: max(32px, calc(env(safe-area-inset-bottom) + 24px));
+  width: 144px;
+  height: 144px;
+  z-index: var(--z-overlay);
+  color: var(--color-ink);
+  pointer-events: none;
+  isolation: isolate;
+}
+.atlas-compass, .atlas-compass::before, .atlas-compass-link, .atlas-compass-cardinal,
+.atlas-compass-current, .atlas-compass-tooltip, .atlas-compass-rose, .atlas-compass-rose * {
+  transition-property: color, background-color, border-color, box-shadow, text-shadow, fill, stroke;
+  transition-duration: var(--theme-duration, 1100ms);
+  transition-timing-function: var(--theme-ease, cubic-bezier(.65, 0, .35, 1));
+}
+.atlas-compass::before { content: ''; position: absolute; inset: 15%; z-index: -1; border-radius: 50%; background: var(--color-paper); box-shadow: 0 1px 4px var(--color-shadow-soft, rgba(0, 0, 0, .08)); opacity: .84; transition-property: background-color, box-shadow, opacity; }
+.atlas-compass-rose { display: block; width: 100%; height: 100%; overflow: visible; stroke: currentColor; stroke-width: .9; }
+.atlas-compass-fine, .atlas-compass-tick { stroke-width: .55; opacity: .65; }
+.atlas-compass-secondary { fill: var(--color-paper); stroke-width: .65; opacity: .75; }
+.atlas-compass-point { stroke-width: .65; stroke-linejoin: round; }
+.atlas-compass-point--ink { fill: currentColor; }
+.atlas-compass-point--paper, .atlas-compass-hub { fill: var(--color-paper); }
+.atlas-compass-selected { stroke: currentColor; stroke-width: 2.8; stroke-linecap: round; }
+.atlas-compass-link { position: absolute; width: 32px; height: 32px; display: grid; place-items: center; transform: translate(-50%, -50%); color: inherit; background: transparent; border-radius: 50%; pointer-events: auto; }
+.atlas-compass-cardinal { font: 17px/1 Georgia, 'Times New Roman', serif; text-shadow: 0 1px 2px var(--color-paper); }
+.atlas-compass-link[aria-current='page'] .atlas-compass-cardinal { font-weight: 700; }
+.atlas-compass-link:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; background: var(--color-paper); }
+.atlas-compass-tooltip { position: absolute; bottom: calc(100% + 4px); left: 50%; transform: translateX(-50%); padding: 3px 7px; color: var(--color-text); background: var(--color-surface); border: 1px solid var(--color-border-subtle); border-radius: 3px; opacity: 0; visibility: hidden; pointer-events: none; font: 11px/1.4 var(--font-body); }
+.atlas-compass-link:focus-visible .atlas-compass-tooltip { opacity: 1; visibility: visible; }
+.atlas-compass-current { position: absolute; top: calc(100% + 1px); left: 50%; transform: translateX(-50%); font: 11px/1.3 var(--font-body); color: var(--color-text-muted); text-shadow: 0 1px 2px var(--color-paper); }
+body[data-night='true'] .atlas-compass::before { opacity: .7; }
+@media (hover: hover) and (pointer: fine) {
+  .atlas-compass-link:hover:not(:disabled) { background: color-mix(in srgb, var(--color-paper) 80%, transparent); }
+  .atlas-compass-link:hover:not(:disabled) .atlas-compass-tooltip { opacity: 1; visibility: visible; }
+}
+@media (max-width: 760px) {
+  .atlas-compass { width: 104px; height: 104px; right: max(14px, env(safe-area-inset-right)); bottom: max(22px, calc(env(safe-area-inset-bottom) + 18px)); }
+  .atlas-compass-cardinal { font-size: 14px; }
+  .atlas-compass-current { font-size: 10px; }
+  .atlas-compass-tooltip { display: none; }
+}
+@media (max-width: 600px) {
+  /* The compass supplies the four room shortcuts in the mobile footer. */
+  .room-interface:not(.room-interface--seated) .gallery-dock { inset-inline-start: max(12px, env(safe-area-inset-left)); inset-inline-end: 144px; width: auto; margin-inline: 0; bottom: max(32px, calc(env(safe-area-inset-bottom) + 24px)); }
+  .room-interface:not(.room-interface--seated) .room-navigation { display: none; }
+  .room-interface:not(.room-interface--seated) .room-actions { justify-content: flex-start; flex-wrap: wrap; }
+  .room-interface:not(.room-interface--seated) .room-actions .room-action { flex: 0 1 auto; }
+  .room-interface:not(.room-interface--seated) .piano-toolbar { justify-content: flex-start; gap: 8px; }
+  .room-interface:not(.room-interface--seated) .piano-toolbar .keyboard-control { padding-inline: 8px; }
+  .room-interface:not(.room-interface--seated) .piano-keyboard { width: calc(100vw - 24px); inset-inline-start: 0; inset-inline-end: auto; }
+}
+@media (max-width: 380px) {
+  .atlas-compass { width: 88px; height: 88px; right: 13px; }
+  .room-interface:not(.room-interface--seated) .gallery-dock { inset-inline-end: 128px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atlas-compass, .atlas-compass::before, .atlas-compass * { transition: none; }
+}

@@ -2,12 +2,13 @@ import * as THREE from 'three';
 import type Application from '../Application';
 import type GuideRobot from './GuideRobot';
 import { EventBus } from '../UI/EventBus';
-import { COLORS, isRoomId, RoomId } from '../../design/rooms';
+import { isRoomId, RoomId } from '../../design/rooms';
 import { COURTYARD, EXHIBITIONS } from '../../design/history';
 import { LoadedModel } from '../../types';
 import { CourtyardWalk, walkDirection, WalkDirection } from './CourtyardWalk';
 import Meadow from './Meadow';
 import ExhibitScreen from './ExhibitScreen';
+import { isPenInkObject, preparePenInkModel } from './PenInk';
 
 export interface CourtyardState { active: boolean; nearby: string | null; visited: string[]; x: number; z: number; room: RoomId; reading: string | null; }
 interface ReadingActions { canInteract: () => boolean; open: (anchor: THREE.Object3D) => void; close: () => void; }
@@ -67,8 +68,9 @@ export default class Courtyard {
 
   constructor(private application: Application, private guide: GuideRobot, private actions: ReadingActions) {
     this.root = (application.resources.items.courtyardModel as LoadedModel).scene;
+    preparePenInkModel(this.root);
     this.root.traverse((object) => {
-      if (object instanceof THREE.Mesh) { object.castShadow = true; object.receiveShadow = true; }
+      if (object instanceof THREE.Mesh) { object.castShadow = !isPenInkObject(object); object.receiveShadow = false; }
     });
     application.scene.add(this.root);
     this.meadow = new Meadow(application, this.root);
@@ -81,7 +83,7 @@ export default class Courtyard {
       const model = this.root.getObjectByName(THREE.PropertyBinding.sanitizeNodeName(`Exhibit_${station.id}`));
       if (model) model.userData.exhibitId = station.id;
       const halo = new THREE.Mesh(new THREE.RingGeometry(1.91, 1.97, 32),
-        new THREE.MeshBasicMaterial({ color: COLORS.brass, side: THREE.DoubleSide }));
+        new THREE.MeshBasicMaterial({ color: '#292b2e', toneMapped: false, side: THREE.DoubleSide }));
       halo.rotation.x = -Math.PI / 2;
       halo.position.set(station.x, COURTYARD.groundY + .012, station.z);
       halo.visible = false;
@@ -171,15 +173,15 @@ export default class Courtyard {
     context.setTransform(canvas.width / 520, 0, 0, canvas.height / 340, 0, 0);
     const exhibition=EXHIBITIONS.find(item=>item.id===station.exhibitionId)!;
     const record=exhibition.entries[station.entryIndex];
-    context.fillStyle = night ? '#1E352F' : '#F1EDE3'; context.fillRect(0, 0, 520, 340);
+    context.fillStyle = night ? '#0E1011' : '#F2E6CE'; context.fillRect(0, 0, 520, 340);
     if(record.kind==='guestbook'){
-      context.fillStyle=night?'#E1EBE4':'#183C43';context.font='600 44px "Pretendard Variable", sans-serif';
+      context.fillStyle=night?'#D8D4CA':'#5C422D';context.font='600 44px "Pretendard Variable", sans-serif';
       context.fillText('Guestbook',32,112);return;
     }
     if(record.kind==='coffee' && qrImage?.complete && qrImage.naturalWidth){
-      context.fillStyle=night?'#E1EBE4':'#183C43';context.font='600 30px "Pretendard Variable", sans-serif';
+      context.fillStyle=night?'#D8D4CA':'#5C422D';context.font='600 30px "Pretendard Variable", sans-serif';
       context.fillText(record.title,32,64);
-      context.fillStyle=night?'#A6C7B7':'#3C7D7B';context.font='600 20px "Pretendard Variable", sans-serif';
+      context.fillStyle=night?'#C5C0B6':'#5C422D';context.font='600 20px "Pretendard Variable", sans-serif';
       context.fillText(record.actionLabel || 'Buy me a coffee',32,213);
       // Preserve the supplied QR's colors and a white quiet zone in both lighting modes.
       context.fillStyle='#FFFFFF';context.fillRect(272,92,224,224);
@@ -187,16 +189,16 @@ export default class Courtyard {
       return;
     }
     if(record.kind==='coffee'){
-      context.fillStyle=night?'#E1EBE4':'#183C43';context.font='600 32px "Pretendard Variable", sans-serif';
+      context.fillStyle=night?'#D8D4CA':'#5C422D';context.font='600 32px "Pretendard Variable", sans-serif';
       const bottom=coverLines(context,record.title,88,40,2);
-      context.fillStyle=night?'#A8BEB4':'#52676B';context.font='22px "Pretendard Variable", sans-serif';
+      context.fillStyle=night?'#A7A399':'#725B43';context.font='22px "Pretendard Variable", sans-serif';
       coverLines(context,record.text,bottom+55,32,3);
-      context.fillStyle=night?'#A6C7B7':'#3C7D7B';context.font='600 20px "Pretendard Variable", sans-serif';
+      context.fillStyle=night?'#C5C0B6':'#5C422D';context.font='600 20px "Pretendard Variable", sans-serif';
       context.fillText(record.actionUrl?record.actionLabel||'Open':'Link coming soon',32,294);return;
     }
-    context.fillStyle = night ? '#E1EBE4' : '#183C43'; context.font = '600 30px "Pretendard Variable", sans-serif';
+    context.fillStyle = night ? '#D8D4CA' : '#5C422D'; context.font = '600 30px "Pretendard Variable", sans-serif';
     const bottom=coverLines(context,record.title,84,40,3);
-    context.fillStyle = night ? '#A8BEB4' : '#52676B';
+    context.fillStyle = night ? '#A7A399' : '#725B43';
     if(station.room==='piano'){
       context.font = '22px "Pretendard Variable", sans-serif';
       coverLines(context,record.text,bottom+52,32,3);

@@ -1,0 +1,19 @@
+{
+  "title": "En avril, \u00e0 Paris",
+  "file": "en-avril-a-paris.mp3",
+  "bytes": 3527836,
+  "sha256": "b402484fb237191f304340406ec1ffe981030c3fbb486e5fba81272b4692b906",
+  "durationSeconds": 221.204218,
+  "channels": 2,
+  "sampleRate": 44100,
+  "notes": 1747,
+  "peakPCM": 0.6256103515625,
+  "renderer": "OfflineAudioContext with the existing AudioPlayer graph, velocity mix, envelopes, compressor and room impulse; full score scheduled without the live voice cap.",
+  "sourceScore": "/Piano/en-avril-a-paris.json",
+  "scoreSha256": "54065e213460930690c8d8a9cacc6b3fb070b3e13180ec94e829e8b398e84d8b",
+  "sourceBank": "/audio/piano/manifest.json",
+  "instrument": "Salamander Grand Piano V3",
+  "author": "Alexander Holm",
+  "license": "CC-BY-3.0",
+  "changes": "Score rendered to stereo 44.1 kHz audio with a one-second reverb tail; MP3 libmp3lame VBR quality 3. Uses the original local bank, not compact samples."
+}

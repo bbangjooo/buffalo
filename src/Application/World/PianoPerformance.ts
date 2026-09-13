@@ -1,8 +1,9 @@
 import type { AudioPlayer } from '../AudioPlayer';
+import { EventBus } from '../UI/EventBus';
 import { PIANO_PERFORMANCE } from '../../design/piano-performance';
 
 export type PianoPerformanceState = {
-  status: 'loading' | 'ready' | 'playing' | 'paused' | 'finished' | 'error';
+  status: 'loading' | 'ready' | 'buffering' | 'playing' | 'paused' | 'finished' | 'error';
   title: string;
   elapsed: number;
   duration: number;
@@ -38,7 +39,7 @@ export function readScore(value: unknown): Score {
   return { title: score.title, duration: score.duration!, notes };
 }
 
-/** Sound and physical keys share the AudioContext clock, including after a pause. */
+/** A pre-rendered recording supplies the only clock for the authored key animation. */
 export default class PianoPerformance {
   private state: PianoPerformanceState = {
     status: 'loading', title: PIANO_PERFORMANCE.title, elapsed: 0, duration: 0,
@@ -46,140 +47,173 @@ export default class PianoPerformance {
   private score?: Score;
   private loading?: Promise<boolean>;
   private abort = new AbortController();
-  private timer?: ReturnType<typeof setInterval>;
   private generation = 0;
   private disposed = false;
-  private startTime = 0;
-  private offset = 0;
-  private nextNote = 0;
+  private wantPlaying = false;
   private nextVisualNote = 0;
   private activeKeys = new Set<number>();
   private lastPublished = -1;
+  private media: HTMLAudioElement;
+  private listeners: [string, EventListener][] = [];
+  private unsubscribe: Array<() => void> = [];
   private readonly onVisibility = () => { if (document.hidden) this.pause(); };
 
   constructor(private audio: AudioPlayer, private callbacks: Callbacks) {
+    this.media = document.createElement('audio');
+    this.media.preload = 'auto';
+    this.media.autoplay = false;
+    this.media.hidden = true;
+    this.media.muted = audio.muted;
+    this.media.setAttribute('aria-hidden', 'true');
+    this.media.dataset.pianoRecording = '';
+    document.body.appendChild(this.media);
+    this.listen('playing', () => {
+      if (!this.wantPlaying) { this.media.pause(); return; }
+      this.state.status = 'playing'; this.state.error = undefined;
+      this.publishAssets(); this.publish();
+    });
+    this.listen('waiting', () => {
+      if (!this.wantPlaying) return;
+      this.state.status = 'buffering'; this.publish();
+    });
+    this.listen('pause', () => {
+      if (this.wantPlaying && this.media.paused && !this.media.ended) this.pause();
+    });
+    this.listen('ended', () => { if (this.media.ended) this.finish(); });
+    this.listen('timeupdate', () => this.update());
+    this.listen('error', () => { if (this.media.error) this.fail('Could not load the recording. Please try again.'); });
+    for (const event of ['progress', 'loadedmetadata', 'canplay', 'canplaythrough']) this.listen(event, () => this.publishAssets());
+    this.unsubscribe.push(EventBus.on('world-state', ({ muted }: { muted?: boolean }) => {
+      if (typeof muted === 'boolean') this.media.muted = muted;
+    }));
+    this.unsubscribe.push(EventBus.on('world-request-state', () => this.publishAssets()));
+    this.unsubscribe.push(EventBus.on('piano-assets-retry', ({ id }: { id?: string }) => {
+      if (id !== 'performance') return;
+      this.stop(); this.media.load(); void this.load(); this.publishAssets();
+    }));
     document.addEventListener('visibilitychange', this.onVisibility);
+    this.media.src = PIANO_PERFORMANCE.audioUrl;
+    this.media.load();
+    this.publishAssets();
     void this.load();
+  }
+
+  private listen(type: string, callback: () => void): void {
+    const listener = () => { if (!this.disposed) callback(); };
+    this.listeners.push([type, listener]); this.media.addEventListener(type, listener);
   }
 
   getSnapshot(): PianoPerformanceState { return { ...this.state }; }
 
   async play(): Promise<void> {
-    if (this.disposed || this.state.status === 'playing') return;
+    if (this.disposed || this.wantPlaying || document.hidden) return;
     const request = ++this.generation;
-    // Unlock from the input gesture, even if the score is still loading.
-    const unlocked = this.audio.unlock();
-    const loaded = await this.load();
-    const soundReady = await unlocked;
-    if (this.disposed || request !== this.generation || !loaded || document.hidden) return;
-    if (!soundReady) {
-      this.state = { ...this.state, status: 'error', error: 'Could not start the audio. Please try again.' };
-      this.publish();
-      return;
+    this.audio.stopInteractiveNotes();
+    if (this.state.status === 'finished') this.media.currentTime = 0;
+    if (this.media.error) this.media.load();
+    const time = this.elapsed();
+    this.nextVisualNote = this.score?.notes.findIndex(note => note.time >= time) ?? 0;
+    if (this.nextVisualNote < 0) this.nextVisualNote = this.score?.notes.length ?? 0;
+    this.wantPlaying = true;
+    this.state = { ...this.state, status: 'buffering', error: undefined };
+    this.lastPublished = -1; this.publish();
+    try {
+      // Keep the input gesture: never wait for samples or score fetch before play().
+      const playing = this.media.play();
+      const [loaded] = await Promise.all([this.load(), playing]);
+      if (this.disposed || request !== this.generation || !this.wantPlaying) {
+        if (this.disposed || !this.wantPlaying) this.media.pause();
+        return;
+      }
+      if (!loaded || document.hidden) { this.pause(); return; }
+      this.state.status = 'playing'; this.update(); this.publish();
+    } catch {
+      if (!this.disposed && request === this.generation) this.fail('Could not start the recording. Press Listen to retry.');
     }
-    this.offset = this.state.status === 'paused' ? this.state.elapsed : 0;
-    this.clearPlayback();
-    this.startTime = this.audio.currentTime + 0.06;
-    this.nextNote = 0;
-    const notes = this.score!.notes;
-    while (this.nextNote < notes.length && notes[this.nextNote].time < this.offset) {
-      const note = notes[this.nextNote++];
-      const remaining = note.time + (note.soundDuration ?? note.duration) - this.offset;
-      if (remaining > 0) this.audio.scheduleNote(note.midi, note.velocity, this.startTime, remaining);
-    }
-    this.nextVisualNote = this.nextNote;
-    this.state = { ...this.state, status: 'playing', elapsed: this.offset, error: undefined };
-    this.lastPublished = -1;
-    this.pump();
-    this.timer = setInterval(() => this.pump(), 25);
-    this.publish();
   }
 
   pause(): void {
     if (this.disposed) return;
-    ++this.generation;
-    if (this.state.status !== 'playing') return;
-    const elapsed = this.elapsed();
-    this.clearPlayback();
-    this.state = { ...this.state, status: 'paused', elapsed };
-    this.publish();
+    ++this.generation; this.wantPlaying = false;
+    const active = this.state.status === 'playing' || this.state.status === 'buffering';
+    this.media.pause(); this.setKeys(new Set());
+    if (active) {
+      this.state = { ...this.state, status: 'paused', elapsed: this.elapsed() };
+      this.publish();
+    }
   }
 
   stop(): void {
     if (this.disposed) return;
-    ++this.generation;
-    if (this.state.status === 'playing' || this.state.status === 'paused' || this.state.status === 'finished') this.clearPlayback();
-    else this.setKeys(new Set());
-    this.offset = 0;
-    this.state = { ...this.state, elapsed: 0, status: this.score ? 'ready' : this.state.status };
+    ++this.generation; this.wantPlaying = false;
+    this.media.pause();
+    try { this.media.currentTime = 0; } catch { /* No metadata yet. */ }
+    this.nextVisualNote = 0; this.setKeys(new Set());
+    this.state = { ...this.state, elapsed: 0, error: undefined, status: this.score ? 'ready' : 'loading' };
     this.publish();
   }
 
   update(): void {
-    if (this.disposed || this.state.status !== 'playing' || !this.score) return;
+    if (this.disposed || !this.wantPlaying || !this.score) return;
     const elapsed = this.elapsed();
     const keys = new Set<number>();
     const repeatedAttacks: number[] = [];
-    // Only animate the authored two-octave keyboard. Other notes retain their
-    // original audio pitch instead of being mapped to an incorrect visible key.
-    if (this.audio.currentTime >= this.startTime) {
-      for (const note of this.score.notes) {
-        if (note.time > elapsed) break;
-        if (note.time + note.duration > elapsed && note.midi >= 60 && note.midi <= 83) keys.add(note.midi);
-      }
-      while (this.nextVisualNote < this.score.notes.length && this.score.notes[this.nextVisualNote].time <= elapsed) {
-        const note = this.score.notes[this.nextVisualNote++];
-        if (note.time + note.duration > elapsed && this.activeKeys.has(note.midi)) repeatedAttacks.push(note.midi);
-      }
+    for (const note of this.score.notes) {
+      if (note.time > elapsed) break;
+      if (note.time + note.duration > elapsed && note.midi >= 60 && note.midi <= 83) keys.add(note.midi);
+    }
+    while (this.nextVisualNote < this.score.notes.length && this.score.notes[this.nextVisualNote].time <= elapsed) {
+      const note = this.score.notes[this.nextVisualNote++];
+      if (note.time + note.duration > elapsed && this.activeKeys.has(note.midi)) repeatedAttacks.push(note.midi);
     }
     this.setKeys(keys);
     if (repeatedAttacks.length) this.callbacks.onRepeatedAttack?.(repeatedAttacks);
     this.state.elapsed = elapsed;
-    if (elapsed >= this.state.duration) {
-      clearInterval(this.timer);
-      this.timer = undefined;
-      this.setKeys(new Set());
-      this.state.status = 'finished';
-      this.publish();
-    } else if (elapsed - this.lastPublished >= 0.2) {
-      this.lastPublished = elapsed;
-      this.publish();
-    }
+    this.state.duration = this.duration();
+    if (this.media.ended) this.finish();
+    else if (elapsed - this.lastPublished >= .2) { this.lastPublished = elapsed; this.publish(); }
+  }
+
+  private duration(): number {
+    return Number.isFinite(this.media.duration) && this.media.duration > 0 ? this.media.duration : this.score?.duration ?? 0;
+  }
+  private elapsed(): number {
+    return Math.min(this.duration(), Number.isFinite(this.media.currentTime) ? Math.max(0, this.media.currentTime) : 0);
+  }
+  private setKeys(keys: Set<number>): void {
+    if (keys.size === this.activeKeys.size && [...keys].every(key => this.activeKeys.has(key))) return;
+    this.activeKeys = keys; this.callbacks.onKeys(keys);
+  }
+  private finish(): void {
+    if (this.disposed) return;
+    ++this.generation; this.wantPlaying = false;
+    this.media.pause(); this.setKeys(new Set());
+    this.state = { ...this.state, status: 'finished', elapsed: this.duration(), duration: this.duration() };
+    this.publish();
+  }
+  private fail(error: string): void {
+    ++this.generation; this.wantPlaying = false;
+    this.media.pause(); this.setKeys(new Set());
+    this.state = { ...this.state, status: 'error', error, elapsed: this.elapsed() };
+    this.publishAssets(); this.publish();
+  }
+  private publishAssets(): void {
+    if (this.disposed) return;
+    let buffered = 0;
+    for (let i = 0; i < this.media.buffered.length; i++) buffered += this.media.buffered.end(i) - this.media.buffered.start(i);
+    const duration = this.duration();
+    EventBus.dispatch('piano-assets', { id: 'performance', label: 'Piano recording', unit: 'seconds',
+      phase: this.media.error ? 'error' : this.media.readyState >= 3 ? 'ready' : 'downloading',
+      received: Math.min(buffered, duration), total: duration, completed: this.media.readyState >= 3 ? 1 : 0, count: 1 });
   }
 
   dispose(): void {
     if (this.disposed) return;
-    this.stop();
-    this.clearPlayback();
-    this.disposed = true;
-    this.abort.abort();
+    this.stop(); this.disposed = true;
+    this.abort.abort(); this.unsubscribe.forEach(off => off());
+    this.listeners.forEach(([type, listener]) => this.media.removeEventListener(type, listener));
+    this.media.removeAttribute('src'); this.media.load(); this.media.remove();
     document.removeEventListener('visibilitychange', this.onVisibility);
-  }
-
-  private elapsed(): number {
-    return Math.min(this.state.duration, this.offset + Math.max(0, this.audio.currentTime - this.startTime));
-  }
-
-  private pump(): void {
-    if (this.disposed || this.state.status !== 'playing' || !this.score) return;
-    const until = this.elapsed() + 0.15;
-    while (this.nextNote < this.score.notes.length && this.score.notes[this.nextNote].time <= until) {
-      const note = this.score.notes[this.nextNote++];
-      this.audio.scheduleNote(note.midi, note.velocity, this.startTime + note.time - this.offset, note.soundDuration ?? note.duration);
-    }
-  }
-
-  private setKeys(keys: Set<number>): void {
-    if (keys.size === this.activeKeys.size && [...keys].every((key) => this.activeKeys.has(key))) return;
-    this.activeKeys = keys;
-    this.callbacks.onKeys(keys);
-  }
-
-  private clearPlayback(): void {
-    clearInterval(this.timer);
-    this.timer = undefined;
-    this.audio.stopNotes();
-    this.setKeys(new Set());
   }
 
   private async load(): Promise<boolean> {
@@ -194,7 +228,7 @@ export default class PianoPerformance {
         const score = readScore(await response.json());
         if (this.disposed) return false;
         this.score = score;
-        this.state = { status: 'ready', title: score.title, duration: score.duration, elapsed: 0 };
+        this.state = { status: this.wantPlaying ? 'buffering' : 'ready', title: score.title, duration: this.duration(), elapsed: this.elapsed() };
         this.publish();
         return true;
       } catch {
