@@ -1,4 +1,4 @@
-"""Editable sparse antique-atlas review: brown paper Day / silver-on-black Night.
+"""Editable antique-atlas village review: brown paper Day / silver-on-black Night.
 
 Blender --background --python scripts/prepare_atlas_review.py
 Only NEW atlas-world.blend and atlas-blender-day/night.png are written.
@@ -14,7 +14,8 @@ SOURCES=['pen-ink-rooms.blend','medieval-village.blend','character-guide-smooth.
 source_hashes={name:hashlib.sha256((ASSETS/name).read_bytes()).hexdigest() for name in SOURCES}
 layout=json.loads((ROOT/'src/design/medieval-village-layout.json').read_text())
 landscape=json.loads((ROOT/'src/design/atlas-landscape.json').read_text())
-assert layout['landmarkCount']==4 and len(layout['cottages'])+len(layout['props'])==4
+assert layout['landmarkCount']==len(layout['cottages'])+len(layout['props'])
+assert layout['landmarkCount']<=layout['limits']['maxLandmarks']
 bpy.ops.wm.open_mainfile(filepath=str(ASSETS/SOURCES[0]))
 bpy.context.preferences.filepaths.save_version=0
 day=bpy.context.scene;day.name='Day'
@@ -57,7 +58,7 @@ def append(filename,label,wanted):
 
 
 # Curated geometry only: no old Courtyard, fixed border garden or exhibits.
-landmarks=append('medieval-village.blend','Four subordinate atlas features',{'MedievalVillage'})
+landmarks=append('medieval-village.blend','Village buildings and everyday objects',{'MedievalVillage'})
 companions=append('character-guide-smooth.blend','Original companion',{'GuideCharacter'})
 guide=next(obj for obj in companions if not obj.parent)
 guide.location=(6.65,-11.45,-.12);guide.scale=(2.2,2.2,2.2)
@@ -67,7 +68,7 @@ for obj in day.objects:
     obj.hide_render=hide;obj.hide_set(hide)
 assert not any(o.name.startswith(('Courtyard','Meadow','RenderOnly_Meadow','Exhibit_','ScreenAnchor_')) for o in day.objects)
 village=next(o for o in landmarks if not o.parent)
-assert len([o for o in village.children if o.name.startswith(('VillageCottage_','VillageProp_'))])==4
+assert len([o for o in village.children if o.name.startswith(('VillageCottage_','VillageProp_'))])==layout['landmarkCount']
 
 # Reproduce the exact authored plant placements from the runtime JSON. Load
 # only the five original template meshes, copy their colours before softening,
@@ -183,8 +184,22 @@ configure(day,FIELD)
 camera=day.camera;camera.location=(16,-20,19)
 look_at=Vector((0,0,.65));camera.rotation_euler=(look_at-camera.location).to_track_quat('-Z','Y').to_euler()
 camera.data.type='ORTHO';camera.data.ortho_scale=20;camera.data.clip_end=350
+camera.name='RoomCompositionCamera'
+# Keep the close room composition available, and open the editing file on a
+# wider overview so the newly authored outskirts are easy to inspect.
+room_camera=camera
+camera=room_camera.copy();camera.data=room_camera.data.copy()
+camera.name='VillageOverviewCamera';day.collection.objects.link(camera)
+day.camera=camera;day.view_layers[0].update()
+inverse=camera.matrix_world.inverted()
+overview_points=[inverse @ (obj.matrix_world @ Vector(corner))
+    for obj in day.objects if obj.type=='MESH' and ancestor(obj,lambda p:p in {village,planting})
+    for corner in obj.bound_box]
+aspect=day.render.resolution_x/day.render.resolution_y
+camera.data.ortho_scale=max(36,2*max(abs(p.x) for p in overview_points),
+    2*max(abs(p.y) for p in overview_points)*aspect)*1.08
 day['sourceFiles']='; '.join('assets/'+name for name in SOURCES)
-day['reviewScope']='Larger central room pavilion, four subordinate village features, and the exact curated atlas-landscape plant placements. No repeated meadow, paving, legacy border beds or exhibit boards.'
+day['reviewScope']='Central room pavilion within an expanded village of buildings, everyday objects and fixed garden clusters. VillageOverviewCamera shows the outskirts; RoomCompositionCamera retains the close room view. No repeated meadow or legacy exhibit boards.'
 day['contentNote']='Native model/anchor review; the browser owns HTML records, animated instrument controls and the current rhythm interface.'
 day['palette']='#eadcc0 field; #f2e6ce objects; #5c422d sepia ink'
 
@@ -259,6 +274,6 @@ for screen in bpy.data.screens:
 for name in SOURCES:assert hashlib.sha256((ASSETS/name).read_bytes()).hexdigest()==source_hashes[name]
 bpy.ops.wm.save_as_mainfile(filepath=str(ASSETS/'atlas-world.blend'))
 print('ATLAS_REVIEW_READY '+json.dumps({'file':str(ASSETS/'atlas-world.blend'),'scenes':['Day','Night'],
-    'landmarkCount':4,'curatedPlacements':len(plants),'landscapeRevision':landscape['revision'],
+    'landmarkCount':layout['landmarkCount'],'curatedPlacements':len(plants),'landscapeRevision':landscape['revision'],
     'importedCourtyard':False,'whiteFlames':len(torches),'stars':star_count,
-    'cameraOrtho':20,'sourceFilesUnchanged':True}),flush=True)
+    'cameraOrtho':camera.data.ortho_scale,'roomCameraOrtho':room_camera.data.ortho_scale,'sourceFilesUnchanged':True}),flush=True)

@@ -1,4 +1,4 @@
-"""Four quiet antique-atlas features around the larger central room pavilion.
+"""Distributed antique-atlas cottages and small lived-in village objects.
 
 Rebuild only the auxiliary village; the original house, courtyard exhibits,
 characters, anchors and source blends are never changed by this script.
@@ -18,11 +18,11 @@ bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.context.preferences.filepaths.save_version=0
 layout_path=ROOT/'src/design/medieval-village-layout.json'
 layout=json.loads(layout_path.read_text())
-layout.setdefault('limits',{'maxLandmarks':4,'maxTriangles':50000})
+layout.setdefault('limits',{'maxLandmarks':12,'maxTriangles':100000})
 courtyard=json.loads((ROOT/'src/design/courtyard-layout.json').read_text())
 ground=layout['groundY'];rng=random.Random(916)
 root=bpy.data.objects.new('MedievalVillage',None);bpy.context.scene.collection.objects.link(root)
-root['penInkAuthored']=True;root['villageEnvironment']=True;root['style']='Four subordinate antique-atlas features: two cottages, a well and a modest market; detailed ink and open paper.'
+root['penInkAuthored']=True;root['villageEnvironment']=True;root['style']='Distributed cottage lanes and small lived-in village objects; detailed ink, broad open paper and protected central rooms.'
 WINDOW_MAT=unlit('PenVillageWindow',(.085,.085,.085,1))
 obstacles=[];torches=[]
 
@@ -222,11 +222,12 @@ for prop in layout['props']:
     prop['physicalBoundsLocal']['max'][2]=round(max(-p[1]*scale for p in d.vertices),4)
     obstacle(prop['id'],prop['x'],prop['z'],prop['radius'])
 
-# No detached village furniture, fences, roads or paving: the four features
-# stand on the same open paper as the main rooms. No hidden leftovers export.
-assert layout['landmarkCount']==4 and len(root.children)==4 and len(root.children)<=layout['limits']['maxLandmarks'], [child.name for child in root.children]
-assert len(layout['cottages'])==2 and len(layout['props'])==2
-assert sorted(p['kind'] for p in layout['props'])==['market','well'] and len(torches)==2
+# A small number of grouped yard objects provide life without paving the map
+# or multiplying individual barrels/crates into separate renderer objects.
+assert len(root.children)==layout['landmarkCount'] and len(root.children)<=layout['limits']['maxLandmarks'], [child.name for child in root.children]
+assert 4<=len(layout['cottages'])<=5 and 6<=len(layout['props'])<=7
+assert {'well','market','cart','notice','barrel_cluster','crates_cluster'} <= {p['kind'] for p in layout['props']}
+assert len(torches)==len(layout['cottages'])
 
 def segment_distance(point,a,b):
     dx,dz=b[0]-a[0],b[1]-a[1]
@@ -235,6 +236,9 @@ def segment_distance(point,a,b):
     return hypot(point[0]-a[0]-dx*t,point[1]-a[1]-dz*t)
 
 # Validate navigation clearances before saving layout/collisions for runtime.
+for index,o in enumerate(obstacles):
+    for other in obstacles[index+1:]:
+        assert hypot(o['x']-other['x'],o['z']-other['z'])>o['radius']+other['radius']+.12, ('village object overlap',o,other)
 for o in obstacles:
     assert abs(o['x'])-o['radius']>6.55 or abs(o['z'])-o['radius']>6.55, ('house overlap',o)
     for q in courtyard['quadrants']:
@@ -251,7 +255,7 @@ bpy.context.view_layer.update()
 meshes=[o for o in root.children_recursive if o.type=='MESH']
 tris=sum(sum(len(p.vertices)-2 for p in o.data.polygons) for o in meshes)
 assert tris<layout['limits']['maxTriangles'], tris
-manifest={'revision':layout['revision'],'landmarkCount':4,'cottageCount':len(layout['cottages']),'meshCount':len(meshes),'triangles':tris,'obstacleCount':len(obstacles),'torchCount':len(torches),'windowCount':sum(o.get('nightWindow',False) for o in meshes),'style':'four purposeful background features on open antique-map paper; two small cottages, well and modest scaled market; no village clutter or paving','authoringSource':'scripts/build_medieval_village.py','preserved':['central house clear area','all courtyard station anchors/assets','four spawn clearances','open cross roads','reader sightline segments'],'propScales':{p['id']:p.get('scale',1) for p in layout['props']},'cottageScales':{c['id']:c.get('scale',1) for c in layout['cottages']}}
+manifest={'revision':layout['revision'],'landmarkCount':layout['landmarkCount'],'cottageCount':len(layout['cottages']),'propCount':len(layout['props']),'meshCount':len(meshes),'triangles':tris,'obstacleCount':len(obstacles),'torchCount':len(torches),'windowCount':sum(o.get('nightWindow',False) for o in meshes),'style':'five distributed cottage landmarks and six purposeful village objects; grouped deliveries, handcart and notices on broad unpaved atlas paper','authoringSource':'scripts/build_medieval_village.py','preserved':['central house clear area','all courtyard station anchors/assets','four spawn clearances','open cross roads','reader sightline segments','positive gaps between village footprints'],'propScales':{p['id']:p.get('scale',1) for p in layout['props']},'cottageScales':{c['id']:c.get('scale',1) for c in layout['cottages']}}
 (ROOT/'assets/medieval-village-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
 bpy.ops.export_scene.gltf(filepath=str(ROOT/'public/Room/medieval-village.glb'),export_format='GLB',export_apply=True,export_cameras=False,export_lights=False,export_animations=False,export_extras=True,export_vertex_color='ACTIVE',export_all_vertex_colors=False,export_draco_mesh_compression_enable=True,export_draco_mesh_compression_level=6)
 

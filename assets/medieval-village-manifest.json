@@ -1,27 +1,36 @@
 {
-  "revision": "antique-atlas-four-features-3",
-  "landmarkCount": 4,
-  "cottageCount": 2,
-  "meshCount": 6,
-  "triangles": 30010,
-  "obstacleCount": 4,
-  "torchCount": 2,
-  "windowCount": 2,
-  "style": "four purposeful background features on open antique-map paper; two small cottages, well and modest scaled market; no village clutter or paving",
+  "revision": "antique-atlas-distributed-village-2",
+  "landmarkCount": 11,
+  "cottageCount": 5,
+  "propCount": 6,
+  "meshCount": 16,
+  "triangles": 72402,
+  "obstacleCount": 11,
+  "torchCount": 5,
+  "windowCount": 5,
+  "style": "five distributed cottage landmarks and six purposeful village objects; grouped deliveries, handcart and notices on broad unpaved atlas paper",
   "authoringSource": "scripts/build_medieval_village.py",
   "preserved": [
     "central house clear area",
     "all courtyard station anchors/assets",
     "four spawn clearances",
     "open cross roads",
-    "reader sightline segments"
+    "reader sightline segments",
+    "positive gaps between village footprints"
   ],
   "propScales": {
     "well": 1,
-    "market": 0.76
+    "market": 0.76,
+    "cart": 0.54,
+    "notice": 0.9,
+    "barrels": 0.9,
+    "crates": 0.9
   },
   "cottageScales": {
     "scribe": 0.62,
-    "weaver": 1
+    "weaver": 1,
+    "baker": 0.9,
+    "herbalist": 0.88,
+    "potter": 0.92
   }
 }

@@ -300,3 +300,23 @@ def notice(d):
                      .009, color=SOFT)
         d.stroke([(x + width / 2, y + height - .039, z + .008),
                   (x + width / 2 + .004, y + height - .022, z + .008)], .023)
+
+
+def barrel_cluster(d):
+    """One compact delivery group: two stave barrels and a low packing crate."""
+    barrel(d,(-.23,0,.02),.92)
+    barrel(d,(.28,0,.20),.76)
+    _crate(d,(.055,.16,-.38),(.46,.32,.36))
+    # A short lid board remains inside the same grouped footprint.
+    d.box((.055,.334,-.38),(.49,.026,.38))
+    d.stroke([(-.16,.350,-.46),(.24,.350,-.46)],.008,color=SOFT)
+
+
+def crates_cluster(d):
+    """Three modest wood crates stacked into one yard object and one draw call."""
+    _crate(d,(-.22,.22,0),(.60,.44,.52))
+    _crate(d,(-.19,.635,.005),(.45,.37,.40))
+    _crate(d,(.36,.16,.075),(.38,.32,.38))
+    d.box((.36,.336,.075),(.40,.025,.40))
+    for offset in [-.09,.03]:
+        d.stroke([(.18,.352,.075+offset),(.54,.352,.075+offset)],.008,color=SOFT)
