@@ -17,7 +17,7 @@ function load(relative, resolve, extras = {}) {
   return sandbox.exports;
 }
 const { ROOMS, ROOM_SIZE } = load('../src/design/rooms.ts', () => require('../src/design/jo-colors.json'));
-const { default: Meadow } = load('../src/Application/World/Meadow.ts', (name) => {
+const { default: Meadow } = load('../src/Application/World/ClassicMeadow.ts', (name) => {
   if (name === 'three') return THREE;
   if (name.endsWith('/history')) return { COURTYARD: layout };
   throw new Error(`Unexpected meadow dependency: ${name}`);
@@ -54,6 +54,7 @@ function harness() {
     if (name === '../Application') return Application;
     if (name.endsWith('/Eventemitter')) return EventEmitter;
     if (name.endsWith('/rooms')) return { ROOMS, ROOM_SIZE };
+    if (name.endsWith('/onboarding')) return load('../src/design/onboarding.ts', () => ({}));
     throw new Error(`Unexpected camera dependency: ${name}`);
   }, { window: { matchMedia: () => reducedMotion } });
   const camera = application.camera = new Camera();
@@ -63,6 +64,7 @@ function harness() {
     mesh.name = name; model.add(mesh);
   }
   const meadow = new Meadow(application, model);
+  meadow.setEnabled(true);
   const update = () => meadow.update(7, 7);
   const finish = (inspect) => { timelines.at(-1).finish(() => { update(); inspect?.(); }); update(); };
   const enter = (instant = false) => {

@@ -4,6 +4,7 @@ import Application from "../Application";
 import EventEmitter from "../Utils/Eventemitter";
 import Sizes from "../Utils/Sizes";
 import { ROOMS, ROOM_SIZE, RoomId, RoomView } from "../../design/rooms";
+import { onboardingLayout, type OnboardingPhase } from '../../design/onboarding';
 
 export type { RoomId, RoomView } from "../../design/rooms";
 export type ReadingView = "monitor" | "resume" | "leaderboard";
@@ -76,6 +77,10 @@ export default class Camera extends EventEmitter {
   private courtyardHeading = Math.PI / 4;
   private courtyardPitch = 0;
   private exhibitTarget?: { anchor: THREE.Object3D; width: number; height: number };
+  private onboardingPhase: OnboardingPhase = 'done';
+  private readonly onboardingProgress = { value: 0 };
+
+  get onboarding() { return this.onboardingPhase; }
 
   constructor() {
     super();
@@ -83,6 +88,102 @@ export default class Camera extends EventEmitter {
     this.sizes = this.application.sizes;
     this.instance = this.orthographic;
     this.pose = this.roomPose(this.orbitAngle);
+    this.applyPose();
+  }
+
+  beginOnboarding() {
+    this.animation?.kill();
+    this.animation = undefined;
+    this.onboardingPhase = 'writing';
+    this.onboardingProgress.value = 0;
+    this.view = 'developer';
+    this.activeFocus = null;
+    this.projectionBridge = false;
+    this.orbitAngle = ROOMS.developer.angle;
+    this.orbitElevation = this.defaultElevation;
+    this.transitioning = true;
+    this.instance = this.orthographic;
+    this.pose = this.onboardingPose();
+    this.applyPose();
+  }
+
+  finishOnboarding(onComplete?: () => void, instant = false) {
+    if (this.onboardingPhase === 'done') { onComplete?.(); return; }
+    if (this.onboardingPhase === 'tour' && !instant) return;
+    this.animation?.kill();
+    const finish = () => {
+      this.animation = undefined;
+      this.onboardingPhase = 'done';
+      this.view = 'developer';
+      this.orbitAngle = ROOMS.developer.angle;
+      this.orbitElevation = this.defaultElevation;
+      this.pose = this.roomPose(this.orbitAngle);
+      this.instance = this.orthographic;
+      this.transitioning = false;
+      this.applyPose();
+      this.trigger('settled', [this.view]);
+      onComplete?.();
+    };
+    if (instant || this.reducedMotion.matches) { finish(); return; }
+    this.onboardingPhase = 'tour';
+    this.transitioning = true;
+    this.onboardingProgress.value = 0;
+    this.animation = gsap.timeline({ onComplete: finish }).to(this.onboardingProgress, {
+      // Each axis owns its continuous flight curve; a second GSAP ease would
+      // bunch the descent and orbit together into a mechanical start/stop.
+      value: 1, duration: 6.8, ease: 'none', onUpdate: () => this.applyOnboardingTour(),
+    });
+  }
+
+  cancelOnboarding() {
+    if (this.onboardingPhase === 'done') return;
+    this.animation?.kill();
+    this.animation = undefined;
+    this.onboardingPhase = 'done';
+    this.transitioning = false;
+  }
+
+  private onboardingPose(): CameraPose {
+    const height = Math.max(1, this.sizes.height);
+    const layout = onboardingLayout(Math.max(1, this.sizes.width), height);
+    const span = ROOM_SIZE * 2 * height / layout.size;
+    // Exact vertical view, north (-Z) at the top; avoid lookAt's parallel-up singularity.
+    const rotation = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI / 2);
+    const target = new THREE.Vector3(0, 0, -(layout.top + layout.size / 2 - height / 2) * span / height);
+    return { target, rotation, distance: 28, span };
+  }
+
+  private applyOnboardingTour() {
+    const t = THREE.MathUtils.clamp(this.onboardingProgress.value, 0, 1);
+    const smooth = (value: number) => {
+      const p = THREE.MathUtils.clamp(value, 0, 1);
+      return p * p * p * (p * (p * 6 - 15) + 10);
+    };
+    const from = this.onboardingPose();
+    const to = this.roomPose(ROOMS.developer.angle);
+    // A single descending arc starts turning while it is still overhead.
+    // This integrated velocity curve accelerates early and spends the last
+    // part of the flight gently decelerating toward the Summary wall.
+    const travel = t * t * t * (20 + t * (-45 + t * (36 - 10 * t)));
+    const yaw = (Math.PI * 2 + Math.PI / 4) * travel;
+    const descent = smooth(t);
+    const elevation = THREE.MathUtils.lerp(Math.PI / 2, this.defaultElevation, descent);
+    const arc = Math.sin(Math.PI * t) ** 2;
+    const bank = Math.sin(Math.PI * 2 * t) * arc * THREE.MathUtils.degToRad(2.4);
+    const rotation = new THREE.Quaternion().setFromAxisAngle(this.up, yaw)
+      .multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), -elevation))
+      .multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), bank));
+    this.orbitAngle = yaw - Math.PI / 4;
+    this.orbitElevation = elevation;
+    this.pose = {
+      // Follow the whole house first; drift into its familiar composition as
+      // the camera comes down. Rotation and framing settle without a final cut.
+      target: from.target.lerp(to.target, smooth((t - .12) / .88)),
+      rotation,
+      distance: THREE.MathUtils.lerp(from.distance, to.distance, descent),
+      span: THREE.MathUtils.lerp(from.span, to.span, descent) + Math.min(from.span, to.span) * .28 * arc,
+    };
+    this.instance = this.orthographic;
     this.applyPose();
   }
 
@@ -154,6 +255,7 @@ export default class Camera extends EventEmitter {
   }
 
   navigate(view: RoomView, instant = false) {
+    if (this.onboardingPhase !== 'done') return;
     if (this.view === view && !instant && view !== 'exhibit') return;
     this.animation?.kill();
     this.animation = undefined;
@@ -550,6 +652,8 @@ export default class Camera extends EventEmitter {
   }
 
   resize() {
+    if (this.onboardingPhase === 'writing') { this.pose = this.onboardingPose(); this.applyPose(); return; }
+    if (this.onboardingPhase === 'tour') { this.applyOnboardingTour(); return; }
     if (this.view === 'courtyard' || this.view === 'exhibit') { this.navigate(this.view, true); return; }
     if (!this.transitioning && !isFocusView(this.view)) {
       this.pose = this.roomPose(this.orbitAngle, this.orbitElevation);

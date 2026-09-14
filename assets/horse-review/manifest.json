@@ -1,0 +1,106 @@
+{
+  "ink": {
+    "file": "public/Room/horses-ink.glb",
+    "bytes": 927064,
+    "roots": [
+      "HorseChestnut",
+      "HorseCream",
+      "HorseCharcoal"
+    ],
+    "meshCountPerHorse": 19,
+    "rigVersion": 3,
+    "pivotNames": [
+      "LegFL",
+      "LegFR",
+      "LegBL",
+      "LegBR",
+      "ElbowPivot",
+      "KneePivot",
+      "StiflePivot",
+      "HockPivot",
+      "HoofPivot",
+      "NeckPivot",
+      "HeadPivot",
+      "JawPivot",
+      "MuzzleAnchor",
+      "ToeAnchor",
+      "HeelAnchor"
+    ],
+    "forward": "+Z",
+    "up": "+Y",
+    "height": 2.27032,
+    "feetY": 0.0,
+    "maximumLength": 2.62284,
+    "boundsThree": {
+      "min": [
+        -0.35370302200317383,
+        1.4901161193847656e-08,
+        -1.1118720769882202
+      ],
+      "max": [
+        0.35370302200317383,
+        2.27032208442688,
+        1.510969877243042
+      ]
+    },
+    "triangles": 10038,
+    "grazingReview": {
+      "lipHeight": 0.09000006318092346,
+      "minimumHeadHeight": 0.07561048865318298,
+      "neckX": 1.4909507062902638,
+      "headX": -0.5596915952792334
+    }
+  },
+  "low-poly": {
+    "file": "public/Room/horses-low-poly.glb",
+    "bytes": 717916,
+    "roots": [
+      "HorseChestnut",
+      "HorseCream",
+      "HorseCharcoal"
+    ],
+    "meshCountPerHorse": 19,
+    "rigVersion": 3,
+    "pivotNames": [
+      "LegFL",
+      "LegFR",
+      "LegBL",
+      "LegBR",
+      "ElbowPivot",
+      "KneePivot",
+      "StiflePivot",
+      "HockPivot",
+      "HoofPivot",
+      "NeckPivot",
+      "HeadPivot",
+      "JawPivot",
+      "MuzzleAnchor",
+      "ToeAnchor",
+      "HeelAnchor"
+    ],
+    "forward": "+Z",
+    "up": "+Y",
+    "height": 2.27032,
+    "feetY": 0.0,
+    "maximumLength": 2.62284,
+    "boundsThree": {
+      "min": [
+        -0.3479999899864197,
+        1.4901161193847656e-08,
+        -1.1118720769882202
+      ],
+      "max": [
+        0.3479999899864197,
+        2.27032208442688,
+        1.510969877243042
+      ]
+    },
+    "triangles": 7454,
+    "grazingReview": {
+      "lipHeight": 0.09000006318092346,
+      "minimumHeadHeight": 0.07561048865318298,
+      "neckX": 1.4909507062902638,
+      "headX": -0.5596915952792334
+    }
+  }
+}

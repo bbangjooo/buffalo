@@ -8,7 +8,7 @@ import MonitorScreen from './MonitorScreen';
 import LeaderboardScreen from './LeaderboardScreen';
 import Room from './Room';
 import GuideRobot from './GuideRobot';
-import HamsterRoam from './HamsterRoam';
+import HorseHerd from './HorseHerd';
 import RhythmGame from './RhythmGame';
 import RhythmStage from './RhythmStage';
 import type { RhythmMusicState } from './RhythmMusic';
@@ -19,8 +19,8 @@ import Portrait from './Portrait';
 import Courtyard from './Courtyard';
 import MedievalVillage from './MedievalVillage';
 import { pianoMidiForKeyboard } from '../../design/piano-keys';
-import type { LoadedModel } from '../../types';
 import { ArtTheme, isArtTheme, readArtTheme, writeArtTheme } from '../../design/art-themes';
+import type { OnboardingPhase } from '../../design/onboarding';
 
 export default class World {
   application: Application;
@@ -30,8 +30,7 @@ export default class World {
   leaderboardScreen: LeaderboardScreen;
   environment: Environment;
   guide: GuideRobot;
-  hamster: GuideRobot;
-  private hamsterRoam: HamsterRoam;
+  horses: HorseHerd;
   game: RhythmGame;
   rhythmStage?: RhythmStage;
   private rhythmMusic: RhythmMusicState = { ready: false, playing: false, time: 0, duration: 0, playerState: 'unstarted', muted: false };
@@ -45,6 +44,7 @@ export default class World {
   courtyard?: Courtyard;
   village?: MedievalVillage;
   ready = false;
+  onboarding: OnboardingPhase = 'loading';
   night = false;
   artTheme: ArtTheme = 'ink';
   artThemeTransitioning = false;
@@ -78,17 +78,17 @@ export default class World {
       onPad: (index, on) => {
         if (!this.ready) return;
         this.rhythmStage?.setPad(index, on);
-        if (on && this.view === 'rhythm') this.hamster.danceStep(index);
+        if (on && this.view === 'rhythm') this.horses.danceStep(index);
       },
       onState: (game) => EventBus.dispatch('rhythm-state', game),
       onJudgement: (hit) => EventBus.dispatch('rhythm-hit', hit),
-      onResult: () => this.hamster?.react('success'),
+      onResult: () => this.horses?.react(),
     });
     this.application.resources.on('ready', () => this.initialize());
     this.application.resources.on('error', (error: string) => { this.error = error; this.publish(); });
     this.application.camera.on('reading-return-safe', () => this.restoreRoom());
     this.application.camera.on('settled', () => {
-      if (!this.ready) return;
+      if (!this.ready || this.onboarding !== 'done') return;
       if (!isReadingView(this.view)) this.restoreRoom();
       this.room.show();
       this.syncScreens();
@@ -101,6 +101,10 @@ export default class World {
       this.publish();
     });
     EventBus.on('world-request-state', () => this.publish());
+    this.canvasListeners.push(
+      EventBus.on('onboarding-finish', () => this.finishOnboarding()),
+      EventBus.on('onboarding-skip', () => this.finishOnboarding(true)),
+    );
     EventBus.on('navigate', ({ view }: { view: unknown }) => { if (isRoomId(view)) this.navigate(view); });
     EventBus.on('enter-courtyard', ({ id }: { id?: string }) => {
       if (!this.ready || this.error || this.application.camera.transitioning || !isRoomId(this.view)) return;
@@ -171,11 +175,9 @@ export default class World {
       this.room.anchors.set('game', this.rhythmStage.focusAnchor);
       this.application.camera.setRhythmTarget(this.rhythmStage.focusAnchor);
       this.guide = new GuideRobot(this.application, this.room.robot);
-      this.hamster = new GuideRobot(this.application, (this.application.resources.items.guideCharacterModel as LoadedModel).scene, { role: 'companion' });
-      this.hamsterRoam = new HamsterRoam(this.hamster);
-      this.hamsterRoam.resume();
+      this.horses = new HorseHerd(this.application);
       this.courtyard = new Courtyard(this.application, this.guide, {
-        canInteract: () => this.ready && !this.error,
+        canInteract: () => this.ready && this.onboarding === 'done' && !this.error,
         open: (anchor) => {
           this.curtains?.cancelDrag(); this.cancelCameraDrag();
           this.view = 'exhibit';
@@ -232,7 +234,9 @@ export default class World {
       this.environment.setRoom('developer', true);
       this.ready = true;
       this.syncScreens();
-      this.guide.setRoom('developer', true);
+      this.guide.setReading(true);
+      this.application.camera.beginOnboarding();
+      this.onboarding = 'writing';
       this.publish();
     } catch (error) {
       console.error('Guided room initialization failed', error);
@@ -241,7 +245,23 @@ export default class World {
     }
   }
 
+  private finishOnboarding(instant = false) {
+    if (!this.ready || this.error || this.onboarding === 'loading' || this.onboarding === 'done') return;
+    if (this.onboarding === 'tour' && !instant) return;
+    this.onboarding = 'tour';
+    this.publish();
+    this.application.camera.finishOnboarding(() => {
+      this.onboarding = 'done';
+      this.room.show();
+      this.syncScreens();
+      this.guide.setReading(false);
+      this.guide.setRoom('developer', true);
+      this.publish();
+    }, instant);
+  }
+
   private publish() {
+    document.body.dataset.onboarding = this.onboarding;
     document.body.dataset.view = this.view;
     document.body.dataset.room = this.activeRoom;
     document.body.dataset.seated = String(this.seatedOverlay);
@@ -249,14 +269,14 @@ export default class World {
     document.body.dataset.night = String(night);
     document.body.dataset.artTheme = this.artTheme;
     document.body.dataset.artThemeTransitioning = String(this.artThemeTransitioning);
-    EventBus.dispatch('world-state', { ready: this.ready, transitioning: this.application.camera.transitioning, artTheme: this.artTheme, artThemeTransitioning: this.artThemeTransitioning, view: this.view, room: this.activeRoom, readingView: this.readingOverlay, seated: this.view === 'piano-seat', seatedTransition: this.seatedOverlay, night, activity: null, error: this.error, game: this.game.getSnapshot() });
+    EventBus.dispatch('world-state', { ready: this.ready, onboarding: this.onboarding, transitioning: this.application.camera.transitioning, artTheme: this.artTheme, artThemeTransitioning: this.artThemeTransitioning, view: this.view, room: this.activeRoom, readingView: this.readingOverlay, seated: this.view === 'piano-seat', seatedTransition: this.seatedOverlay, night, activity: null, error: this.error, game: this.game.getSnapshot() });
     if (this.performance) EventBus.dispatch('world-state', { performance: this.performance.getSnapshot() });
   }
 
   private closeReading() { if (isReadingView(this.view)) this.navigate(this.view === 'resume' ? 'developer' : this.view === 'leaderboard' ? 'ai' : 'blog'); }
 
   navigate(view: RoomView, stationId?: string) {
-    if (!this.ready || this.view === view) return;
+    if (!this.ready || this.onboarding !== 'done' || this.view === view) return;
     if (view === 'monitor' && this.activeRoom !== 'blog') return;
     if (view === 'resume' && this.activeRoom !== 'developer') return;
     if (view === 'leaderboard' && this.activeRoom !== 'ai') return;
@@ -271,8 +291,7 @@ export default class World {
     if (!pianoContext) this.stopRoomActivity();
     if (view === 'rhythm') this.performance.stop();
     if (oldView === 'rhythm') {
-      this.hamster.setDancing(null);
-      this.hamsterRoam.resume();
+      this.horses.setDancing(null);
       this.guide.setReading(false);
       this.courtyard?.meadow.setOutdoor(false);
     }
@@ -291,8 +310,7 @@ export default class World {
     } else if (view === 'rhythm') {
       this.readingOverlay = null; this.seatedOverlay = false;
       this.guide.setReading(true);
-      this.hamster.root.scale.setScalar(1);
-      this.hamster.setDancing(this.rhythmStage!.dancerAnchor);
+      this.horses.setDancing(this.rhythmStage!.dancerAnchor);
       this.application.scene.fog = null;
     } else if (isReadingView(view)) {
       // A quick re-entry cancels the pending reveal and preserves only the reader.
@@ -335,7 +353,7 @@ export default class World {
   }
 
   interact(id: ObjectId) {
-    if (!this.ready || this.error || this.view === 'courtyard' || this.view === 'exhibit' || this.view === 'rhythm' || isReadingView(this.view) || this.application.camera.transitioning) return;
+    if (!this.ready || this.onboarding !== 'done' || this.error || this.view === 'courtyard' || this.view === 'exhibit' || this.view === 'rhythm' || isReadingView(this.view) || this.application.camera.transitioning) return;
     if (id === 'guide') { this.guide.help(); return; }
     if (id.startsWith('key')) { this.playNote(Number(id.slice(3))); return; }
     if (id.startsWith('gamePad')) {
@@ -361,6 +379,7 @@ export default class World {
   private applyArtTheme(theme: ArtTheme, persist = true) {
     this.room.setArtTheme(theme);
     this.courtyard?.setArtTheme(theme);
+    this.horses?.setArtTheme(theme);
     this.courtyard?.meadow.setNight(this.night);
     this.rhythmStage?.setArtTheme(theme);
     this.environment.setArtTheme(theme, true);
@@ -433,7 +452,7 @@ export default class World {
     this.rhythmMusic = state;
     if (this.rhythmFocusPaused) {
       if (state.playing) EventBus.dispatch('rhythm-music-action', { action: 'pause' });
-      this.hamster?.setDanceBeat(state.time, false, TRACK.bpm);
+      this.horses?.setDanceBeat(state.time, false, TRACK.bpm);
       return;
     }
     if (state.error) { this.rhythmStarting = false; this.game.pause(); }
@@ -445,7 +464,7 @@ export default class World {
     if (state.playerState === 'ended') this.game.update(TRACK.duration, true);
     else if (state.playing) this.game.update(state.time + this.rhythmActiveOffset, true);
     else if (state.playerState === 'paused' || state.playerState === 'buffering') this.game.pause();
-    this.hamster?.setDanceBeat(state.time, state.playing && this.game.state.phase !== 'finished', TRACK.bpm);
+    this.horses?.setDanceBeat(state.time, state.playing && this.game.state.phase !== 'finished', TRACK.bpm);
   }
 
   private pauseRhythmForFocus() {
@@ -453,7 +472,7 @@ export default class World {
     this.rhythmFocusPaused = true; this.rhythmStarting = false;
     this.game.pause();
     EventBus.dispatch('rhythm-music-action', { action: 'pause' });
-    this.hamster?.setDanceBeat(this.rhythmMusic.time, false, TRACK.bpm);
+    this.horses?.setDanceBeat(this.rhythmMusic.time, false, TRACK.bpm);
   }
 
   private stopRoomActivity() {
@@ -473,7 +492,7 @@ export default class World {
   }
 
   private keydown(event: KeyboardEvent) {
-    if (!this.ready || this.error || event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
+    if (!this.ready || this.onboarding !== 'done' || this.error || event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
     const target = event.target;
     if (this.view === 'exhibit') {
       if (event.key === 'Escape' && !event.repeat) { event.preventDefault(); this.courtyard?.close(); }
@@ -594,6 +613,7 @@ export default class World {
   }
 
   disposeInput() {
+    this.application.camera.cancelOnboarding();
     window.clearTimeout(this.artThemeTimer);
     this.artThemeTimer = undefined;
     this.artThemeTransitioning = false;
@@ -639,11 +659,10 @@ export default class World {
     this.performance.update();
     this.guide.update();
     if (!this.error) this.courtyard?.update();
-    this.hamster.root.visible = this.view === 'rhythm' || this.view === 'courtyard' || isRoomId(this.view);
-    if (this.view === 'rhythm') this.hamster.update();
-    else if (this.hamster.root.visible && !this.error && !this.application.camera.transitioning) {
-      this.hamsterRoam.update(this.application.time.delta, this.view === 'courtyard' ? this.courtyard?.walk : undefined);
-    }
+    this.horses.root.visible = this.view === 'rhythm' || this.view === 'courtyard' || this.view === 'exhibit' || isRoomId(this.view);
+    this.horses.update(this.application.time.delta,
+      this.view === 'courtyard' || this.view === 'exhibit' ? this.courtyard?.walk : undefined,
+      Boolean(this.error) || this.application.camera.transitioning || this.view === 'exhibit');
     if (this.view === 'rhythm') {
       this.application.scene.fog = null;
       if (this.portrait) this.portrait.mesh.visible = this.portrait.object.visible = false;

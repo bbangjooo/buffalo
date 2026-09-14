@@ -11,6 +11,8 @@ import CourtyardUI from './CourtyardUI';
 import AtlasCompass from './AtlasCompass';
 import ArtThemeToggle from './ArtThemeToggle';
 import { readArtTheme, type ArtTheme } from '../../../design/art-themes';
+import RoomOnboarding from './RoomOnboarding';
+import type { OnboardingPhase } from '../../../design/onboarding';
 
 interface WorldState {
   ready: boolean;
@@ -24,6 +26,7 @@ interface WorldState {
   night: boolean;
   artTheme: ArtTheme;
   artThemeTransitioning?: boolean;
+  onboarding: OnboardingPhase;
   note: number | null;
   pianoAudio?: { status: "idle" | "loading" | "ready" | "error"; error?: string };
   performance: PianoPerformanceState;
@@ -93,6 +96,7 @@ const InterfaceUI: React.FC = () => {
   const [world, setWorld] = useState<WorldState>(() => ({
     ready: false, view: "developer", readingView: null, seated: false, seatedTransition: false, room: "developer", muted: false, night: false,
     note: null, performance: INITIAL_PERFORMANCE, artTheme: readArtTheme(), artThemeTransitioning: false,
+    onboarding: 'loading',
   }));
   const [guide, setGuide] = useState<GuideMessage>({ text: "", actionId: null, actionLabel: "", visible: false });
   const [slowLoading, setSlowLoading] = useState(false);
@@ -110,10 +114,11 @@ const InterfaceUI: React.FC = () => {
   const inCourtyard = world.view === 'courtyard' || world.view === 'exhibit';
   const inRhythm = world.view === 'rhythm';
   const inSeat = !!world.seatedTransition || !!world.seated || world.view === "piano-seat";
+  const inOnboarding = !world.error && world.onboarding !== 'done';
   const room = isRoomId(world.room) ? world.room : "developer";
   const roomIndex = ROOM_IDS.indexOf(room);
   const unavailable = !world.ready || !!world.error;
-  const actionsUnavailable = unavailable || !!world.transitioning || !!world.artThemeTransitioning;
+  const actionsUnavailable = unavailable || inOnboarding || !!world.transitioning || !!world.artThemeTransitioning;
   const seatAction = ROOMS.piano.actions.find((action) => action.id === "pianoSeat");
   const performance = world.performance || INITIAL_PERFORMANCE;
   const performanceActive = performance.status === "playing" || performance.status === "paused" || performance.status === 'buffering';
@@ -244,7 +249,7 @@ const InterfaceUI: React.FC = () => {
   }
 
   return (
-    <div className={`room-interface${inSeat ? " room-interface--seated" : ""}`} data-transitioning={world.transitioning || world.artThemeTransitioning ? "true" : "false"}>
+    <div className={`room-interface${inSeat ? " room-interface--seated" : ""}`} data-onboarding={inOnboarding ? world.onboarding : 'done'} data-transitioning={world.transitioning || world.artThemeTransitioning ? "true" : "false"}>
       <PianoAssetProgress />
       <aside className="personal-bio" hidden={inReading || inSeat || inCourtyard || inRhythm} aria-label="bbangjo">
         <h1>bbangjo</h1>
@@ -282,7 +287,7 @@ const InterfaceUI: React.FC = () => {
       <p className="piano-seat-hint" hidden={!inSeat || inReading} role="status">White keys {WHITE_SHORTCUTS} · Black keys {BLACK_SHORTCUTS}<span>Play the keys · Drag to look around</span></p>
 
       <main className="gallery-stage" aria-label="Byeong-geun Jo's 3D space">
-        <div className="hotspots" data-labels-hidden={hideLabels} hidden={unavailable || inReading || inSeat || inCourtyard || inRhythm}>
+        <div className="hotspots" data-labels-hidden={hideLabels} hidden={unavailable || inOnboarding || inReading || inSeat || inCourtyard || inRhythm}>
           {HOTSPOTS.map((action) => (
             <button key={action.id} data-hotspot={action.id} data-hotspot-room={action.room} className="hotspot" aria-label={actionLabel(action.id, action.label)} aria-pressed={actionPressed(action.id)} disabled={unavailable || !!world.artThemeTransitioning} onClick={() => interact(action.id)}><span className="hotspot-dot" /><span className="hotspot-label">{actionLabel(action.id, action.label)}</span></button>
           ))}
@@ -353,6 +358,7 @@ const InterfaceUI: React.FC = () => {
           <button className="room-step" disabled={unavailable} aria-label="Next room" onClick={() => navigate(ROOM_IDS[(roomIndex + 1) % ROOM_IDS.length])}><Icon name="next" /></button>
         </nav>
       </div>
+      <RoomOnboarding phase={world.error ? 'done' : world.onboarding} />
     </div>
   );
 };

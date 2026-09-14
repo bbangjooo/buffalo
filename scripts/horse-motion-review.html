@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Horse motion review</title>
+<style>
+  *{box-sizing:border-box}body{margin:0;background:#eadcc0;color:#30271f;font:14px/1.5 system-ui,sans-serif}
+  canvas{display:block;width:100%;height:100vh}header{position:fixed;inset:16px 16px auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;z-index:2}
+  button,select{font:inherit;color:inherit;background:#f6efdf;border:1px solid #88785b;border-radius:5px;padding:7px 10px;cursor:pointer}
+  label{display:flex;align-items:center;gap:5px}footer{position:fixed;inset:auto 16px 12px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;background:#eadcc0dc;padding:8px 12px}
+  a{color:inherit}output{font-variant-numeric:tabular-nums}button[aria-pressed=true]{background:#30271f;color:#f6efdf}
+</style>
+<header>
+  <strong>Horse motion review</strong>
+  <label>Horse <select id="horse"></select></label>
+  <label>Theme <select id="theme"><option value="classic">Low-poly</option><option value="ink">Pen drawing</option></select></label>
+  <label>View <select id="view"><option value="side">Side</option><option value="three">Three-quarter</option><option value="front">Front</option><option value="fixed">Fixed world</option></select></label>
+  <label>Speed <select id="speed"><option value="1">1×</option><option value="0.25">¼×</option><option value="0.5">½×</option></select></label>
+  <button id="pause" aria-pressed="false">Pause</button><button id="step">Step one frame</button><button id="advance">Step 0.2 s</button>
+  <button id="walk">Walk</button><button id="graze">Graze</button><button id="natural">Natural cycle</button>
+  <button id="record">Record 12 seconds</button>
+</header>
+<footer><output id="state">Loading the actual scene models…</output><span><a href="https://www.amnh.org/content/download/213774/3146546/file/horse_walk-flipbook.pdf" target="_blank" rel="noopener">AMNH walking reference</a> · <a href="https://ceh.vetmed.ucdavis.edu/news/grass-greener-center-equine-health" target="_blank" rel="noopener">Grazing reference</a></span></footer>
+<script type="module">
+  // Local Vite review page, deliberately absent from production build entries.
+  // Uses the actual GLBs/controller and renders their continuous motion.
+  import * as THREE from 'three';
+  import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
+  import HorseHerd from '../src/Application/World/HorseHerd.ts';
+  const $ = id => document.getElementById(id);
+  const scene = new THREE.Scene();scene.background=new THREE.Color('#eadcc0');
+  const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputEncoding=THREE.sRGBEncoding;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1;
+  renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;document.body.prepend(renderer.domElement);
+  scene.add(new THREE.HemisphereLight(0xffffff,0x9b927b,1.25));
+  const sun=new THREE.DirectionalLight(0xffffff,2.5);scene.add(sun);sun.castShadow=true;
+  sun.shadow.mapSize.set(2048,2048);sun.shadow.camera.left=-6;sun.shadow.camera.right=6;sun.shadow.camera.top=6;sun.shadow.camera.bottom=-6;
+  const ground=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshStandardMaterial({color:'#c7c39e',roughness:1}));
+  ground.rotation.x=-Math.PI/2;ground.position.y=-.16;ground.receiveShadow=true;scene.add(ground);
+  const camera=new THREE.OrthographicCamera();camera.near=.01;camera.far=200;
+  const loader=new GLTFLoader();
+  const [ink,classic]=await Promise.all(['/Room/horses-ink.glb','/Room/horses-low-poly.glb'].map(url=>loader.loadAsync(url)));
+  const herd=new HorseHerd({scene,resources:{items:{inkHorsesModel:ink,classicHorsesModel:classic}},renderer:{instance:renderer}});
+  herd.setArtTheme('classic');
+  herd.state.horses.forEach((horse,index)=>{const option=new Option(horse.id,String(index));$('horse').add(option)});
+  let paused=false,selected=0,behavior='natural';
+  function setPause(value){paused=value;$('pause').textContent=value?'Play':'Pause';$('pause').setAttribute('aria-pressed',String(value))}
+  $('pause').onclick=()=>setPause(!paused);
+  $('step').onclick=()=>{setPause(true);update(1000/60);draw()};
+  $('advance').onclick=()=>{setPause(true);for(let frame=0;frame<12;frame++)update(1000/60);draw()};
+  $('horse').onchange=()=>{selected=Number($('horse').value);draw()};
+  $('theme').onchange=()=>{herd.setArtTheme($('theme').value);draw()};
+  $('view').onchange=()=>draw();
+  $('walk').onclick=()=>{behavior='walk';const h=herd.horses[selected];herd.startWalking(h);h.nextRest=h.distance+1000;setPause(false)};
+  $('graze').onclick=()=>{behavior='graze';herd.startGrazing(herd.horses[selected]);setPause(false)};
+  $('natural').onclick=()=>{behavior='natural';const h=herd.horses[selected];herd.startWalking(h);h.nextRest=h.distance+1.5;setPause(false)};
+  function update(delta){herd.update(delta);herd.root.children.forEach((h,index)=>h.visible=index===selected)}
+  function draw(){
+    const horse=herd.horses[selected];if(!horse)return;
+    const target=horse.root.position.clone().add(new THREE.Vector3(0,1,0));
+    const direction=$('view').value==='side'?new THREE.Vector3(6,.2,0):$('view').value==='front'?new THREE.Vector3(0,.45,6):new THREE.Vector3(5,1.4,4);
+    if($('view').value!=='fixed')direction.applyQuaternion(horse.root.quaternion);camera.position.copy(target).add(direction);camera.lookAt(target);
+    const span=4.1,aspect=innerWidth/innerHeight;camera.left=-span*aspect/2;camera.right=span*aspect/2;camera.top=span/2;camera.bottom=-span/2;camera.updateProjectionMatrix();
+    sun.position.copy(target).add(new THREE.Vector3(-4,7,5));sun.target.position.copy(target);sun.target.updateMatrixWorld();
+    renderer.render(scene,camera);
+    const state=herd.state.horses[selected];
+    $('state').textContent=`${state.id} · ${state.activity || (state.moving?'Walking':state.grazing?'Grazing':'Resting')} · ${behavior} · phase ${Number(horse.phase%1).toFixed(2)}`;
+  }
+  function resize(){renderer.setSize(innerWidth,innerHeight);draw()}window.addEventListener('resize',resize);resize();
+  let previous=performance.now();function frame(now){const delta=Math.min(80,now-previous);previous=now;if(!paused)update(delta*Number($('speed').value));draw();requestAnimationFrame(frame)}requestAnimationFrame(frame);
+  $('record').onclick=()=>{
+    const button=$('record');button.disabled=true;button.textContent='Recording…';setPause(false);
+    const stream=renderer.domElement.captureStream(30),chunks=[];
+    const recorder=new MediaRecorder(stream,{mimeType:'video/webm'});
+    recorder.ondataavailable=event=>{if(event.data.size)chunks.push(event.data)};
+    recorder.onstop=()=>{const url=URL.createObjectURL(new Blob(chunks,{type:'video/webm'}));const a=document.createElement('a');a.href=url;a.download=`horse-${$('theme').value}-${behavior}.webm`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);stream.getTracks().forEach(track=>track.stop());button.disabled=false;button.textContent='Record 12 seconds'};
+    recorder.start();setTimeout(()=>recorder.stop(),12000);
+  };
+</script>
+</html>

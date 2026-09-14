@@ -55,6 +55,7 @@ function cameraHarness() {
     if (name === '../Application') return Application;
     if (name.endsWith('/Eventemitter')) return EventEmitter;
     if (name.endsWith('/rooms')) return { ROOMS, ROOM_SIZE };
+    if (name.endsWith('/onboarding')) return load('../src/design/onboarding.ts', () => ({}));
     throw new Error(`Unexpected camera dependency: ${name}`);
   }, { window: { matchMedia: () => reducedMotion } });
   const camera = new Camera();

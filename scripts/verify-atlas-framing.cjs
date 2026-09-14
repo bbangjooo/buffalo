@@ -72,6 +72,7 @@ function harness(filename, width, height) {
     if (name === '../Application') return Application;
     if (name.endsWith('/Eventemitter')) return EventEmitter;
     if (name.endsWith('/rooms')) return { ROOMS, ROOM_SIZE };
+    if (name.endsWith('/onboarding')) return load(path.join(ROOT, 'src/design/onboarding.ts'), () => ({}));
     throw new Error(`Unexpected Camera dependency: ${name}`);
   }, { window: { matchMedia: () => reducedMotion } });
   return { camera: new Camera(), application, reducedMotion, timelines, finish: inspect => timelines.at(-1).finish(inspect) };

@@ -17,8 +17,13 @@ const sources: Source[] = [
     type: SourceType.GLTF_MODEL,
   },
   {
-    name: "guideCharacterModel",
-    path: "/Room/character-guide-smooth.glb",
+    name: "inkHorsesModel",
+    path: "/Room/horses-ink.glb",
+    type: SourceType.GLTF_MODEL,
+  },
+  {
+    name: "classicHorsesModel",
+    path: "/Room/horses-low-poly.glb",
     type: SourceType.GLTF_MODEL,
   },
   {

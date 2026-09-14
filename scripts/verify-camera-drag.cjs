@@ -47,6 +47,7 @@ function harness() {
     lookRoom: (dx, dy) => calls.room.push([dx, dy]),
     lookSeated: (dx, dy) => calls.seat.push([dx, dy]),
     navigate() {},
+    cancelOnboarding() {},
   };
   const sandbox = {
     exports: {}, window, document: { body: { dataset: {} } }, performance: { now: () => 1000 },
@@ -62,7 +63,7 @@ function harness() {
   const world = Object.create(sandbox.exports.default.prototype);
   Object.assign(world, {
     application: { renderer: { instance: { domElement: canvas } }, camera },
-    ready: true, view: 'developer', activeRoom: 'developer', error: undefined,
+    ready: true, onboarding: 'done', view: 'developer', activeRoom: 'developer', error: undefined,
     dragPointer: null, dragging: false, lastDrag: new THREE.Vector2(), pointerDown: new THREE.Vector2(),
     canvasListeners: [], markers: new Map(), hover: null, lastPick: 0,
     pick: () => { calls.picks++; return 'resume'; },

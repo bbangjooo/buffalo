@@ -43,7 +43,7 @@ const rhythm = load('src/design/rhythm-game.ts', (name) => {
 });
 
 function harness() {
-  const calls = { events: [], camera: [], guideReading: [], guideRoom: [], hamsterDance: [], roam: 0, roamUpdates: 0,
+  const calls = { events: [], camera: [], guideReading: [], guideRoom: [], horseDance: [], horseUpdates: [],
     audioStops: 0, screenMessages: [], storageWrites: [], requests: [], villageUpdates: [] };
   const subscriptions = new Map();
   const bus = {
@@ -64,6 +64,7 @@ function harness() {
   camera.view = 'ai'; camera.transitioning = false; camera.on = camera.addEventListener.bind(camera);
   camera.navigate = (view, instant = false) => { calls.camera.push({ view, instant }); camera.view = view; camera.transitioning = !instant; };
   camera.setRhythmViewport = () => {};
+  camera.cancelOnboarding = () => {};
   const resources = new Surface(); resources.on = resources.addEventListener.bind(resources);
   const application = {
     camera, resources, scene: new THREE.Scene(), cssScene: new THREE.Scene(),
@@ -110,9 +111,42 @@ function harness() {
   world.room = { root: new THREE.Group(), anchors: new Map(), show() {}, stopMotion() {} };
   world.guide = { root: new THREE.Group(), anchor: new THREE.Object3D(), update() {}, hide() {}, help() {},
     setReading(value) { calls.guideReading.push(value); }, setRoom(room) { calls.guideRoom.push(room); } };
-  world.hamster = { root: new THREE.Group(), update() {}, react() {}, setDanceBeat() {}, danceStep() {},
-    setDancing(anchor) { calls.hamsterDance.push(anchor); } };
-  world.hamsterRoam = { resume() { calls.roam++; world.hamster.root.scale.setScalar(2.2); }, update() { calls.roamUpdates++; } };
+  // The real herd controller owns the saved routes and stage return. Geometry is
+  // irrelevant to this lifecycle proof; the asset suite checks the actual GLBs.
+  const horseModel = () => {
+    const scene = new THREE.Group();
+    for (const variant of ['HorseChestnut', 'HorseCream', 'HorseCharcoal']) {
+      const model = new THREE.Group(); model.name = variant;
+      for (const name of ['HeadPivot', 'NeckPivot', 'JawPivot', 'MuzzleAnchor', 'TailPivot']) {
+        const joint = new THREE.Group(); joint.name = `${variant}_${name}`; model.add(joint);
+      }
+      for (const [index, name] of ['LegFL', 'LegFR', 'LegBL', 'LegBR'].entries()) {
+        const fore = index < 2;
+        const upper = new THREE.Group(); upper.name = `${variant}_${name}`;
+        upper.position.set(index % 2 ? -.215 : .215, fore ? 1.3 : 1.34, fore ? .56 : -.47);
+        const middle = new THREE.Group(); middle.name = `${variant}_${name}_${fore ? 'Elbow' : 'Stifle'}Pivot`;
+        middle.position.set(0, fore ? -.18 : -.3, fore ? -.18 : .2);
+        const knee = new THREE.Group(); knee.name = `${variant}_${name}_${fore ? 'Knee' : 'Hock'}Pivot`;
+        knee.position.set(0, fore ? -.55 : -.32, fore ? .02 : -.39);
+        const hoof = new THREE.Group(); hoof.name = `${variant}_${name}_HoofPivot`;
+        hoof.position.set(0, fore ? -.4 : -.55, 0);
+        upper.add(middle); middle.add(knee); knee.add(hoof); model.add(upper);
+      }
+      scene.add(model);
+    }
+    return { scene };
+  };
+  resources.items = { inkHorsesModel: horseModel(), classicHorsesModel: horseModel() };
+  const { default: HorseHerd } = load('src/Application/World/HorseHerd.ts', name => {
+    if (name === 'three') return THREE;
+    if (name.endsWith('/courtyard-layout.json')) return require('../src/design/courtyard-layout.json');
+    if (name === './PenInk') return { preparePenInkModel() {} };
+    throw new Error(`Unexpected horse dependency: ${name}`);
+  }, { window });
+  world.horses = new HorseHerd(application);
+  const setDancing = world.horses.setDancing.bind(world.horses), updateHorses = world.horses.update.bind(world.horses);
+  world.horses.setDancing = anchor => { calls.horseDance.push(anchor); setDancing(anchor); };
+  world.horses.update = (delta, visitor, paused) => { calls.horseUpdates.push({ delta, visitor, paused }); updateHorses(delta, visitor, paused); };
   world.rhythmStage = { root: new THREE.Group(), dancerAnchor: new THREE.Object3D(), setVisible() {}, setPad() {} };
   world.performance = { update() {}, stop() {}, getSnapshot: () => ({ status: 'idle' }) };
   world.environment = { setRoom() {}, setNight() {}, setCourtyard() {} };
@@ -120,7 +154,7 @@ function harness() {
   world.curtains = { isDragging: false, cancelDrag() {} };
   world.courtyard = { root: new THREE.Group(), meadow: { root: new THREE.Group(), setOutdoor() {}, setNight() {} },
     walk: { x: 7, z: 7 }, leave() {}, update() {}, enter() {} };
-  world.ready = true; world.view = 'ai'; world.activeRoom = 'ai';
+  world.ready = true; world.onboarding = 'done'; world.view = 'ai'; world.activeRoom = 'ai';
   return { world, application, camera, calls, bus, window, document, storage, subscriptions,
     settle() { camera.transitioning = false; camera.emit('settled'); },
   };
@@ -204,23 +238,33 @@ check('wrong rooms, loading, transitions and errors cannot open the leaderboard'
   }
 });
 
-check('rhythm-to-leaderboard stops native music, restores the hamster, and preserves the personal best', () => {
+check('rhythm-to-leaderboard stops native music, restores the herd, and preserves the personal best', () => {
   const h = harness();
-  h.world.view = 'rhythm'; h.world.activeRoom = 'ai'; h.camera.view = 'rhythm';
-  h.world.hamster.root.scale.setScalar(1);
+  const saved = JSON.stringify(h.world.horses.state.horses);
+  h.world.navigate('rhythm');
+  assert.equal(h.world.horses.state.dancing, true);
+  assert.equal(h.world.horses.state.horses.filter(horse => horse.visible).length, 1);
+  assert.equal(h.world.horses.state.horses[0].scale, .56);
   h.world.game.start(); h.world.game.update(rhythm.TRACK.firstNoteTime, true); h.world.game.press(0, 'held-key');
   const best = h.world.game.state.best;
   h.bus.dispatch('leaderboard-open');
   assert.equal(h.world.view, 'leaderboard'); assert.equal(h.world.game.state.phase, 'idle');
   assert.equal(h.world.game.state.heldLanes.length, 0); assert.equal(h.world.game.state.best, best);
   assert(h.calls.events.some((event) => event.name === 'rhythm-music-action' && event.data.action === 'stop'));
-  assert.equal(h.calls.hamsterDance.at(-1), null); assert.equal(h.calls.roam, 1);
-  assert.equal(h.world.hamster.root.scale.x, 2.2);
+  assert.equal(h.calls.horseDance.at(-1), null);
+  assert.equal(h.world.horses.state.dancing, false);
+  assert.equal(JSON.stringify(h.world.horses.state.horses), saved, 'all eight horses return to their saved routes, scale and heading');
   assert.equal(h.calls.storageWrites.length, 0); assert.equal(h.calls.requests.length, 0);
   h.settle(); h.world.update();
-  assert.equal(h.world.hamster.root.visible, false); assert.equal(h.calls.roamUpdates, 0, 'the companion stays still while reading');
+  assert.equal(h.world.horses.root.visible, false);
+  const reading = JSON.stringify(h.world.horses.state.horses);
+  for (let frame = 0; frame < 20; frame++) h.world.update();
+  assert.equal(JSON.stringify(h.world.horses.state.horses), reading, 'the herd stays still while reading');
   h.bus.dispatch('close-reading'); h.settle(); h.world.update();
-  assert.equal(h.world.view, 'ai'); assert.equal(h.world.hamster.root.visible, true); assert(h.calls.roamUpdates > 0);
+  assert.equal(h.world.view, 'ai'); assert.equal(h.world.horses.root.visible, true);
+  assert.equal(h.world.horses.state.horses.filter(horse => horse.visible).length, 8);
+  assert(h.world.horses.state.horses.some(horse => horse.moving), 'independent outdoor walking resumes after closing the reader');
+  assert(h.calls.horseUpdates.every(call => call.delta === h.application.time.delta));
   h.world.disposeInput();
 });
 
@@ -336,6 +380,7 @@ check('the real Renderer releases canvas hit testing for settled readers and res
     if (name.endsWith('/Eventemitter')) return class EventEmitter {};
     if (name.endsWith('/Application')) return class Application {};
     if (name.endsWith('/rooms')) return rooms;
+    if (name.endsWith('/onboarding')) return load('src/design/onboarding.ts', () => ({}));
     throw new Error(`Unexpected camera dependency: ${name}`);
   });
   const { default: Renderer } = load('src/Application/Renderer.ts', (name) => {

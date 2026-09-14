@@ -229,9 +229,11 @@ function worldHarness(options = {}) {
   document.body = { dataset: {} }; document.hidden = false; document.querySelector = () => null;
   canvas.hasPointerCapture = () => false; canvas.releasePointerCapture = () => {}; canvas.setPointerCapture = () => {};
   canvas.getBoundingClientRect = () => ({ left: 0, top: 0, width: 1200, height: 760 });
-  bus.on = bus.addEventListener.bind(bus); bus.dispatch = (name, data = {}) => { events.push({ name, data }); for (const fn of bus.listeners.get(name) || []) fn(data); };
+  bus.on = (name, fn) => { bus.addEventListener(name, fn); return () => bus.removeEventListener(name, fn); };
+  bus.dispatch = (name, data = {}) => { events.push({ name, data }); for (const fn of bus.listeners.get(name) || []) fn(data); };
   const camera = new Surface(); camera.on = camera.addEventListener.bind(camera); camera.transitioning = false;
   camera.instance = new THREE.PerspectiveCamera(); camera.instance.position.set(3, 2, 8); camera.setRhythmViewport = () => {};
+  camera.cancelOnboarding = () => {};
   const resources = new Surface(); resources.on = resources.addEventListener.bind(resources);
   const application = { camera, resources, scene: new THREE.Scene(), sizes: { width: 1200, height: 760 }, time: { delta: 16 },
     renderer: { instance: { domElement: canvas, shadowMap: { needsUpdate: false } } }, audioPlayer: {} };
@@ -256,7 +258,7 @@ function worldHarness(options = {}) {
     setArtTheme(theme) { calls.push({ name, theme }); }, setDisplay(active, night, theme) { this.display = { active, night, theme }; } });
   world.monitorScreen = screen('monitor'); world.resumeScreen = screen('resume'); world.leaderboardScreen = screen('leaderboard');
   world.performance = { getSnapshot: () => ({ status: 'playing', time: 17 }) };
-  world.ready = true; world.view = 'piano-seat'; world.activeRoom = 'piano';
+  world.ready = true; world.onboarding = 'done'; world.view = 'piano-seat'; world.activeRoom = 'piano';
   return { world, application, camera, window, document, bus, writes, values, calls, events, timers, motion,
     advance(ms) { const end = now + ms; while (true) {
       const due = [...timers].filter(([, value]) => value.due <= end).sort((a, b) => a[1].due - b[1].due)[0];

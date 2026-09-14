@@ -53,7 +53,7 @@ export default class RhythmStage {
     this.slab('DancerLanding', 1.13, 1.45, 0.01, 0.085, 0.007,
       { ink: ivory.ink, classic: rubber.classic }, 0.185);
 
-    // One large pad at each corner leaves a clear central landing for the hamster.
+    // One large pad at each corner leaves a clear central landing for the horse.
     RHYTHM_PAD_POSITIONS.forEach(([x, z], lane) => {
       const frame = this.slab(`PadFrame${lane}`, 0.64, 0.555, 0.014, 0.035, 0.009, brass, 0.173);
       frame.position.x = x;

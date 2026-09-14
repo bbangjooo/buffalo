@@ -4,6 +4,9 @@ import { COURTYARD } from '../../design/history';
 
 const TILE = 24;
 const RADIUS = 2;
+const BASE_GRASS_COUNT = 52;
+const EXTRA_GRASS_GRID = 6;
+const GRASS_COUNT = BASE_GRASS_COUNT + EXTRA_GRASS_GRID ** 2;
 const GRASS = ['#A6BB86', '#B4C38D', '#97B48B', '#ADBF83'];
 function random(seed: number) { const value = Math.sin(seed * 127.1 + 311.7) * 43758.5453; return value - Math.floor(value); }
 function roomIndex(x: number, z: number) { return x >= 0 ? (z >= 0 ? 0 : 1) : (z < 0 ? 2 : 3); }
@@ -61,7 +64,8 @@ export default class ClassicMeadow {
       const root = new THREE.Group();
       const floor = new THREE.Mesh(this.floorGeometry, this.floorMaterials[0]);
       floor.receiveShadow = true;
-      const grass = new THREE.InstancedMesh(this.grassGeometry, this.grassMaterial, 52);
+      const grass = new THREE.InstancedMesh(this.grassGeometry, this.grassMaterial, GRASS_COUNT);
+      grass.name = `ClassicMeadowGrass_${i}`;
       const flowers = new THREE.InstancedMesh(this.flowerGeometry, this.flowerMaterial, 12);
       const rocks = new THREE.InstancedMesh(this.rockGeometry, this.rockMaterial, 4);
       // The small fixed pool is repositioned, so do not retain stale instance bounds.
@@ -112,14 +116,29 @@ export default class ClassicMeadow {
       const tx=(cellX+dx)*TILE,tz=(cellZ+dz)*TILE,tile=this.tiles[i++];
       tile.root.position.set(tx,COURTYARD.groundY,tz);
       tile.floor.material=this.floorMaterials[roomIndex(tx+TILE/2,tz+TILE/2)];
-      for(const [mesh,count] of [[tile.grass,52],[tile.flowers,12],[tile.rocks,4]] as const) {
+      for(const [mesh,count] of [[tile.grass,GRASS_COUNT],[tile.flowers,12],[tile.rocks,4]] as const) {
         for(let j=0;j<count;j++) {
           const seed=(cellX+dx)*4727+(cellZ+dz)*971+j*13+(mesh===tile.flowers?91:mesh===tile.rocks?211:0);
-          const px=.5+random(seed)*(TILE-1),pz=.5+random(seed+1)*(TILE-1);
+          const extraGrass=mesh===tile.grass&&j>=BASE_GRASS_COUNT;
+          // Short supplemental tufts fill the gaps between the original clumps.
+          // One jittered placement per cell keeps the wider meadow even without
+          // adding more draw calls or growing the visitor-following tile pool.
+          const extraIndex=j-BASE_GRASS_COUNT,spacing=TILE/EXTRA_GRASS_GRID;
+          const px=extraGrass?(extraIndex%EXTRA_GRASS_GRID+.2+random(seed)*.6)*spacing:.5+random(seed)*(TILE-1);
+          const pz=extraGrass?(Math.floor(extraIndex/EXTRA_GRASS_GRID)+.2+random(seed+1)*.6)*spacing:.5+random(seed+1)*(TILE-1);
           const wx=tx+px,wz=tz+pz;
           const clear=Math.abs(wx)>.65 && Math.abs(wz)>.65 && (Math.abs(wx)>6.2||Math.abs(wz)>6.2)
             && COURTYARD.stations.every(station=>Math.hypot(station.x-wx,station.z-wz)>2.25);
-          const size=clear ? .65+random(seed+2)*.65 : 0;
+          let size=clear ? (extraGrass ? .56+random(seed+2)*.24 : .65+random(seed+2)*.65) : 0;
+          if(extraGrass) {
+            const radius=size*.5;
+            if(Math.abs(wx)<1.25+radius||Math.abs(wz)<1.25+radius
+              ||(Math.abs(wx)<6.15+radius&&Math.abs(wz)<6.15+radius)
+              ||COURTYARD.stations.some(station=>Math.hypot(station.x-wx,station.z-wz)<2.3+radius
+                ||Math.hypot(station.x+Math.sin(station.yaw)*2.7-wx,station.z+Math.cos(station.yaw)*2.7-wz)<.7+radius)
+              ||COURTYARD.quadrants.some(q=>Math.hypot(q.spawn[0]-wx,q.spawn[1]-wz)<.7+radius)
+              ||COURTYARD.obstacles.some(obstacle=>Math.hypot(obstacle.x-wx,obstacle.z-wz)<obstacle.radius+.3+radius))size=0;
+          }
           this.dummy.position.set(px,0,pz);
           this.dummy.rotation.set(0,random(seed+3)*Math.PI*2,0);
           this.dummy.scale.setScalar(mesh===tile.rocks ? size*.4 : size);
