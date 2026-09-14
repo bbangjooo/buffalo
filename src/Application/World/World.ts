@@ -103,7 +103,7 @@ export default class World {
     EventBus.on('world-request-state', () => this.publish());
     this.canvasListeners.push(
       EventBus.on('onboarding-finish', () => this.finishOnboarding()),
-      EventBus.on('onboarding-skip', () => this.finishOnboarding(true)),
+      EventBus.on('onboarding-skip', () => this.skipOnboarding()),
     );
     EventBus.on('navigate', ({ view }: { view: unknown }) => { if (isRoomId(view)) this.navigate(view); });
     EventBus.on('enter-courtyard', ({ id }: { id?: string }) => {
@@ -243,6 +243,10 @@ export default class World {
       this.error = 'Could not load this space. You can still visit the blog.';
       this.publish();
     }
+  }
+
+  private skipOnboarding() {
+    this.finishOnboarding(this.onboarding === 'tour');
   }
 
   private finishOnboarding(instant = false) {

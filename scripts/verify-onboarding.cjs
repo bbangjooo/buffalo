@@ -144,7 +144,7 @@ check('resize during handwriting keeps the vertical pose and input lock', () => 
   assert(corner.x <= 320 && corner.y < 568);
 });
 
-check('skip during writing or orbit settles once, and reduced motion never starts an orbit', () => {
+check('explicit camera cancellation settles once, and reduced motion never starts an orbit', () => {
   for (const duringTour of [false, true]) {
     const { camera, timelines } = harness(); let original = 0; let skipped = 0;
     camera.beginOnboarding();
