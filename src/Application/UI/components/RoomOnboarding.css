@@ -28,10 +28,10 @@ body[data-art-theme='classic'] .room-onboarding { --onboarding-ink: #254b4e; --o
 body[data-night='true'] .room-onboarding { --onboarding-ink: #efe0bd; --onboarding-paper: #151412; }
 body[data-art-theme='classic'][data-night='true'] .room-onboarding { --onboarding-paper: #183c43; }
 
-.onboarding-heading { position: absolute; top: max(25px, env(safe-area-inset-top)); left: 20px; right: 20px; text-align: center; }
+.onboarding-heading { position: absolute; top: max(8px, env(safe-area-inset-top)); left: 20px; right: 20px; text-align: center; }
 .onboarding-heading h1 { margin: 0; font: 400 clamp(40px, 4vw, 57px)/1.1 'Allura', cursive; font-synthesis: none; }
 .onboarding-wordmark { font-family: var(--font-display); font-size: .72em; font-weight: var(--font-weight-bold); font-style: normal; line-height: var(--line-height-tight); letter-spacing: -.045em; }
-.onboarding-heading p { margin: 7px 0 0; font: 13px/1.45 var(--font-body, sans-serif); }
+.onboarding-heading p { margin: 4px 0 0; font: 13px/1.45 var(--font-body, sans-serif); }
 .onboarding-heading, .onboarding-footer { text-shadow: 0 0 8px var(--onboarding-paper), 0 0 8px var(--onboarding-paper); }
 .onboarding-plan { position: absolute; }
 .onboarding-annotation { position: absolute; width: var(--annotation-width); transform: translate(-50%, -50%); opacity: 0; transition: opacity .16s; }
@@ -70,7 +70,7 @@ body[data-art-theme='classic'][data-night='true'] .room-onboarding { --onboardin
 .room-onboarding[data-landscape='true'] .onboarding-footer { bottom: 4px; }
 
 @media (max-width: 600px) {
-  .onboarding-heading { top: max(34px, env(safe-area-inset-top)); }
+  .onboarding-heading { top: max(18px, env(safe-area-inset-top)); }
   .onboarding-handwriting h2 { min-height: 35px; font-size: min(32px, calc(var(--annotation-width) * .21)); }
   .onboarding-handwriting p { min-height: 74px; font-size: 24px; }
   .onboarding-handwriting::before { inset: -9px -6px; filter: blur(8px); }
